@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Arble Changelog</title>
+    <link>https://arble.ai/changelog.html</link>
+    <description>Every meaningful change to Arble.</description>
+    <language>en</language>
+    <atom:link href="https://arble.ai/changelog.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>1.8.0 — Developer platform</title>
+      <link>https://arble.ai/changelog.html#v1-8-0</link>
+      <guid isPermaLink="true">https://arble.ai/changelog.html#v1-8-0</guid>
+      <description>Latest</description>
+    </item>
+    <item>
+      <title>1.7.0 — Durability</title>
+      <link>https://arble.ai/changelog.html#v1-7-0</link>
+      <guid isPermaLink="true">https://arble.ai/changelog.html#v1-7-0</guid>
+      <description>Memory is encrypted at rest with project-scoped keys, workflows pause and resume at step
+            boundaries, and a run no longer dies because the client that started it went away.
+            Operators get a drain command, which is what makes a rolling restart something you can
+            do during the working day.</description>
+    </item>
+    <item>
+      <title>1.6.0 — MCP support</title>
+      <link>https://arble.ai/changelog.html#v1-6-0</link>
+      <guid isPermaLink="true">https://arble.ai/changelog.html#v1-6-0</guid>
+      <description>Any Model Context Protocol server can be connected, and its tools join the same
+            registry, the same permission gate and the same audit trail as the built-in ones. There
+            is deliberately no second path for third-party tools.</description>
+    </item>
+    <item>
+      <title>1.5.0 — Scheduling</title>
+      <link>https://arble.ai/changelog.html#v1-5-0</link>
+      <guid isPermaLink="true">https://arble.ai/changelog.html#v1-5-0</guid>
+      <description>Agents run on a heartbeat with the app closed, and every wake-up is recorded. This is
+            the release where Arble stops being something you drive and starts being something that
+            runs.</description>
+    </item>
+    <item>
+      <title>1.4.0 — Desktop control</title>
+      <link>https://arble.ai/changelog.html#v1-4-0</link>
+      <guid isPermaLink="true">https://arble.ai/changelog.html#v1-4-0</guid>
+      <description>Pair a computer and the agent can run commands and operate files on it, over your own
+            network or through a relay you configure. The phone stops being a chat client and becomes
+            a control surface.</description>
+    </item>
+  </channel>
+</rss>

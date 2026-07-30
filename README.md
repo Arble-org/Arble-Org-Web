@@ -59,8 +59,21 @@ Sources:
 | `_build/bodies.py` | page bodies written for the new structure |
 | `docs-build/legacy-pages/*.html` | long-form pages lifted into the shared chrome |
 
-The build writes 27 pages, 4 section indexes, a home page and `search-index.json`.
-Bump `CSS_V` in `build.py` when `docs.css` changes so browsers repaint.
+The build writes 27 pages, 4 section indexes, a home page, `search-index.json`
+and `sitemap.xml`. Bump `CSS_V` in `build.py` when `docs.css` changes so browsers
+repaint.
+
+Two further generators sit alongside it:
+
+```bash
+python3 docs-build/legal.py    # legal/{privacy,terms,security,trust,cookies}
+python3 docs-build/feeds.py    # changelog.xml and blog.xml, read from the pages
+```
+
+`legal.py` holds the legal copy as content constants — edit it there, never the
+generated `legal/*/index.html`. Every fact only the organisation can supply is
+marked `[Organization-specific information required]` rather than guessed, and no
+compliance certification is claimed anywhere.
 
 ## Design
 

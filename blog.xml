@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Arble Blog</title>
+    <link>https://arble.ai/blog.html</link>
+    <description>Engineering, research and product writing from Arble.</description>
+    <language>en</language>
+    <atom:link href="https://arble.ai/blog.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>Memory beyond the context window</title>
+      <link>https://arble.ai/blog.html#latest</link>
+      <guid isPermaLink="true">https://arble.ai/blog.html#latest</guid>
+      <description>A context window is working memory, not storage. What retrieval
+                looks like when the unit is a fact with provenance rather than a chunk of
+                text.</description>
+    </item>
+    <item>
+      <title>Typing 579 tools without slowing the loop</title>
+      <link>https://arble.ai/blog.html#latest</link>
+      <guid isPermaLink="true">https://arble.ai/blog.html#latest</guid>
+      <description>Registry lookup was 400 ms at the ninety-ninth percentile once
+                workspaces passed a few hundred tools. What we changed, and why the obvious cache was
+                the wrong fix.</description>
+    </item>
+    <item>
+      <title>Designing the permission gate</title>
+      <link>https://arble.ai/blog.html#latest</link>
+      <guid isPermaLink="true">https://arble.ai/blog.html#latest</guid>
+      <description>Every write stops to ask. The hard part is not the prompt —
+                it is deciding what counts as one decision, and how to avoid training people to
+                approve without reading.</description>
+    </item>
+    <item>
+      <title>How tool calling actually works</title>
+      <link>https://arble.ai/blog.html#latest</link>
+      <guid isPermaLink="true">https://arble.ai/blog.html#latest</guid>
+      <description>From JSON schema to a validated call and back into the transcript,
+                including the failure modes that only appear once a model can call forty things.</description>
+    </item>
+    <item>
+      <title>The architecture behind sessions</title>
+      <link>https://arble.ai/blog.html#latest</link>
+      <guid isPermaLink="true">https://arble.ai/blog.html#latest</guid>
+      <description>What a session owns, what it borrows, and how compaction preserves
+                the instructions that set it up rather than the small talk that followed.</description>
+    </item>
+    <item>
+      <title>Introducing the Tool SDK</title>
+      <link>https://arble.ai/blog.html#latest</link>
+      <guid isPermaLink="true">https://arble.ai/blog.html#latest</guid>
+      <description>Decorators, generated schemas, streaming results and publishing,
+                in four languages. Why the SDK generates the schema instead of asking you to write
+                it.</description>
+    </item>
+    <item>
+      <title>Coordinating agents without a queue</title>
+      <link>https://arble.ai/blog.html#latest</link>
+      <guid isPermaLink="true">https://arble.ai/blog.html#latest</guid>
+      <description>Multi-agent work looks like a distributed system because it is
+                one. What we borrowed from actor models, and where the analogy breaks.</description>
+    </item>
+    <item>
+      <title>Why local-first matters for agents</title>
+      <link>https://arble.ai/blog.html#latest</link>
+      <guid isPermaLink="true">https://arble.ai/blog.html#latest</guid>
+      <description>Latency is the smaller argument. The larger one is that an agent
+                holding your keys and your context is a different trust proposition to one holding a
+                copy.</description>
+    </item>
+    <item>
+      <title>MCP versus native tools</title>
+      <link>https://arble.ai/blog.html#latest</link>
+      <guid isPermaLink="true">https://arble.ai/blog.html#latest</guid>
+      <description>When to write a tool into the runtime and when to reach for a
+                protocol server, measured on latency, typing, failure handling and who you are
+                trusting.</description>
+    </item>
+    <item>
+      <title>Observability for systems that decide</title>
+      <link>https://arble.ai/blog.html#latest</link>
+      <guid isPermaLink="true">https://arble.ai/blog.html#latest</guid>
+      <description>A trace that stops at the HTTP boundary tells you nothing about why
+                an agent chose a tool. Instrumenting the loop itself.</description>
+    </item>
+    <item>
+      <title>Building desktop automation on an untrusted network</title>
+      <link>https://arble.ai/blog.html#latest</link>
+      <guid isPermaLink="true">https://arble.ai/blog.html#latest</guid>
+      <description>Pairing, key exchange and the relay that carries ciphertext it
+                cannot read. Plus the host-key problem we have not solved yet.</description>
+    </item>
+    <item>
+      <title>Planning versus reasoning</title>
+      <link>https://arble.ai/blog.html#latest</link>
+      <guid isPermaLink="true">https://arble.ai/blog.html#latest</guid>
+      <description>Two words used interchangeably that describe different mechanisms
+                with different failure modes. Why conflating them produces agents that think
+                beautifully and do nothing.</description>
+    </item>
+    <item>
+      <title>Running Arble on Kubernetes</title>
+      <link>https://arble.ai/blog.html#latest</link>
+      <guid isPermaLink="true">https://arble.ai/blog.html#latest</guid>
+      <description>Readiness against liveness, draining a node mid-run, and why
+                additive migrations are what make a rolling upgrade possible at all.</description>
+    </item>
+    <item>
+      <title>Inside the CLI</title>
+      <link>https://arble.ai/blog.html#latest</link>
+      <guid isPermaLink="true">https://arble.ai/blog.html#latest</guid>
+      <description>Designing a command surface that is pleasant to type and safe to
+                script — including why every command has a --json mode.</description>
+    </item>
+    <item>
+      <title>Streaming responses, and what breaks at the edges</title>
+      <link>https://arble.ai/blog.html#latest</link>
+      <guid isPermaLink="true">https://arble.ai/blog.html#latest</guid>
+      <description>Token boundaries, backpressure, and the disconnect bug that
+                silently discarded work for two releases before we understood it.</description>
+    </item>
+  </channel>
+</rss>

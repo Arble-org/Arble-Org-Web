@@ -1033,3 +1033,149 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
   *, *::before, *::after { transition-duration: 0ms !important; animation-duration: 0ms !important; }
   html { scroll-behavior: auto; }
 }
+
+/* ═══ EDITORIAL — changelog and blog ═════════════════════════════════════
+   Components used by changelog.html and blog.html. They sit in the docs
+   stylesheet because both pages run the documentation shell; keeping a third
+   stylesheet for two pages would mean a third set of tokens to keep in step. */
+
+/* Art placeholder. Deliberately plain — an unfilled slot should read as
+   unfilled, not as a finished empty panel. */
+.ph16 {
+  aspect-ratio: 16 / 9;
+  border: 1px dashed var(--line-2);
+  border-radius: 10px;
+  background: var(--surface);
+  display: grid;
+  place-items: center;
+}
+
+.ph16::after {
+  content: "Image placeholder \00B7 16:9";
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--ink-4);
+}
+
+/* The current release / the featured article: one card set apart from the
+   list below it, without inventing a second card treatment. */
+.ed__feature {
+  margin: var(--s6) 0;
+  padding: var(--s6);
+  border: 1px solid var(--line-2);
+  border-radius: 12px;
+  background: var(--surface);
+}
+
+.ed__feature > :first-child { margin-block-start: 0; }
+.ed__feature > :last-child { margin-block-end: 0; }
+
+.ed__tag {
+  display: inline-flex;
+  align-items: center;
+  height: 22px;
+  padding: 0 9px;
+  border-radius: 9999px;
+  background: var(--ink);
+  color: var(--bg);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+/* Article rows. Hairline-separated, category and metadata in the margin —
+   a list to scan, not a grid of boxes to look at. */
+.ed__list {
+  list-style: none;
+  margin: var(--s6) 0;
+  padding: 0;
+  border-block-start: 1px solid var(--line);
+}
+
+.ed__item { border-block-end: 1px solid var(--line); }
+
+.ed__item > a {
+  display: block;
+  padding: var(--s4) 0;
+  text-decoration: none;
+  transition: opacity 120ms var(--ease);
+}
+
+.ed__item > a:hover { opacity: .62; }
+
+.ed__cat {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.ed__t {
+  display: block;
+  margin-block: 5px 4px;
+  font-size: var(--t-h4);
+  line-height: var(--l-h4);
+  font-weight: var(--w-semi);
+  letter-spacing: var(--ls-h4);
+  color: var(--ink);
+}
+
+.ed__d {
+  display: block;
+  max-width: var(--prose);
+  font-size: var(--t-body);
+  line-height: var(--l-body);
+  letter-spacing: var(--ls-body);
+  color: var(--ink-body);
+}
+
+.ed__meta {
+  display: block;
+  margin-block-start: var(--block-sm);
+  font-size: 13px;
+  color: var(--ink-3);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Topic chips — navigation, not state. */
+.ed__topics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s2);
+  margin: var(--s6) 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ed__topics a {
+  display: inline-flex;
+  align-items: center;
+  height: 32px;
+  padding: 0 var(--s3);
+  border: 1px solid var(--line-2);
+  border-radius: 9999px;
+  font-size: var(--t-sm);
+  letter-spacing: var(--ls-sm);
+  color: var(--ink-2);
+  text-decoration: none;
+  transition: border-color 120ms var(--ease), color 120ms var(--ease);
+}
+
+.ed__topics a:hover { border-color: var(--ink-4); color: var(--ink); }
+
+/* Legal pages: the marker that stands in for a fact only the organisation can
+   supply. Deliberately conspicuous — an unfilled legal page must not read as a
+   finished one. */
+.lg__tbd {
+  font-family: var(--mono);
+  font-size: .86em;
+  padding: 1px 6px;
+  border-radius: 4px;
+  background: color-mix(in srgb, var(--warn) 12%, transparent);
+  color: var(--warn);
+  white-space: nowrap;
+}

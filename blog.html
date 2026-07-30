@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog &#8212; Arble</title>
+  <meta name="description"
+    content="Technical deep dives, architectural decisions, research and release notes from the team building Arble." />
+  <link rel="icon"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='3.4' fill='%230A0A0B'/%3E%3Ccircle cx='12' cy='12' r='7.2' fill='none' stroke='%230A0A0B' stroke-width='1.3' opacity='.45'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Stack+Sans+Headline:wght@200..700&display=swap" />
+  <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f%5B%5D=switzer@400,500,600,700&display=swap" />
+  <link rel="stylesheet" href="assets/css/docs.css?v=86" />
+</head>
+
+<!-- DRAFT INDEX.
+
+     The articles listed below do not exist yet: this is the homepage structure
+     with real titles and summaries written to commission against, not a live
+     index. Every article link points at "#".
+
+     Before publishing: write the articles, point the links at them, and correct
+     the dates, authors and reading times to match what was actually published.
+     Delete this comment and the draft callout in the body when the index is
+     real. -->
+<body class="dapp">
+  <a class="skip" href="#doc">Skip to content</a>
+
+  <div class="dapp__grid">
+
+    <aside class="dside" aria-label="Blog sections">
+      <div class="dside__head">
+        <a class="dside__brand" href="index.html" aria-label="Arble home">
+          <img src="assets/img/brand/logo-mark.png" width="288" height="271" alt="" aria-hidden="true" />
+        </a>
+        <span class="dside__rule" aria-hidden="true"></span>
+        <a class="dside__brand" href="blog.html"><span>Blog</span></a>
+      </div>
+
+      <div class="dside__scroll">
+        <nav aria-label="Sections">
+          <details class="docs__grp" open>
+            <summary class="docs__grph"><span>Reading</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+            </summary>
+            <ul class="docs__raillist">
+              <li class="docs__railrow is-current"><a href="#latest" aria-current="page">
+                <span class="docs__railnum" aria-hidden="true">&#183;</span><span>Latest articles</span></a></li>
+              <li class="docs__railrow"><a href="#picks">
+                <span class="docs__railnum" aria-hidden="true">&#183;</span><span>Editor&#8217;s picks</span></a></li>
+              <li class="docs__railrow"><a href="#research">
+                <span class="docs__railnum" aria-hidden="true">&#183;</span><span>Research</span></a></li>
+              <li class="docs__railrow"><a href="#series">
+                <span class="docs__railnum" aria-hidden="true">&#183;</span><span>Series</span></a></li>
+              <li class="docs__railrow"><a href="#archive">
+                <span class="docs__railnum" aria-hidden="true">&#183;</span><span>Archive</span></a></li>
+            </ul>
+          </details>
+
+          <details class="docs__grp">
+            <summary class="docs__grph"><span>Browse</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+            </summary>
+            <ul class="docs__raillist">
+              <li class="docs__railrow"><a href="#categories">
+                <span class="docs__railnum" aria-hidden="true">&#183;</span><span>Categories</span></a></li>
+              <li class="docs__railrow"><a href="#topics">
+                <span class="docs__railnum" aria-hidden="true">&#183;</span><span>Topics</span></a></li>
+              <li class="docs__railrow"><a href="#updates">
+                <span class="docs__railnum" aria-hidden="true">&#183;</span><span>Product updates</span></a></li>
+              <li class="docs__railrow"><a href="#authors">
+                <span class="docs__railnum" aria-hidden="true">&#183;</span><span>Authors</span></a></li>
+              <li class="docs__railrow"><a href="#guidelines">
+                <span class="docs__railnum" aria-hidden="true">&#183;</span><span>Writing guidelines</span></a></li>
+            </ul>
+          </details>
+        </nav>
+      </div>
+
+      <nav class="dside__foot" aria-label="Arble">
+        <a href="docs/">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path
+            d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path
+            d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2"/></svg>
+          <span>Docs</span>
+        </a>
+        <a href="docs/developers/">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path
+            d="m8 6-6 6 6 6M16 6l6 6-6 6"/></svg>
+          <span>Developers</span>
+        </a>
+        <a href="playbook.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path
+            d="M22 10 12 5 2 10l10 5z"/><path d="M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/></svg>
+          <span>Learn</span>
+        </a>
+        <a href="docs/reference/troubleshooting/">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path
+            d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.4 8.4 0 0 1 3.8-.9h.5a8.5 8.5 0 0 1 8 8z"/></svg>
+          <span>Contact support</span>
+        </a>
+      </nav>
+    </aside>
+
+    <div class="dmain">
+      <header class="dtop">
+        <button class="dnavbtn" type="button" id="navToggle" aria-label="Open navigation"
+          aria-expanded="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"
+            stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        </button>
+        <p class="docs__crumb"><a href="docs/">Resources</a>
+          <span aria-hidden="true">/</span> Blog</p>
+        <div class="docs__acts">
+          <a class="docs__act" href="blog.xml">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path
+              d="M4 11a9 9 0 0 1 9 9M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1.5"/></svg>
+            <span>RSS</span>
+          </a>
+        </div>
+      </header>
+
+      <div class="dbody">
+        <article class="docs__body" id="doc">
+          <h1 class="docs__title">Blog</h1>
+          <p class="docs__meta"><b>11 min read</b><i>&#183;</i>Updated 30 Jul 2026</p>
+
+          <div class="docs__note docs__note--warn">
+            <p><strong>Draft index.</strong> These articles have not been written. Titles and
+              summaries are here to commission against; every link points at <code>#</code>.</p>
+          </div>
+
+          <figure class="docs__shot">
+            <div class="ph16" role="img"
+              aria-label="Illustration: research papers, diagrams and interface panels layered around the Arble mark."></div>
+            <figcaption class="docs__cap">Sheets of paper, architecture diagrams, a fragment of a
+              code listing and two thin Arble interface panels, suspended at different depths around
+              a single engraved Arble mark at the centre. The nearest sheets are matte and sharp;
+              those behind soften into frosted glass. White background, monochrome, one soft key
+              light from the upper left, long contact shadows across an unseen floor.</figcaption>
+          </figure>
+
+          <p class="docs__lead">Engineering. Research. Product.</p>
+
+          <p>This is where we write down how Arble works and why it was built that way: architectural
+            decisions and the constraints behind them, research into memory and planning, notes on
+            what a release changed, and the occasional account of something that did not work.</p>
+
+          <p>It is not an announcements feed. Product news lives in the
+            <a href="changelog.html">changelog</a>, where it is easier to scan. An article belongs
+            here when there is something to teach &#8212; a mechanism worth explaining, a trade-off
+            worth defending, or a mistake worth documenting so someone else avoids it.</p>
+
+          <h2 id="featured">Featured</h2>
+
+          <div class="ed__feature">
+            <p><span class="ed__tag">Engineering</span></p>
+            <h3 style="margin-block-start:var(--s4)"><a href="#">Building an AI operating system:
+              what runs on the device and why</a></h3>
+            <p>An assistant is a chat window with integrations bolted to the side. An operating
+              system decides which tools exist, what they may reach, what survives the end of a
+              conversation and which model answers a given request. This piece walks the whole
+              runtime &#8212; registry, permission gate, memory, router &#8212; and explains why all
+              four sit on the device rather than behind an API, including the parts of that decision
+              that cost us performance.</p>
+            <p class="docs__meta"><b>Engineering Team</b><i>&#183;</i>22 min read<i>&#183;</i>18 July
+              2026</p>
+            <figure class="docs__shot" style="margin-block-end:0">
+              <div class="ph16" role="img"
+                aria-label="Illustration: the four runtime components as stacked glass planes."></div>
+              <figcaption class="docs__cap">Four horizontal glass planes stacked with visible air
+                between them &#8212; registry, permissions, memory, router &#8212; each plane thin,
+                edge-lit, and slightly offset so the stack reads as layered rather than merged. A
+                single vertical shaft of light passes through all four, meeting a matte device
+                silhouette at the base. White background, monochrome, industrial-design
+                precision.</figcaption>
+            </figure>
+          </div>
+
+          <h2 id="latest">Latest</h2>
+
+          <ul class="ed__list">
+            <li class="ed__item"><a href="#">
+              <span class="ed__cat">Research</span>
+              <span class="ed__t">Memory beyond the context window</span>
+              <span class="ed__d">A context window is working memory, not storage. What retrieval
+                looks like when the unit is a fact with provenance rather than a chunk of
+                text.</span>
+              <span class="ed__meta">Research Team &#183; 18 min &#183; 9 July 2026</span></a></li>
+
+            <li class="ed__item"><a href="#">
+              <span class="ed__cat">Engineering</span>
+              <span class="ed__t">Typing 579 tools without slowing the loop</span>
+              <span class="ed__d">Registry lookup was 400&nbsp;ms at the ninety-ninth percentile once
+                workspaces passed a few hundred tools. What we changed, and why the obvious cache was
+                the wrong fix.</span>
+              <span class="ed__meta">Engineering Team &#183; 14 min &#183; 2 July 2026</span></a></li>
+
+            <li class="ed__item"><a href="#">
+              <span class="ed__cat">Security</span>
+              <span class="ed__t">Designing the permission gate</span>
+              <span class="ed__d">Every write stops to ask. The hard part is not the prompt &#8212;
+                it is deciding what counts as one decision, and how to avoid training people to
+                approve without reading.</span>
+              <span class="ed__meta">Engineering Team &#183; 16 min &#183; 25 June 2026</span></a></li>
+
+            <li class="ed__item"><a href="#">
+              <span class="ed__cat">AI</span>
+              <span class="ed__t">How tool calling actually works</span>
+              <span class="ed__d">From JSON schema to a validated call and back into the transcript,
+                including the failure modes that only appear once a model can call forty things.</span>
+              <span class="ed__meta">Research Team &#183; 20 min &#183; 18 June 2026</span></a></li>
+
+            <li class="ed__item"><a href="#">
+              <span class="ed__cat">Engineering</span>
+              <span class="ed__t">The architecture behind sessions</span>
+              <span class="ed__d">What a session owns, what it borrows, and how compaction preserves
+                the instructions that set it up rather than the small talk that followed.</span>
+              <span class="ed__meta">Engineering Team &#183; 15 min &#183; 11 June 2026</span></a></li>
+
+            <li class="ed__item"><a href="#">
+              <span class="ed__cat">Product</span>
+              <span class="ed__t">Introducing the Tool SDK</span>
+              <span class="ed__d">Decorators, generated schemas, streaming results and publishing,
+                in four languages. Why the SDK generates the schema instead of asking you to write
+                it.</span>
+              <span class="ed__meta">Developer Experience &#183; 9 min &#183; 4 June 2026</span></a></li>
+
+            <li class="ed__item"><a href="#">
+              <span class="ed__cat">Infrastructure</span>
+              <span class="ed__t">Coordinating agents without a queue</span>
+              <span class="ed__d">Multi-agent work looks like a distributed system because it is
+                one. What we borrowed from actor models, and where the analogy breaks.</span>
+              <span class="ed__meta">Infrastructure Team &#183; 17 min &#183; 28 May 2026</span></a></li>
+
+            <li class="ed__item"><a href="#">
+              <span class="ed__cat">Research</span>
+              <span class="ed__t">Why local-first matters for agents</span>
+              <span class="ed__d">Latency is the smaller argument. The larger one is that an agent
+                holding your keys and your context is a different trust proposition to one holding a
+                copy.</span>
+              <span class="ed__meta">Research Team &#183; 13 min &#183; 21 May 2026</span></a></li>
+
+            <li class="ed__item"><a href="#">
+              <span class="ed__cat">Engineering</span>
+              <span class="ed__t">MCP versus native tools</span>
+              <span class="ed__d">When to write a tool into the runtime and when to reach for a
+                protocol server, measured on latency, typing, failure handling and who you are
+                trusting.</span>
+              <span class="ed__meta">Engineering Team &#183; 12 min &#183; 14 May 2026</span></a></li>
+
+            <li class="ed__item"><a href="#">
+              <span class="ed__cat">Infrastructure</span>
+              <span class="ed__t">Observability for systems that decide</span>
+              <span class="ed__d">A trace that stops at the HTTP boundary tells you nothing about why
+                an agent chose a tool. Instrumenting the loop itself.</span>
+              <span class="ed__meta">Infrastructure Team &#183; 16 min &#183; 7 May 2026</span></a></li>
+
+            <li class="ed__item"><a href="#">
+              <span class="ed__cat">Engineering</span>
+              <span class="ed__t">Building desktop automation on an untrusted network</span>
+              <span class="ed__d">Pairing, key exchange and the relay that carries ciphertext it
+                cannot read. Plus the host-key problem we have not solved yet.</span>
+              <span class="ed__meta">Engineering Team &#183; 19 min &#183; 30 April 2026</span></a></li>
+
+            <li class="ed__item"><a href="#">
+              <span class="ed__cat">Research</span>
+              <span class="ed__t">Planning versus reasoning</span>
+              <span class="ed__d">Two words used interchangeably that describe different mechanisms
+                with different failure modes. Why conflating them produces agents that think
+                beautifully and do nothing.</span>
+              <span class="ed__meta">Research Team &#183; 21 min &#183; 23 April 2026</span></a></li>
+
+            <li class="ed__item"><a href="#">
+              <span class="ed__cat">Infrastructure</span>
+              <span class="ed__t">Running Arble on Kubernetes</span>
+              <span class="ed__d">Readiness against liveness, draining a node mid-run, and why
+                additive migrations are what make a rolling upgrade possible at all.</span>
+              <span class="ed__meta">Infrastructure Team &#183; 14 min &#183; 16 April 2026</span></a></li>
+
+            <li class="ed__item"><a href="#">
+              <span class="ed__cat">Product</span>
+              <span class="ed__t">Inside the CLI</span>
+              <span class="ed__d">Designing a command surface that is pleasant to type and safe to
+                script &#8212; including why every command has a <code>--json</code> mode.</span>
+              <span class="ed__meta">Developer Experience &#183; 10 min &#183; 9 April 2026</span></a></li>
+
+            <li class="ed__item"><a href="#">
+              <span class="ed__cat">Engineering</span>
+              <span class="ed__t">Streaming responses, and what breaks at the edges</span>
+              <span class="ed__d">Token boundaries, backpressure, and the disconnect bug that
+                silently discarded work for two releases before we understood it.</span>
+              <span class="ed__meta">Engineering Team &#183; 13 min &#183; 2 April 2026</span></a></li>
+          </ul>
+
+          <h2 id="categories">Categories</h2>
+
+          <figure class="docs__shot">
+            <div class="ph16" role="img"
+              aria-label="Illustration: article collections as floating editorial cards."></div>
+            <figcaption class="docs__cap">Ten thin cards fanned in a shallow arc at varying depths,
+              each blank but for a single engraved glyph at its corner, the frontmost sharp and the
+              rearmost dissolving into frost. White background, monochrome, keynote lighting from
+              above left.</figcaption>
+          </figure>
+
+          <div class="docs__tablewrap">
+            <table class="docs__table">
+              <thead><tr><th scope="col">Category</th><th scope="col">What goes in it</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Engineering</th><td>How a part of Arble is built, and the constraints that shaped it.</td></tr>
+                <tr><th scope="row">Research</th><td>Open questions in memory, planning and evaluation. Results included when we have them.</td></tr>
+                <tr><th scope="row">Product</th><td>What shipped, explained past the changelog entry.</td></tr>
+                <tr><th scope="row">Infrastructure</th><td>Running Arble in production: deployment, scaling, observability, failure.</td></tr>
+                <tr><th scope="row">Security</th><td>The trust boundary, credentials, permissions and what we deliberately cannot do.</td></tr>
+                <tr><th scope="row">AI</th><td>Models, tool calling, context and the mechanics underneath them.</td></tr>
+                <tr><th scope="row">Design</th><td>Interface decisions, and the reasoning behind restraint.</td></tr>
+                <tr><th scope="row">Developer Experience</th><td>The CLI, the SDKs, the API and the documentation.</td></tr>
+                <tr><th scope="row">Release Notes</th><td>Deep dives on a release where the changelog entry is not enough.</td></tr>
+                <tr><th scope="row">Playbook</th><td>Chapters from the Playbook, published as standalone reading.</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h2 id="series">Series</h2>
+          <p>Articles that continue rather than stand alone.</p>
+
+          <div class="docs__tablewrap">
+            <table class="docs__table">
+              <thead><tr><th scope="col">Series</th><th scope="col">About</th><th scope="col">Published</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Building Arble</th><td>The runtime, component by component, in the order we built them.</td><td>9</td></tr>
+                <tr><th scope="row">AI Operating Systems</th><td>What the category means, and what it takes to earn the name.</td><td>5</td></tr>
+                <tr><th scope="row">Architecture Notes</th><td>Short pieces on a single decision and the alternatives rejected.</td><td>12</td></tr>
+                <tr><th scope="row">Research Papers Explained</th><td>A paper we read closely, and what it changed in the product.</td><td>7</td></tr>
+                <tr><th scope="row">Developer Diaries</th><td>A feature from first sketch to release, including the dead ends.</td><td>6</td></tr>
+                <tr><th scope="row">Release Deep Dives</th><td>One release, examined properly.</td><td>4</td></tr>
+                <tr><th scope="row">Infrastructure Journal</th><td>Incidents, capacity work and what production taught us.</td><td>8</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h2 id="topics">Topics</h2>
+          <ul class="ed__topics">
+            <li><a href="#">Memory</a></li><li><a href="#">Agents</a></li>
+            <li><a href="#">Planning</a></li><li><a href="#">Reasoning</a></li>
+            <li><a href="#">Tool SDK</a></li><li><a href="#">MCP</a></li>
+            <li><a href="#">Desktop automation</a></li><li><a href="#">Computer use</a></li>
+            <li><a href="#">CLI</a></li><li><a href="#">API</a></li>
+            <li><a href="#">Self-hosting</a></li><li><a href="#">Security</a></li>
+            <li><a href="#">Performance</a></li><li><a href="#">Architecture</a></li>
+          </ul>
+
+          <h2 id="picks">Editor&#8217;s picks</h2>
+          <p>Evergreen pieces. If you are new here, start with the first three.</p>
+          <ul>
+            <li><a href="#">How memory works</a> &#8212; what is stored, what is retrieved, and what
+              is deliberately forgotten.</li>
+            <li><a href="#">Why permissions matter</a> &#8212; the argument for stopping to ask,
+              written for people who find it annoying.</li>
+            <li><a href="#">From prompt to execution</a> &#8212; one request traced through every
+              stage of the runtime.</li>
+            <li><a href="#">Designing native tools</a> &#8212; what makes a tool easy for a model to
+              call correctly.</li>
+            <li><a href="#">Building reliable AI workflows</a> &#8212; retries, idempotency and
+              knowing where to resume.</li>
+            <li><a href="#">Streaming responses explained</a> &#8212; what the transport guarantees
+              and what it does not.</li>
+            <li><a href="#">The evolution of MCP</a> &#8212; how the protocol changed what a tool
+              ecosystem could look like.</li>
+            <li><a href="#">Building production agents</a> &#8212; the difference between a demo and
+              something you leave running.</li>
+            <li><a href="#">Context engineering in practice</a> &#8212; budgeting a window across
+              instructions, history and results.</li>
+            <li><a href="#">Evaluating agents that act</a> &#8212; why benchmarks that score text
+              miss most of what matters.</li>
+          </ul>
+
+          <h2 id="research">Research</h2>
+          <p>Longer work, usually with something measured in it.</p>
+          <ul>
+            <li><a href="#">Reasoning systems</a> &#8212; what the reasoning trace is good for, and
+              what it cannot tell you.</li>
+            <li><a href="#">Agent planning</a> &#8212; plan-then-act against act-then-replan, on
+              tasks that fail halfway.</li>
+            <li><a href="#">Memory compression</a> &#8212; summarising a session without losing what
+              set it up.</li>
+            <li><a href="#">Execution graphs</a> &#8212; representing a run as a graph, and what that
+              buys for resumption.</li>
+            <li><a href="#">Context engineering</a> &#8212; allocating a finite window between
+              instruction, history and result.</li>
+            <li><a href="#">Local inference</a> &#8212; where on-device models are genuinely
+              sufficient, with numbers.</li>
+            <li><a href="#">Evaluation</a> &#8212; measuring agents by what they changed rather than
+              what they said.</li>
+            <li><a href="#">Computer use</a> &#8212; operating an interface built for a human, and
+              why it stays hard.</li>
+          </ul>
+
+          <h2 id="updates">Recent product updates</h2>
+
+          <figure class="docs__shot">
+            <div class="ph16" role="img"
+              aria-label="Illustration: release cards connected to longer article cards."></div>
+            <figcaption class="docs__cap">A row of small release cards along the lower third, each
+              joined by a fine metallic thread to a larger article card floating above and behind
+              it. The threads cross without touching. White background, monochrome, soft directional
+              light, deep negative space above.</figcaption>
+          </figure>
+
+          <div class="docs__tablewrap">
+            <table class="docs__table">
+              <thead><tr><th scope="col">Shipped</th><th scope="col">Read the long version</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Tool SDK</th><td><a href="#">Introducing the Tool SDK</a></td></tr>
+                <tr><th scope="row">CLI</th><td><a href="#">Inside the CLI</a></td></tr>
+                <tr><th scope="row">API reference</th><td><a href="#">Designing an API for runs that stream</a></td></tr>
+                <tr><th scope="row">Memory encryption</th><td><a href="#">Project-scoped keys, and what they protect</a></td></tr>
+                <tr><th scope="row">Desktop control</th><td><a href="#">Building desktop automation on an untrusted network</a></td></tr>
+                <tr><th scope="row">MCP support</th><td><a href="#">MCP versus native tools</a></td></tr>
+                <tr><th scope="row">Self-hosting</th><td><a href="#">Running Arble on Kubernetes</a></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h2 id="philosophy">How we build</h2>
+          <p>Seven positions that decide most arguments before they start.</p>
+          <ul>
+            <li><strong>Build simple systems.</strong> A system you can hold in your head is one you
+              can debug at three in the morning.</li>
+            <li><strong>Document everything.</strong> Undocumented behaviour is not a feature; it is
+              a rumour.</li>
+            <li><strong>Design for humans.</strong> The person approving a tool call is not a
+              formality in the loop. They are the point of it.</li>
+            <li><strong>Own your infrastructure.</strong> If a capability requires our servers to be
+              up, it is a weaker capability.</li>
+            <li><strong>Respect permissions.</strong> An agent should reach exactly as far as it was
+              allowed, and no further, even when further would be helpful.</li>
+            <li><strong>Prefer local execution.</strong> Send data off the device when there is a
+              reason, not by default.</li>
+            <li><strong>Measure before optimising.</strong> Every performance claim on this blog has
+              a number behind it, or it does not appear.</li>
+          </ul>
+
+          <h2 id="authors">Who writes here</h2>
+          <div class="docs__tablewrap">
+            <table class="docs__table">
+              <thead><tr><th scope="col">Team</th><th scope="col">Writes about</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Engineering</th><td>The runtime, the registry, sessions and the parts that were harder than expected.</td></tr>
+                <tr><th scope="row">Research</th><td>Memory, planning, evaluation and the papers that changed our minds.</td></tr>
+                <tr><th scope="row">Infrastructure</th><td>Deployment, scale, observability and incidents worth writing up.</td></tr>
+                <tr><th scope="row">Developer Experience</th><td>The CLI, the SDKs, the API and the documentation around them.</td></tr>
+                <tr><th scope="row">Design</th><td>Interface decisions, and the reasoning behind what was left out.</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h2 id="subscribe">Subscribe</h2>
+          <ul>
+            <li><strong>RSS.</strong> <a href="blog.xml">blog.xml</a> &#8212; full text, no
+              tracking.</li>
+            <li><strong>Email.</strong> New articles only, roughly twice a month.</li>
+            <li><strong>GitHub.</strong> Releases and source.</li>
+            <li><strong>Changelog.</strong> <a href="changelog.html">Every release</a>, in less
+              time.</li>
+            <li><strong>Documentation.</strong> <a href="docs/">The reference</a>, when you need the
+              answer rather than the reasoning.</li>
+            <li><strong>Status.</strong> Incidents and maintenance.</li>
+          </ul>
+
+          <h2 id="archive">Archive</h2>
+          <p><strong>2026.</strong> 34 articles &#8212; the developer platform, MCP, memory
+            encryption, desktop control.</p>
+          <p><strong>2025.</strong> 41 articles &#8212; the core runtime, the first memory work, the
+            permission model.</p>
+          <p><strong>Earlier.</strong> Pre-1.0 writing, kept for the record. Some of it describes
+            architecture we have since replaced; where that is true, the article says so at the
+            top.</p>
+
+          <h2 id="guidelines">What belongs here</h2>
+          <p>An article should leave the reader knowing something they did not know, and able to use
+            it. In practice that means:</p>
+          <ul>
+            <li><strong>Technical explanation.</strong> How a mechanism works, at the level of detail
+              someone reimplementing it would need.</li>
+            <li><strong>Architecture.</strong> A decision, the alternatives, and the reason for the
+              choice &#8212; including the cost.</li>
+            <li><strong>Research.</strong> A question, a method and a result. Negative results are
+              welcome.</li>
+            <li><strong>Release deep dives.</strong> When a change deserves more than a changelog
+              line.</li>
+            <li><strong>Engineering stories.</strong> Incidents, regressions and the things we got
+              wrong, written without a redemption arc.</li>
+          </ul>
+          <p>What does not belong: launch announcements without mechanism, competitor comparisons,
+            speculation about the field, and anything whose argument is that we are excited. If a
+            piece could be written by someone who had not read the source, it is not for this
+            blog.</p>
+
+          <nav class="pbp__nav" aria-label="Page navigation">
+            <a class="pbp__navcard pbp__navcard--prev" href="changelog.html">
+              <span class="pbp__navcard-l">Previous</span>
+              <span class="pbp__navcard-t">Changelog</span></a>
+            <a class="pbp__navcard pbp__navcard--next" href="docs/reference/troubleshooting/">
+              <span class="pbp__navcard-l">Next</span>
+              <span class="pbp__navcard-t">Status</span></a>
+          </nav>
+        </article>
+
+        <aside class="docs__toc" aria-label="On this page">
+          <p class="docs__tocH">On this page</p>
+          <ul class="docs__toclist" id="docsToc">
+            <li class="docs__tocrow"><a href="#featured">Featured</a></li>
+            <li class="docs__tocrow"><a href="#latest">Latest</a></li>
+            <li class="docs__tocrow"><a href="#categories">Categories</a></li>
+            <li class="docs__tocrow"><a href="#series">Series</a></li>
+            <li class="docs__tocrow"><a href="#topics">Topics</a></li>
+            <li class="docs__tocrow"><a href="#picks">Editor&#8217;s picks</a></li>
+            <li class="docs__tocrow"><a href="#research">Research</a></li>
+            <li class="docs__tocrow"><a href="#updates">Recent product updates</a></li>
+            <li class="docs__tocrow"><a href="#philosophy">How we build</a></li>
+            <li class="docs__tocrow"><a href="#authors">Who writes here</a></li>
+            <li class="docs__tocrow"><a href="#subscribe">Subscribe</a></li>
+            <li class="docs__tocrow"><a href="#archive">Archive</a></li>
+            <li class="docs__tocrow"><a href="#guidelines">What belongs here</a></li>
+          </ul>
+        </aside>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/js/docs.js?v=7" defer></script>
+  <script src="assets/js/docs-ui.js?v=3" defer></script>
+</body>
+
+</html>

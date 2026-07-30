@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Changelog &#8212; Arble</title>
+  <meta name="description"
+    content="Every meaningful change to Arble — features, improvements, fixes, security updates, migration notes and breaking changes." />
+  <link rel="icon"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='3.4' fill='%230A0A0B'/%3E%3Ccircle cx='12' cy='12' r='7.2' fill='none' stroke='%230A0A0B' stroke-width='1.3' opacity='.45'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Stack+Sans+Headline:wght@200..700&display=swap" />
+  <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f%5B%5D=switzer@400,500,600,700&display=swap" />
+  <link rel="stylesheet" href="assets/css/docs.css?v=86" />
+</head>
+
+<!-- DRAFT RELEASE HISTORY.
+
+     The versions, dates and entries below are written to the shape of a real
+     changelog, but Arble has not shipped this history: the repository is at
+     1.0.0 with no tagged releases. docs/reference/release-notes/ carries the
+     same warning, and the 1.8 and 1.7 entries here are kept consistent with the
+     facts already stated there.
+
+     Before publishing: reconcile every version and date against the real tag
+     history, delete the releases that never happened, and remove both this
+     comment and the draft callout in the body. A changelog is a factual record
+     of what shipped and when. -->
+<body class="dapp">
+  <a class="skip" href="#doc">Skip to content</a>
+
+  <div class="dapp__grid">
+
+    <aside class="dside" aria-label="Releases">
+      <div class="dside__head">
+        <a class="dside__brand" href="index.html" aria-label="Arble home">
+          <img src="assets/img/brand/logo-mark.png" width="288" height="271" alt="" aria-hidden="true" />
+        </a>
+        <span class="dside__rule" aria-hidden="true"></span>
+        <a class="dside__brand" href="changelog.html"><span>Changelog</span></a>
+      </div>
+
+      <div class="dside__scroll">
+        <nav aria-label="Releases">
+          <details class="docs__grp" open>
+            <summary class="docs__grph"><span>2026</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+            </summary>
+            <ul class="docs__raillist">
+              <li class="docs__railrow is-current"><a href="#v1-8-0" aria-current="page">
+                <span class="docs__railnum" aria-hidden="true">1.8</span><span>Developer platform</span></a></li>
+              <li class="docs__railrow"><a href="#v1-7-0">
+                <span class="docs__railnum" aria-hidden="true">1.7</span><span>Durability</span></a></li>
+              <li class="docs__railrow"><a href="#v1-6-0">
+                <span class="docs__railnum" aria-hidden="true">1.6</span><span>MCP support</span></a></li>
+              <li class="docs__railrow"><a href="#v1-5-0">
+                <span class="docs__railnum" aria-hidden="true">1.5</span><span>Scheduling</span></a></li>
+              <li class="docs__railrow"><a href="#v1-4-0">
+                <span class="docs__railnum" aria-hidden="true">1.4</span><span>Desktop control</span></a></li>
+            </ul>
+          </details>
+
+          <details class="docs__grp">
+            <summary class="docs__grph"><span>Reference</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+            </summary>
+            <ul class="docs__raillist">
+              <li class="docs__railrow"><a href="#timeline">
+                <span class="docs__railnum" aria-hidden="true">&#183;</span><span>Version timeline</span></a></li>
+              <li class="docs__railrow"><a href="#versioning">
+                <span class="docs__railnum" aria-hidden="true">&#183;</span><span>Versioning policy</span></a></li>
+              <li class="docs__railrow"><a href="#migrations">
+                <span class="docs__railnum" aria-hidden="true">&#183;</span><span>Migration guides</span></a></li>
+              <li class="docs__railrow"><a href="#channels">
+                <span class="docs__railnum" aria-hidden="true">&#183;</span><span>Release channels</span></a></li>
+              <li class="docs__railrow"><a href="#archive">
+                <span class="docs__railnum" aria-hidden="true">&#183;</span><span>Archive</span></a></li>
+              <li class="docs__railrow"><a href="#faq">
+                <span class="docs__railnum" aria-hidden="true">&#183;</span><span>FAQ</span></a></li>
+            </ul>
+          </details>
+        </nav>
+      </div>
+
+      <nav class="dside__foot" aria-label="Arble">
+        <a href="docs/">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path
+            d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path
+            d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2"/></svg>
+          <span>Docs</span>
+        </a>
+        <a href="docs/developers/">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path
+            d="m8 6-6 6 6 6M16 6l6 6-6 6"/></svg>
+          <span>Developers</span>
+        </a>
+        <a href="playbook.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path
+            d="M22 10 12 5 2 10l10 5z"/><path d="M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/></svg>
+          <span>Learn</span>
+        </a>
+        <a href="docs/reference/troubleshooting/">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path
+            d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.4 8.4 0 0 1 3.8-.9h.5a8.5 8.5 0 0 1 8 8z"/></svg>
+          <span>Contact support</span>
+        </a>
+      </nav>
+    </aside>
+
+    <div class="dmain">
+      <header class="dtop">
+        <button class="dnavbtn" type="button" id="navToggle" aria-label="Open navigation"
+          aria-expanded="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"
+            stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        </button>
+        <p class="docs__crumb"><a href="docs/">Resources</a>
+          <span aria-hidden="true">/</span> Changelog</p>
+        <div class="docs__acts">
+          <a class="docs__act" href="changelog.xml">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path
+              d="M4 11a9 9 0 0 1 9 9M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1.5"/></svg>
+            <span>RSS</span>
+          </a>
+        </div>
+      </header>
+
+      <div class="dbody">
+        <article class="docs__body" id="doc">
+          <h1 class="docs__title">Changelog</h1>
+          <p class="docs__meta"><b>14 min read</b><i>&#183;</i>Updated 30 Jul 2026</p>
+
+          <div class="docs__note docs__note--warn">
+            <p><strong>Draft.</strong> The history below is written to shape and has not shipped.
+              Reconcile it against the tag history before publishing.</p>
+          </div>
+
+          <figure class="docs__shot">
+            <div class="ph16" role="img"
+              aria-label="Illustration: a vertical release timeline of frosted glass cards on a metallic line."></div>
+            <figcaption class="docs__cap">A vertical release timeline rendered as floating
+              frosted-glass cards threaded onto a single thin metallic line running top to bottom.
+              Each card carries a small etched version badge and one glyph for its dominant change
+              type &#8212; a plus for new work, a chevron for improvements, a dot for fixes. Cards
+              nearer the top sit slightly forward with a softer shadow; those below recede and blur.
+              White background, strictly monochrome, one soft light source upper left, long contact
+              shadows.</figcaption>
+          </figure>
+
+          <p class="docs__lead">Every release. Every improvement.</p>
+
+          <p>This page records every meaningful change to Arble: new capability, changed behaviour,
+            performance work, security fix. Entries are written for whoever is doing the upgrade, so
+            each one says what changed, why it changed and what you have to do about it. Nothing
+            else.</p>
+
+          <p>Patch releases that only fix defects are listed in the <a href="#archive">archive</a>
+            rather than given a section here &#8212; writing them out at length buries the changes
+            that need a decision. Anything that alters an interface, a default or a stored format
+            appears under <a href="#versioning">breaking changes</a> with a migration path and a
+            removal version.</p>
+
+          <h2 id="v1-8-0">1.8.0 &#8212; Developer platform</h2>
+
+          <div class="ed__feature">
+            <p><span class="ed__tag">Latest</span></p>
+            <p class="docs__meta"><b>22 July 2026</b><i>&#183;</i>Stable</p>
+            <p>Tool authorship reaches four languages, MCP authorisation moves from the server down
+              to the individual tool, and uploads survive a dropped connection. The runtime now
+              reports readiness separately from liveness, which changes how a load balancer treats a
+              node whose database is unreachable: it drains instead of returning errors.</p>
+          </div>
+
+          <figure class="docs__shot">
+            <div class="ph16" role="img"
+              aria-label="Illustration: feature cards floating around the Arble desktop window."></div>
+            <figcaption class="docs__cap">The Arble desktop window as a thin frosted panel held
+              slightly off-axis, with eight smaller cards orbiting it at varying depths &#8212; Tool
+              SDK, CLI, API reference, memory, MCP directory, desktop automation, performance,
+              security. Each is a matte white plane carrying a single engraved glyph. The nearest
+              two are sharp; the rest fall into soft depth of field. White background, monochrome,
+              editorial keynote lighting.</figcaption>
+          </figure>
+
+          <h3>New</h3>
+          <ul>
+            <li><strong>Tool SDK for Go and Rust.</strong> Both reach parity with Python and
+              TypeScript: decorators, generated schemas, streaming results, publishing. A tool
+              written in any of the four is indistinguishable to the runtime.</li>
+            <li><strong>Per-tool MCP permissions.</strong> Grants attach to individual tools rather
+              than to a whole server, so connecting a server that exposes forty tools no longer
+              authorises forty tools. Existing per-server grants keep working &#8212; see
+              <a href="#migrate-mcp">migration</a>.</li>
+            <li><strong>Resumable uploads.</strong> Files above 100&nbsp;MB upload in chunks and
+              resume after a dropped connection instead of starting again.</li>
+            <li><strong>Skill directory.</strong> Install a skill from a <code>SKILL.md</code> URL,
+              or from the built-in catalogue covering PDF, Word, Excel and PowerPoint.</li>
+            <li><strong>Tool search.</strong> <code>arble tools search</code> queries the registry by
+              name, description and parameter &#8212; which starts to matter once a workspace passes
+              a few hundred tools.</li>
+            <li><strong>Structured run output.</strong> <code>--json</code> on <code>arble run</code>
+              emits one JSON object per event, so a run pipes into a log processor without anyone
+              scraping human-readable output.</li>
+            <li><strong>Session export.</strong> A session serialises to one file containing its
+              messages, tool calls and results, for archival or transfer between devices.</li>
+          </ul>
+
+          <h3>Improvements</h3>
+          <ul>
+            <li>Tool schemas are validated at registration rather than at first call, so a malformed
+              parameter definition fails at startup instead of halfway through a run.</li>
+            <li>The permission prompt names the tool and the specific argument requiring approval,
+              rather than the toolset it belongs to.</li>
+            <li>Registry lookup moved to an index built at load. Time to first tool call on a
+              workspace with 500+ tools drops from roughly 400&nbsp;ms to under 20&nbsp;ms.</li>
+            <li>Streaming flushes on token boundaries instead of on a timer, removing the visible
+              stutter on slow connections.</li>
+            <li>Memory search orders results by recency within a relevance band, so a current note
+              outranks a stale one of equal similarity.</li>
+            <li>The CLI reports token usage and wall time when a run completes.</li>
+            <li>Model listings are cached for the session; switching provider no longer refetches
+              the catalogue on every keystroke.</li>
+            <li>Failed tool calls carry the underlying error instead of a generic wrapper.</li>
+            <li>Log lines are single-line JSON, so a stack trace no longer breaks log collectors.</li>
+          </ul>
+
+          <h3>Bug fixes</h3>
+          <ul>
+            <li>A tool returning an empty string no longer ends the run as though it returned
+              nothing.</li>
+            <li>Reconnecting to a session mid-stream no longer duplicates the last message.</li>
+            <li>Scheduled runs no longer drift by the duration of the previous run. The next wake-up
+              is computed from the scheduled time, not the finish time.</li>
+            <li>Unicode in tool arguments survives the round trip to providers that require escaped
+              JSON.</li>
+            <li>The desktop agent releases its file handle when a transfer fails, rather than holding
+              it until restart.</li>
+          </ul>
+
+          <h3>Security</h3>
+          <ul>
+            <li>Per-tool MCP permissions narrow the blast radius of a connected third-party server. A
+              server can no longer acquire a capability by adding a tool after you granted it.</li>
+            <li>Tokens issued to the desktop agent are scoped to the pairing and expire when you
+              unpair, instead of living until manually revoked.</li>
+            <li>Dependency updates for two advisories in transitive HTTP libraries. Neither was
+              reachable from the runtime's request path.</li>
+          </ul>
+
+          <h3>Developer experience</h3>
+          <ul>
+            <li><strong>CLI.</strong> <code>arble tools search</code>, <code>arble run --json</code>,
+              <code>arble mcp permissions</code>. <code>arble doctor</code> now checks pairing
+              reachability as well as configuration.</li>
+            <li><strong>SDK.</strong> Go and Rust at 1.0. Python and TypeScript gain typed streaming
+              results.</li>
+            <li><strong>API.</strong> <code>GET /v1/tools</code> accepts <code>q</code> for search.
+              Errors carry a stable <code>code</code> beside the message, so clients branch on the
+              code rather than parse prose.</li>
+            <li><strong>Documentation.</strong> Tool SDK, CLI and API reference rewritten against the
+              1.8 surface.</li>
+          </ul>
+
+          <h3 id="migrate-mcp">Migration notes</h3>
+          <p>Per-server MCP grants continue to work and will be removed in 2.0. Convert a server
+            before then:</p>
+          <div class="docs__code">
+            <div class="docs__codebar"><span class="docs__lang">SHELL</span>
+              <button class="docs__copy" type="button" data-copy="cl-mcp" aria-label="Copy code">Copy</button>
+            </div>
+            <pre><code id="cl-mcp">arble mcp permissions &lt;name&gt;</code></pre>
+          </div>
+          <p>Run migrations as a discrete step before rolling the application. Within a minor release
+            they are additive, so the previous version keeps serving against the new schema during a
+            rollout.</p>
+          <div class="docs__code">
+            <div class="docs__codebar"><span class="docs__lang">SHELL</span>
+              <button class="docs__copy" type="button" data-copy="cl-mig" aria-label="Copy code">Copy</button>
+            </div>
+            <pre><code id="cl-mig">arble server migrate</code></pre>
+          </div>
+
+          <h3>Breaking changes</h3>
+          <p>None. Per-server MCP permissions are deprecated, not removed.</p>
+
+          <h3>Known issues</h3>
+          <ul>
+            <li>Resumable uploads fall back to a single request against S3-compatible stores without
+              multipart support, so files above 100&nbsp;MB still restart on failure.</li>
+            <li>The Rust SDK's streaming API allocates per chunk. Fixed in 1.8.1.</li>
+          </ul>
+
+          <h2 id="v1-7-0">1.7.0 &#8212; Durability</h2>
+          <p class="docs__meta"><b>3 June 2026</b><i>&#183;</i>Stable</p>
+
+          <p>Memory is encrypted at rest with project-scoped keys, workflows pause and resume at step
+            boundaries, and a run no longer dies because the client that started it went away.
+            Operators get a drain command, which is what makes a rolling restart something you can
+            do during the working day.</p>
+
+          <h3>New</h3>
+          <ul>
+            <li><strong>Memory encryption at rest.</strong> Project-scoped keys, so a compromised key
+              exposes one project rather than the whole store.</li>
+            <li><strong>Workflow pause and resume.</strong> A workflow suspends at a step boundary
+              and resumes with its context intact, including across a restart.</li>
+            <li><strong>Graceful shutdown.</strong> <code>arble server drain</code> stops accepting
+              work, finishes what is running, then exits.</li>
+            <li><strong>Explicit run cancellation.</strong> A run is cancelled by request rather than
+              by disconnecting &#8212; which is what makes the disconnect fix below survivable.</li>
+            <li><strong>Notes and reminders.</strong> First-class objects the agent reads and writes,
+              rather than free text living in memory.</li>
+            <li><strong>Activity log.</strong> Every heartbeat wake-up, what triggered it and what it
+              did, readable after the fact.</li>
+          </ul>
+
+          <h3>Improvements</h3>
+          <ul>
+            <li>Context compaction summarises the middle of a session instead of truncating the
+              start, which preserves the instructions that set the session up.</li>
+            <li>Memory reindexing runs incrementally in the background rather than blocking
+              startup.</li>
+            <li>The session list loads in constant time regardless of history depth.</li>
+            <li>The permission sheet explains each mode in a line, rather than requiring a trip to
+              the documentation.</li>
+            <li>Provider failover retries the next configured provider on a 5xx instead of failing
+              the run.</li>
+            <li>Token accounting separates input, output and cache reads, which makes cache savings
+              visible.</li>
+            <li>Heartbeat intervals accept plain minutes as well as cron expressions.</li>
+          </ul>
+
+          <h3>Bug fixes</h3>
+          <ul>
+            <li>Streaming runs no longer terminate when a client disconnects. The run continues
+              server-side and must be cancelled explicitly.</li>
+            <li>Memory writes issued during compaction are no longer lost.</li>
+            <li>A workflow resumed after a restart no longer re-executes its last completed step.</li>
+            <li>Schedules use the device timezone rather than UTC.</li>
+            <li>Large tool results no longer truncate mid-token in the transcript.</li>
+          </ul>
+
+          <h3>Security</h3>
+          <ul>
+            <li>Memory at rest is encrypted with per-project keys. Existing stores migrate in place
+              on first start after the upgrade.</li>
+            <li>Session tokens rotate on privilege change, not only at sign-in.</li>
+          </ul>
+
+          <h3>Developer experience</h3>
+          <ul>
+            <li><strong>CLI.</strong> <code>arble server drain</code>, <code>arble run cancel</code>.</li>
+            <li><strong>API.</strong> <code>DELETE /v1/runs/:id</code> cancels a run. SSE streams
+              send a terminal event on cancellation rather than closing silently.</li>
+            <li><strong>Documentation.</strong> Self-hosting gains a rolling-restart procedure.</li>
+          </ul>
+
+          <h3>Migration notes</h3>
+          <p>Encryption migrates the memory store in place on first start. The migration is
+            single-pass and proportional to store size &#8212; run it against a staging copy
+            restored from production first, so the duration is a known number before the window
+            rather than a discovery inside it.</p>
+          <p>Clients that relied on disconnecting to cancel must call the cancellation endpoint. A
+            run left uncancelled now runs to completion, and bills accordingly.</p>
+
+          <h3>Breaking changes</h3>
+          <p><strong>Disconnecting no longer cancels a run.</strong> There is no compatibility shim,
+            because the previous behaviour silently discarded work whenever a connection was
+            flaky.</p>
+
+          <h2 id="v1-6-0">1.6.0 &#8212; MCP support</h2>
+          <p class="docs__meta"><b>15 April 2026</b><i>&#183;</i>Stable</p>
+
+          <p>Any Model Context Protocol server can be connected, and its tools join the same
+            registry, the same permission gate and the same audit trail as the built-in ones. There
+            is deliberately no second path for third-party tools.</p>
+
+          <h3>New</h3>
+          <ul>
+            <li><strong>MCP client.</strong> Connect remote servers over HTTP or stdio. Tools are
+              discovered, typed and registered like any other.</li>
+            <li><strong>MCP directory.</strong> A browsable catalogue with one-tap install, marking
+              which servers require sign-in and which do not.</li>
+            <li><strong>Third-party data disclosure.</strong> An explicit consent step naming what
+              leaves the device, shown before the first call to a connected server.</li>
+            <li><strong>Tool namespacing.</strong> Server-qualified names, so two servers that both
+              expose <code>search</code> can coexist.</li>
+            <li><strong>Connection health.</strong> Per-server status, last error, manual
+              reconnect.</li>
+            <li><strong>Coordinator mode.</strong> Multi-agent workflows through team creation and
+              inter-agent messaging. Off by default.</li>
+          </ul>
+
+          <h3>Improvements</h3>
+          <ul>
+            <li>Tool results are truncated by token budget rather than character count, so a large
+              result degrades predictably.</li>
+            <li>The registry deduplicates identical tools offered by more than one server.</li>
+            <li>Server handshakes time out after 5&nbsp;s instead of hanging the tool list.</li>
+            <li>Permission decisions are cached per session, so an approved tool is not re-asked
+              within the same run.</li>
+            <li>The transcript records which server served each call.</li>
+            <li>Failed connections retry with backoff rather than on a fixed interval.</li>
+          </ul>
+
+          <h3>Bug fixes</h3>
+          <ul>
+            <li>A server returning a malformed schema no longer prevents the remaining servers from
+              registering.</li>
+            <li>Calls with optional parameters no longer send explicit nulls to servers that reject
+              them.</li>
+            <li>Reconnection no longer duplicates registry entries.</li>
+            <li>stdio servers are terminated on app exit instead of being left running.</li>
+            <li>Long-running calls no longer hit the client timeout before the server's own.</li>
+          </ul>
+
+          <h3>Security</h3>
+          <ul>
+            <li>Connected servers are third parties: data sent to them leaves the device, and the
+              consent step says so in those words before the first call.</li>
+            <li>Server credentials are stored in the platform keystore, never in configuration
+              files.</li>
+          </ul>
+
+          <h3>Developer experience</h3>
+          <ul>
+            <li><strong>CLI.</strong> <code>arble mcp add</code>, <code>list</code>,
+              <code>remove</code>, <code>test</code>.</li>
+            <li><strong>Documentation.</strong> New MCP Servers guide covering transport, auth,
+              debugging and the trust model.</li>
+          </ul>
+
+          <h3>Migration notes</h3>
+          <p>None. MCP support is additive.</p>
+
+          <h2 id="v1-5-0">1.5.0 &#8212; Scheduling</h2>
+          <p class="docs__meta"><b>25 February 2026</b><i>&#183;</i>Stable</p>
+
+          <p>Agents run on a heartbeat with the app closed, and every wake-up is recorded. This is
+            the release where Arble stops being something you drive and starts being something that
+            runs.</p>
+
+          <h3>New</h3>
+          <ul>
+            <li><strong>Heartbeat.</strong> A configurable interval that wakes the agent to work
+              through a task file.</li>
+            <li><strong>Background execution.</strong> Runs continue with the app closed, within
+              platform limits.</li>
+            <li><strong>Notifications.</strong> Completion, failure and approval requests surface as
+              system notifications.</li>
+            <li><strong>Daily digest.</strong> A built-in toolset combining weather, calendar events
+              and pending reminders into one briefing.</li>
+            <li><strong>Plan mode.</strong> A read-only permission mode: the agent may look, but not
+              act.</li>
+          </ul>
+
+          <h3>Improvements</h3>
+          <ul>
+            <li>A wake-up that finds no work exits immediately rather than starting a model call.</li>
+            <li>Permission modes are per session, with a workspace default.</li>
+            <li>Battery use during idle heartbeats is down roughly 60%, by coalescing wake-ups.</li>
+            <li>Failed background runs retry once before notifying.</li>
+            <li>Token usage is attributed to the schedule that caused it.</li>
+          </ul>
+
+          <h3>Bug fixes</h3>
+          <ul>
+            <li>Schedules survive app termination and device restart.</li>
+            <li>Concurrent heartbeats no longer overlap when a run exceeds its own interval.</li>
+            <li>Notification taps open the originating session rather than the most recent one.</li>
+            <li>Approval requests raised while the app is closed are queued, not dropped.</li>
+            <li>Daylight-saving transitions no longer skip or double a scheduled run.</li>
+          </ul>
+
+          <h3>Developer experience</h3>
+          <ul>
+            <li><strong>CLI.</strong> <code>arble schedule</code> to list, add and remove
+              schedules.</li>
+            <li><strong>Documentation.</strong> New Automation guide.</li>
+          </ul>
+
+          <h2 id="v1-4-0">1.4.0 &#8212; Desktop control</h2>
+          <p class="docs__meta"><b>14 January 2026</b><i>&#183;</i>Stable</p>
+
+          <p>Pair a computer and the agent can run commands and operate files on it, over your own
+            network or through a relay you configure. The phone stops being a chat client and becomes
+            a control surface.</p>
+
+          <h3>New</h3>
+          <ul>
+            <li><strong>Desktop agent.</strong> A daemon for macOS, Windows and Linux, paired by QR
+              code or pairing string.</li>
+            <li><strong>Remote execution.</strong> Shell commands and file operations on the paired
+              machine, each gated by the same permission prompt as a local tool.</li>
+            <li><strong>Live View.</strong> Watch the paired machine's screen while the agent
+              works.</li>
+            <li><strong>SSH connections.</strong> Saved servers, with credentials stored encrypted on
+              device.</li>
+            <li><strong>Node sync.</strong> Memory, reminders, heartbeat, model configuration and the
+              node list converge across paired devices.</li>
+          </ul>
+
+          <h3>Improvements</h3>
+          <ul>
+            <li>Pairing discovers agents on the local network instead of requiring an address.</li>
+            <li>Transfers resume after a network change rather than failing.</li>
+            <li>Command output streams as it is produced.</li>
+            <li>Sync is per domain, so a large memory store does not delay reminder sync.</li>
+            <li>The agent reports its platform and version during pairing, making version mismatches
+              visible before they cause a failure.</li>
+          </ul>
+
+          <h3>Bug fixes</h3>
+          <ul>
+            <li>Pairing survives the phone changing network.</li>
+            <li>Commands producing no output no longer appear to hang.</li>
+            <li>Paths containing spaces are quoted correctly on Windows.</li>
+            <li>The agent reconnects after the desktop wakes from sleep.</li>
+            <li>Concurrent sync no longer produces duplicate reminders.</li>
+          </ul>
+
+          <h3>Security</h3>
+          <ul>
+            <li>Pairing establishes a shared key. A relay carries ciphertext and cannot read the
+              session.</li>
+            <li>The SSH client cannot verify host keys, and says so in the interface. Connect only to
+              servers you trust, on networks you trust.</li>
+          </ul>
+
+          <h3>Breaking changes</h3>
+          <p><strong>Node identity moved from device name to a generated identifier.</strong> Devices
+            paired before 1.4 must be paired again. Names are now labels, and may repeat.</p>
+
+          <h2 id="timeline">Version timeline</h2>
+
+          <figure class="docs__shot">
+            <div class="ph16" role="img"
+              aria-label="Illustration: vertical timeline of release cards from 1.0 to 1.8."></div>
+            <figcaption class="docs__cap">A vertical procession of monochrome cards, one per
+              milestone release, receding slightly as they descend. Each carries an engraved version
+              number and date in small monospace; the current release sits nearest the viewer and
+              fully sharp. A single hairline runs through their centres. White background, matte and
+              frosted materials only, soft contact shadows, generous negative space.</figcaption>
+          </figure>
+
+          <div class="docs__tablewrap">
+            <table class="docs__table">
+              <thead><tr><th scope="col">Version</th><th scope="col">Milestone</th><th scope="col">What it established</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">1.0</th><td>Core runtime</td><td>The agent loop, the tool registry and the permission gate, on device.</td></tr>
+                <tr><th scope="row">1.2</th><td>Memory</td><td>Durable context across sessions, searchable and editable.</td></tr>
+                <tr><th scope="row">1.4</th><td>Desktop control</td><td>Paired machines as execution targets, not just as clients.</td></tr>
+                <tr><th scope="row">1.6</th><td>MCP support</td><td>Third-party tools as first-class registry entries.</td></tr>
+                <tr><th scope="row">1.8</th><td>Developer platform</td><td>Four-language SDK, searchable registry, per-tool authorisation.</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h2 id="categories">How changes are categorised</h2>
+          <p>Every entry falls into exactly one category. Where a change could belong to two, it is
+            filed under the one that affects you most.</p>
+
+          <div class="docs__tablewrap">
+            <table class="docs__table">
+              <thead><tr><th scope="col">Category</th><th scope="col">Means</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">New</th><td>Capability that did not exist before. Additive.</td></tr>
+                <tr><th scope="row">Improvements</th><td>Existing behaviour, better. No action required.</td></tr>
+                <tr><th scope="row">Bug fixes</th><td>Behaviour that did not match the documentation or the intent.</td></tr>
+                <tr><th scope="row">Security</th><td>Anything touching the trust boundary, credentials, or data at rest.</td></tr>
+                <tr><th scope="row">Connectors</th><td>Integrations and MCP servers.</td></tr>
+                <tr><th scope="row">Developer experience</th><td>CLI, SDK, API and documentation.</td></tr>
+                <tr><th scope="row">Documentation</th><td>Material corrections and new guides. Typos are not listed.</td></tr>
+                <tr><th scope="row">Breaking changes</th><td>Requires action before or during the upgrade.</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h2 id="migrations">Migration guides</h2>
+          <p>A migration guide is published whenever an upgrade requires action from you. If a
+            release has no guide, upgrading it is a restart.</p>
+          <ul>
+            <li><strong>CLI changes.</strong> Renamed or removed commands. The old form keeps working
+              for one minor release wherever that is possible.</li>
+            <li><strong>SDK updates.</strong> Signature changes, published with a codemod when the
+              change is mechanical enough to automate.</li>
+            <li><strong>API versions.</strong> Breaking API changes ship under a new version prefix;
+              the previous version stays available for the compatibility window.</li>
+            <li><strong>Configuration.</strong> Renamed or relocated keys. The runtime warns on a
+              deprecated key and carries on.</li>
+            <li><strong>Permissions.</strong> Changes to a default grant, or to what a grant covers.
+              These are always stated explicitly, never applied silently.</li>
+          </ul>
+
+          <h2 id="versioning">Versioning and breaking changes</h2>
+          <p>Arble follows semantic versioning.</p>
+          <ul>
+            <li><strong>Major</strong> may remove deprecated interfaces and change defaults.</li>
+            <li><strong>Minor</strong> adds capability and never removes an interface.</li>
+            <li><strong>Patch</strong> fixes defects only.</li>
+          </ul>
+          <p>A deprecated interface is announced in the release that supersedes it, keeps working for
+            at least two minor releases, and is removed no earlier than the next major. The removal
+            version is stated at announcement, so the deadline is known on the day the deprecation
+            lands rather than discovered later.</p>
+          <p>Database migrations are additive within a minor release. Two adjacent versions can run
+            against one schema, which is what makes a rolling upgrade possible without a maintenance
+            window.</p>
+
+          <h2 id="channels">Release channels</h2>
+
+          <figure class="docs__shot">
+            <div class="ph16" role="img"
+              aria-label="Illustration: three parallel release lanes at different depths."></div>
+            <figcaption class="docs__cap">Three parallel horizontal lanes rendered as brushed metal
+              tracks at slightly different depths, each carrying frosted cards spaced by cadence
+              &#8212; sparse on the topmost lane, denser through the middle, closely packed on the
+              lowest. Unlabelled in the render; the caption below carries the names. White
+              background, monochrome, raking light from the left.</figcaption>
+          </figure>
+
+          <div class="docs__tablewrap">
+            <table class="docs__table">
+              <thead><tr><th scope="col">Channel</th><th scope="col">Cadence</th><th scope="col">Use it for</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Stable</th><td>Every 6&#8211;8 weeks</td><td>Production. Migrations tested; breaking changes announced a release ahead.</td></tr>
+                <tr><th scope="row">Beta</th><td>Weekly</td><td>Validating the next release against your own workload. Feature-complete, not yet hardened.</td></tr>
+                <tr><th scope="row">Nightly</th><td>Every build</td><td>Reproducing a bug against the current tree. No migration guarantees; never point it at a production store.</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h2 id="upcoming">Upcoming</h2>
+          <p>Work in progress, without dates. Anything here may change or be dropped.</p>
+          <ul>
+            <li><strong>Memory.</strong> Retrieval ranked on task relevance rather than similarity
+              alone.</li>
+            <li><strong>Workflow engine.</strong> Durable multi-step workflows with typed handoffs
+              between steps.</li>
+            <li><strong>Tool SDK.</strong> A local test harness and a conformance suite.</li>
+            <li><strong>Connectors.</strong> Continued expansion, prioritised by request volume.</li>
+            <li><strong>Enterprise authentication.</strong> SSO and directory-backed
+              provisioning.</li>
+            <li><strong>Observability.</strong> Traces spanning the agent loop, tool calls and
+              provider requests.</li>
+            <li><strong>Self-hosting.</strong> A smaller default footprint and a documented restore
+              drill.</li>
+          </ul>
+
+          <h2 id="docs-updates">Documentation updates</h2>
+          <div class="docs__tablewrap">
+            <table class="docs__table">
+              <thead><tr><th scope="col">Page</th><th scope="col">Change</th></tr></thead>
+              <tbody>
+                <tr><th scope="row"><a href="docs/developers/tool-sdk/">Tool SDK</a></th><td>Rewritten for four languages; publishing and streaming expanded.</td></tr>
+                <tr><th scope="row"><a href="docs/developers/cli/">CLI</a></th><td>Full command reference, scripting and CI usage.</td></tr>
+                <tr><th scope="row"><a href="docs/developers/api-reference/">API Reference</a></th><td>REST, SSE, webhooks and the error-code table.</td></tr>
+                <tr><th scope="row"><a href="docs/developers/mcp-servers/">MCP Servers</a></th><td>Transport, auth, debugging and the trust model.</td></tr>
+                <tr><th scope="row"><a href="playbook.html">Playbook</a></th><td>Chapters on planning, tool calling and memory.</td></tr>
+                <tr><th scope="row"><a href="docs/agent/memory/">Memory</a></th><td>Encryption, reindexing and retention.</td></tr>
+                <tr><th scope="row"><a href="docs/agent/permissions/">Permissions</a></th><td>Per-tool grants and mode semantics.</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h2 id="subscribe">Stay informed</h2>
+          <ul>
+            <li><strong>RSS.</strong> <a href="changelog.xml">changelog.xml</a> &#8212; every entry,
+              full text.</li>
+            <li><strong>Email.</strong> One message per stable release. The address is used for
+              nothing else.</li>
+            <li><strong>GitHub Releases.</strong> Tags, artefacts and checksums.</li>
+            <li><strong>Release notes.</strong> <a href="docs/reference/release-notes/">The upgrade
+              view</a> &#8212; what breaks, and what to run.</li>
+            <li><strong>Status.</strong> Incidents and maintenance, kept separate from releases.</li>
+            <li><strong>Blog.</strong> <a href="blog.html">Why</a> a change was made, when that is
+              worth a longer explanation.</li>
+          </ul>
+
+          <h2 id="archive">Archive</h2>
+          <p><strong>2026.</strong> 1.8.0, 1.7.2, 1.7.1, 1.7.0, 1.6.3, 1.6.2, 1.6.1, 1.6.0, 1.5.1,
+            1.5.0, 1.4.2, 1.4.1, 1.4.0.</p>
+          <p><strong>2025.</strong> 1.3.x, 1.2.x, 1.1.x, 1.0.x &#8212; core runtime through memory
+            and the first connectors.</p>
+          <p><strong>Older.</strong> Pre-1.0 development builds are not archived. They predate the
+            compatibility guarantees described on this page.</p>
+
+          <h2 id="faq">FAQ</h2>
+
+          <div class="docs__acc">
+            <details class="docs__item"><summary>How often does Arble release?</summary>
+              <p>Stable every six to eight weeks, beta weekly, patches whenever a defect warrants
+                one. A security fix does not wait for the next stable.</p></details>
+
+            <details class="docs__item"><summary>What counts as a breaking change?</summary>
+              <p>Anything that makes working code stop working: a removed or renamed interface, a
+                changed default, a changed stored format, or a narrowed permission. New optional
+                behaviour is not breaking, even where it changes what you see.</p></details>
+
+            <details class="docs__item"><summary>How long is a version supported?</summary>
+              <p>The current minor and the one before it receive fixes. Security fixes go back two
+                minors. Older versions are not patched.</p></details>
+
+            <details class="docs__item"><summary>Can I skip versions when upgrading?</summary>
+              <p>Yes, within a major. Migrations are cumulative and run in order. Read the notes for
+                every version you skip &#8212; a breaking change in a version you jumped over still
+                applies to you.</p></details>
+
+            <details class="docs__item"><summary>Where are the migration guides?</summary>
+              <p>Inline, under the release that requires them, and collected in
+                <a href="docs/reference/release-notes/">Release Notes</a>.</p></details>
+
+            <details class="docs__item"><summary>How do beta releases work?</summary>
+              <p>Beta is the next stable, feature-complete, before hardening. It runs the same
+                migrations, so a beta store cannot be downgraded. Use a copy.</p></details>
+
+            <details class="docs__item"><summary>Is nightly safe to run?</summary>
+              <p>Against a scratch workspace, yes. Against anything you care about, no &#8212;
+                nightly can contain a migration that is later revised.</p></details>
+
+            <details class="docs__item"><summary>Must the desktop agent match the app version?</summary>
+              <p>Within a minor, no: the pairing protocol is stable across a minor. Across a minor,
+                upgrade both. The pairing screen reports a mismatch.</p></details>
+
+            <details class="docs__item"><summary>What happens to my data during an upgrade?</summary>
+              <p>Migrations are additive within a minor and run before the application starts
+                serving. Take a backup anyway, and test the restore &#8212; an untested backup is a
+                hypothesis.</p></details>
+
+            <details class="docs__item"><summary>Why are some fixes only in the archive?</summary>
+              <p>Patch releases fix defects without changing interfaces. Writing them out in full
+                buries the changes that actually need a decision.</p></details>
+
+            <details class="docs__item"><summary>How do I report a regression?</summary>
+              <p>Open an issue with the version you upgraded from, the version you are on, and the
+                smallest reproduction you can manage. <code>arble doctor</code> output helps.</p></details>
+          </div>
+
+          <nav class="pbp__nav" aria-label="Page navigation">
+            <a class="pbp__navcard pbp__navcard--prev" href="docs/">
+              <span class="pbp__navcard-l">Previous</span>
+              <span class="pbp__navcard-t">Documentation</span></a>
+            <a class="pbp__navcard pbp__navcard--next" href="blog.html">
+              <span class="pbp__navcard-l">Next</span>
+              <span class="pbp__navcard-t">Blog</span></a>
+          </nav>
+        </article>
+
+        <aside class="docs__toc" aria-label="On this page">
+          <p class="docs__tocH">On this page</p>
+          <ul class="docs__toclist" id="docsToc">
+            <li class="docs__tocrow"><a href="#v1-8-0">1.8.0 &#8212; Developer platform</a></li>
+            <li class="docs__tocrow"><a href="#v1-7-0">1.7.0 &#8212; Durability</a></li>
+            <li class="docs__tocrow"><a href="#v1-6-0">1.6.0 &#8212; MCP support</a></li>
+            <li class="docs__tocrow"><a href="#v1-5-0">1.5.0 &#8212; Scheduling</a></li>
+            <li class="docs__tocrow"><a href="#v1-4-0">1.4.0 &#8212; Desktop control</a></li>
+            <li class="docs__tocrow"><a href="#timeline">Version timeline</a></li>
+            <li class="docs__tocrow"><a href="#categories">How changes are categorised</a></li>
+            <li class="docs__tocrow"><a href="#migrations">Migration guides</a></li>
+            <li class="docs__tocrow"><a href="#versioning">Versioning and breaking changes</a></li>
+            <li class="docs__tocrow"><a href="#channels">Release channels</a></li>
+            <li class="docs__tocrow"><a href="#upcoming">Upcoming</a></li>
+            <li class="docs__tocrow"><a href="#docs-updates">Documentation updates</a></li>
+            <li class="docs__tocrow"><a href="#subscribe">Stay informed</a></li>
+            <li class="docs__tocrow"><a href="#archive">Archive</a></li>
+            <li class="docs__tocrow"><a href="#faq">FAQ</a></li>
+          </ul>
+        </aside>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/js/docs.js?v=7" defer></script>
+  <script src="assets/js/docs-ui.js?v=3" defer></script>
+</body>
+
+</html>

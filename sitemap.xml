@@ -2,6 +2,8 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://arble.ai/</loc></url>
   <url><loc>https://arble.ai/playbook.html</loc></url>
+  <url><loc>https://arble.ai/changelog.html</loc></url>
+  <url><loc>https://arble.ai/blog.html</loc></url>
   <url><loc>https://arble.ai/docs/</loc></url>
   <url><loc>https://arble.ai/docs/getting-started/</loc></url>
   <url><loc>https://arble.ai/docs/agent/</loc></url>
@@ -29,4 +31,9 @@
   <url><loc>https://arble.ai/docs/reference/faq/</loc></url>
   <url><loc>https://arble.ai/docs/reference/troubleshooting/</loc></url>
   <url><loc>https://arble.ai/docs/reference/release-notes/</loc></url>
+  <url><loc>https://arble.ai/legal/privacy/</loc></url>
+  <url><loc>https://arble.ai/legal/terms/</loc></url>
+  <url><loc>https://arble.ai/legal/security/</loc></url>
+  <url><loc>https://arble.ai/legal/trust/</loc></url>
+  <url><loc>https://arble.ai/legal/cookies/</loc></url>
 </urlset>

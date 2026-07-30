@@ -27,7 +27,7 @@ from bodies import BODIES  # noqa: E402
 # Repository root: this file lives in docs-build/, so one level up.
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "docs")
-CSS_V = "84"
+CSS_V = "86"
 
 # Absolute origin, used only for sitemap.xml. Every link inside the site stays
 # relative, so this is the one place a domain is hard-coded — change it here and
@@ -508,9 +508,11 @@ def sitemap():
     page is added. Marketing pages are listed explicitly since they are not part
     of NAV.
     """
-    urls = ["", "playbook.html", "docs/"]
+    urls = ["", "playbook.html", "changelog.html", "blog.html", "docs/"]
     urls += [f"docs/{slug}/" for _, slug, _ in NAV]
     urls += [f"docs/{key}/" for key in ORDER]
+    urls += [f"legal/{p}/" for p in
+             ("privacy", "terms", "security", "trust", "cookies")]
 
     rows = "\n".join(
         f"  <url><loc>{BASE_URL}/{u}</loc></url>" for u in urls)
