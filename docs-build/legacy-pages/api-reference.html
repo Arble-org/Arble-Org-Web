@@ -1,0 +1,1976 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>API Reference &#8212; Arble Docs</title>
+  <meta name="description"
+    content="Arble REST API reference: authentication, agents, runs, sessions, messages, memory, tools, permissions, streaming, webhooks, errors and rate limits." />
+  <link rel="icon"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='3.4' fill='%230A0A0B'/%3E%3Ccircle cx='12' cy='12' r='7.2' fill='none' stroke='%230A0A0B' stroke-width='1.3' opacity='.45'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Stack+Sans+Headline:wght@200..700&display=swap" />
+  <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f%5B%5D=switzer@400,500,600,700&display=swap" />
+  <link rel="stylesheet" href="assets/css/site.css?v=78" />
+</head>
+
+<body class="pbp-page">
+  <a class="skip" href="#doc">Skip to content</a>
+
+  <nav class="nav" aria-label="Primary">
+    <div class="nav__bar" id="navbar">
+      <a class="brand" href="index.html" aria-label="Arble home">
+        <span class="brand__mark" aria-hidden="true">
+          <img src="assets/img/brand/logo-mark.png" width="288" height="271" alt="" />
+        </span>
+        <span class="brand__word">Ar<span class="brand__word--dim">ble</span></span>
+      </a>
+      <div class="nav__links">
+        <a class="nav__link" href="index.html#operations">Features</a>
+        <a class="nav__link" href="index.html#trust">Safety</a>
+        <a class="nav__link" href="mcp-servers.html">Connectors</a>
+        <a class="nav__link" href="index.html#screens">Screens</a>
+        <a class="nav__link" href="playbook.html">Playbook</a>
+      </div>
+      <div class="nav__right">
+        <a class="btn btn--primary btn--sm" href="index.html#cta">Get Started</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="docs">
+    <div class="shell docs__grid">
+
+      <aside class="docs__rail" aria-label="Documentation">
+        <p class="docs__railh">Resources</p>
+        <ul class="docs__raillist">
+          <li class="docs__railrow"><a href="documentation.html">Documentation</a></li>
+          <li class="docs__railrow"><a href="playbook.html">Playbook</a></li>
+        </ul>
+        <p class="docs__railh">Getting started</p>
+        <ul class="docs__raillist">
+          <li class="docs__railrow"><span>Install</span></li>
+          <li class="docs__railrow"><span>Pairing a device</span></li>
+          <li class="docs__railrow"><span>First run</span></li>
+        </ul>
+        <p class="docs__railh">Agent</p>
+        <ul class="docs__raillist">
+          <li class="docs__railrow"><span>Sessions</span></li>
+          <li class="docs__railrow"><span>Skills</span></li>
+          <li class="docs__railrow"><span>Permissions</span></li>
+          <li class="docs__railrow"><span>Memory</span></li>
+        </ul>
+        <p class="docs__railh">Connectors</p>
+        <ul class="docs__raillist">
+          <li class="docs__railrow"><a href="mcp-servers.html">MCP server</a></li>
+          <li class="docs__railrow"><span>Directory</span></li>
+          <li class="docs__railrow"><span>Building a server</span></li>
+        </ul>
+        <p class="docs__railh">Reference</p>
+        <ul class="docs__raillist">
+          <li class="docs__railrow"><a href="cli.html">CLI</a></li>
+          <li class="docs__railrow"><a href="tool-sdk.html">Tool SDK</a></li>
+          <li class="docs__railrow is-current" aria-current="page"><a href="api-reference.html">API Reference</a></li>
+          <li class="docs__railrow"><span>Glossary</span></li>
+        </ul>
+        <p class="docs__railh">Infrastructure</p>
+        <ul class="docs__raillist">
+          <li class="docs__railrow"><a href="self-hosting.html">Self-hosting</a></li>
+        </ul>
+      </aside>
+
+      <article class="docs__body" id="doc">
+        <p class="docs__crumb">Developers <span aria-hidden="true">/</span> API Reference</p>
+        <h1 class="docs__title">API Reference</h1>
+
+        <p class="docs__lead">Every capability in the Arble desktop application is available through
+          this API. Sessions, agents, memory, tools, permissions, desktop and mobile control are all
+          resources you can create, read and act on from your own code.</p>
+
+        <p>The API is REST over HTTPS. Requests and responses are JSON. Long-running work streams over
+          Server-Sent Events, and anything that happens outside a request &#8212; a permission
+          approval, a completed run &#8212; reaches you through webhooks. Authentication is a bearer
+          token on every request.</p>
+
+        <h2 id="quick-start">Quick start</h2>
+        <p>Create a run and get a result in one call:</p>
+
+        <div class="docs__code">
+          <pre><code id="c-qs">curl https://api.arble.ai/v1/runs \
+  -H "Authorization: Bearer $ARBLE_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "agent": "agt_5wTn9Kd",
+    "input": "Summarize the open PRs in acme/api-gateway"
+  }'</code></pre>
+          <button class="docs__copy" type="button" data-copy="c-qs" aria-label="Copy code">Copy</button>
+        </div>
+
+        <div class="docs__code">
+          <pre><code id="c-qs-res">{
+  "id": "run_2Kd8vQx",
+  "object": "run",
+  "status": "queued",
+  "agent": "agt_5wTn9Kd",
+  "session": "ses_8kQ2mVx",
+  "created_at": 1775049600
+}</code></pre>
+          <button class="docs__copy" type="button" data-copy="c-qs-res" aria-label="Copy code">Copy</button>
+        </div>
+
+        <p>The run is created immediately and executes asynchronously. Poll it, stream it, or receive a
+          <code>run.completed</code> webhook &#8212; all three are covered below.</p>
+
+        <p>Three things every request needs: an API key in the <code>Authorization</code> header,
+          <code>Content-Type: application/json</code> on any request with a body, and the base URL for
+          your environment.</p>
+
+        <h2 id="authentication">Authentication</h2>
+        <p>All requests authenticate with a bearer token. There is no other scheme &#8212; no
+          query-string keys, no HTTP basic.</p>
+
+        <div class="docs__code">
+          <pre><code id="c-auth">curl https://api.arble.ai/v1/agents \
+  -H "Authorization: Bearer arb_live_9f2c4a..."</code></pre>
+          <button class="docs__copy" type="button" data-copy="c-auth" aria-label="Copy code">Copy</button>
+        </div>
+
+        <p>Tokens differ in what they can reach, not in how they&#8217;re sent.</p>
+
+        <div class="docs__tablewrap">
+          <table class="docs__table">
+            <thead>
+              <tr><th scope="col">Token type</th><th scope="col">Prefix</th><th scope="col">Scope</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">Personal</th><td class="mono">arb_user_</td><td>Everything the user can access, across their organizations</td></tr>
+              <tr><th scope="row">Organization</th><td class="mono">arb_org_</td><td>One organization; all its projects</td></tr>
+              <tr><th scope="row">Project</th><td class="mono">arb_proj_</td><td>One project. The right default for a deployed service</td></tr>
+              <tr><th scope="row">Session</th><td class="mono">arb_ses_</td><td>One session, expires in &#8804; 1 hour. For browser and mobile clients</td></tr>
+              <tr><th scope="row">Device</th><td class="mono">arb_dev_</td><td>One paired device, for desktop and mobile control endpoints</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p><strong>Project tokens</strong> are what most integrations should use. A token scoped to one
+          project can&#8217;t read another project&#8217;s memory even if the same key leaks.</p>
+
+        <p><strong>Session tokens</strong> exist so you never ship a long-lived key to an untrusted
+          client. Mint one server-side, hand it to the browser, and let it expire:</p>
+
+        <div class="docs__code">
+          <pre><code id="c-token">curl https://api.arble.ai/v1/tokens \
+  -H "Authorization: Bearer $ARBLE_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"type": "session", "session": "ses_8kQ2mVx", "expires_in": 900}'</code></pre>
+          <button class="docs__copy" type="button" data-copy="c-token" aria-label="Copy code">Copy</button>
+        </div>
+
+        <div class="docs__code">
+          <pre><code id="c-token-res">{
+  "object": "token",
+  "token": "arb_ses_7Vn2...",
+  "type": "session",
+  "expires_at": 1775050500
+}</code></pre>
+          <button class="docs__copy" type="button" data-copy="c-token-res" aria-label="Copy code">Copy</button>
+        </div>
+
+        <p><strong>Device authentication</strong> covers the desktop and mobile endpoints, which act on
+          a specific machine. Pair the device once through the app; the resulting device token is the
+          only credential those endpoints accept.</p>
+
+        <p><strong>Rotation.</strong> Create the new key, deploy it, then revoke the old one. Both work
+          during the overlap, so rotation needs no downtime. <strong>Revocation</strong> takes effect
+          immediately, on in-flight requests as well as new ones.</p>
+
+        <div class="docs__code">
+          <pre><code id="c-rotate">curl -X POST https://api.arble.ai/v1/api_keys \
+  -H "Authorization: Bearer $ARBLE_ADMIN_KEY" \
+  -d '{"name": "api-gateway-prod", "scope": "project"}'
+
+curl -X DELETE https://api.arble.ai/v1/api_keys/key_8fRt2Ls \
+  -H "Authorization: Bearer $ARBLE_ADMIN_KEY"</code></pre>
+          <button class="docs__copy" type="button" data-copy="c-rotate" aria-label="Copy code">Copy</button>
+        </div>
+
+        <div class="docs__note">
+          <p>The full key is returned only once, at creation. Store it in a secret manager; there is no
+            endpoint that reads it back.</p>
+        </div>
+
+        <h2 id="base-url">Base URL</h2>
+        <div class="docs__tablewrap">
+          <table class="docs__table">
+            <thead>
+              <tr><th scope="col">Environment</th><th scope="col">Base URL</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">Production</th><td class="mono">https://api.arble.ai/v1</td></tr>
+              <tr><th scope="row">Development</th><td class="mono">https://api.sandbox.arble.ai/v1</td></tr>
+              <tr><th scope="row">Self-hosted</th><td class="mono">https://&lt;your-host&gt;/v1</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>Development is a full instance with separate data and no billing. Runs execute against a
+          smaller model by default, so latency and output differ from production &#8212; verify
+          behavior in production before you depend on it.</p>
+
+        <p>Regional endpoints pin data residency. Requests to a regional host never leave that region,
+          including model inference:</p>
+
+        <div class="docs__tablewrap">
+          <table class="docs__table">
+            <thead>
+              <tr><th scope="col">Region</th><th scope="col">Host</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">United States</th><td class="mono">https://us.api.arble.ai/v1</td></tr>
+              <tr><th scope="row">European Union</th><td class="mono">https://eu.api.arble.ai/v1</td></tr>
+              <tr><th scope="row">Asia Pacific</th><td class="mono">https://ap.api.arble.ai/v1</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>An object created in one region isn&#8217;t visible from another. Pick a region per project,
+          not per request.</p>
+
+        <h2 id="requests">Making requests</h2>
+        <div class="docs__tablewrap">
+          <table class="docs__table">
+            <thead>
+              <tr><th scope="col">Header</th><th scope="col">Notes</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row" class="mono">Authorization</th><td><code>Bearer &lt;token&gt;</code>. Required on every request.</td></tr>
+              <tr><th scope="row" class="mono">Content-Type</th><td><code>application/json</code> on any request with a body.</td></tr>
+              <tr><th scope="row" class="mono">Arble-Version</th><td>Pins the API version. Defaults to your account&#8217;s version.</td></tr>
+              <tr><th scope="row" class="mono">Idempotency-Key</th><td>Client-generated key. Safe retries on <code>POST</code>.</td></tr>
+              <tr><th scope="row" class="mono">Accept-Encoding</th><td><code>gzip</code> or <code>br</code>. Responses are compressed when requested.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p><strong>Idempotency.</strong> Send an <code>Idempotency-Key</code> on any <code>POST</code>
+          that creates something. A repeated key returns the original response instead of creating a
+          second object &#8212; keys are retained 24 hours:</p>
+
+        <div class="docs__code">
+          <pre><code id="c-idem">curl https://api.arble.ai/v1/runs \
+  -H "Authorization: Bearer $ARBLE_API_KEY" \
+  -H "Idempotency-Key: 8f2c4a9e-1b7d-4e3a-9c8f-2d1e6b5a4c30" \
+  -H "Content-Type: application/json" \
+  -d '{"agent": "agt_5wTn9Kd", "input": "Audit the retry logic"}'</code></pre>
+          <button class="docs__copy" type="button" data-copy="c-idem" aria-label="Copy code">Copy</button>
+        </div>
+
+        <p>Reusing a key with a <em>different</em> body returns
+          <code>400 idempotency_key_reused</code>.</p>
+
+        <p><strong>Timeouts.</strong> The API responds within 30 seconds. Anything longer is
+          asynchronous by design: creating a run returns immediately with
+          <code>status: "queued"</code>, and you stream or poll for the result. Set a client timeout of
+          30 seconds and don&#8217;t raise it.</p>
+
+        <p><strong>Retries.</strong> Retry <code>429</code>, <code>500</code>, <code>502</code>,
+          <code>503</code> and <code>504</code> with exponential backoff and jitter. Never retry
+          <code>400</code>, <code>401</code>, <code>403</code>, <code>404</code> or <code>422</code>
+          &#8212; the request is wrong and will stay wrong. Always send an idempotency key on retried
+          <code>POST</code>s.</p>
+
+        <h2 id="agents">Agents</h2>
+        <p>An agent is a reusable configuration: a model, a set of tools, and instructions. Runs are
+          executions of an agent. Create the agent once and run it many times.</p>
+
+        <h3 id="agents-create">Create an agent</h3>
+        <div class="docs__ep">
+          <span class="docs__epm">POST</span><span class="docs__epu">/v1/agents</span>
+        </div>
+
+        <div class="docs__tablewrap">
+          <table class="docs__table">
+            <thead>
+              <tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Notes</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row" class="mono">name</th><td>string</td><td>Required. Unique within the project.</td></tr>
+              <tr><th scope="row" class="mono">instructions</th><td>string</td><td>Required. System instructions.</td></tr>
+              <tr><th scope="row" class="mono">model</th><td>string</td><td>Defaults to the project&#8217;s model.</td></tr>
+              <tr><th scope="row" class="mono">tools</th><td>array</td><td>Tool names the agent may call. Omit for all project tools.</td></tr>
+              <tr><th scope="row" class="mono">permissions</th><td>object</td><td>Capability grants scoped to this agent.</td></tr>
+              <tr><th scope="row" class="mono">metadata</th><td>object</td><td>Up to 16 key-value pairs. Returned unmodified.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="docs__code">
+          <pre><code id="c-agent">curl https://api.arble.ai/v1/agents \
+  -H "Authorization: Bearer $ARBLE_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "pr-reviewer",
+    "instructions": "Review diffs for missing error handling.",
+    "model": "arble-1",
+    "tools": ["github.get_pull_request", "github.create_review_comment"],
+    "permissions": {"network.http": ["api.github.com"]}
+  }'</code></pre>
+          <button class="docs__copy" type="button" data-copy="c-agent" aria-label="Copy code">Copy</button>
+        </div>
+
+        <div class="docs__code">
+          <pre><code id="c-agent-res">{
+  "id": "agt_5wTn9Kd",
+  "object": "agent",
+  "name": "pr-reviewer",
+  "model": "arble-1",
+  "tools": ["github.get_pull_request", "github.create_review_comment"],
+  "permissions": {"network.http": ["api.github.com"]},
+  "created_at": 1775049600
+}</code></pre>
+          <button class="docs__copy" type="button" data-copy="c-agent-res" aria-label="Copy code">Copy</button>
+        </div>
+
+        <p class="docs__errs">Errors: <code>400 parameter_missing</code> &#183;
+          <code>409 name_already_exists</code> &#183; <code>422 unknown_tool</code></p>
+
+        <h3 id="agents-list">List agents</h3>
+        <div class="docs__ep">
+          <span class="docs__epm">GET</span><span class="docs__epu">/v1/agents</span>
+        </div>
+
+        <p>Returns agents in the project, newest first. Accepts <code>limit</code>,
+          <code>cursor</code> and <code>name</code> filters.</p>
+
+        <div class="docs__code">
+          <pre><code id="c-agents-list">{
+  "object": "list",
+  "data": [
+    {"id": "agt_5wTn9Kd", "object": "agent", "name": "pr-reviewer"},
+    {"id": "agt_3pLwRt9", "object": "agent", "name": "ci-triage"}
+  ],
+  "has_more": true,
+  "next_cursor": "cur_agt_3pLwRt9"
+}</code></pre>
+          <button class="docs__copy" type="button" data-copy="c-agents-list" aria-label="Copy code">Copy</button>
+        </div>
+
+        <p class="docs__errs">Errors: <code>400 invalid_cursor</code></p>
+
+        <h3 id="agents-crud">Retrieve, update, delete</h3>
+        <div class="docs__ep">
+          <span class="docs__epm">GET</span><span class="docs__epu">/v1/agents/:id</span>
+        </div>
+        <div class="docs__ep">
+          <span class="docs__epm">PATCH</span><span class="docs__epu">/v1/agents/:id</span>
+        </div>
+        <div class="docs__ep">
+          <span class="docs__epm">DELETE</span><span class="docs__epu">/v1/agents/:id</span>
+        </div>
+
+        <p><code>PATCH</code> accepts any creatable field except <code>name</code>. Updates apply to
+          future runs; in-flight runs keep the configuration they started with. <code>DELETE</code>
+          fails while runs are active unless <code>force=true</code>, which cancels them.</p>
+
+        <div class="docs__code">
+          <pre><code id="c-agent-patch">curl -X PATCH https://api.arble.ai/v1/agents/agt_5wTn9Kd \
+  -H "Authorization: Bearer $ARBLE_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"model": "arble-1-pro"}'</code></pre>
+          <button class="docs__copy" type="button" data-copy="c-agent-patch" aria-label="Copy code">Copy</button>
+        </div>
+
+        <div class="docs__code">
+          <pre><code id="c-agent-del">{"id": "agt_5wTn9Kd", "object": "agent", "deleted": true}</code></pre>
+          <button class="docs__copy" type="button" data-copy="c-agent-del" aria-label="Copy code">Copy</button>
+        </div>
+
+        <p class="docs__errs">Errors: <code>404 agent_not_found</code> &#183;
+          <code>409 agent_has_active_runs</code> &#183; <code>422 unknown_tool</code></p>
+
+        <h2 id="sessions">Sessions</h2>
+        <p>A session holds context across runs: messages, tool results, and permission grants. Runs in
+          the same session see each other&#8217;s history; runs in different sessions are
+          independent.</p>
+
+        <h3 id="sessions-create">Create a session</h3>
+        <div class="docs__ep">
+          <span class="docs__epm">POST</span><span class="docs__epu">/v1/sessions</span>
+        </div>
+
+        <div class="docs__tablewrap">
+          <table class="docs__table">
+            <thead>
+              <tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Notes</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row" class="mono">title</th><td>string</td><td>Optional, for display.</td></tr>
+              <tr><th scope="row" class="mono">agent</th><td>string</td><td>Default agent for runs in this session.</td></tr>
+              <tr><th scope="row" class="mono">metadata</th><td>object</td><td>Up to 16 key-value pairs.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="docs__code">
+          <pre><code id="c-ses">curl https://api.arble.ai/v1/sessions \
+  -H "Authorization: Bearer $ARBLE_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"title": "Payment retry audit", "agent": "agt_5wTn9Kd"}'</code></pre>
+          <button class="docs__copy" type="button" data-copy="c-ses" aria-label="Copy code">Copy</button>
+        </div>
+
+        <div class="docs__code">
+          <pre><code id="c-ses-res">{
+  "id": "ses_8kQ2mVx",
+  "object": "session",
+  "status": "active",
+  "title": "Payment retry audit",
+  "agent": "agt_5wTn9Kd",
+  "message_count": 0,
+  "created_at": 1775049600
+}</code></pre>
+          <button class="docs__copy" type="button" data-copy="c-ses-res" aria-label="Copy code">Copy</button>
+        </div>
+
+        <p class="docs__errs">Errors: <code>404 agent_not_found</code></p>
+
+        <h3 id="sessions-lifecycle">Session lifecycle</h3>
+        <p>A session is <code>active</code>, <code>paused</code> or <code>archived</code>. Each
+          transition is its own endpoint:</p>
+
+        <div class="docs__tablewrap">
+          <table class="docs__table">
+            <thead>
+              <tr><th scope="col">Action</th><th scope="col">Endpoint</th><th scope="col">Effect</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">Pause</th><td class="mono">POST /v1/sessions/:id/pause</td><td>Cancels active runs, keeps context</td></tr>
+              <tr><th scope="row">Resume</th><td class="mono">POST /v1/sessions/:id/resume</td><td>Returns to <code>active</code>, context intact</td></tr>
+              <tr><th scope="row">Archive</th><td class="mono">POST /v1/sessions/:id/archive</td><td>Read-only. Context kept, no new runs</td></tr>
+              <tr><th scope="row">Delete</th><td class="mono">DELETE /v1/sessions/:id</td><td>Removes the session and its messages</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="docs__code">
+          <pre><code id="c-ses-pause">$ curl -X POST https://api.arble.ai/v1/sessions/ses_8kQ2mVx/pause \
+    -H "Authorization: Bearer $ARBLE_API_KEY"
+
+{"id": "ses_8kQ2mVx", "object": "session", "status": "paused"}</code></pre>
+          <button class="docs__copy" type="button" data-copy="c-ses-pause" aria-label="Copy code">Copy</button>
+        </div>
+
+        <p class="docs__errs">Errors: <code>404 session_not_found</code> &#183;
+          <code>409 invalid_session_state</code></p>
+
+        <div class="docs__note">
+          <p>Deletion is permanent and does <strong>not</strong> remove memory the session wrote
+            &#8212; memory outlives sessions by design. Delete memory entries explicitly if you need
+            them gone.</p>
+        </div>
+
+        <h3 id="sessions-export">Export a session</h3>
+        <div class="docs__ep">
+          <span class="docs__epm">GET</span><span class="docs__epu">/v1/sessions/:id/export</span>
+        </div>
+
+        <p>Returns the complete transcript: messages, tool calls with arguments and results, and every
+          permission decision. This is the artifact for an audit or incident review.
+          <code>format</code> accepts <code>json</code> or <code>jsonl</code>.</p>
+
+        <p class="docs__errs">Errors: <code>404 session_not_found</code></p>
+
+        <h2 id="runs">Runs</h2>
+        <p>A run is one execution of an agent. Creating a run returns immediately; the run progresses
+          asynchronously through states:</p>
+
+        <div class="docs__tablewrap">
+          <table class="docs__table">
+            <thead>
+              <tr><th scope="col">Status</th><th scope="col">Meaning</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row" class="mono">queued</th><td>Accepted, not yet started</td></tr>
+              <tr><th scope="row" class="mono">running</th><td>Executing</td></tr>
+              <tr><th scope="row" class="mono">requires_action</th><td>Paused for a permission approval or client-side tool result</td></tr>
+              <tr><th scope="row" class="mono">completed</th><td>Finished successfully</td></tr>
+              <tr><th scope="row" class="mono">failed</th><td>Finished with an error. See <code>last_error</code></td></tr>
+              <tr><th scope="row" class="mono">cancelled</th><td>Cancelled by request</td></tr>
+              <tr><th scope="row" class="mono">expired</th><td>Exceeded <code>timeout</code> without completing</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p><code>requires_action</code> is the state that matters most: the run is waiting on you.
+          Inspect <code>required_action</code> to see what it needs, then either approve a permission
+          or submit a tool result.</p>
+
+        <h3 id="runs-create">Create a run</h3>
+        <div class="docs__ep">
+          <span class="docs__epm">POST</span><span class="docs__epu">/v1/runs</span>
+        </div>
+
+        <div class="docs__tablewrap">
+          <table class="docs__table">
+            <thead>
+              <tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Notes</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row" class="mono">agent</th><td>string</td><td>Required unless <code>session</code> has a default agent.</td></tr>
+              <tr><th scope="row" class="mono">input</th><td>string</td><td>The instruction. Required.</td></tr>
+              <tr><th scope="row" class="mono">session</th><td>string</td><td>Existing session. A new one is created if omitted.</td></tr>
+              <tr><th scope="row" class="mono">stream</th><td>boolean</td><td>Return SSE instead of a run object.</td></tr>
+              <tr><th scope="row" class="mono">tools</th><td>array</td><td>Narrow the agent&#8217;s tools for this run only.</td></tr>
+              <tr><th scope="row" class="mono">timeout</th><td>integer</td><td>Seconds, 1&#8211;3600. Default 300.</td></tr>
+              <tr><th scope="row" class="mono">metadata</th><td>object</td><td>Up to 16 key-value pairs.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="docs__code">
+          <pre><code id="c-run">curl https://api.arble.ai/v1/runs \
+  -H "Authorization: Bearer $ARBLE_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "agent": "agt_5wTn9Kd",
+    "session": "ses_8kQ2mVx",
+    "input": "Review PR 482 for missing error handling",
+    "timeout": 600
+  }'</code></pre>
+          <button class="docs__copy" type="button" data-copy="c-run" aria-label="Copy code">Copy</button>
+        </div>
+
+        <p class="docs__errs">Errors: <code>400 parameter_missing</code> &#183;
+          <code>404 agent_not_found</code> &#183; <code>409 session_not_active</code> &#183;
+          <code>429 concurrency_limit_exceeded</code></p>
+
+        <h3 id="runs-retrieve">Retrieve a run</h3>
+        <div class="docs__ep">
+          <span class="docs__epm">GET</span><span class="docs__epu">/v1/runs/:id</span>
+        </div>
+
+        <div class="docs__code">
+          <pre><code id="c-run-res">{
+  "id": "run_2Kd8vQx",
+  "object": "run",
+  "status": "completed",
+  "agent": "agt_5wTn9Kd",
+  "session": "ses_8kQ2mVx",
+  "output": "Three handlers retry without backoff: charge.py:118, ...",
+  "created_at": 1775049600,
+  "started_at": 1775049601,
+  "completed_at": 1775049643,
+  "usage": {"input_tokens": 4182, "output_tokens": 311, "tool_calls": 9}
+}</code></pre>
+          <button class="docs__copy" type="button" data-copy="c-run-res" aria-label="Copy code">Copy</button>
+        </div>
+
+        <p>When <code>status</code> is <code>failed</code>, <code>last_error</code> carries the same
+          shape as an API error.</p>
+
+        <p class="docs__errs">Errors: <code>404 run_not_found</code></p>
+
+        <h3 id="runs-control">Cancel and retry</h3>
+        <div class="docs__ep">
+          <span class="docs__epm">POST</span><span class="docs__epu">/v1/runs/:id/cancel</span>
+        </div>
+        <div class="docs__ep">
+          <span class="docs__epm">POST</span><span class="docs__epu">/v1/runs/:id/retry</span>
+        </div>
+
+        <p>Cancelling is cooperative: an in-flight tool call is given the chance to finish before the
+          run stops. Retrying creates a <em>new</em> run with the same agent, input and session
+          &#8212; only <code>failed</code>, <code>cancelled</code> and <code>expired</code> runs can
+          be retried, the original is untouched, and <code>retry_of</code> links them.</p>
+
+        <div class="docs__code">
+          <pre><code id="c-retry">{
+  "id": "run_9Ln4Ktp",
+  "object": "run",
+  "status": "queued",
+  "retry_of": "run_2Kd8vQx"
+}</code></pre>
+          <button class="docs__copy" type="button" data-copy="c-retry" aria-label="Copy code">Copy</button>
+        </div>
+
+        <p class="docs__errs">Errors: <code>404 run_not_found</code> &#183;
+          <code>409 run_not_cancellable</code> &#183; <code>409 run_not_retryable</code></p>
+
+        <h3 id="runs-list">List runs</h3>
+        <div class="docs__ep">
+          <span class="docs__epm">GET</span><span class="docs__epu">/v1/runs</span>
+        </div>
+
+        <p>Filter by <code>session</code>, <code>agent</code>, <code>status</code>,
+          <code>created_after</code> and <code>created_before</code>. See
+          <a href="#filtering">Filtering</a>.</p>
+
+        <div class="docs__code">
+          <pre><code id="c-runs-list">curl "https://api.arble.ai/v1/runs?session=ses_8kQ2mVx&amp;status=failed" \
+  -H "Authorization: Bearer $ARBLE_API_KEY"</code></pre>
+          <button class="docs__copy" type="button" data-copy="c-runs-list" aria-label="Copy code">Copy</button>
+        </div>
+
+        <p class="docs__errs">Errors: <code>400 invalid_filter</code></p>
+
+        <h2 id="messages">Messages</h2>
+        <p>Messages are the contents of a session. A run appends messages as it works; you append them
+          to continue a conversation.</p>
+
+        <h3 id="messages-send">Send a message</h3>
+        <div class="docs__ep">
+          <span class="docs__epm">POST</span><span class="docs__epu">/v1/sessions/:id/messages</span>
+        </div>
+
+        <p>Appends a message and starts a run to respond to it. This is the conversational form of
+          <code>POST /v1/runs</code> &#8212; use it when you&#8217;re building a chat interface rather
+          than dispatching a task. Accepts <code>content</code> (required),
+          <code>attachments</code> (file IDs) and <code>stream</code>.</p>
+
+        <div class="docs__code">
+          <pre><code id="c-msg">curl https://api.arble.ai/v1/sessions/ses_8kQ2mVx/messages \
+  -H "Authorization: Bearer $ARBLE_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "content": "Which of those is riskiest under load?",
+    "attachments": ["file_7Bn3Kqs"]
+  }'</code></pre>
+          <button class="docs__copy" type="button" data-copy="c-msg" aria-label="Copy code">Copy</button>
+        </div>
+
+        <div class="docs__code">
+          <pre><code id="c-msg-res">{
+  "id": "msg_4Rt8Nvp",
+  "object": "message",
+  "session": "ses_8kQ2mVx",
+  "role": "user",
+  "content": "Which of those is riskiest under load?",
+  "attachments": ["file_7Bn3Kqs"],
+  "run": "run_6Wq2Mdx",
+  "created_at": 1775049700
+}</code></pre>
+          <button class="docs__copy" type="button" data-copy="c-msg-res" aria-label="Copy code">Copy</button>
+        </div>
+
+        <p class="docs__errs">Errors: <code>404 session_not_found</code> &#183;
+          <code>409 session_not_active</code> &#183; <code>422 attachment_not_found</code></p>
+
+        <h3 id="messages-list">List messages</h3>
+        <div class="docs__ep">
+          <span class="docs__epm">GET</span><span class="docs__epu">/v1/sessions/:id/messages</span>
+        </div>
+
+        <p>Returns messages oldest-first by default; pass <code>order=desc</code> to reverse. Assistant
+          messages include the <code>run</code> that produced them and any <code>tool_calls</code> made
+          along the way.</p>
+
+        <div class="docs__code">
+          <pre><code id="c-msgs">{
+  "object": "list",
+  "data": [
+    {
+      "id": "msg_5Sv9Owq",
+      "object": "message",
+      "role": "assistant",
+      "content": "webhook.py:203 — it retries inside a request handler.",
+      "run": "run_6Wq2Mdx",
+      "tool_calls": [
+        {"tool": "filesystem.read", "duration_ms": 84}
+      ],
+      "created_at": 1775049714
+    }
+  ],
+  "has_more": false,
+  "next_cursor": null
+}</code></pre>
+          <button class="docs__copy" type="button" data-copy="c-msgs" aria-label="Copy code">Copy</button>
+        </div>
+
+        <p class="docs__errs">Errors: <code>404 session_not_found</code></p>
+
+        <h2 id="memory">Memory</h2>
+        <p>Memory is per-project and persists across sessions. Agents read it automatically at the start
+          of a run. Entries should be durable facts &#8212; a constraint, a decision, a gotcha
+          &#8212; not a log of what happened.</p>
+
+        <h3 id="memory-search">Search memory</h3>
+        <div class="docs__ep">
+          <span class="docs__epm">POST</span><span class="docs__epu">/v1/memory/search</span>
+        </div>
+
+        <p>Semantic search, not substring matching. Returns ranked entries with relevance scores.
+          Accepts <code>query</code> (required), <code>limit</code> (1&#8211;100, default 10) and
+          <code>min_score</code>.</p>
+
+        <div class="docs__code">
+          <pre><code id="c-mem">$ curl https://api.arble.ai/v1/memory/search \
+    -H "Authorization: Bearer $ARBLE_API_KEY" \
+    -d '{"query": "why the postgres driver is pinned", "limit": 3}'
+
+{
+  "object": "list",
+  "data": [
+    {
+      "id": "mem_2fQx8Lp",
+      "object": "memory",
+      "content": "pg driver pinned to 8.11.3 — 8.12 breaks pgbouncer.",
+      "score": 0.91,
+      "source": "run_2Kd8vQx",
+      "created_at": 1774963200
+    }
+  ],
+  "has_more": false,
+  "next_cursor": null
+}</code></pre>
+          <button class="docs__copy" type="button" data-copy="c-mem" aria-label="Copy code">Copy</button>
+        </div>
+
+        <p class="docs__errs">Errors: <code>400 parameter_missing</code></p>
+
+        <h3 id="memory-write">Insert, update, delete</h3>
+        <div class="docs__ep">
+          <span class="docs__epm">POST</span><span class="docs__epu">/v1/memory</span>
+        </div>
+        <div class="docs__ep">
+          <span class="docs__epm">PATCH</span><span class="docs__epu">/v1/memory/:id</span>
+        </div>
+        <div class="docs__ep">
+          <span class="docs__epm">DELETE</span><span class="docs__epu">/v1/memory/:id</span>
+        </div>
+
+        <div class="docs__code">
+          <pre><code id="c-mem-add">$ curl https://api.arble.ai/v1/memory \
+    -H "Authorization: Bearer $ARBLE_API_KEY" \
+    -d '{"content": "Staging shares the production Redis."}'
+
+{
+  "id": "mem_8Yt3Rqz",
+  "object": "memory",
+  "content": "Staging shares the production Redis.",
+  "created_at": 1775049800
+}</code></pre>
+          <button class="docs__copy" type="button" data-copy="c-mem-add" aria-label="Copy code">Copy</button>
+        </div>
+
+        <p class="docs__errs">Errors: <code>404 memory_not_found</code> &#183;
+          <code>422 content_too_long</code></p>
+
+        <h3 id="memory-summarize">Summarize and export</h3>
+        <div class="docs__ep">
+          <span class="docs__epm">POST</span><span class="docs__epu">/v1/memory/summarize</span>
+        </div>
+        <div class="docs__ep">
+          <span class="docs__epm">GET</span><span class="docs__epu">/v1/memory/export</span>
+        </div>
+
+        <p>Summarizing collapses related entries into fewer, denser ones &#8212; a smaller memory costs
+          less context on every run. Accepts <code>older_than</code> (a duration like <code>90d</code>)
+          to bound the work. It&#8217;s asynchronous and returns a run you can poll. Export returns
+          every entry as JSONL.</p>
+
+        <p class="docs__errs">Errors: <code>409 summarization_in_progress</code> &#183;
+          <code>403 permission_denied</code></p>
+
+        <h2 id="tools">Tools</h2>
+        <p>Tools are the capabilities an agent can call. Agents call them during runs; you can also call
+          them directly, which is useful for testing a tool or reusing one outside an agent loop.</p>
+
+        <h3 id="tools-list">List tools and metadata</h3>
+        <div class="docs__ep">
+          <span class="docs__epm">GET</span><span class="docs__epu">/v1/tools</span>
+        </div>
+        <div class="docs__ep">
+          <span class="docs__epm">GET</span><span class="docs__epu">/v1/tools/:name</span>
+        </div>
+
+        <p>The list returns every tool available to the project &#8212; built-in, Tool SDK, MCP and
+          connector-provided &#8212; in one collection. <code>source</code> says where each came from;
+          nothing else about the shape differs. Retrieving one returns the full JSON Schema for its
+          input and output, which is the same schema the planner reads.</p>
+
+        <div class="docs__code">
+          <pre><code id="c-tool">{
+  "name": "github.create_review_comment",
+  "object": "tool",
+  "source": "connector",
+  "input_schema": {
+    "type": "object",
+    "properties": {
+      "pull_request": {"type": "integer"},
+      "path": {"type": "string"},
+      "line": {"type": "integer"},
+      "body": {"type": "string"}
+    },
+    "required": ["pull_request", "path", "line", "body"]
+  },
+  "permissions": ["network.http:api.github.com"]
+}</code></pre>
+          <button class="docs__copy" type="button" data-copy="c-tool" aria-label="Copy code">Copy</button>
+        </div>
+
+        <p class="docs__errs">Errors: <code>404 tool_not_found</code></p>
+
+        <h3 id="tools-execute">Execute a tool</h3>
+        <div class="docs__ep">
+          <span class="docs__epm">POST</span><span class="docs__epu">/v1/tools/:name/execute</span>
+        </div>
+
+        <p>Calls the tool directly, bypassing the agent loop. Arguments are validated against the input
+          schema before execution &#8212; a malformed call fails with <code>422</code> and never
+          runs.</p>
+
+        <div class="docs__code">
+          <pre><code id="c-tool-exec">$ curl https://api.arble.ai/v1/tools/github.create_review_comment/execute \
+    -H "Authorization: Bearer $ARBLE_API_KEY" \
+    -d '{"arguments": {"pull_request": 482, "path": "webhook.py",
+                       "line": 203, "body": "This retry stacks."}}'
+
+{
+  "object": "tool_result",
+  "tool": "github.create_review_comment",
+  "output": {"id": 1904832, "url": "https://github.com/..."},
+  "duration_ms": 212
+}</code></pre>
+          <button class="docs__copy" type="button" data-copy="c-tool-exec" aria-label="Copy code">Copy</button>
+        </div>
+
+        <p>Direct execution still passes the permission gate. If the capability isn&#8217;t granted, the
+          call fails with <code>403</code> rather than prompting &#8212; there&#8217;s no interactive
+          approval on a bare HTTP request. Streaming tools accept <code>"stream": true</code> and
+          return SSE.</p>
+
+        <p class="docs__errs">Errors: <code>403 permission_denied</code> &#183;
+          <code>404 tool_not_found</code> &#183; <code>422 invalid_arguments</code> &#183;
+          <code>504 tool_timeout</code></p>
+
+        <h2 id="workflows">Workflows</h2>
+        <p>A workflow is a sequence of steps &#8212; agent runs, tool calls, or conditionals &#8212;
+          defined once and executed on demand or on a schedule. Where a run is one execution, a
+          workflow is a repeatable process with state that survives failures.</p>
+
+        <h3 id="workflows-create">Create a workflow</h3>
+        <div class="docs__ep">
+          <span class="docs__epm">POST</span><span class="docs__epu">/v1/workflows</span>
+        </div>
+
+        <div class="docs__tablewrap">
+          <table class="docs__table">
+            <thead>
+              <tr><th scope="col">Parameter</th><th scope="col">Type</th><th scope="col">Notes</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row" class="mono">name</th><td>string</td><td>Required. Unique within the project.</td></tr>
+              <tr><th scope="row" class="mono">steps</th><td>array</td><td>Required. Ordered steps.</td></tr>
+              <tr><th scope="row" class="mono">schedule</th><td>string</td><td>Cron expression. Omit for on-demand only.</td></tr>
+              <tr><th scope="row" class="mono">on</th><td>string</td><td>Event name to trigger on.</td></tr>
+              <tr><th scope="row" class="mono">max_retries</th><td>integer</td><td>0&#8211;10. Default 3.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="docs__code">
+          <pre><code id="c-wf">curl https://api.arble.ai/v1/workflows \
+  -H "Authorization: Bearer $ARBLE_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "nightly-triage",
+    "schedule": "0 7 * * 1-5",
+    "steps": [
+      {"type": "run", "agent": "agt_3pLwRt9", "input": "Summarize CI failures"},
+      {"type": "tool", "tool": "slack.post_message",
+       "arguments": {"channel": "#eng-alerts"}}
+    ]
+  }'</code></pre>
+          <button class="docs__copy" type="button" data-copy="c-wf" aria-label="Copy code">Copy</button>
+        </div>
+
+        <p class="docs__errs">Errors: <code>400 invalid_cron</code> &#183;
+          <code>409 name_already_exists</code> &#183; <code>422 invalid_step</code></p>
+
+        <h3 id="workflows-run">Run and control</h3>
+        <div class="docs__ep">
+          <span class="docs__epm">POST</span><span class="docs__epu">/v1/workflows/:id/run</span>
+        </div>
+        <div class="docs__ep">
+          <span class="docs__epm">POST</span><span class="docs__epu">/v1/workflow_runs/:id/pause</span>
+        </div>
+        <div class="docs__ep">
+          <span class="docs__epm">POST</span><span class="docs__epu">/v1/workflow_runs/:id/resume</span>
+        </div>
+        <div class="docs__ep">
+          <span class="docs__epm">POST</span><span class="docs__epu">/v1/workflow_runs/:id/cancel</span>
+        </div>
+
+        <div class="docs__code">
+          <pre><code id="c-wfr">{
+  "id": "wfr_7Qm3Bkt",
+  "object": "workflow_run",
+  "workflow": "wfl_5Kp2Nvx",
+  "status": "running",
+  "step": 1,
+  "steps_total": 2,
+  "started_at": 1775049901
+}</code></pre>
+          <button class="docs__copy" type="button" data-copy="c-wfr" aria-label="Copy code">Copy</button>
+        </div>
+
+        <p>Pausing takes effect at the next step boundary, not mid-step. Resuming continues from the
+          step that hadn&#8217;t started &#8212; completed steps never re-execute.</p>
+
+        <p class="docs__errs">Errors: <code>404 workflow_not_found</code> &#183;
+          <code>409 workflow_run_in_progress</code> &#183; <code>409 invalid_workflow_state</code></p>
+
+        <h3 id="workflows-history">History</h3>
+        <div class="docs__ep">
+          <span class="docs__epm">GET</span><span class="docs__epu">/v1/workflow_runs</span>
+        </div>
+
+        <p>Returns past executions with per-step timing and outcome. Filter by <code>workflow</code> and
+          <code>status</code> to find failures.</p>
+
+        <div class="docs__code">
+          <pre><code id="c-wf-hist">{
+  "object": "list",
+  "data": [
+    {
+      "id": "wfr_7Qm3Bkt",
+      "object": "workflow_run",
+      "status": "failed",
+      "step": 2,
+      "last_error": {"type": "permission_error", "code": "permission_denied"},
+      "duration_ms": 41200
+    }
+  ],
+  "has_more": false,
+  "next_cursor": null
+}</code></pre>
+          <button class="docs__copy" type="button" data-copy="c-wf-hist" aria-label="Copy code">Copy</button>
+        </div>
+
+        <h2 id="permissions">Permissions</h2>
+        <p>Every tool call passes a permission gate, whether it came from the app, the CLI or this API.
+          A grant is a capability plus an optional scope.</p>
+
+        <h3 id="permissions-grant">List and grant</h3>
+        <div class="docs__ep">
+          <span class="docs__epm">GET</span><span class="docs__epu">/v1/permissions</span>
+        </div>
+        <div class="docs__ep">
+          <span class="docs__epm">POST</span><span class="docs__epu">/v1/permissions</span>
+        </div>
+
+        <p><code>level</code> is <code>always_allow</code>, <code>ask</code> or
+          <code>never_allow</code>. Omitting <code>agent</code> applies the grant project-wide.</p>
+
+        <div class="docs__code">
+          <pre><code id="c-perm">$ curl https://api.arble.ai/v1/permissions \
+    -H "Authorization: Bearer $ARBLE_API_KEY" \
+    -d '{"capability": "network.http", "scope": "api.github.com",
+         "level": "always_allow", "agent": "agt_5wTn9Kd"}'
+
+{
+  "id": "perm_3Nx8Vqt",
+  "object": "permission",
+  "capability": "network.http",
+  "scope": "api.github.com",
+  "level": "always_allow",
+  "agent": "agt_5wTn9Kd",
+  "created_at": 1775050000
+}</code></pre>
+          <button class="docs__copy" type="button" data-copy="c-perm" aria-label="Copy code">Copy</button>
+        </div>
+
+        <p class="docs__errs">Errors: <code>422 unknown_capability</code> &#183;
+          <code>409 permission_already_exists</code></p>
+
+        <h3 id="permissions-request">Handle a permission request</h3>
+        <div class="docs__ep">
+          <span class="docs__epm">POST</span><span class="docs__epu">/v1/permission_requests/:id/approve</span>
+        </div>
+        <div class="docs__ep">
+          <span class="docs__epm">POST</span><span class="docs__epu">/v1/permission_requests/:id/deny</span>
+        </div>
+
+        <p>When a run needs a capability set to <code>ask</code>, it enters
+          <code>requires_action</code>:</p>
+
+        <div class="docs__code">
+          <pre><code id="c-req">{
+  "id": "run_2Kd8vQx",
+  "object": "run",
+  "status": "requires_action",
+  "required_action": {
+    "type": "permission_request",
+    "id": "preq_9Ft2Wsm",
+    "capability": "github.create_pull_request",
+    "scope": "acme/api-gateway",
+    "arguments": {"title": "Add backoff to webhook retries"}
+  }
+}</code></pre>
+          <button class="docs__copy" type="button" data-copy="c-req" aria-label="Copy code">Copy</button>
+        </div>
+
+        <div class="docs__code">
+          <pre><code id="c-approve">curl https://api.arble.ai/v1/permission_requests/preq_9Ft2Wsm/approve \
+  -H "Authorization: Bearer $ARBLE_API_KEY" \
+  -d '{"remember": true}'</code></pre>
+          <button class="docs__copy" type="button" data-copy="c-approve" aria-label="Copy code">Copy</button>
+        </div>
+
+        <p><code>remember: true</code> promotes the decision to a persistent
+          <code>always_allow</code> grant. A permission request expires after 15 minutes and the run
+          fails with <code>permission_request_expired</code>.</p>
+
+        <p class="docs__errs">Errors: <code>404 permission_request_not_found</code> &#183;
+          <code>409 permission_request_resolved</code></p>
+
+        <h3 id="permissions-policy">Revoke and policy</h3>
+        <div class="docs__ep">
+          <span class="docs__epm">DELETE</span><span class="docs__epu">/v1/permissions/:id</span>
+        </div>
+        <div class="docs__ep">
+          <span class="docs__epm">PUT</span><span class="docs__epu">/v1/permissions/policy</span>
+        </div>
+
+        <p>Revocation takes effect on the next tool call, including inside runs already executing. The
+          policy endpoint sets defaults for capabilities with no explicit grant &#8212; use it to fail
+          closed:</p>
+
+        <div class="docs__code">
+          <pre><code id="c-policy">{"default": "never_allow", "exceptions": {"filesystem.read": "always_allow"}}</code></pre>
+          <button class="docs__copy" type="button" data-copy="c-policy" aria-label="Copy code">Copy</button>
+        </div>
+
+        <h2 id="connectors">Connectors</h2>
+        <p>A connector is an authenticated link to an external service. Installing one adds its tools to
+          the registry; authenticating it makes them usable.</p>
+
+        <div class="docs__tablewrap">
+          <table class="docs__table">
+            <thead>
+              <tr><th scope="col">Action</th><th scope="col">Endpoint</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">List</th><td class="mono">GET /v1/connectors</td></tr>
+              <tr><th scope="row">Install</th><td class="mono">POST /v1/connectors</td></tr>
+              <tr><th scope="row">Remove</th><td class="mono">DELETE /v1/connectors/:name</td></tr>
+              <tr><th scope="row">Health</th><td class="mono">GET /v1/connectors/:name/health</td></tr>
+              <tr><th scope="row">Authenticate</th><td class="mono">POST /v1/connectors/:name/authorize</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="docs__code">
+          <pre><code id="c-conn">$ curl https://api.arble.ai/v1/connectors \
+    -H "Authorization: Bearer $ARBLE_API_KEY" \
+    -d '{"name": "github"}'
+
+{
+  "name": "github",
+  "object": "connector",
+  "status": "pending_auth",
+  "authorize_url": "https://api.arble.ai/v1/connectors/github/authorize",
+  "tools": []
+}</code></pre>
+          <button class="docs__copy" type="button" data-copy="c-conn" aria-label="Copy code">Copy</button>
+        </div>
+
+        <p>OAuth can&#8217;t complete inside an API call. Redirect the user to
+          <code>authorize_url</code>; the connector becomes <code>connected</code> and its tools appear
+          once they finish.</p>
+
+        <div class="docs__code">
+          <pre><code id="c-conn-ok">{
+  "name": "github",
+  "object": "connector",
+  "status": "connected",
+  "scopes": ["repo", "read:org"],
+  "expires_at": 1782825600,
+  "tools": ["github.get_pull_request", "github.create_review_comment"]
+}</code></pre>
+          <button class="docs__copy" type="button" data-copy="c-conn-ok" aria-label="Copy code">Copy</button>
+        </div>
+
+        <p>Health reports reachability and token validity separately &#8212; an expired token is
+          <code>status: "connected"</code> with <code>auth: "expired"</code>, which is a different fix
+          from an unreachable service.</p>
+
+        <p class="docs__errs">Errors: <code>404 connector_not_found</code> &#183;
+          <code>409 connector_already_installed</code> &#183;
+          <code>401 connector_auth_expired</code></p>
+
+        <h2 id="mcp">MCP</h2>
+        <p>Arble speaks Model Context Protocol natively. An MCP server&#8217;s tools land in the same
+          registry as everything else and pass the same permission gate. See
+          <a href="mcp-servers.html">MCP server</a> for the protocol itself.</p>
+
+        <div class="docs__tablewrap">
+          <table class="docs__table">
+            <thead>
+              <tr><th scope="col">Action</th><th scope="col">Endpoint</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">List servers</th><td class="mono">GET /v1/mcp/servers</td></tr>
+              <tr><th scope="row">Install</th><td class="mono">POST /v1/mcp/servers</td></tr>
+              <tr><th scope="row">Remove</th><td class="mono">DELETE /v1/mcp/servers/:name</td></tr>
+              <tr><th scope="row">Health</th><td class="mono">GET /v1/mcp/servers/:name/health</td></tr>
+              <tr><th scope="row">Registry</th><td class="mono">GET /v1/mcp/registry</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="docs__code">
+          <pre><code id="c-mcp">$ curl https://api.arble.ai/v1/mcp/servers \
+    -H "Authorization: Bearer $ARBLE_API_KEY" \
+    -d '{"name": "acme-internal", "transport": "http",
+         "url": "https://mcp.acme.example.com/mcp"}'
+
+{
+  "name": "acme-internal",
+  "object": "mcp_server",
+  "transport": "http",
+  "status": "connected",
+  "protocol_version": "2025-06-18",
+  "tools": 9
+}</code></pre>
+          <button class="docs__copy" type="button" data-copy="c-mcp" aria-label="Copy code">Copy</button>
+        </div>
+
+        <p><code>transport</code> is <code>http</code> for remote servers or <code>stdio</code> for
+          local ones, which take a <code>command</code> instead of a <code>url</code>. Only
+          <code>http</code> is available on hosted Arble &#8212; <code>stdio</code> requires a
+          self-hosted instance or a paired device, since it spawns a process.</p>
+
+        <p>The registry endpoint lists servers Arble is known to work with, for building an install
+          picker. Per-tool permissions are read and written through
+          <a href="#permissions">Permissions</a> using the tool&#8217;s fully qualified name.</p>
+
+        <p class="docs__errs">Errors: <code>409 server_already_installed</code> &#183;
+          <code>422 unsupported_transport</code> &#183; <code>503 server_unreachable</code></p>
+
+        <h2 id="desktop">Desktop</h2>
+        <p>Desktop endpoints act on a specific paired machine and require a device token. Every call
+          requires the <code>desktop</code> capability and appears in the audit log.</p>
+
+        <div class="docs__tablewrap">
+          <table class="docs__table">
+            <thead>
+              <tr><th scope="col">Action</th><th scope="col">Endpoint</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">Open app or file</th><td class="mono">POST /v1/desktop/open</td></tr>
+              <tr><th scope="row">Screenshot</th><td class="mono">POST /v1/desktop/screenshot</td></tr>
+              <tr><th scope="row">Clipboard</th><td class="mono">GET | PUT /v1/desktop/clipboard</td></tr>
+              <tr><th scope="row">Keyboard</th><td class="mono">POST /v1/desktop/keyboard</td></tr>
+              <tr><th scope="row">Mouse</th><td class="mono">POST /v1/desktop/mouse</td></tr>
+              <tr><th scope="row">List windows</th><td class="mono">GET /v1/desktop/windows</td></tr>
+              <tr><th scope="row">Notification</th><td class="mono">POST /v1/desktop/notifications</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>Screenshots return a file reference, not inline base64 &#8212; fetch the bytes through
+          <a href="#files">Files</a>. Mouse coordinates are screen points, origin top-left.</p>
+
+        <div class="docs__code">
+          <pre><code id="c-desktop">$ curl https://api.arble.ai/v1/desktop/screenshot \
+    -H "Authorization: Bearer $ARBLE_DEVICE_TOKEN" \
+    -d '{"window": "Safari"}'
+
+{
+  "object": "screenshot",
+  "file": "file_7Bn3Kqs",
+  "width": 2560,
+  "height": 1440,
+  "captured_at": 1775050100
+}
+
+$ curl https://api.arble.ai/v1/desktop/mouse \
+    -H "Authorization: Bearer $ARBLE_DEVICE_TOKEN" \
+    -d '{"action": "click", "x": 640, "y": 480}'</code></pre>
+          <button class="docs__copy" type="button" data-copy="c-desktop" aria-label="Copy code">Copy</button>
+        </div>
+
+        <p class="docs__errs">Errors: <code>401 device_token_required</code> &#183;
+          <code>403 permission_denied</code> &#183; <code>404 window_not_found</code> &#183;
+          <code>503 device_offline</code></p>
+
+        <h2 id="mobile">Mobile</h2>
+        <p>Mobile endpoints target a paired phone and also require a device token.</p>
+
+        <div class="docs__tablewrap">
+          <table class="docs__table">
+            <thead>
+              <tr><th scope="col">Action</th><th scope="col">Endpoint</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">Push notification</th><td class="mono">POST /v1/mobile/notifications</td></tr>
+              <tr><th scope="row">Clipboard</th><td class="mono">GET | PUT /v1/mobile/clipboard</td></tr>
+              <tr><th scope="row">Open app or link</th><td class="mono">POST /v1/mobile/open</td></tr>
+              <tr><th scope="row">Camera</th><td class="mono">POST /v1/mobile/camera</td></tr>
+              <tr><th scope="row">Microphone</th><td class="mono">POST /v1/mobile/microphone</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="docs__code">
+          <pre><code id="c-mobile">$ curl https://api.arble.ai/v1/mobile/notifications \
+    -H "Authorization: Bearer $ARBLE_DEVICE_TOKEN" \
+    -d '{"title": "Migration finished", "body": "14 tables, 0 errors"}'
+
+{"object": "notification", "id": "ntf_2Vx8Kmp", "delivered": true}</code></pre>
+          <button class="docs__copy" type="button" data-copy="c-mobile" aria-label="Copy code">Copy</button>
+        </div>
+
+        <p>Capture endpoints return <code>202 Accepted</code> with a pending capture, since they wait on
+          a human. Poll it, or subscribe to the capture events. Approved captures expose a
+          <code>file</code>; declined ones become <code>status: "denied"</code>.</p>
+
+        <div class="docs__code">
+          <pre><code id="c-capture">{
+  "object": "capture",
+  "id": "cap_6Rn4Wqt",
+  "status": "awaiting_approval",
+  "expires_at": 1775050400
+}</code></pre>
+          <button class="docs__copy" type="button" data-copy="c-capture" aria-label="Copy code">Copy</button>
+        </div>
+
+        <div class="docs__note">
+          <p>Camera and microphone always prompt on the device itself. No parameter suppresses that,
+            and there is no silent capture.</p>
+        </div>
+
+        <p class="docs__errs">Errors: <code>401 device_token_required</code> &#183;
+          <code>403 capture_denied</code> &#183; <code>503 device_offline</code> &#183;
+          <code>504 capture_timeout</code></p>
+
+        <h2 id="files">Files</h2>
+        <p>Files carry binary data in and out of the API: attachments on messages, screenshots, and tool
+          inputs and outputs.</p>
+
+        <h3 id="files-upload">Upload</h3>
+        <div class="docs__ep">
+          <span class="docs__epm">POST</span><span class="docs__epu">/v1/files</span>
+        </div>
+
+        <p>Send <code>multipart/form-data</code> with a <code>file</code> field and a
+          <code>purpose</code> of <code>attachment</code>, <code>tool_input</code> or
+          <code>resource</code>.</p>
+
+        <div class="docs__code">
+          <pre><code id="c-file">$ curl https://api.arble.ai/v1/files \
+    -H "Authorization: Bearer $ARBLE_API_KEY" \
+    -F purpose=attachment \
+    -F file=@./trace.json
+
+{
+  "id": "file_7Bn3Kqs",
+  "object": "file",
+  "filename": "trace.json",
+  "purpose": "attachment",
+  "bytes": 48219,
+  "content_type": "application/json",
+  "created_at": 1775050200
+}</code></pre>
+          <button class="docs__copy" type="button" data-copy="c-file" aria-label="Copy code">Copy</button>
+        </div>
+
+        <p class="docs__errs">Errors: <code>413 file_too_large</code> &#183;
+          <code>422 unsupported_content_type</code></p>
+
+        <h3 id="files-read">Download, metadata, delete</h3>
+        <div class="docs__ep">
+          <span class="docs__epm">GET</span><span class="docs__epu">/v1/files/:id/content</span>
+        </div>
+        <div class="docs__ep">
+          <span class="docs__epm">GET</span><span class="docs__epu">/v1/files/:id</span>
+        </div>
+        <div class="docs__ep">
+          <span class="docs__epm">DELETE</span><span class="docs__epu">/v1/files/:id</span>
+        </div>
+
+        <p>Content streams the bytes with the original <code>Content-Type</code>. Requesting content
+          with a <code>Range</code> header returns <code>206 Partial Content</code>, which is how you
+          resume an interrupted download.</p>
+
+        <h3 id="files-large">Large files</h3>
+        <p>Single-request uploads are capped at 100 MB. Above that, use a resumable upload:
+          <code>POST /v1/uploads</code> returns an upload session, <code>PUT</code> each part to it,
+          then <code>POST /v1/uploads/:id/complete</code>. Parts are 5&#8211;100 MB and may be sent in
+          parallel.</p>
+
+        <div class="docs__code">
+          <pre><code id="c-upload">{
+  "id": "upl_9Kt3Mvx",
+  "object": "upload",
+  "status": "pending",
+  "part_size": 8388608,
+  "expires_at": 1775136600
+}</code></pre>
+          <button class="docs__copy" type="button" data-copy="c-upload" aria-label="Copy code">Copy</button>
+        </div>
+
+        <p class="docs__errs">Errors: <code>409 upload_already_completed</code> &#183;
+          <code>422 invalid_part_size</code></p>
+
+        <h2 id="streaming">Streaming</h2>
+        <p>Pass <code>"stream": true</code> to any run, message or tool execution and the response
+          becomes <code>text/event-stream</code> instead of a JSON object.</p>
+
+        <div class="docs__code">
+          <pre><code id="c-sse">event: run.created
+data: {"id":"run_2Kd8vQx","status":"queued"}
+
+event: run.step
+data: {"step":1,"type":"tool_call","tool":"filesystem.read"}
+
+event: progress
+data: {"message":"Reading 14 files","percent":35}
+
+event: message.delta
+data: {"delta":"Three handlers retry without"}
+
+event: message.delta
+data: {"delta":" backoff: charge.py:118, "}
+
+event: run.completed
+data: {"id":"run_2Kd8vQx","status":"completed"}</code></pre>
+          <button class="docs__copy" type="button" data-copy="c-sse" aria-label="Copy code">Copy</button>
+        </div>
+
+        <div class="docs__tablewrap">
+          <table class="docs__table">
+            <thead>
+              <tr><th scope="col">Event</th><th scope="col">Meaning</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row" class="mono">run.created</th><td>The run exists and is queued</td></tr>
+              <tr><th scope="row" class="mono">run.step</th><td>A step started &#8212; a tool call or a model turn</td></tr>
+              <tr><th scope="row" class="mono">progress</th><td>Incremental progress from a streaming tool</td></tr>
+              <tr><th scope="row" class="mono">message.delta</th><td>A fragment of assistant output. Concatenate in order</td></tr>
+              <tr><th scope="row" class="mono">tool.result</th><td>A tool returned</td></tr>
+              <tr><th scope="row" class="mono">run.requires_action</th><td>Execution paused. See <a href="#permissions">Permissions</a></td></tr>
+              <tr><th scope="row" class="mono">run.completed</th><td>Terminal. Carries final usage</td></tr>
+              <tr><th scope="row" class="mono">error</th><td>Terminal. Carries a standard error object</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>A stream always ends with <code>run.completed</code>, <code>error</code>, or a closed
+          connection. Treat a closed connection without a terminal event as a failure and reconcile
+          with <code>GET /v1/runs/:id</code> &#8212; never assume success.</p>
+
+        <p><strong>Heartbeats.</strong> A <code>:ping</code> comment arrives every 15 seconds to keep
+          intermediaries from closing an idle connection. Ignore lines beginning with <code>:</code>.</p>
+
+        <div class="docs__note">
+          <p><strong>Closing the connection does not cancel the run.</strong> It keeps executing
+            server-side. Call <code>POST /v1/runs/:id/cancel</code> to actually stop it.</p>
+        </div>
+
+        <p><strong>Resuming.</strong> Reconnect with <code>Last-Event-ID</code> to replay events you
+          missed. Events are retained for the run&#8217;s lifetime plus one hour.</p>
+
+        <h2 id="webhooks">Webhooks</h2>
+        <p>Webhooks deliver events that happen outside a request &#8212; a run completing, a permission
+          being requested. Use them instead of polling.</p>
+
+        <h3 id="webhooks-register">Register an endpoint</h3>
+        <div class="docs__ep">
+          <span class="docs__epm">POST</span><span class="docs__epu">/v1/webhook_endpoints</span>
+        </div>
+
+        <div class="docs__code">
+          <pre><code id="c-wh">$ curl https://api.arble.ai/v1/webhook_endpoints \
+    -H "Authorization: Bearer $ARBLE_API_KEY" \
+    -d '{"url": "https://api.example.com/hooks/arble",
+         "events": ["run.completed", "run.failed", "permission.requested"]}'
+
+{
+  "id": "we_3Lm8Qvx",
+  "object": "webhook_endpoint",
+  "url": "https://api.example.com/hooks/arble",
+  "events": ["run.completed", "run.failed", "permission.requested"],
+  "secret": "whsec_9Ft2Wsm4Kp...",
+  "status": "enabled"
+}</code></pre>
+          <button class="docs__copy" type="button" data-copy="c-wh" aria-label="Copy code">Copy</button>
+        </div>
+
+        <p>The <code>secret</code> is returned once. Store it &#8212; you need it to verify signatures,
+          and it can only be rotated, not read back.</p>
+
+        <p class="docs__errs">Errors: <code>422 invalid_url</code> &#183;
+          <code>422 unknown_event</code></p>
+
+        <h3 id="webhooks-verify">Verify signatures</h3>
+        <p>Every delivery carries an <code>Arble-Signature</code> header of the form
+          <code>t=1775050300,v1=5257a869e7bcd...</code>. Verify by computing HMAC-SHA256 over
+          <code>{timestamp}.{raw_body}</code> with your endpoint secret, comparing in constant time, and
+          rejecting timestamps older than five minutes.</p>
+
+        <div class="docs__code">
+          <pre><code id="c-verify">import hmac, hashlib, time
+
+def verify(raw_body: bytes, header: str, secret: str) -> bool:
+    parts = dict(p.split("=", 1) for p in header.split(","))
+    if abs(time.time() - int(parts["t"])) > 300:
+        return False
+    expected = hmac.new(
+        secret.encode(),
+        f"{parts['t']}.".encode() + raw_body,
+        hashlib.sha256,
+    ).hexdigest()
+    return hmac.compare_digest(expected, parts["v1"])</code></pre>
+          <button class="docs__copy" type="button" data-copy="c-verify" aria-label="Copy code">Copy</button>
+        </div>
+
+        <div class="docs__note">
+          <p>Verify against the <strong>raw</strong> body. Parsing to JSON and re-serializing changes
+            the bytes, and the signature will never match.</p>
+        </div>
+
+        <h3 id="webhooks-retries">Delivery and retries</h3>
+        <p>Respond <code>2xx</code> within 10 seconds. Anything else is a failure and is retried with
+          exponential backoff over 24 hours: after 10s, 1m, 5m, 30m, 2h, 6h, then hourly. An endpoint
+          failing for 24 consecutive hours is disabled and a <code>webhook.disabled</code> event is sent
+          to your other endpoints.</p>
+
+        <p>Deliveries can arrive out of order and more than once. Use the event <code>id</code> for
+          idempotency and <code>created_at</code> for ordering &#8212; not arrival time.</p>
+
+        <p class="docs__errs">Errors: <code>404 webhook_endpoint_not_found</code></p>
+
+        <h2 id="events">Events</h2>
+        <p>Every event shares one envelope. <code>data</code> holds the full object the event concerns,
+          in the same shape the corresponding <code>GET</code> returns.</p>
+
+        <div class="docs__code">
+          <pre><code id="c-evt">{
+  "id": "evt_8Vn3Kqt",
+  "object": "event",
+  "type": "run.completed",
+  "created_at": 1775050300,
+  "data": {
+    "id": "run_2Kd8vQx",
+    "object": "run",
+    "status": "completed",
+    "session": "ses_8kQ2mVx"
+  }
+}</code></pre>
+          <button class="docs__copy" type="button" data-copy="c-evt" aria-label="Copy code">Copy</button>
+        </div>
+
+        <div class="docs__tablewrap">
+          <table class="docs__table">
+            <thead>
+              <tr><th scope="col">Event</th><th scope="col">Fires when</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row" class="mono">run.started</th><td>A run leaves <code>queued</code> and begins executing</td></tr>
+              <tr><th scope="row" class="mono">run.completed</th><td>A run finishes successfully</td></tr>
+              <tr><th scope="row" class="mono">run.failed</th><td>A run terminates with an error</td></tr>
+              <tr><th scope="row" class="mono">permission.requested</th><td>A run needs approval and entered <code>requires_action</code></td></tr>
+              <tr><th scope="row" class="mono">permission.granted</th><td>A permission request was approved</td></tr>
+              <tr><th scope="row" class="mono">memory.updated</th><td>An entry was inserted, changed or deleted</td></tr>
+              <tr><th scope="row" class="mono">tool.executed</th><td>A tool call completed, successfully or not</td></tr>
+              <tr><th scope="row" class="mono">session.closed</th><td>A session was archived or deleted</td></tr>
+              <tr><th scope="row" class="mono">connector.connected</th><td>A connector finished authenticating</td></tr>
+              <tr><th scope="row" class="mono">connector.disconnected</th><td>A connector was removed or its token expired</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p><code>GET /v1/events</code> lists past events for replay and reconciliation, filterable by
+          <code>type</code> and <code>created_after</code>. Events are retained 30 days.</p>
+
+        <p><code>permission.requested</code> is the one to wire up first if you run agents unattended
+          &#8212; without a handler, those runs sit in <code>requires_action</code> until they
+          expire.</p>
+
+        <h2 id="pagination">Pagination</h2>
+        <p>List endpoints are cursor-paginated. Cursors are opaque and stable: an object inserted
+          mid-iteration won&#8217;t shift a page or cause a duplicate.</p>
+
+        <div class="docs__tablewrap">
+          <table class="docs__table">
+            <thead>
+              <tr><th scope="col">Parameter</th><th scope="col">Notes</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row" class="mono">limit</th><td>1&#8211;100. Default 20.</td></tr>
+              <tr><th scope="row" class="mono">cursor</th><td>From <code>next_cursor</code> on the previous page.</td></tr>
+              <tr><th scope="row" class="mono">order</th><td><code>asc</code> or <code>desc</code> by <code>created_at</code>. Default <code>desc</code>.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>Every list response has the same envelope:</p>
+
+        <div class="docs__code">
+          <pre><code id="c-page">{
+  "object": "list",
+  "data": [],
+  "has_more": false,
+  "next_cursor": null
+}</code></pre>
+          <button class="docs__copy" type="button" data-copy="c-page" aria-label="Copy code">Copy</button>
+        </div>
+
+        <p>Iterate until <code>has_more</code> is <code>false</code>. Don&#8217;t stop when
+          <code>data</code> is shorter than <code>limit</code> &#8212; filtered pages can come back
+          partially full with more results behind them. Don&#8217;t construct cursors yourself; the
+          format is not part of the contract.</p>
+
+        <p class="docs__errs">Errors: <code>400 invalid_cursor</code> &#183;
+          <code>400 limit_out_of_range</code></p>
+
+        <h2 id="filtering">Filtering</h2>
+        <p>List endpoints accept filters as query parameters, combined with AND.</p>
+
+        <div class="docs__tablewrap">
+          <table class="docs__table">
+            <thead>
+              <tr><th scope="col">Filter</th><th scope="col">Applies to</th><th scope="col">Example</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row" class="mono">status</th><td>Runs, workflow runs, sessions</td><td class="mono">status=failed</td></tr>
+              <tr><th scope="row" class="mono">project</th><td>All resources</td><td class="mono">project=prj_4mNp</td></tr>
+              <tr><th scope="row" class="mono">session</th><td>Runs, messages</td><td class="mono">session=ses_8kQ2mVx</td></tr>
+              <tr><th scope="row" class="mono">agent</th><td>Runs</td><td class="mono">agent=agt_5wTn9Kd</td></tr>
+              <tr><th scope="row" class="mono">created_after</th><td>All resources</td><td class="mono">created_after=1775049600</td></tr>
+              <tr><th scope="row" class="mono">created_before</th><td>All resources</td><td class="mono">created_before=1775136000</td></tr>
+              <tr><th scope="row" class="mono">metadata[key]</th><td>Resources with metadata</td><td class="mono">metadata[env]=staging</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p><code>status</code> accepts a comma-separated list &#8212; <code>status=failed,expired</code>
+          &#8212; which is an OR within that one filter. Timestamps are Unix seconds, always UTC.</p>
+
+        <p>Filtering on <code>metadata</code> is how you correlate Arble objects with records in your
+          own system. Set <code>metadata</code> at creation to your primary key, then filter by it
+          later.</p>
+
+        <p class="docs__errs">Errors: <code>400 invalid_filter</code> &#183;
+          <code>422 unknown_filter_field</code></p>
+
+        <h2 id="rate-limits">Rate limits</h2>
+        <p>Limits are per token, applied on a sliding window. Concurrency is counted separately from
+          request rate.</p>
+
+        <div class="docs__tablewrap">
+          <table class="docs__table">
+            <thead>
+              <tr><th scope="col">Limit</th><th scope="col">Default</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">Requests</th><td>1,000 per minute</td></tr>
+              <tr><th scope="row">Burst</th><td>100 per second</td></tr>
+              <tr><th scope="row">Concurrent runs</th><td>25</td></tr>
+              <tr><th scope="row">Concurrent streams</th><td>50</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="docs__code">
+          <pre><code id="c-rl">X-RateLimit-Limit: 1000
+X-RateLimit-Remaining: 947
+X-RateLimit-Reset: 1775050360</code></pre>
+          <button class="docs__copy" type="button" data-copy="c-rl" aria-label="Copy code">Copy</button>
+        </div>
+
+        <p>Exceeding a limit returns <code>429</code> with <code>Retry-After</code> in seconds.
+          Exceeding <em>concurrency</em> is a different error &#8212;
+          <code>concurrency_limit_exceeded</code> &#8212; and retrying immediately won&#8217;t help.
+          Wait for a run to finish, or queue work yourself.</p>
+
+        <p>Back off on <code>429</code> rather than retrying tightly; a client that retries without
+          backoff will stay rate-limited. Read <code>X-RateLimit-Remaining</code> and slow down before
+          you hit zero.</p>
+
+        <h2 id="errors">Errors</h2>
+        <p>Every error uses the same shape, whatever the status code:</p>
+
+        <div class="docs__code">
+          <pre><code id="c-err">{
+  "error": {
+    "type": "invalid_request_error",
+    "code": "parameter_missing",
+    "message": "Missing required parameter: input.",
+    "param": "input",
+    "request_id": "req_5Kp2Nvx"
+  }
+}</code></pre>
+          <button class="docs__copy" type="button" data-copy="c-err" aria-label="Copy code">Copy</button>
+        </div>
+
+        <p>Branch on <code>code</code>, not <code>message</code>. Messages are written for humans and
+          change without notice; codes are part of the contract.</p>
+
+        <div class="docs__tablewrap">
+          <table class="docs__table">
+            <thead>
+              <tr><th scope="col">Status</th><th scope="col">Type</th><th scope="col">Meaning</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row" class="mono">400</th><td class="mono">invalid_request_error</td><td>Malformed request &#8212; bad JSON, missing parameter</td></tr>
+              <tr><th scope="row" class="mono">401</th><td class="mono">authentication_error</td><td>Missing, malformed or revoked token</td></tr>
+              <tr><th scope="row" class="mono">403</th><td class="mono">permission_error</td><td>Authenticated but not permitted</td></tr>
+              <tr><th scope="row" class="mono">404</th><td class="mono">not_found_error</td><td>No such object, or not visible to this token</td></tr>
+              <tr><th scope="row" class="mono">409</th><td class="mono">conflict_error</td><td>Object state forbids the operation</td></tr>
+              <tr><th scope="row" class="mono">422</th><td class="mono">validation_error</td><td>Well-formed but semantically invalid</td></tr>
+              <tr><th scope="row" class="mono">429</th><td class="mono">rate_limit_error</td><td>Rate or concurrency limit exceeded</td></tr>
+              <tr><th scope="row" class="mono">500</th><td class="mono">api_error</td><td>Server-side fault. Safe to retry</td></tr>
+              <tr><th scope="row" class="mono">503</th><td class="mono">service_unavailable</td><td>Temporarily unavailable. Retry with backoff</td></tr>
+              <tr><th scope="row" class="mono">504</th><td class="mono">timeout_error</td><td>Upstream tool or model timed out</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>Validation errors list every problem at once, rather than failing on the first:</p>
+
+        <div class="docs__code">
+          <pre><code id="c-err-val">{
+  "error": {
+    "type": "validation_error",
+    "code": "invalid_parameters",
+    "message": "2 parameters are invalid.",
+    "errors": [
+      {"param": "timeout", "code": "out_of_range",
+       "message": "Must be between 1 and 3600."},
+      {"param": "tools[1]", "code": "unknown_tool",
+       "message": "No tool named 'github.merge'."}
+    ],
+    "request_id": "req_5Kp2Nvx"
+  }
+}</code></pre>
+          <button class="docs__copy" type="button" data-copy="c-err-val" aria-label="Copy code">Copy</button>
+        </div>
+
+        <p>The distinction worth encoding in your client: <code>403 permission_error</code> means a
+          grant is missing and retrying is pointless &#8212; surface it. <code>500</code> and
+          <code>503</code> are transient &#8212; retry them.</p>
+
+        <p>Every response includes <code>request_id</code>, in the body on errors and in the
+          <code>Arble-Request-Id</code> header always. Log it; it&#8217;s the first thing support will
+          ask for.</p>
+
+        <h2 id="sdks">SDKs</h2>
+        <p>Official libraries wrap authentication, retries with backoff, pagination and SSE parsing.
+          They&#8217;re generated from the same <a href="#openapi">OpenAPI</a> spec, so coverage is
+          identical.</p>
+
+        <div class="docs__tablewrap">
+          <table class="docs__table">
+            <thead>
+              <tr><th scope="col">Language</th><th scope="col">Package</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">Python</th><td class="mono">pip install arble</td></tr>
+              <tr><th scope="row">TypeScript</th><td class="mono">pnpm add arble</td></tr>
+              <tr><th scope="row">Go</th><td class="mono">go get github.com/arble-ai/arble-go</td></tr>
+              <tr><th scope="row">Rust</th><td class="mono">cargo add arble</td></tr>
+              <tr><th scope="row">Swift</th><td>Swift Package Manager</td></tr>
+              <tr><th scope="row">Kotlin</th><td class="mono">com.arble:arble-kotlin</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="docs__code">
+          <pre><code id="c-sdk-py">from arble import Arble
+
+client = Arble()  # reads ARBLE_API_KEY
+
+run = client.runs.create(
+    agent="agt_5wTn9Kd",
+    input="Summarize the open pull requests",
+)
+
+for event in client.runs.stream(run.id):
+    if event.type == "message.delta":
+        print(event.delta, end="", flush=True)</code></pre>
+          <button class="docs__copy" type="button" data-copy="c-sdk-py" aria-label="Copy code">Copy</button>
+        </div>
+
+        <div class="docs__code">
+          <pre><code id="c-sdk-ts">import Arble from "arble";
+
+const client = new Arble();
+
+const stream = await client.runs.create({
+  agent: "agt_5wTn9Kd",
+  input: "Summarize the open pull requests",
+  stream: true,
+});
+
+for await (const event of stream) {
+  if (event.type === "message.delta") process.stdout.write(event.delta);
+}</code></pre>
+          <button class="docs__copy" type="button" data-copy="c-sdk-ts" aria-label="Copy code">Copy</button>
+        </div>
+
+        <p>Iterating a list in any SDK paginates automatically &#8212; there&#8217;s no cursor handling
+          to write:</p>
+
+        <div class="docs__code">
+          <pre><code id="c-sdk-page">for run in client.runs.list(status="failed"):
+    print(run.id, run.last_error.code)</code></pre>
+          <button class="docs__copy" type="button" data-copy="c-sdk-page" aria-label="Copy code">Copy</button>
+        </div>
+
+        <h2 id="versioning">Versioning</h2>
+        <p>The API is versioned by date. Your account is pinned to the version current when you created
+          it, and that version&#8217;s behavior does not change.</p>
+
+        <div class="docs__code">
+          <pre><code id="c-version">curl https://api.arble.ai/v1/runs \
+  -H "Authorization: Bearer $ARBLE_API_KEY" \
+  -H "Arble-Version: 2026-04-15"</code></pre>
+          <button class="docs__copy" type="button" data-copy="c-version" aria-label="Copy code">Copy</button>
+        </div>
+
+        <p>The <code>/v1</code> path segment denotes the API generation and changes only for a wholesale
+          redesign. Dated versions carry the actual breaking changes.</p>
+
+        <p>Additive changes &#8212; a new field, a new endpoint, a new event type or enum value &#8212;
+          ship to every version without notice. Treat unknown fields and unrecognized enum values as
+          forward-compatible; a client that rejects them will break on a routine release.</p>
+
+        <p>Breaking changes only ever arrive in a new dated version. Deprecated versions are supported
+          at least 12 months, and requests to one return an <code>Arble-Deprecation</code> header with
+          the sunset date. To migrate, set <code>Arble-Version</code> explicitly, test, then move your
+          account default.</p>
+
+        <h2 id="openapi">OpenAPI</h2>
+        <p>The complete specification is published and versioned alongside the API. It&#8217;s OpenAPI
+          3.1, covers every endpoint and schema on this page, and is the source the SDKs are generated
+          from &#8212; so it&#8217;s exact rather than approximate.</p>
+
+        <div class="docs__code">
+          <pre><code id="c-openapi">curl https://api.arble.ai/v1/openapi.json
+
+npx @openapitools/openapi-generator-cli generate \
+  -i https://api.arble.ai/v1/openapi.json \
+  -g ruby -o ./arble-ruby</code></pre>
+          <button class="docs__copy" type="button" data-copy="c-openapi" aria-label="Copy code">Copy</button>
+        </div>
+
+        <p>A Postman collection is available at <code>/v1/postman.json</code>, and the spec renders as
+          browsable Swagger UI at <code>https://api.arble.ai/docs</code>. Pin the spec to a dated
+          version with <code>?version=2026-04-15</code> when generating a client you intend to keep.</p>
+
+        <h2 id="security">Security</h2>
+        <div class="docs__acc">
+          <details class="docs__item">
+            <summary>HTTPS and TLS</summary>
+            <p>TLS 1.2 or higher, required. Plain HTTP requests are rejected, not redirected &#8212; a
+              redirect would leak the token in transit. HSTS is enforced.</p>
+          </details>
+          <details class="docs__item">
+            <summary>Encryption</summary>
+            <p>Data is encrypted in transit and at rest. Credentials and secrets are encrypted with
+              per-project keys and never returned by any endpoint after creation.</p>
+          </details>
+          <details class="docs__item">
+            <summary>Authentication and permissions</summary>
+            <p>These are separate. A valid token gets you into the API; a permission grant gets a tool
+              call executed. Neither implies the other.</p>
+          </details>
+          <details class="docs__item">
+            <summary>Audit logs</summary>
+            <p>Every request and tool call is recorded with its token, arguments, permission decision
+              and outcome, queryable through <code>GET /v1/audit_logs</code> and retained 90 days.</p>
+          </details>
+          <details class="docs__item">
+            <summary>Least privilege</summary>
+            <p>Use project tokens over organization tokens, scope permissions to specific hosts and
+              paths, and mint short-lived session tokens for anything client-side.</p>
+          </details>
+        </div>
+
+        <div class="docs__note">
+          <p>Secrets sent to the API &#8212; in tool arguments, memory entries or metadata &#8212; are
+            redacted from logs and traces on a best-effort basis. Don&#8217;t rely on that: never put a
+            credential in a field whose purpose isn&#8217;t credentials.</p>
+        </div>
+
+        <h2 id="best-practices">Best practices</h2>
+        <ol class="docs__list">
+          <li>Use project-scoped tokens in deployed services; reserve personal tokens for local development.</li>
+          <li>Never ship a long-lived key to a browser or mobile client &#8212; mint a session token server-side.</li>
+          <li>Send an <code>Idempotency-Key</code> on every <code>POST</code> that creates something, not just retries.</li>
+          <li>Pin <code>Arble-Version</code> explicitly rather than relying on the account default.</li>
+          <li>Branch on <code>error.code</code>, never on <code>error.message</code>.</li>
+          <li>Retry only <code>429</code>, <code>500</code>, <code>502</code>, <code>503</code> and <code>504</code>, with exponential backoff and jitter.</li>
+          <li>Treat <code>403</code> as terminal and surface it &#8212; a missing grant won&#8217;t resolve on retry.</li>
+          <li>Prefer webhooks to polling; poll only to reconcile after a missed delivery.</li>
+          <li>Verify webhook signatures against the raw request body, in constant time.</li>
+          <li>Deduplicate webhooks by event <code>id</code> and order by <code>created_at</code>, not arrival time.</li>
+          <li>Handle <code>permission.requested</code> before running agents unattended, or those runs will expire.</li>
+          <li>Never assume a closed stream means success &#8212; reconcile with <code>GET /v1/runs/:id</code>.</li>
+          <li>Call <code>POST /v1/runs/:id/cancel</code> to stop a run; closing the connection doesn&#8217;t.</li>
+          <li>Iterate lists until <code>has_more</code> is <code>false</code>, not until a page is short.</li>
+          <li>Set <code>metadata</code> to your own primary key at creation so you can correlate later.</li>
+          <li>Ignore unknown fields and unrecognized enum values so additive changes don&#8217;t break you.</li>
+          <li>Write memory entries as durable facts; use session exports for what happened once.</li>
+          <li>Scope permissions to specific hosts and paths, not bare capabilities.</li>
+          <li>Log <code>request_id</code> on every failure; it&#8217;s what support needs to trace a request.</li>
+          <li>Keep client timeouts at 30 seconds and let long work be asynchronous, as designed.</li>
+        </ol>
+
+        <h2 id="reference">Reference</h2>
+        <ul class="docs__list">
+          <li><a href="#authentication">Authentication</a> &#8212; token types, rotation, revocation</li>
+          <li><a href="#agents">Agents</a> &#8212; create, list, retrieve, update, delete</li>
+          <li><a href="#runs">Runs</a> &#8212; lifecycle, cancel, retry, stream</li>
+          <li><a href="#sessions">Sessions</a> &#8212; lifecycle, export</li>
+          <li><a href="#messages">Messages</a> &#8212; send, list, attachments</li>
+          <li><a href="#memory">Memory</a> &#8212; search, insert, summarize, export</li>
+          <li><a href="#tools">Tools</a> &#8212; list, metadata, direct execution</li>
+          <li><a href="#files">Files</a> &#8212; upload, download, resumable uploads</li>
+          <li><a href="#permissions">Permissions</a> &#8212; grants, requests, policy</li>
+          <li><a href="#streaming">Streaming</a> &#8212; SSE event types, heartbeats, resume</li>
+          <li><a href="#webhooks">Webhooks</a> &#8212; registration, signatures, retries</li>
+          <li><a href="#errors">Errors</a> &#8212; status codes, error types, validation</li>
+          <li><a href="#sdks">SDKs</a> &#8212; official libraries and examples</li>
+        </ul>
+
+        <h2 id="faq">FAQ</h2>
+        <div class="docs__acc">
+          <details class="docs__item">
+            <summary>Do I need the desktop app to use the API?</summary>
+            <p>No. The app and the API are clients of the same runtime. The only endpoints that need a
+              paired machine are Desktop and Mobile, which act on a specific device by definition.</p>
+          </details>
+          <details class="docs__item">
+            <summary>Is a run synchronous or asynchronous?</summary>
+            <p>Asynchronous. <code>POST /v1/runs</code> returns immediately with
+              <code>status: "queued"</code>. Stream it, poll it, or take a <code>run.completed</code>
+              webhook &#8212; streaming is the lowest-latency option.</p>
+          </details>
+          <details class="docs__item">
+            <summary>Should I use streaming or webhooks?</summary>
+            <p>Streaming when a user is waiting on output. Webhooks for anything unattended.
+              They&#8217;re complementary, not alternatives &#8212; many integrations use both.</p>
+          </details>
+          <details class="docs__item">
+            <summary>What happens if my stream disconnects mid-run?</summary>
+            <p>The run keeps executing. Reconnect with <code>Last-Event-ID</code> to replay missed
+              events, or fetch the run to get its final state. A dropped connection is never a
+              cancellation.</p>
+          </details>
+          <details class="docs__item">
+            <summary>How do I handle a permission request from a server with no UI?</summary>
+            <p>Either pre-grant the capability with <code>level: "always_allow"</code> so runs never
+              pause, or subscribe to <code>permission.requested</code> and approve programmatically.
+              Runs left in <code>requires_action</code> expire after 15 minutes.</p>
+          </details>
+          <details class="docs__item">
+            <summary>Why did a tool call return 403 instead of prompting me?</summary>
+            <p>Interactive approval requires a client that can prompt. A bare HTTP request has nowhere
+              to show a dialog, so an ungranted capability fails closed. Grant it explicitly.</p>
+          </details>
+          <details class="docs__item">
+            <summary>Can two runs share a session safely?</summary>
+            <p>Yes, but they see each other&#8217;s messages, which is usually what you want in a
+              conversation and rarely what you want for parallel independent tasks. Use separate
+              sessions for fan-out.</p>
+          </details>
+          <details class="docs__item">
+            <summary>Does deleting a session delete what it wrote to memory?</summary>
+            <p>No. Memory is project-scoped and outlives sessions deliberately. Delete memory entries
+              explicitly.</p>
+          </details>
+          <details class="docs__item">
+            <summary>How do I test without touching production data?</summary>
+            <p>Use the sandbox base URL. It&#8217;s a full instance with separate data. Note that it
+              defaults to a smaller model, so verify latency-sensitive behavior in production.</p>
+          </details>
+          <details class="docs__item">
+            <summary>Are timestamps UTC?</summary>
+            <p>Always. Every timestamp in every response is Unix seconds in UTC. There is no timezone
+              parameter.</p>
+          </details>
+          <details class="docs__item">
+            <summary>What&#8217;s the difference between 409 and 422?</summary>
+            <p><code>409</code> means the request is valid but the object&#8217;s current state forbids
+              it &#8212; cancelling a completed run. <code>422</code> means the request itself is
+              semantically wrong &#8212; a <code>timeout</code> of 5000, or a tool that doesn&#8217;t
+              exist.</p>
+          </details>
+          <details class="docs__item">
+            <summary>How long are objects retained?</summary>
+            <p>Runs and messages for the life of their session. Events 30 days, audit logs 90 days,
+              idempotency keys 24 hours. Memory and files persist until deleted.</p>
+          </details>
+        </div>
+
+        <nav class="pbp__nav" aria-label="Page navigation">
+          <a class="pbp__navcard pbp__navcard--prev" href="cli.html">
+            <span class="pbp__navcard-l">Previous</span>
+            <span class="pbp__navcard-t">CLI</span>
+          </a>
+          <a class="pbp__navcard pbp__navcard--next" href="self-hosting.html">
+            <span class="pbp__navcard-l">Next</span>
+            <span class="pbp__navcard-t">Self-hosting</span>
+          </a>
+        </nav>
+      </article>
+
+      <aside class="docs__toc" aria-label="On this page">
+        <p class="docs__tocH">On this page</p>
+        <ul class="docs__toclist" id="docsToc">
+          <li class="docs__tocrow"><a href="#quick-start">Quick start</a></li>
+          <li class="docs__tocrow"><a href="#authentication">Authentication</a></li>
+          <li class="docs__tocrow"><a href="#base-url">Base URL</a></li>
+          <li class="docs__tocrow"><a href="#requests">Making requests</a></li>
+          <li class="docs__tocrow"><a href="#agents">Agents</a></li>
+          <li class="docs__tocrow"><a href="#sessions">Sessions</a></li>
+          <li class="docs__tocrow"><a href="#runs">Runs</a></li>
+          <li class="docs__tocrow"><a href="#messages">Messages</a></li>
+          <li class="docs__tocrow"><a href="#memory">Memory</a></li>
+          <li class="docs__tocrow"><a href="#tools">Tools</a></li>
+          <li class="docs__tocrow"><a href="#workflows">Workflows</a></li>
+          <li class="docs__tocrow"><a href="#permissions">Permissions</a></li>
+          <li class="docs__tocrow"><a href="#connectors">Connectors</a></li>
+          <li class="docs__tocrow"><a href="#mcp">MCP</a></li>
+          <li class="docs__tocrow"><a href="#desktop">Desktop</a></li>
+          <li class="docs__tocrow"><a href="#mobile">Mobile</a></li>
+          <li class="docs__tocrow"><a href="#files">Files</a></li>
+          <li class="docs__tocrow"><a href="#streaming">Streaming</a></li>
+          <li class="docs__tocrow"><a href="#webhooks">Webhooks</a></li>
+          <li class="docs__tocrow"><a href="#events">Events</a></li>
+          <li class="docs__tocrow"><a href="#pagination">Pagination</a></li>
+          <li class="docs__tocrow"><a href="#filtering">Filtering</a></li>
+          <li class="docs__tocrow"><a href="#rate-limits">Rate limits</a></li>
+          <li class="docs__tocrow"><a href="#errors">Errors</a></li>
+          <li class="docs__tocrow"><a href="#sdks">SDKs</a></li>
+          <li class="docs__tocrow"><a href="#versioning">Versioning</a></li>
+          <li class="docs__tocrow"><a href="#openapi">OpenAPI</a></li>
+          <li class="docs__tocrow"><a href="#security">Security</a></li>
+          <li class="docs__tocrow"><a href="#best-practices">Best practices</a></li>
+          <li class="docs__tocrow"><a href="#reference">Reference</a></li>
+          <li class="docs__tocrow"><a href="#faq">FAQ</a></li>
+        </ul>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="foot foot--slim">
+    <div class="shell">
+      <div class="foot__bar">
+        <span class="foot__fine">&#169; 2026 Arble. Built to run on your hardware.</span>
+        <span class="foot__fine">Made for people who read the permissions.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/docs.js?v=2" defer></script>
+</body>
+
+</html>

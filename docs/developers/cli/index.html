@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CLI &#8212; Arble Docs</title>
+  <meta name="description" content="Drive every part of Arble from the terminal." />
+  <link rel="icon"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='3.4' fill='%230A0A0B'/%3E%3Ccircle cx='12' cy='12' r='7.2' fill='none' stroke='%230A0A0B' stroke-width='1.3' opacity='.45'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Stack+Sans+Headline:wght@200..700&display=swap" />
+  <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f%5B%5D=switzer@400,500,600,700&display=swap" />
+  <link rel="stylesheet" href="../../../assets/css/docs.css?v=84" />
+</head>
+
+<!-- Documentation is its own application, not a page on the marketing site:
+     no floating nav, no CTA, no hero. The shell is a fixed sidebar plus a
+     scrolling content column, with the header split so each half aligns to
+     the column beneath it. -->
+<body class="dapp">
+  <a class="skip" href="#doc">Skip to content</a>
+
+  <div class="dapp__grid">
+
+    <aside class="dside" aria-label="Documentation navigation">
+      <div class="dside__head">
+        <a class="dside__brand" href="../../../index.html" aria-label="Arble home">
+          <img src="../../../assets/img/brand/logo-mark.png" width="288" height="271" alt="" aria-hidden="true" />
+        </a>
+        <span class="dside__rule" aria-hidden="true"></span>
+        <a class="dside__brand" href="../../../docs/"><span>Docs</span></a>
+      </div>
+      <div class="dside__scroll">
+        <form class="docs__search" role="search" onsubmit="return false;">
+          <input class="docs__searchi" id="docsSearch" type="search" autocomplete="off"
+            placeholder="Search&#8230;" aria-label="Search documentation" />
+          <ul class="docs__searchr" id="docsSearchResults" hidden></ul>
+        </form>
+        <nav aria-label="Sections">
+        <details class="docs__grp">
+          <summary class="docs__grph"><span>Getting Started</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></summary>
+          <ul class="docs__raillist">
+            <li class="docs__railrow"><a href="../../../docs/getting-started/install/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5"/><path d="M3 17v2a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-2"/></svg><span>Install</span></a></li>
+            <li class="docs__railrow"><a href="../../../docs/getting-started/pair-device/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="14" y="3" width="7" height="12" rx="1.5"/><rect x="3" y="9" width="8" height="12" rx="1.5"/></svg><span>Pair Device</span></a></li>
+            <li class="docs__railrow"><a href="../../../docs/getting-started/first-run/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m10 8 6 4-6 4z"/></svg><span>First Run</span></a></li>
+            <li class="docs__railrow"><a href="../../../docs/getting-started/configuration/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-2.9 1.2 2 2 0 1 1-4 0 1.7 1.7 0 0 0-2.9-1.2l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1A1.7 1.7 0 0 0 2.6 15a2 2 0 1 1 0-4 1.7 1.7 0 0 0 1.8-2.9l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1A1.7 1.7 0 0 0 10 3.6a2 2 0 1 1 4 0 1.7 1.7 0 0 0 2.9 1.2l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1A1.7 1.7 0 0 0 21.4 11a2 2 0 1 1 0 4"/></svg><span>Configuration</span></a></li>
+            <li class="docs__railrow"><a href="../../../docs/getting-started/system-requirements/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg><span>System Requirements</span></a></li>
+            <li class="docs__railrow"><a href="../../../docs/getting-started/updates/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 21v-5h5"/></svg><span>Updates</span></a></li>
+          </ul>
+        </details>
+        <details class="docs__grp">
+          <summary class="docs__grph"><span>Agent</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></summary>
+          <ul class="docs__raillist">
+            <li class="docs__railrow"><a href="../../../docs/agent/sessions/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span>Sessions</span></a></li>
+            <li class="docs__railrow"><a href="../../../docs/agent/memory/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a3 3 0 0 0-3 3v1a3 3 0 0 0 0 6v1a3 3 0 0 0 6 0v-1a3 3 0 0 0 0-6V6a3 3 0 0 0-3-3"/></svg><span>Memory</span></a></li>
+            <li class="docs__railrow"><a href="../../../docs/agent/skills/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M3 15v4a2 2 0 0 0 2 2h4m12-6v4a2 2 0 0 1-2 2h-4"/><path d="M9 9h6v6H9z"/></svg><span>Skills</span></a></li>
+            <li class="docs__railrow"><a href="../../../docs/agent/permissions/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s8-4 8-10V5l-8-3-8 3v6c0 6 8 10 8 10"/></svg><span>Permissions</span></a></li>
+            <li class="docs__railrow"><a href="../../../docs/agent/automation/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>Automation</span></a></li>
+            <li class="docs__railrow"><a href="../../../docs/agent/desktop/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8"/></svg><span>Desktop Control</span></a></li>
+            <li class="docs__railrow"><a href="../../../docs/agent/notifications/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 8-3 8h18s-3-1-3-8"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg><span>Notifications</span></a></li>
+          </ul>
+        </details>
+        <details class="docs__grp" open>
+          <summary class="docs__grph"><span>Developers</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></summary>
+          <ul class="docs__raillist">
+            <li class="docs__railrow"><a href="../../../docs/developers/mcp-servers/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="7" rx="2"/><rect x="3" y="13" width="18" height="7" rx="2"/><path d="M7 8h.01M7 17h.01"/></svg><span>MCP Servers</span></a></li>
+            <li class="docs__railrow"><a href="../../../docs/developers/tool-sdk/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.8-3.8a6 6 0 0 1-7.9 7.9l-6.9 6.9a2.1 2.1 0 0 1-3-3l6.9-6.9a6 6 0 0 1 7.9-7.9z"/></svg><span>Tool SDK</span></a></li>
+            <li class="docs__railrow is-current"><a href="../../../docs/developers/cli/" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 8 4 4-4 4M12 16h7"/><rect x="2" y="3" width="20" height="18" rx="2"/></svg><span>CLI</span></a></li>
+            <li class="docs__railrow"><a href="../../../docs/developers/api-reference/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8 6-6 6 6 6M16 6l6 6-6 6"/></svg><span>API Reference</span></a></li>
+            <li class="docs__railrow"><a href="../../../docs/developers/self-hosting/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 2 7l10 5 10-5z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/></svg><span>Self-hosting</span></a></li>
+          </ul>
+        </details>
+        <details class="docs__grp">
+          <summary class="docs__grph"><span>Reference</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></summary>
+          <ul class="docs__raillist">
+            <li class="docs__railrow"><a href="../../../docs/reference/glossary/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2"/></svg><span>Glossary</span></a></li>
+            <li class="docs__railrow"><a href="../../../docs/reference/faq/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 2.4-3 4M12 17h.01"/></svg><span>FAQ</span></a></li>
+            <li class="docs__railrow"><a href="../../../docs/reference/troubleshooting/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4.4-4.4"/></svg><span>Troubleshooting</span></a></li>
+            <li class="docs__railrow"><a href="../../../docs/reference/release-notes/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 13h6M9 17h4"/></svg><span>Release Notes</span></a></li>
+          </ul>
+        </details>
+        </nav>
+      </div>
+      <nav class="dside__foot" aria-label="Arble">
+          <a href="../../../docs/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2"/></svg><span>Docs</span></a>
+          <a href="../../../docs/developers/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8 6-6 6 6 6M16 6l6 6-6 6"/></svg><span>Developers</span></a>
+          <a href="../../../playbook.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10 12 5 2 10l10 5z"/><path d="M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/></svg><span>Learn</span></a>
+          <a href="../../../docs/reference/troubleshooting/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.4 8.4 0 0 1 3.8-.9h.5a8.5 8.5 0 0 1 8 8z"/></svg><span>Contact support</span></a>
+      </nav>
+    </aside>
+
+    <div class="dmain">
+      <header class="dtop">
+        <button class="dnavbtn" type="button" id="navToggle" aria-label="Open navigation"
+          aria-expanded="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"
+            stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        </button>
+        <p class="docs__crumb"><a href="../../../docs/">Documentation</a> <span aria-hidden="true">/</span> <a href="../../../docs/developers/">Developers</a> <span aria-hidden="true">/</span> CLI</p>
+        <div class="docs__acts">
+          <button class="docs__act" type="button" id="copyPage" aria-label="Copy page as Markdown">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9"
+              width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            <span>Copy page</span>
+          </button>
+        </div>
+      </header>
+
+      <div class="dbody">
+        <article class="docs__body" id="doc">
+          <h1 class="docs__title">CLI</h1>
+          <p class="docs__meta"><b>19 min read</b><i>&#183;</i>Updated 30 Jul 2026</p>
+        <p class="docs__lead">The Arble CLI is a complete client, not a companion to the desktop app.
+          Every capability the UI exposes &#8212; sessions, agents, memory, permissions, connectors,
+          desktop and mobile control &#8212; is reachable from the terminal, with the same permission
+          gate and the same audit log behind it.</p>
+
+        <p>This makes Arble scriptable. An agent run you&#8217;d normally start by typing into a window
+          can instead be a line in a Makefile, a cron entry, or a step in CI. The CLI is the same
+          client the app uses, talking to the same local daemon, so there&#8217;s no drift between
+          what you can automate and what you can do by hand.</p>
+
+        <h2 id="installation">Installation</h2>
+        <p>The CLI is a single static binary with no runtime dependency. It talks to the Arble daemon
+          over a local socket when one is running, and over HTTPS when you point it at a remote
+          endpoint.</p>
+
+        <p><strong>macOS.</strong> Homebrew is the supported path:</p>
+        <div class="docs__code">
+          <div class="docs__codebar"><span class="docs__lang">SHELL</span><button class="docs__copy" type="button" data-copy="c-brew" aria-label="Copy code">Copy</button></div>
+          <pre><code id="c-brew">brew install arble/tap/arble</code></pre>
+        </div>
+
+        <p><strong>Linux.</strong> The install script detects your architecture and places the binary
+          in <code>/usr/local/bin</code>:</p>
+        <div class="docs__code">
+          <div class="docs__codebar"><span class="docs__lang">SHELL</span><button class="docs__copy" type="button" data-copy="c-linux" aria-label="Copy code">Copy</button></div>
+          <pre><code id="c-linux">curl -fsSL https://arble.ai/install.sh | sh</code></pre>
+        </div>
+
+        <p><strong>Windows.</strong> Use winget, or download the standalone <code>.exe</code> from the
+          releases page:</p>
+        <div class="docs__code">
+          <div class="docs__codebar"><span class="docs__lang">SHELL</span><button class="docs__copy" type="button" data-copy="c-winget" aria-label="Copy code">Copy</button></div>
+          <pre><code id="c-winget">winget install Arble.CLI</code></pre>
+        </div>
+
+        <p><strong>npm.</strong> Useful when you want the CLI pinned per-project rather than installed
+          globally:</p>
+        <div class="docs__code">
+          <div class="docs__codebar"><span class="docs__lang">SHELL</span><button class="docs__copy" type="button" data-copy="c-npm" aria-label="Copy code">Copy</button></div>
+          <pre><code id="c-npm">pnpm add -D @arble/cli</code></pre>
+        </div>
+
+        <p><strong>Standalone binary.</strong> Download and verify a release directly when you
+          can&#8217;t use a package manager. Checksums and signatures are published alongside each
+          artifact:</p>
+        <div class="docs__code">
+          <div class="docs__codebar"><span class="docs__lang">SHELL</span><button class="docs__copy" type="button" data-copy="c-standalone" aria-label="Copy code">Copy</button></div>
+          <pre><code id="c-standalone">curl -fsSLO https://releases.arble.ai/v1.8.2/arble-linux-arm64</code></pre>
+        </div>
+
+        <p><strong>Docker.</strong> The image ships the CLI with no daemon, for CI and headless use.
+          Mount a config directory to persist credentials between runs:</p>
+        <div class="docs__code">
+          <div class="docs__codebar"><span class="docs__lang">SHELL</span><button class="docs__copy" type="button" data-copy="c-docker" aria-label="Copy code">Copy</button></div>
+          <pre><code id="c-docker">docker run --rm -v ~/.arble:/root/.arble arble/cli:1.8 agents ls</code></pre>
+        </div>
+
+        <p>Confirm the install and see which daemon you&#8217;re connected to with
+          <code>arble version</code>.</p>
+
+        <h2 id="authentication">Authentication</h2>
+        <p>The CLI authenticates once and stores a credential in the OS keychain &#8212; not in a
+          config file. Everything after that reads the stored credential unless you override it with
+          <code>ARBLE_API_KEY</code>.</p>
+
+        <p><strong>Login.</strong> Opens a browser for the device authorization flow, then writes the
+          credential to the keychain. <strong>API token.</strong> For headless environments where no
+          browser exists, create a token in the dashboard and export it &#8212; the CLI prefers
+          <code>ARBLE_API_KEY</code> over the keychain when both are present.</p>
+
+        <div class="docs__code">
+          <div class="docs__codebar"><span class="docs__lang">SHELL</span><button class="docs__copy" type="button" data-copy="c-login" aria-label="Copy code">Copy</button></div>
+          <pre><code id="c-login">arble login
+export ARBLE_API_KEY=arb_live_9f2c...</code></pre>
+        </div>
+
+        <p><strong>Local mode vs remote mode.</strong> By default the CLI connects to the daemon on
+          your machine, and nothing leaves the device. Setting an endpoint switches it to a hosted or
+          self-hosted Arble instance:</p>
+        <div class="docs__code">
+          <div class="docs__codebar"><span class="docs__lang">SHELL</span><button class="docs__copy" type="button" data-copy="c-endpoint" aria-label="Copy code">Copy</button></div>
+          <pre><code id="c-endpoint">arble config set endpoint https://arble.internal.example.com</code></pre>
+        </div>
+
+        <p>Local mode still requires login &#8212; the credential identifies <em>you</em> to your own
+          daemon, which is what makes the audit log meaningful on a shared machine.</p>
+
+        <p><strong>Organizations.</strong> An account can belong to several organizations; commands
+          operate against the active one. <strong>Profiles.</strong> A profile bundles an endpoint, an
+          organization and a credential under one name &#8212; use them to keep a local machine, a
+          staging instance and a production instance separate without re-authenticating.</p>
+
+        <div class="docs__code">
+          <div class="docs__codebar"><span class="docs__lang">SHELL</span><button class="docs__copy" type="button" data-copy="c-orgs" aria-label="Copy code">Copy</button></div>
+          <pre><code id="c-orgs">arble orgs ls
+arble orgs use acme-eng
+
+arble profiles ls
+arble profiles use staging</code></pre>
+        </div>
+
+        <p>Check what the CLI thinks it is before running anything destructive:</p>
+        <div class="docs__code">
+          <div class="docs__codebar"><span class="docs__lang">SHELL</span><button class="docs__copy" type="button" data-copy="c-whoami" aria-label="Copy code">Copy</button></div>
+          <pre><code id="c-whoami">$ arble whoami
+lori@example.com
+org      acme-eng
+profile  staging
+endpoint https://arble.internal.example.com
+scopes   sessions:write agents:run memory:read</code></pre>
+        </div>
+
+        <p>To drop the credential from the keychain, run <code>arble logout</code>.</p>
+
+        <h2 id="projects">Projects</h2>
+        <p>A project scopes everything Arble does: which memory an agent reads, which permissions are
+          already granted, which connectors are available. A directory becomes a project when it has
+          an <code>arble.json</code>, the same way a directory becomes a repository when it has a
+          <code>.git</code>.</p>
+
+        <div class="docs__code">
+          <div class="docs__codebar"><span class="docs__lang">SHELL</span><button class="docs__copy" type="button" data-copy="c-projects" aria-label="Copy code">Copy</button></div>
+          <pre><code id="c-projects">arble projects create api-gateway     # initialize arble.json here
+arble projects use billing-web        # set the active project
+arble projects rm infra-tooling       # delete the project and its memory
+
+$ arble projects ls
+NAME             SESSIONS  MEMORY   UPDATED
+api-gateway *          3   2.4 MB   12m ago
+billing-web            0   840 KB   3d ago
+infra-tooling          1   6.1 MB   1h ago</code></pre>
+        </div>
+
+        <p>Inside a directory with an <code>arble.json</code> the active project is inferred, so
+          <code>use</code> is rarely needed. Pass <code>--project</code> to any command to override it
+          for a single invocation &#8212; the pattern <code>kubectl</code> uses for namespaces.</p>
+
+        <h2 id="sessions">Sessions</h2>
+        <p>A session is a conversation with accumulated context: the messages, the tool calls, and the
+          permission grants made along the way. Agents run inside sessions. Killing a session discards
+          its context; pausing it keeps the context and stops the work.</p>
+
+        <div class="docs__code">
+          <div class="docs__codebar"><span class="docs__lang">SHELL</span><button class="docs__copy" type="button" data-copy="c-sessions" aria-label="Copy code">Copy</button></div>
+          <pre><code id="c-sessions">arble sessions new --title "Payment retry audit"
+arble sessions resume ses_3pLwRt9     # reattach, context intact
+arble sessions pause ses_8kQ2mVx      # stop agents, keep context
+arble sessions kill ses_8kQ2mVx       # end and release context
+
+$ arble sessions ls
+ID           TITLE                  STATE     AGENTS  AGE
+ses_8kQ2mVx  Payment retry audit    running        2  4m
+ses_3pLwRt9  Migrate auth handlers  paused         0  2h
+ses_7nBcYs4  Flaky test triage      completed      0  1d</code></pre>
+        </div>
+
+        <p>A paused session costs nothing. <strong>Export</strong> writes the full transcript &#8212;
+          messages, tool calls, arguments, results and approvals &#8212; as JSON. This is the artifact
+          to attach to an incident review:</p>
+        <div class="docs__code">
+          <div class="docs__codebar"><span class="docs__lang">SHELL</span><button class="docs__copy" type="button" data-copy="c-export" aria-label="Copy code">Copy</button></div>
+          <pre><code id="c-export">arble sessions export ses_7nBcYs4 --format json &gt; triage.json</code></pre>
+        </div>
+
+        <h2 id="agents">Running agents</h2>
+        <p><code>arble run</code> is the primary command. It takes an instruction, plans, calls tools,
+          and streams what it&#8217;s doing.</p>
+
+        <p><strong>Single agent.</strong> Runs in the foreground and streams to your terminal. Ctrl-C
+          cancels cleanly, mid-tool-call:</p>
+        <div class="docs__code">
+          <div class="docs__codebar"><span class="docs__lang">SHELL</span><button class="docs__copy" type="button" data-copy="c-run" aria-label="Copy code">Copy</button></div>
+          <pre><code id="c-run">arble run "Find every handler that retries without a backoff and list the files"</code></pre>
+        </div>
+
+        <p><strong>Multiple agents.</strong> Fan out independent work across parallel agents in one
+          session. Each gets its own context; results are collected when all finish:</p>
+        <div class="docs__code">
+          <div class="docs__codebar"><span class="docs__lang">SHELL</span><button class="docs__copy" type="button" data-copy="c-parallel" aria-label="Copy code">Copy</button></div>
+          <pre><code id="c-parallel">arble run \
+  --parallel \
+  --task "Audit the retry logic in services/payments" \
+  --task "Audit the retry logic in services/billing" \
+  --task "Audit the retry logic in services/webhooks"</code></pre>
+        </div>
+
+        <p><strong>Background agents.</strong> Returns immediately with an agent ID; the work continues
+          after your shell exits. <strong>Detached mode</strong> is the same plus surviving a daemon
+          restart, for work measured in hours.</p>
+        <div class="docs__code">
+          <div class="docs__codebar"><span class="docs__lang">SHELL</span><button class="docs__copy" type="button" data-copy="c-bg" aria-label="Copy code">Copy</button></div>
+          <pre><code id="c-bg">$ arble run --background \
+    "Reproduce the failing integration suite and summarize the first failure"
+agt_5wTn9Kd  started  session=ses_8kQ2mVx
+
+arble agents attach agt_5wTn9Kd       # reattach to a running stream
+arble agents ls
+arble agents kill agt_5wTn9Kd</code></pre>
+        </div>
+
+        <p><strong>Interactive mode</strong> opens a REPL against a session &#8212; the terminal
+          equivalent of the desktop window. <strong>Streaming mode</strong> emits newline-delimited
+          events instead of rendered output, which is the form to pipe into another process:</p>
+        <div class="docs__code">
+          <div class="docs__codebar"><span class="docs__lang">SHELL</span><button class="docs__copy" type="button" data-copy="c-stream" aria-label="Copy code">Copy</button></div>
+          <pre><code id="c-stream">arble run --interactive --session ses_3pLwRt9
+
+arble run --stream json "List the open PRs touching services/payments" \
+  | jq -r 'select(.type=="tool_call") | .tool'</code></pre>
+        </div>
+
+        <h2 id="memory">Memory</h2>
+        <p>Memory is per-project and persistent. Agents read it automatically at the start of a run and
+          write to it when they learn something durable. The CLI gives you direct access so you can
+          seed it, inspect it, and prune it.</p>
+
+        <div class="docs__code">
+          <div class="docs__codebar"><span class="docs__lang">SHELL</span><button class="docs__copy" type="button" data-copy="c-memory" aria-label="Copy code">Copy</button></div>
+          <pre><code id="c-memory">arble memory search "why we pinned the postgres driver"
+arble memory add "Staging shares the production Redis. Never flush from staging."
+arble memory rm mem_2fQx8Lp
+arble memory summarize --older-than 90d
+arble memory export &gt; memory.json</code></pre>
+        </div>
+
+        <p>Search is semantic, not substring, and returns ranked entries with their source.
+          <code>summarize</code> collapses related entries into fewer, denser ones &#8212; worth
+          running on a project that&#8217;s been active for months, since a smaller memory means less
+          context spent per run.</p>
+
+        <div class="docs__note">
+          <p><strong>Memory is not a log.</strong> Entries should be facts that stay true &#8212; a
+            constraint, a decision, a gotcha &#8212; not a record of what happened in one session. Use
+            <code>arble sessions export</code> for that.</p>
+        </div>
+
+        <h2 id="skills">Skills</h2>
+        <p>A skill is a packaged procedure: instructions, and optionally the tools and files that go
+          with it. Where a tool is a single capability, a skill is a way of working &#8212; a deploy
+          checklist, a review standard, a release process.</p>
+
+        <div class="docs__code">
+          <div class="docs__codebar"><span class="docs__lang">SHELL</span><button class="docs__copy" type="button" data-copy="c-skills" aria-label="Copy code">Copy</button></div>
+          <pre><code id="c-skills">arble skills install @acme/release-checklist
+arble skills install ./skills/incident-review        # local path
+arble skills disable @arble/pr-description           # hidden from the planner
+arble skills update @acme/release-checklist          # compatible range
+arble skills install @acme/release-checklist@2.0.4   # pin exactly
+arble skills rm @arble/pr-description
+
+$ arble skills ls
+NAME                      VERSION  STATE     SCOPE
+@acme/release-checklist   2.1.0    enabled   project
+@acme/incident-review     0.4.2    enabled   project
+@arble/pr-description     1.0.0    disabled  global</code></pre>
+        </div>
+
+        <p>Disabling is the right way to narrow what an agent considers, rather than uninstalling.
+          Skills are pinned by default.</p>
+
+        <h2 id="connectors">Connectors</h2>
+        <p>A connector is an authenticated link to an external account. Enabling one adds its tools to
+          the registry; authenticating it makes those tools usable.</p>
+
+        <div class="docs__code">
+          <div class="docs__codebar"><span class="docs__lang">SHELL</span><button class="docs__copy" type="button" data-copy="c-connectors" aria-label="Copy code">Copy</button></div>
+          <pre><code id="c-connectors">arble connectors enable notion
+arble connectors disable slack        # revoke tool access, keep the credential
+arble connectors auth linear          # run or refresh the OAuth flow
+arble connectors status github        # scopes, expiry, last call, tools
+
+$ arble connectors ls
+NAME       STATE     AUTH        TOOLS
+github     enabled   ok             8
+slack      enabled   ok             4
+linear     enabled   expired        6
+notion     disabled  —              0
+postgres   enabled   ok             3</code></pre>
+        </div>
+
+        <p>Disabling revokes tool access immediately without discarding the credential, which is the
+          right move when you want an agent to stop being able to reach something for a while.</p>
+
+        <h2 id="mcp">MCP</h2>
+        <p>Arble speaks Model Context Protocol natively. An MCP server&#8217;s tools land in the same
+          registry as built-in tools and pass the same permission gate. See
+          <a href="../../../docs/developers/mcp-servers/">MCP server</a> for the protocol details; this section covers the
+          commands.</p>
+
+        <div class="docs__code">
+          <div class="docs__codebar"><span class="docs__lang">SHELL</span><button class="docs__copy" type="button" data-copy="c-mcp" aria-label="Copy code">Copy</button></div>
+          <pre><code id="c-mcp">arble mcp add postgres --command "npx -y @modelcontextprotocol/server-postgres"
+arble mcp add acme-internal --url https://mcp.acme.example.com/mcp
+arble mcp permissions postgres        # per tool, not per server
+arble mcp rm acme-internal            # its tools leave the registry immediately
+
+$ arble mcp health
+SERVER          TRANSPORT  STATUS     LATENCY  VERSION  TOOLS
+postgres        stdio      connected     11ms  2.0.1        3
+acme-internal   http       connected    130ms  0.9.4        9
+github          stdio      error            —  1.4.2        0</code></pre>
+        </div>
+
+        <p>Run <code>arble mcp health</code> first when an agent reports a tool as unavailable.</p>
+
+        <h2 id="permissions">Permissions</h2>
+        <p>Every tool call passes a permission gate, whether it originated in the desktop app, a CI
+          job, or your shell. The CLI is where you inspect and change the rules.</p>
+
+        <div class="docs__code">
+          <div class="docs__codebar"><span class="docs__lang">SHELL</span><button class="docs__copy" type="button" data-copy="c-perms" aria-label="Copy code">Copy</button></div>
+          <pre><code id="c-perms">arble permissions grant filesystem.write --scope "~/Projects/api-gateway"
+arble permissions grant network.http --scope "api.github.com"
+arble permissions revoke network.http --scope "api.github.com"
+
+arble permissions grant github.create_pr --always
+arble permissions revoke terminal.exec --always
+
+$ arble permissions audit --since 24h
+TIME      AGENT        TOOL                    DECISION  SCOPE
+14:02:11  agt_5wTn9Kd  filesystem.read         auto      ~/Projects/api-gateway
+14:02:19  agt_5wTn9Kd  github.create_pr        approved  acme/api-gateway
+14:03:40  agt_5wTn9Kd  postgres.query          denied    production</code></pre>
+        </div>
+
+        <p>In the foreground, a call needing approval pauses and prompts. In <code>--background</code>
+          or CI it fails closed instead &#8212; an unattended run never silently grants itself
+          something. Declare the full set up front and use <code>--no-prompt</code> so the job fails
+          fast on anything you didn&#8217;t anticipate rather than hanging on a prompt no one will
+          answer.</p>
+
+        <h2 id="desktop">Desktop</h2>
+        <p>Desktop control is built in, not a connector &#8212; the CLI drives the machine the daemon
+          runs on. Every command here requires the <code>desktop</code> permission and appears in the
+          audit log.</p>
+
+        <div class="docs__code">
+          <div class="docs__codebar"><span class="docs__lang">SHELL</span><button class="docs__copy" type="button" data-copy="c-desktop" aria-label="Copy code">Copy</button></div>
+          <pre><code id="c-desktop">arble desktop open "Figma"
+arble desktop open ~/Documents/spec.pdf
+arble desktop screenshot --window "Safari" --out ./shot.png
+arble desktop clipboard read
+echo "hello" | arble desktop clipboard write
+arble desktop windows ls
+arble desktop windows focus "Terminal"
+arble desktop click 640 480              # screen points, origin top-left
+arble desktop type "SELECT count(*) FROM orders;"
+arble desktop key cmd+shift+4
+arble desktop run ./automations/export-report.yaml</code></pre>
+        </div>
+
+        <p>Chain steps from a file rather than a long shell pipeline, so the sequence is reviewable and
+          rerunnable.</p>
+
+        <h2 id="mobile">Mobile</h2>
+        <p>A paired phone is addressable from the terminal. Pair once with
+          <code>arble mobile pair</code>; after that the device appears as a target for these commands.</p>
+
+        <div class="docs__code">
+          <div class="docs__codebar"><span class="docs__lang">SHELL</span><button class="docs__copy" type="button" data-copy="c-mobile" aria-label="Copy code">Copy</button></div>
+          <pre><code id="c-mobile">arble mobile notify "Migration finished — 14 tables, 0 errors"
+arble mobile clipboard write "https://github.com/acme/api-gateway/pull/482"
+arble mobile open "shortcuts://run-shortcut?name=Standup"
+arble mobile shortcut "Log Deploy"
+arble mobile camera --out ./whiteboard.jpg
+arble mobile mic --duration 30s --transcribe</code></pre>
+        </div>
+
+        <div class="docs__note">
+          <p>Camera and microphone always prompt on the device itself, regardless of CLI flags. There
+            is no way to capture silently.</p>
+        </div>
+
+        <h2 id="automation">Automation</h2>
+        <p>Anything you can run once, you can run on a schedule or in response to an event. Automations
+          are defined from the CLI and stored server-side, so they run whether or not your shell is
+          open.</p>
+
+        <p><strong>Schedules</strong> use cron syntax, evaluated in the project&#8217;s timezone.
+          <strong>Triggers</strong> are event-driven, firing on a webhook or a connector event:</p>
+
+        <div class="docs__code">
+          <div class="docs__codebar"><span class="docs__lang">SHELL</span><button class="docs__copy" type="button" data-copy="c-schedule" aria-label="Copy code">Copy</button></div>
+          <pre><code id="c-schedule">arble schedule create nightly-triage \
+  --cron "0 7 * * 1-5" \
+  --task "Summarize failing CI runs from the last 24 hours and post to #eng-alerts"
+
+arble triggers create pr-review \
+  --on github.pull_request.opened \
+  --max-retries 3 \
+  --task "Review the diff against @acme/release-checklist and comment"
+
+arble schedule ls
+arble jobs ls
+arble jobs logs job_4hVn2Qs</code></pre>
+        </div>
+
+        <p>Every scheduled or triggered run becomes a job, inspected the same way regardless of what
+          started it. Jobs in the same <strong>queue</strong> run serially; different queues run in
+          parallel &#8212; use one queue per resource that can&#8217;t tolerate concurrent writes.
+          <strong>Retries</strong> use exponential backoff, and only errors the tool marked retryable
+          are retried; a permission denial is never retried.</p>
+
+        <h2 id="logs">Logs</h2>
+        <p>Logs are structured records of what ran. Every line carries a session ID, an agent ID and a
+          tool name, which is what makes filtering useful rather than decorative.</p>
+
+        <div class="docs__code">
+          <div class="docs__codebar"><span class="docs__lang">SHELL</span><button class="docs__copy" type="button" data-copy="c-logs" aria-label="Copy code">Copy</button></div>
+          <pre><code id="c-logs">arble logs --follow                                   # live, current project
+arble logs --since 2h --until 30m                     # time-bounded
+arble logs --agent agt_5wTn9Kd --tool postgres.query --level error
+arble logs --grep "connection refused" --since 7d
+
+arble logs --json --since 1h \
+  | jq -r 'select(.level=="error") | "\(.tool)\t\(.message)"'
+
+arble logs --follow --json &gt;&gt; ~/.arble/logs/api-gateway.ndjson</code></pre>
+        </div>
+
+        <p>Narrowing flags intersect. <code>--json</code> emits newline-delimited objects &#8212; the
+          shape to pipe into <code>jq</code>, or ship to a log aggregator.</p>
+
+        <h2 id="observability">Observability</h2>
+        <p>Metrics answer a different question than logs: not what happened in one run, but whether
+          runs are getting slower, more expensive, or less reliable.</p>
+
+        <div class="docs__code">
+          <div class="docs__codebar"><span class="docs__lang">SHELL</span><button class="docs__copy" type="button" data-copy="c-metrics" aria-label="Copy code">Copy</button></div>
+          <pre><code id="c-metrics">$ arble metrics --since 7d
+RUNS          412
+SUCCESS      94.2%
+p50 DURATION  18s
+p95 DURATION  2m41s
+TOOL CALLS   3,891
+RETRIES         57
+MEMORY       2.4 MB
+
+arble metrics tools --sort p95 --since 7d      # slowest calls first
+arble metrics failures --since 7d              # grouped by error
+arble metrics retries --since 7d
+arble metrics tools --sort calls
+arble metrics memory</code></pre>
+        </div>
+
+        <p>High retry counts on a single tool usually mean a flaky upstream, not a flaky agent. Call
+          counts by tool are how you find a connector that&#8217;s installed but never chosen &#8212;
+          and either fix its description or remove it. Memory growth without bound is a signal to run
+          <code>arble memory summarize</code>. Add <code>--json</code> to any metrics command to feed a
+          dashboard.</p>
+
+        <h2 id="configuration">Configuration</h2>
+        <p>Configuration resolves in this order, most specific first: command-line flags, environment
+          variables, project <code>arble.json</code>, then the user config file. This means a project
+          can set a default that CI overrides without editing anything.</p>
+
+        <p><strong>Config file.</strong> <code>~/.arble/config.toml</code> holds profiles and global
+          defaults. Credentials are never written here:</p>
+
+        <div class="docs__code">
+          <div class="docs__codebar"><span class="docs__lang">JSON</span><button class="docs__copy" type="button" data-copy="c-config" aria-label="Copy code">Copy</button></div>
+          <pre><code id="c-config">[profiles.local]
+endpoint = "unix:///var/run/arble.sock"
+org = "acme-eng"
+
+[profiles.staging]
+endpoint = "https://arble.staging.example.com"
+org = "acme-eng"
+log_level = "debug"</code></pre>
+        </div>
+
+        <p><strong>Project config.</strong> <code>arble.json</code> is checked into the repository and
+          shared with your team, setting defaults for anyone working in the directory:</p>
+
+        <div class="docs__code">
+          <div class="docs__codebar"><span class="docs__lang">JSON</span><button class="docs__copy" type="button" data-copy="c-projectjson" aria-label="Copy code">Copy</button></div>
+          <pre><code id="c-projectjson">{
+  "project": "api-gateway",
+  "skills": ["@acme/release-checklist@2.1.0"],
+  "connectors": ["github", "postgres"],
+  "permissions": {
+    "filesystem.write": ["./src", "./tests"],
+    "network.http": ["api.github.com"]
+  }
+}</code></pre>
+        </div>
+
+        <p><strong>Secrets</strong> are stored in the keychain and referenced by name; values are never
+          printed, and are redacted from logs and traces. <strong>Workspaces</strong> group several
+          projects that share memory and connectors &#8212; the right structure for a monorepo where
+          one agent needs to reason across services.</p>
+
+        <div class="docs__code">
+          <div class="docs__codebar"><span class="docs__lang">SHELL</span><button class="docs__copy" type="button" data-copy="c-secrets" aria-label="Copy code">Copy</button></div>
+          <pre><code id="c-secrets">arble config get endpoint
+arble config set log_level debug
+arble secrets set GITHUB_TOKEN
+arble secrets ls
+arble workspaces create platform --projects api-gateway,billing-web</code></pre>
+        </div>
+
+        <h2 id="debugging">Debugging</h2>
+        <p><code>-v</code> shows tool calls and decisions; <code>-vv</code> adds full arguments and
+          results. Both write to stderr, so piping stdout still works.</p>
+
+        <p>A <strong>trace</strong> is the complete record of one run: every call, its arguments, its
+          result, its duration, and the permission decision that let it through. The tree rendering is
+          faster to read when you&#8217;re looking for where a run went wrong:</p>
+
+        <div class="docs__code">
+          <div class="docs__codebar"><span class="docs__lang">SHELL</span><button class="docs__copy" type="button" data-copy="c-trace" aria-label="Copy code">Copy</button></div>
+          <pre><code id="c-trace">$ arble trace agt_5wTn9Kd --tree
+run  Fix the failing auth test                        41.2s
+├─ filesystem.read  tests/auth_test.py                 0.1s
+├─ terminal.exec    pytest tests/auth_test.py -x      12.8s
+├─ filesystem.read  src/auth/session.py                0.1s
+├─ filesystem.write src/auth/session.py                0.1s
+└─ terminal.exec    pytest tests/auth_test.py -x      27.9s
+
+arble trace agt_5wTn9Kd --timing        # sort spans by duration
+arble permissions audit --agent agt_5wTn9Kd</code></pre>
+        </div>
+
+        <p>When a run stops early, <code>permissions audit</code> usually explains it before the trace
+          does. <code>--dry-run</code> plans and prints the tool calls an agent would make without
+          executing any of them &#8212; use it before pointing an unfamiliar automation at
+          production:</p>
+
+        <div class="docs__code">
+          <div class="docs__codebar"><span class="docs__lang">SHELL</span><button class="docs__copy" type="button" data-copy="c-dryrun" aria-label="Copy code">Copy</button></div>
+          <pre><code id="c-dryrun">arble run --dry-run \
+  "Drop the staging replica and recreate it from the latest snapshot"</code></pre>
+        </div>
+
+        <h2 id="scripting">Scripting</h2>
+        <p>The CLI is designed to compose. Human-readable output goes to stdout, diagnostics to stderr,
+          and <code>--json</code> makes any command machine-readable. Exit codes are meaningful, so
+          <code>set -e</code> behaves.</p>
+
+        <div class="docs__code">
+          <div class="docs__codebar"><span class="docs__lang">SHELL</span><button class="docs__copy" type="button" data-copy="c-bash" aria-label="Copy code">Copy</button></div>
+          <pre><code id="c-bash">#!/usr/bin/env bash
+set -euo pipefail
+
+result=$(arble run --json --no-prompt \
+  "List files in src/ that import the deprecated retry helper")
+
+count=$(echo "$result" | jq '.files | length')
+if [ "$count" -gt 0 ]; then
+  arble mobile notify "$count files still use the deprecated retry helper"
+fi</code></pre>
+        </div>
+
+        <p>In PowerShell, <code>ConvertFrom-Json</code> gives you objects directly. For anything with
+          real control flow, drive the CLI as a subprocess rather than parsing rendered output:</p>
+
+        <div class="docs__code">
+          <div class="docs__codebar"><span class="docs__lang">POWERSHELL</span><button class="docs__copy" type="button" data-copy="c-py" aria-label="Copy code">Copy</button></div>
+          <pre><code id="c-py">$result = arble run --json --no-prompt "Summarize open PRs older than 14 days" |
+  ConvertFrom-Json
+$result.summary | Set-Content pr-report.md</code></pre>
+        </div>
+
+        <div class="docs__code">
+          <div class="docs__codebar"><span class="docs__lang">PYTHON</span><button class="docs__copy" type="button" data-copy="c-py2" aria-label="Copy code">Copy</button></div>
+          <pre><code id="c-py2">import json, subprocess
+
+out = subprocess.run(
+    ["arble", "run", "--json", "--no-prompt",
+     "Audit retry logic in services/payments"],
+    capture_output=True, text=True, check=True,
+)
+report = json.loads(out.stdout)</code></pre>
+        </div>
+
+        <p>With cron, use an absolute path and set the profile explicitly &#8212; cron&#8217;s
+          environment is not your shell&#8217;s. Prefer <code>arble schedule</code> where you can:
+          scheduled runs get retries, queueing and job logs, which a cron entry does not.</p>
+
+        <div class="docs__code">
+          <div class="docs__codebar"><span class="docs__lang">CRONTAB</span><button class="docs__copy" type="button" data-copy="c-cron" aria-label="Copy code">Copy</button></div>
+          <pre><code id="c-cron">0 7 * * 1-5 ARBLE_PROFILE=local /usr/local/bin/arble run \
+  --no-prompt "Summarize overnight CI failures"</code></pre>
+        </div>
+
+        <h2 id="cicd">CI/CD</h2>
+        <p>In CI, run in remote mode with a scoped API token. Grant only the permissions the job needs,
+          and always pass <code>--no-prompt</code> so an unexpected approval fails the build instead of
+          hanging it.</p>
+
+        <div class="docs__code">
+          <div class="docs__codebar"><span class="docs__lang">CODE</span><button class="docs__copy" type="button" data-copy="c-gha" aria-label="Copy code">Copy</button></div>
+          <pre><code id="c-gha"># GitHub Actions
+- name: Review the diff
+  env:
+    ARBLE_API_KEY: ${{ secrets.ARBLE_API_KEY }}
+    ARBLE_PROJECT: api-gateway
+  run: |
+    arble run --no-prompt --json \
+      "Review the changes in this PR against @acme/release-checklist" \
+      &gt; review.json</code></pre>
+        </div>
+
+        <div class="docs__code">
+          <div class="docs__codebar"><span class="docs__lang">CODE</span><button class="docs__copy" type="button" data-copy="c-gitlab" aria-label="Copy code">Copy</button></div>
+          <pre><code id="c-gitlab"># GitLab CI
+review:
+  image: arble/cli:1.8
+  variables:
+    ARBLE_PROJECT: api-gateway
+  script:
+    - arble run --no-prompt "Review the changes on this branch"</code></pre>
+        </div>
+
+        <p><strong>Azure DevOps, Jenkins, Buildkite and CircleCI</strong> all follow the same shape:
+          install the CLI or use the Docker image, expose <code>ARBLE_API_KEY</code> from the
+          platform&#8217;s secret store, and invoke <code>arble run --no-prompt</code>. Nothing about
+          the CLI is platform-specific &#8212; if it runs a shell and holds a secret, it works.</p>
+
+        <div class="docs__code">
+          <div class="docs__codebar"><span class="docs__lang">GROOVY</span><button class="docs__copy" type="button" data-copy="c-jenkins" aria-label="Copy code">Copy</button></div>
+          <pre><code id="c-jenkins">// Jenkins
+withCredentials([string(credentialsId: 'arble-key', variable: 'ARBLE_API_KEY')]) {
+  sh 'arble run --no-prompt "Summarize the changes in this build"'
+}</code></pre>
+        </div>
+
+        <p>Two rules for any pipeline: use a token scoped to exactly the permissions the job needs, and
+          treat a nonzero exit as a real failure rather than something to <code>|| true</code> away.</p>
+
+        <h2 id="reference">Command reference</h2>
+        <p>Every command accepts <code>--json</code>, <code>--project</code>, <code>--profile</code>
+          and <code>-v</code>. <code>arble help &lt;command&gt;</code> is authoritative &#8212; this
+          table is a map, not a spec.</p>
+
+        <h3 id="ref-auth">Authentication &amp; projects</h3>
+        <div class="docs__tablewrap">
+          <table class="docs__table">
+            <thead>
+              <tr><th scope="col">Command</th><th scope="col">Description</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row" class="mono">arble login</th><td>Authenticate and store a credential in the keychain</td></tr>
+              <tr><th scope="row" class="mono">arble logout</th><td>Remove the stored credential</td></tr>
+              <tr><th scope="row" class="mono">arble whoami</th><td>Show the active identity, org, profile and endpoint</td></tr>
+              <tr><th scope="row" class="mono">arble orgs ls|use</th><td>List or switch organizations</td></tr>
+              <tr><th scope="row" class="mono">arble projects create</th><td>Initialize a project in the current directory</td></tr>
+              <tr><th scope="row" class="mono">arble projects ls</th><td>List projects</td></tr>
+              <tr><th scope="row" class="mono">arble projects use</th><td>Set the active project</td></tr>
+              <tr><th scope="row" class="mono">arble projects rm</th><td>Delete a project and its memory</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 id="ref-sessions">Sessions &amp; agents</h3>
+        <div class="docs__tablewrap">
+          <table class="docs__table">
+            <thead>
+              <tr><th scope="col">Command</th><th scope="col">Description</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row" class="mono">arble sessions new</th><td>Create a session</td></tr>
+              <tr><th scope="row" class="mono">arble sessions ls</th><td>List sessions and their state</td></tr>
+              <tr><th scope="row" class="mono">arble sessions resume</th><td>Reattach with context intact</td></tr>
+              <tr><th scope="row" class="mono">arble sessions pause</th><td>Stop agents, keep context</td></tr>
+              <tr><th scope="row" class="mono">arble sessions kill</th><td>End the session</td></tr>
+              <tr><th scope="row" class="mono">arble sessions export</th><td>Export the full transcript</td></tr>
+              <tr><th scope="row" class="mono">arble run</th><td>Run an agent</td></tr>
+              <tr><th scope="row" class="mono">arble agents ls</th><td>List running agents</td></tr>
+              <tr><th scope="row" class="mono">arble agents attach</th><td>Attach to a running agent&#8217;s stream</td></tr>
+              <tr><th scope="row" class="mono">arble agents kill</th><td>Cancel an agent</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 id="ref-capabilities">Memory, skills, permissions</h3>
+        <div class="docs__tablewrap">
+          <table class="docs__table">
+            <thead>
+              <tr><th scope="col">Command</th><th scope="col">Description</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row" class="mono">arble memory search</th><td>Semantic search</td></tr>
+              <tr><th scope="row" class="mono">arble memory add|rm</th><td>Add or delete an entry</td></tr>
+              <tr><th scope="row" class="mono">arble memory summarize</th><td>Collapse related entries</td></tr>
+              <tr><th scope="row" class="mono">arble memory export</th><td>Export as JSON</td></tr>
+              <tr><th scope="row" class="mono">arble skills install|rm</th><td>Install from registry or path, or uninstall</td></tr>
+              <tr><th scope="row" class="mono">arble skills ls</th><td>List installed skills</td></tr>
+              <tr><th scope="row" class="mono">arble skills enable|disable</th><td>Toggle planner visibility</td></tr>
+              <tr><th scope="row" class="mono">arble skills update</th><td>Update within the compatible range</td></tr>
+              <tr><th scope="row" class="mono">arble permissions grant|revoke</th><td>Grant or revoke a capability, optionally scoped</td></tr>
+              <tr><th scope="row" class="mono">arble permissions ls</th><td>Show current rules</td></tr>
+              <tr><th scope="row" class="mono">arble permissions audit</th><td>Show what ran under them</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 id="ref-connectors">Connectors &amp; MCP</h3>
+        <div class="docs__tablewrap">
+          <table class="docs__table">
+            <thead>
+              <tr><th scope="col">Command</th><th scope="col">Description</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row" class="mono">arble connectors ls</th><td>List connectors and state</td></tr>
+              <tr><th scope="row" class="mono">arble connectors enable|disable</th><td>Toggle tool access</td></tr>
+              <tr><th scope="row" class="mono">arble connectors auth</th><td>Run or refresh the OAuth flow</td></tr>
+              <tr><th scope="row" class="mono">arble connectors status</th><td>Scopes, expiry and contributed tools</td></tr>
+              <tr><th scope="row" class="mono">arble mcp add|rm</th><td>Add or remove a local or remote server</td></tr>
+              <tr><th scope="row" class="mono">arble mcp ls</th><td>List servers</td></tr>
+              <tr><th scope="row" class="mono">arble mcp health</th><td>Probe status, latency and version</td></tr>
+              <tr><th scope="row" class="mono">arble mcp permissions</th><td>Inspect per-tool permissions</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 id="ref-devices">Desktop, mobile, automation</h3>
+        <div class="docs__tablewrap">
+          <table class="docs__table">
+            <thead>
+              <tr><th scope="col">Command</th><th scope="col">Description</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row" class="mono">arble desktop open</th><td>Open an app or file</td></tr>
+              <tr><th scope="row" class="mono">arble desktop screenshot</th><td>Capture screen or window</td></tr>
+              <tr><th scope="row" class="mono">arble desktop clipboard</th><td>Read or write the clipboard</td></tr>
+              <tr><th scope="row" class="mono">arble desktop windows</th><td>List or focus windows</td></tr>
+              <tr><th scope="row" class="mono">arble desktop click|type|key</th><td>Simulate input</td></tr>
+              <tr><th scope="row" class="mono">arble desktop run</th><td>Run an automation file</td></tr>
+              <tr><th scope="row" class="mono">arble mobile pair</th><td>Pair a device</td></tr>
+              <tr><th scope="row" class="mono">arble mobile notify</th><td>Send a notification</td></tr>
+              <tr><th scope="row" class="mono">arble mobile open|shortcut</th><td>Open an app or deep link, or run a shortcut</td></tr>
+              <tr><th scope="row" class="mono">arble mobile camera|mic</th><td>Capture, with on-device approval</td></tr>
+              <tr><th scope="row" class="mono">arble schedule create|ls|rm</th><td>Manage cron schedules</td></tr>
+              <tr><th scope="row" class="mono">arble triggers create|ls|rm</th><td>Manage event triggers</td></tr>
+              <tr><th scope="row" class="mono">arble jobs ls|logs</th><td>List job runs, or logs for one job</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 id="ref-observability">Logs, config, debug</h3>
+        <div class="docs__tablewrap">
+          <table class="docs__table">
+            <thead>
+              <tr><th scope="col">Command</th><th scope="col">Description</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row" class="mono">arble logs</th><td>Live or historical logs</td></tr>
+              <tr><th scope="row" class="mono">arble metrics</th><td>Aggregated metrics</td></tr>
+              <tr><th scope="row" class="mono">arble config get|set|ls</th><td>Read and write configuration</td></tr>
+              <tr><th scope="row" class="mono">arble profiles ls|use</th><td>Manage profiles</td></tr>
+              <tr><th scope="row" class="mono">arble secrets set|ls</th><td>Manage secrets</td></tr>
+              <tr><th scope="row" class="mono">arble trace</th><td>Full execution trace</td></tr>
+              <tr><th scope="row" class="mono">arble version</th><td>CLI and daemon versions</td></tr>
+              <tr><th scope="row" class="mono">arble help</th><td>Help for any command</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 id="env">Environment variables</h2>
+        <div class="docs__tablewrap">
+          <table class="docs__table">
+            <thead>
+              <tr><th scope="col">Variable</th><th scope="col">Purpose</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row" class="mono">ARBLE_API_KEY</th><td>API token. Takes precedence over the keychain credential.</td></tr>
+              <tr><th scope="row" class="mono">ARBLE_PROFILE</th><td>Profile to use, equivalent to <code>--profile</code>.</td></tr>
+              <tr><th scope="row" class="mono">ARBLE_PROJECT</th><td>Active project, equivalent to <code>--project</code>.</td></tr>
+              <tr><th scope="row" class="mono">ARBLE_ENDPOINT</th><td>Daemon or instance endpoint. Overrides the profile&#8217;s endpoint.</td></tr>
+              <tr><th scope="row" class="mono">ARBLE_LOG_LEVEL</th><td><code>error</code>, <code>warn</code>, <code>info</code>, <code>debug</code> or <code>trace</code>. Default <code>info</code>.</td></tr>
+              <tr><th scope="row" class="mono">ARBLE_CONFIG</th><td>Path to the config file. Default <code>~/.arble/config.toml</code>.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>Environment variables override config files and are overridden by flags.</p>
+
+        <h2 id="exit-codes">Exit codes</h2>
+        <div class="docs__tablewrap">
+          <table class="docs__table">
+            <thead>
+              <tr><th scope="col">Code</th><th scope="col">Meaning</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row" class="mono">0</th><td>Success</td></tr>
+              <tr><th scope="row" class="mono">1</th><td>General error &#8212; the command ran and failed</td></tr>
+              <tr><th scope="row" class="mono">2</th><td>Usage error &#8212; unknown flag, missing argument</td></tr>
+              <tr><th scope="row" class="mono">3</th><td>Not authenticated, or the credential expired</td></tr>
+              <tr><th scope="row" class="mono">4</th><td>Permission denied, including a <code>--no-prompt</code> run that needed approval</td></tr>
+              <tr><th scope="row" class="mono">5</th><td>Not found &#8212; project, session, agent or connector</td></tr>
+              <tr><th scope="row" class="mono">6</th><td>Conflict &#8212; the resource is in a state that forbids the operation</td></tr>
+              <tr><th scope="row" class="mono">7</th><td>Timeout</td></tr>
+              <tr><th scope="row" class="mono">8</th><td>Cancelled, including a graceful Ctrl-C</td></tr>
+              <tr><th scope="row" class="mono">130</th><td>Interrupted by SIGINT before the CLI could shut down cleanly</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>In scripts, distinguish <code>4</code> from <code>1</code>. A permission denial means the
+          grant is wrong and retrying won&#8217;t help; a general error may be transient.</p>
+
+        <h2 id="best-practices">Best practices</h2>
+        <ol class="docs__list">
+          <li>Use profiles rather than editing the endpoint &#8212; switching contexts should be one word, not a config change.</li>
+          <li>Check in <code>arble.json</code> so a teammate cloning the repository gets the same skills, connectors and permission scopes.</li>
+          <li>Always pass <code>--no-prompt</code> in CI, so a missing grant fails the build instead of hanging it.</li>
+          <li>Scope every permission &#8212; <code>filesystem.write --scope ./src</code>, never bare <code>filesystem.write</code>.</li>
+          <li>Use scoped API tokens per pipeline, not one token shared across every job.</li>
+          <li>Prefer <code>arble schedule</code> to cron; you get retries, queueing and job logs for free.</li>
+          <li>Put jobs that touch the same resource in the same queue so they can&#8217;t run concurrently.</li>
+          <li>Use <code>--dry-run</code> the first time you point an automation at anything you can&#8217;t easily undo.</li>
+          <li>Pipe <code>--json</code> into <code>jq</code> rather than parsing rendered tables &#8212; the table format is not a stable interface.</li>
+          <li>Read <code>arble permissions audit</code> before <code>arble trace</code> when a run stops early; it&#8217;s usually the answer.</li>
+          <li>Write memory entries as durable facts, and use <code>arble sessions export</code> for what happened in one run.</li>
+          <li>Run <code>arble memory summarize</code> periodically on long-lived projects; unbounded memory costs context on every run.</li>
+          <li>Pin skill versions in <code>arble.json</code> so a registry update can&#8217;t change how an agent behaves mid-sprint.</li>
+          <li>Run <code>arble mcp health</code> before debugging an agent that says a tool is unavailable.</li>
+          <li>Treat <code>arble sessions export</code> output as the artifact for incident reviews &#8212; it contains the arguments and approvals, not just the summary.</li>
+        </ol>
+
+        <h2 id="faq">FAQ</h2>
+        <div class="docs__acc">
+          <details class="docs__item">
+            <summary>Does the CLI need the desktop app installed?</summary>
+            <p>No. The app and the CLI are both clients of the same daemon. Install the daemon alone
+              for a headless machine, or point the CLI at a remote instance and install nothing
+              locally.</p>
+          </details>
+          <details class="docs__item">
+            <summary>Can I use the CLI fully offline?</summary>
+            <p>Yes, in local mode with a local model. Connectors and remote MCP servers need network
+              access, but sessions, memory, permissions and desktop control do not.</p>
+          </details>
+          <details class="docs__item">
+            <summary>How do I stop an agent mid-run?</summary>
+            <p>Ctrl-C in the foreground, or <code>arble agents kill &lt;id&gt;</code> for a background
+              one. Both cancel cooperatively &#8212; an in-flight tool call is given the chance to stop
+              cleanly before it&#8217;s terminated.</p>
+          </details>
+          <details class="docs__item">
+            <summary>What happens to a background agent if my shell exits?</summary>
+            <p>It keeps running; the daemon owns it, not your shell. Use <code>--detach</code> if it
+              also needs to survive a daemon restart.</p>
+          </details>
+          <details class="docs__item">
+            <summary>Is the output format stable enough to parse?</summary>
+            <p>Parse <code>--json</code>, not the rendered tables. The JSON shape is versioned; table
+              layout changes between releases.</p>
+          </details>
+          <details class="docs__item">
+            <summary>How do I run against a self-hosted instance?</summary>
+            <p>Set the endpoint on a profile and switch to it. Everything else is identical &#8212; the
+              CLI doesn&#8217;t distinguish hosted from self-hosted.</p>
+          </details>
+          <details class="docs__item">
+            <summary>Can two people share a project?</summary>
+            <p>Yes. Projects belong to the organization, and memory and permission grants are shared.
+              Sessions are per-user unless explicitly shared.</p>
+          </details>
+          <details class="docs__item">
+            <summary>Does a CI run see my local permission grants?</summary>
+            <p>No. Grants are per-profile and per-project, and a CI token carries its own scopes. This
+              is deliberate &#8212; a local convenience grant should never widen what a pipeline can
+              do.</p>
+          </details>
+          <details class="docs__item">
+            <summary>Where are credentials stored?</summary>
+            <p>In the OS keychain &#8212; Keychain on macOS, Secret Service on Linux, Credential
+              Manager on Windows. Never in <code>config.toml</code>, and never in
+              <code>arble.json</code>.</p>
+          </details>
+          <details class="docs__item">
+            <summary>How do I see which version the daemon is running?</summary>
+            <p><code>arble version</code> prints both the CLI and daemon versions. They don&#8217;t
+              have to match exactly, but the CLI warns when the gap is wide enough to matter.</p>
+          </details>
+        </div>
+      
+        <nav class="pbp__nav" aria-label="Page navigation">
+          <a class="pbp__navcard pbp__navcard--prev" href="../../../docs/developers/tool-sdk/"><span class="pbp__navcard-l">Previous</span><span class="pbp__navcard-t">Tool SDK</span></a>
+          <a class="pbp__navcard pbp__navcard--next" href="../../../docs/developers/api-reference/"><span class="pbp__navcard-l">Next</span><span class="pbp__navcard-t">API Reference</span></a>
+        </nav>
+        </article>
+
+      <aside class="docs__toc" aria-label="On this page">
+        <p class="docs__tocH">On this page</p>
+        <ul class="docs__toclist" id="docsToc">
+          <li class="docs__tocrow"><a href="#installation">Installation</a></li>
+          <li class="docs__tocrow"><a href="#authentication">Authentication</a></li>
+          <li class="docs__tocrow"><a href="#projects">Projects</a></li>
+          <li class="docs__tocrow"><a href="#sessions">Sessions</a></li>
+          <li class="docs__tocrow"><a href="#agents">Running agents</a></li>
+          <li class="docs__tocrow"><a href="#memory">Memory</a></li>
+          <li class="docs__tocrow"><a href="#skills">Skills</a></li>
+          <li class="docs__tocrow"><a href="#connectors">Connectors</a></li>
+          <li class="docs__tocrow"><a href="#mcp">MCP</a></li>
+          <li class="docs__tocrow"><a href="#permissions">Permissions</a></li>
+          <li class="docs__tocrow"><a href="#desktop">Desktop</a></li>
+          <li class="docs__tocrow"><a href="#mobile">Mobile</a></li>
+          <li class="docs__tocrow"><a href="#automation">Automation</a></li>
+          <li class="docs__tocrow"><a href="#logs">Logs</a></li>
+          <li class="docs__tocrow"><a href="#observability">Observability</a></li>
+          <li class="docs__tocrow"><a href="#configuration">Configuration</a></li>
+          <li class="docs__tocrow"><a href="#debugging">Debugging</a></li>
+          <li class="docs__tocrow"><a href="#scripting">Scripting</a></li>
+          <li class="docs__tocrow"><a href="#cicd">CI/CD</a></li>
+          <li class="docs__tocrow"><a href="#reference">Command reference</a></li>
+          <li class="docs__tocrow docs__tocrow--sub"><a href="#ref-auth">Authentication &amp; projects</a></li>
+          <li class="docs__tocrow docs__tocrow--sub"><a href="#ref-sessions">Sessions &amp; agents</a></li>
+          <li class="docs__tocrow docs__tocrow--sub"><a href="#ref-capabilities">Memory, skills, permissions</a></li>
+          <li class="docs__tocrow docs__tocrow--sub"><a href="#ref-connectors">Connectors &amp; MCP</a></li>
+          <li class="docs__tocrow docs__tocrow--sub"><a href="#ref-devices">Desktop, mobile, automation</a></li>
+          <li class="docs__tocrow docs__tocrow--sub"><a href="#ref-observability">Logs, config, debug</a></li>
+          <li class="docs__tocrow"><a href="#env">Environment variables</a></li>
+          <li class="docs__tocrow"><a href="#exit-codes">Exit codes</a></li>
+          <li class="docs__tocrow"><a href="#best-practices">Best practices</a></li>
+          <li class="docs__tocrow"><a href="#faq">FAQ</a></li>
+        </ul>
+      </aside>
+      </div>
+    </div>
+  </div>
+
+  <script src="../../../assets/js/docs.js?v=7" defer></script>
+  <script>window.ARBLE_DOCS_ROOT = "../../../docs/";</script>
+  <script src="../../../assets/js/docs-search.js?v=2" defer></script>
+  <script src="../../../assets/js/docs-ui.js?v=3" defer></script>
+</body>
+
+</html>

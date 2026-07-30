@@ -1,0 +1,1687 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Self-hosting &#8212; Arble Docs</title>
+  <meta name="description" content="Deploy on infrastructure you own — Docker, Kubernetes or bare metal." />
+  <link rel="icon"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='3.4' fill='%230A0A0B'/%3E%3Ccircle cx='12' cy='12' r='7.2' fill='none' stroke='%230A0A0B' stroke-width='1.3' opacity='.45'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Stack+Sans+Headline:wght@200..700&display=swap" />
+  <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f%5B%5D=switzer@400,500,600,700&display=swap" />
+  <link rel="stylesheet" href="../../../assets/css/docs.css?v=84" />
+</head>
+
+<!-- Documentation is its own application, not a page on the marketing site:
+     no floating nav, no CTA, no hero. The shell is a fixed sidebar plus a
+     scrolling content column, with the header split so each half aligns to
+     the column beneath it. -->
+<body class="dapp">
+  <a class="skip" href="#doc">Skip to content</a>
+
+  <div class="dapp__grid">
+
+    <aside class="dside" aria-label="Documentation navigation">
+      <div class="dside__head">
+        <a class="dside__brand" href="../../../index.html" aria-label="Arble home">
+          <img src="../../../assets/img/brand/logo-mark.png" width="288" height="271" alt="" aria-hidden="true" />
+        </a>
+        <span class="dside__rule" aria-hidden="true"></span>
+        <a class="dside__brand" href="../../../docs/"><span>Docs</span></a>
+      </div>
+      <div class="dside__scroll">
+        <form class="docs__search" role="search" onsubmit="return false;">
+          <input class="docs__searchi" id="docsSearch" type="search" autocomplete="off"
+            placeholder="Search&#8230;" aria-label="Search documentation" />
+          <ul class="docs__searchr" id="docsSearchResults" hidden></ul>
+        </form>
+        <nav aria-label="Sections">
+        <details class="docs__grp">
+          <summary class="docs__grph"><span>Getting Started</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></summary>
+          <ul class="docs__raillist">
+            <li class="docs__railrow"><a href="../../../docs/getting-started/install/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5"/><path d="M3 17v2a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-2"/></svg><span>Install</span></a></li>
+            <li class="docs__railrow"><a href="../../../docs/getting-started/pair-device/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="14" y="3" width="7" height="12" rx="1.5"/><rect x="3" y="9" width="8" height="12" rx="1.5"/></svg><span>Pair Device</span></a></li>
+            <li class="docs__railrow"><a href="../../../docs/getting-started/first-run/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m10 8 6 4-6 4z"/></svg><span>First Run</span></a></li>
+            <li class="docs__railrow"><a href="../../../docs/getting-started/configuration/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-2.9 1.2 2 2 0 1 1-4 0 1.7 1.7 0 0 0-2.9-1.2l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1A1.7 1.7 0 0 0 2.6 15a2 2 0 1 1 0-4 1.7 1.7 0 0 0 1.8-2.9l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1A1.7 1.7 0 0 0 10 3.6a2 2 0 1 1 4 0 1.7 1.7 0 0 0 2.9 1.2l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1A1.7 1.7 0 0 0 21.4 11a2 2 0 1 1 0 4"/></svg><span>Configuration</span></a></li>
+            <li class="docs__railrow"><a href="../../../docs/getting-started/system-requirements/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg><span>System Requirements</span></a></li>
+            <li class="docs__railrow"><a href="../../../docs/getting-started/updates/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 21v-5h5"/></svg><span>Updates</span></a></li>
+          </ul>
+        </details>
+        <details class="docs__grp">
+          <summary class="docs__grph"><span>Agent</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></summary>
+          <ul class="docs__raillist">
+            <li class="docs__railrow"><a href="../../../docs/agent/sessions/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span>Sessions</span></a></li>
+            <li class="docs__railrow"><a href="../../../docs/agent/memory/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a3 3 0 0 0-3 3v1a3 3 0 0 0 0 6v1a3 3 0 0 0 6 0v-1a3 3 0 0 0 0-6V6a3 3 0 0 0-3-3"/></svg><span>Memory</span></a></li>
+            <li class="docs__railrow"><a href="../../../docs/agent/skills/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M3 15v4a2 2 0 0 0 2 2h4m12-6v4a2 2 0 0 1-2 2h-4"/><path d="M9 9h6v6H9z"/></svg><span>Skills</span></a></li>
+            <li class="docs__railrow"><a href="../../../docs/agent/permissions/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s8-4 8-10V5l-8-3-8 3v6c0 6 8 10 8 10"/></svg><span>Permissions</span></a></li>
+            <li class="docs__railrow"><a href="../../../docs/agent/automation/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>Automation</span></a></li>
+            <li class="docs__railrow"><a href="../../../docs/agent/desktop/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8"/></svg><span>Desktop Control</span></a></li>
+            <li class="docs__railrow"><a href="../../../docs/agent/notifications/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 8-3 8h18s-3-1-3-8"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg><span>Notifications</span></a></li>
+          </ul>
+        </details>
+        <details class="docs__grp" open>
+          <summary class="docs__grph"><span>Developers</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></summary>
+          <ul class="docs__raillist">
+            <li class="docs__railrow"><a href="../../../docs/developers/mcp-servers/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="7" rx="2"/><rect x="3" y="13" width="18" height="7" rx="2"/><path d="M7 8h.01M7 17h.01"/></svg><span>MCP Servers</span></a></li>
+            <li class="docs__railrow"><a href="../../../docs/developers/tool-sdk/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.8-3.8a6 6 0 0 1-7.9 7.9l-6.9 6.9a2.1 2.1 0 0 1-3-3l6.9-6.9a6 6 0 0 1 7.9-7.9z"/></svg><span>Tool SDK</span></a></li>
+            <li class="docs__railrow"><a href="../../../docs/developers/cli/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 8 4 4-4 4M12 16h7"/><rect x="2" y="3" width="20" height="18" rx="2"/></svg><span>CLI</span></a></li>
+            <li class="docs__railrow"><a href="../../../docs/developers/api-reference/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8 6-6 6 6 6M16 6l6 6-6 6"/></svg><span>API Reference</span></a></li>
+            <li class="docs__railrow is-current"><a href="../../../docs/developers/self-hosting/" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 2 7l10 5 10-5z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/></svg><span>Self-hosting</span></a></li>
+          </ul>
+        </details>
+        <details class="docs__grp">
+          <summary class="docs__grph"><span>Reference</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></summary>
+          <ul class="docs__raillist">
+            <li class="docs__railrow"><a href="../../../docs/reference/glossary/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2"/></svg><span>Glossary</span></a></li>
+            <li class="docs__railrow"><a href="../../../docs/reference/faq/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 2.4-3 4M12 17h.01"/></svg><span>FAQ</span></a></li>
+            <li class="docs__railrow"><a href="../../../docs/reference/troubleshooting/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4.4-4.4"/></svg><span>Troubleshooting</span></a></li>
+            <li class="docs__railrow"><a href="../../../docs/reference/release-notes/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 13h6M9 17h4"/></svg><span>Release Notes</span></a></li>
+          </ul>
+        </details>
+        </nav>
+      </div>
+      <nav class="dside__foot" aria-label="Arble">
+          <a href="../../../docs/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2"/></svg><span>Docs</span></a>
+          <a href="../../../docs/developers/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8 6-6 6 6 6M16 6l6 6-6 6"/></svg><span>Developers</span></a>
+          <a href="../../../playbook.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10 12 5 2 10l10 5z"/><path d="M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/></svg><span>Learn</span></a>
+          <a href="../../../docs/reference/troubleshooting/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.4 8.4 0 0 1 3.8-.9h.5a8.5 8.5 0 0 1 8 8z"/></svg><span>Contact support</span></a>
+      </nav>
+    </aside>
+
+    <div class="dmain">
+      <header class="dtop">
+        <button class="dnavbtn" type="button" id="navToggle" aria-label="Open navigation"
+          aria-expanded="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"
+            stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        </button>
+        <p class="docs__crumb"><a href="../../../docs/">Documentation</a> <span aria-hidden="true">/</span> <a href="../../../docs/developers/">Developers</a> <span aria-hidden="true">/</span> Self-hosting</p>
+        <div class="docs__acts">
+          <button class="docs__act" type="button" id="copyPage" aria-label="Copy page as Markdown">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9"
+              width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            <span>Copy page</span>
+          </button>
+        </div>
+      </header>
+
+      <div class="dbody">
+        <article class="docs__body" id="doc">
+          <h1 class="docs__title">Self-hosting</h1>
+          <p class="docs__meta"><b>29 min read</b><i>&#183;</i>Updated 30 Jul 2026</p>
+        <p class="docs__lead">Arble is designed to run entirely inside your environment. No component
+          requires a managed cloud, and no telemetry leaves the perimeter unless you configure it
+          to.</p>
+
+        <p>You choose where compute, storage, models and memory live. The same binaries run on a laptop
+          and on a multi-node cluster &#8212; the difference is configuration, not a separate product
+          edition.</p>
+
+        <div class="docs__tablewrap">
+          <table class="docs__table">
+            <thead>
+              <tr><th scope="col">Deployment</th><th scope="col">Typical use</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">Desktop</th><td>One user, local models, no shared state</td></tr>
+              <tr><th scope="row">Single server</th><td>Small team, one VM, all services co-located</td></tr>
+              <tr><th scope="row">Workstation</th><td>One user with a local GPU</td></tr>
+              <tr><th scope="row">GPU server</th><td>Shared inference for a team</td></tr>
+              <tr><th scope="row">Docker</th><td>Single-host container deployment</td></tr>
+              <tr><th scope="row">Docker Compose</th><td>Single host, full stack with dependencies</td></tr>
+              <tr><th scope="row">Kubernetes</th><td>Multi-node, HA, autoscaling</td></tr>
+              <tr><th scope="row">Bare metal</th><td>Maximum control over hardware and isolation</td></tr>
+              <tr><th scope="row">Private cloud</th><td>OpenStack, VMware, Nutanix</td></tr>
+              <tr><th scope="row">Public cloud</th><td>EKS, GKE, AKS, or plain VMs</td></tr>
+              <tr><th scope="row">Hybrid cloud</th><td>Control plane on-prem, inference burst to cloud</td></tr>
+              <tr><th scope="row">Air-gapped</th><td>No egress. Mirrored images, local models only</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 id="architecture">Architecture</h2>
+        <p>Arble separates into four planes: a stateless request plane, a stateful orchestration plane,
+          an execution plane that needs isolation, and the data plane. Understanding which is which
+          tells you what to scale and what to protect.</p>
+
+        <p><strong>API Gateway</strong> terminates TLS, authenticates every request, and enforces rate
+          limits before anything reaches the runtime. It is stateless and the only component that needs
+          ingress. Run at least two replicas.</p>
+
+        <p><strong>Arble Runtime</strong> owns sessions and runs. It accepts work, tracks run state, and
+          coordinates the planner and workers. State lives in Postgres, so the runtime itself is
+          horizontally scalable.</p>
+
+        <p><strong>Planner</strong> decides which tool to call for a given step. It reads the tool
+          registry and the session context, calls a model, and emits a tool call. It is CPU-light and
+          latency-bound on the model, not on itself.</p>
+
+        <p><strong>Memory</strong> stores durable per-project facts and serves semantic search. It owns
+          embedding generation and the vector index. This is the component that benefits most from a GPU
+          if you embed locally.</p>
+
+        <p><strong>Tool Registry</strong> is the single index of every callable capability, regardless of
+          origin. The planner sees built-in tools, Tool SDK tools, MCP tools and connector tools
+          identically &#8212; one schema shape, one permission model.</p>
+
+        <p><strong>Built-in Tools</strong> &#8212; filesystem, terminal, HTTP, browser &#8212; execute
+          inside a sandboxed worker, never in the runtime process. A tool that escapes its sandbox must
+          not land in a process holding database credentials.</p>
+
+        <p><strong>MCP Servers</strong> run as separate processes or Pods. Remote servers are reached
+          over HTTPS; local <code>stdio</code> servers are spawned per-worker, which is why
+          <code>stdio</code> requires a self-hosted deployment.</p>
+
+        <p><strong>LLMs</strong> are external to Arble. The runtime speaks an OpenAI-compatible protocol
+          to whatever you point it at &#8212; local vLLM, Ollama, or a hosted provider. Arble does not
+          embed a model.</p>
+
+        <p><strong>Storage</strong> is Postgres for control-plane state, Redis for queues and
+          coordination, and an S3-compatible object store for files. Each is a standard component you
+          likely already operate.</p>
+
+        <h3 id="components">Component summary</h3>
+        <div class="docs__tablewrap">
+          <table class="docs__table">
+            <thead>
+              <tr><th scope="col">Component</th><th scope="col">Stateless</th><th scope="col">Scales on</th><th scope="col">Needs GPU</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row" class="mono">arble-gateway</th><td>Yes</td><td>Request rate</td><td>No</td></tr>
+              <tr><th scope="row" class="mono">arble-runtime</th><td>Yes</td><td>Concurrent runs</td><td>No</td></tr>
+              <tr><th scope="row" class="mono">arble-worker</th><td>Yes</td><td>Tool call volume</td><td>No</td></tr>
+              <tr><th scope="row" class="mono">arble-memory</th><td>No (owns index)</td><td>Embedding volume</td><td>Optional</td></tr>
+              <tr><th scope="row">Postgres</th><td>No</td><td>Write throughput</td><td>No</td></tr>
+              <tr><th scope="row">Redis</th><td>No</td><td>Queue depth</td><td>No</td></tr>
+              <tr><th scope="row">Object store</th><td>No</td><td>Data volume</td><td>No</td></tr>
+              <tr><th scope="row">Model backend</th><td>Yes</td><td>Token throughput</td><td>Yes, local models</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="docs__note">
+          <p>The common sizing mistake is provisioning GPUs for Arble. Arble itself is a CPU workload.
+            GPUs serve inference and, optionally, embeddings &#8212; if your models are remote, you need
+            no GPU at all.</p>
+        </div>
+
+        <h2 id="deployment">Deployment options</h2>
+        <p>Pick the smallest topology that meets your availability requirement. Every option below runs
+          the same images.</p>
+
+        <div class="docs__tablewrap">
+          <table class="docs__table">
+            <thead>
+              <tr><th scope="col">Option</th><th scope="col">Nodes</th><th scope="col">HA</th><th scope="col">Best for</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">Desktop</th><td>1</td><td>No</td><td>Individual use, local models</td></tr>
+              <tr><th scope="row">Single machine</th><td>1</td><td>No</td><td>Evaluation, small teams</td></tr>
+              <tr><th scope="row">Docker</th><td>1</td><td>No</td><td>One service, existing Postgres</td></tr>
+              <tr><th scope="row">Docker Compose</th><td>1</td><td>No</td><td>Full stack on one host</td></tr>
+              <tr><th scope="row">Virtual machine</th><td>1&#8211;2</td><td>Partial</td><td>Regulated environments with VM-only policy</td></tr>
+              <tr><th scope="row">Bare metal</th><td>1&#8211;n</td><td>Yes</td><td>Strict isolation, predictable latency</td></tr>
+              <tr><th scope="row">Cloud VM</th><td>1&#8211;n</td><td>Yes</td><td>Fastest path with managed Postgres</td></tr>
+              <tr><th scope="row">Kubernetes</th><td>3+</td><td>Yes</td><td>Autoscaling, rolling updates, multi-tenant</td></tr>
+              <tr><th scope="row">Enterprise cluster</th><td>6+</td><td>Yes</td><td>Multi-region, GPU pools, SSO</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p><strong>Desktop and workstation</strong> run a single daemon with SQLite and no gateway. There
+          is no cluster to operate &#8212; this is what the desktop app installs.</p>
+
+        <p><strong>Docker Compose</strong> is the right default for a team evaluation. One host, real
+          Postgres and Redis, and a config file you can lift into Kubernetes later without rewriting.</p>
+
+        <p><strong>Kubernetes</strong> is the right default for production. You get rolling updates,
+          health-checked replicas and autoscaling without building them yourself.</p>
+
+        <p><strong>Bare metal</strong> matters when you need hardware-level isolation for tool sandboxes,
+          or when GPU passthrough through a hypervisor is unacceptable.</p>
+
+        <p>Avoid single-node Kubernetes as a production target. It adds operational surface without
+          adding availability &#8212; Docker Compose is simpler and fails in more predictable ways.</p>
+
+        <h2 id="requirements">System requirements</h2>
+        <p>Sizing below excludes model inference. Add GPU capacity separately per
+          <a href="#models">Models</a>.</p>
+
+        <div class="docs__tablewrap">
+          <table class="docs__table">
+            <thead>
+              <tr><th scope="col"></th><th scope="col">Minimum</th><th scope="col">Recommended</th><th scope="col">Enterprise</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">CPU</th><td>4 vCPU</td><td>8 vCPU</td><td>16+ vCPU per node, 3+ nodes</td></tr>
+              <tr><th scope="row">RAM</th><td>8 GB</td><td>32 GB</td><td>64 GB per node</td></tr>
+              <tr><th scope="row">Storage</th><td>40 GB SSD</td><td>250 GB NVMe</td><td>1 TB NVMe + object store</td></tr>
+              <tr><th scope="row">GPU</th><td>None</td><td>1 &#215; 24 GB</td><td>2+ &#215; 80 GB, pooled</td></tr>
+              <tr><th scope="row">Network</th><td>100 Mbps</td><td>1 Gbps</td><td>10 Gbps, redundant</td></tr>
+              <tr><th scope="row">OS</th><td>Linux 5.15+</td><td>Linux 5.15+</td><td>Linux 5.15+</td></tr>
+              <tr><th scope="row">Postgres</th><td>14</td><td>16</td><td>16, HA with replicas</td></tr>
+              <tr><th scope="row">Redis</th><td>6.2</td><td>7.2</td><td>7.2, Sentinel or Cluster</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p><strong>Operating systems.</strong> Ubuntu 22.04 LTS and 24.04, Debian 12, RHEL 9 and
+          derivatives are tested. macOS 14+ is supported for desktop and workstation only. Windows is
+          supported through WSL2 for development, not production.</p>
+
+        <p><strong>Kernel requirements.</strong> Tool sandboxing uses cgroups v2, user namespaces and
+          seccomp. A kernel older than 5.15, or one with user namespaces disabled, falls back to weaker
+          isolation and logs a warning at startup.</p>
+
+        <p><strong>Storage characteristics.</strong> Postgres is latency-sensitive on writes; put it on
+          NVMe or provisioned IOPS. Object storage is throughput-sensitive, not latency-sensitive
+          &#8212; network storage is fine.</p>
+
+        <p>Plan roughly 2 GB of Postgres per 10,000 runs retained, and size the object store for files
+          and screenshots, which dominate volume.</p>
+
+        <h2 id="docker">Docker</h2>
+        <p>Single-host Docker is the fastest way to a working deployment. Use it for evaluation, or for
+          production where one host is an acceptable failure domain.</p>
+
+        <h3 id="docker-install">Installation</h3>
+        <p>Images are published to GitHub Container Registry, tagged by exact version. Pin the patch
+          version in production &#8212; <code>latest</code> is for local experiments only.</p>
+
+        <div class="docs__code">
+          <div class="docs__codebar"><span class="docs__lang">SHELL</span><button class="docs__copy" type="button" data-copy="c-pull" aria-label="Copy code">Copy</button></div>
+          <pre><code id="c-pull">docker pull ghcr.io/arble-ai/runtime:1.8.2
+docker pull ghcr.io/arble-ai/gateway:1.8.2</code></pre>
+        </div>
+
+        <h3 id="docker-volumes">Volumes and ports</h3>
+        <p>Three paths must persist. Everything else in the container is disposable.</p>
+
+        <div class="docs__tablewrap">
+          <table class="docs__table">
+            <thead>
+              <tr><th scope="col">Path</th><th scope="col">Contents</th><th scope="col">Backed up</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row" class="mono">/var/lib/arble/data</th><td>SQLite (single-node), memory index</td><td>Yes</td></tr>
+              <tr><th scope="row" class="mono">/var/lib/arble/config</th><td><code>arble.yaml</code>, TLS material</td><td>Yes, in version control</td></tr>
+              <tr><th scope="row" class="mono">/var/cache/arble</th><td>Model and embedding cache</td><td>No, rebuildable</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="docs__note">
+          <p>Never bind-mount the Docker socket into a worker. A tool with socket access can start a
+            privileged container and leave the sandbox entirely.</p>
+        </div>
+
+        <div class="docs__tablewrap">
+          <table class="docs__table">
+            <thead>
+              <tr><th scope="col">Port</th><th scope="col">Protocol</th><th scope="col">Purpose</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row" class="mono">8443</th><td>HTTPS</td><td>API and CLI traffic. The only port to expose</td></tr>
+              <tr><th scope="row" class="mono">8080</th><td>HTTP</td><td>Internal only. Redirects to TLS when enabled</td></tr>
+              <tr><th scope="row" class="mono">9090</th><td>HTTP</td><td>Prometheus metrics. Never expose publicly</td></tr>
+              <tr><th scope="row" class="mono">7070</th><td>gRPC</td><td>Runtime-to-worker. Internal network only</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 id="docker-config">Configuration</h3>
+        <p>Configuration is a YAML file, overridable by environment variables. Environment wins, which is
+          what makes one image work across environments.</p>
+
+        <div class="docs__code">
+          <div class="docs__codebar"><span class="docs__lang">CODE</span><button class="docs__copy" type="button" data-copy="c-yaml" aria-label="Copy code">Copy</button></div>
+          <pre><code id="c-yaml"># /var/lib/arble/config/arble.yaml
+server:
+  bind: 0.0.0.0:8443
+  external_url: https://arble.internal.example.com
+
+database:
+  url: postgres://arble@postgres:5432/arble
+  max_connections: 40
+
+redis:
+  url: redis://redis:6379/0
+
+storage:
+  backend: s3
+  endpoint: https://minio.internal.example.com
+  bucket: arble-files
+
+models:
+  default: local-qwen
+  providers:
+    - name: local-qwen
+      kind: openai_compatible
+      base_url: http://vllm:8000/v1
+
+telemetry:
+  metrics: true
+  otlp_endpoint: http://otel-collector:4317</code></pre>
+        </div>
+
+        <h3 id="docker-compose">Docker Compose</h3>
+        <p>This stack is production-shaped on one host: real Postgres, real Redis, separated worker, no
+          host networking.</p>
+
+        <div class="docs__code">
+          <div class="docs__codebar"><span class="docs__lang">YAML</span><button class="docs__copy" type="button" data-copy="c-compose" aria-label="Copy code">Copy</button></div>
+          <pre><code id="c-compose">services:
+  gateway:
+    image: ghcr.io/arble-ai/gateway:1.8.2
+    ports: ["8443:8443"]
+    environment:
+      ARBLE_RUNTIME_URL: http://runtime:8080
+      ARBLE_TLS_CERT: /etc/arble/tls/tls.crt
+      ARBLE_TLS_KEY: /etc/arble/tls/tls.key
+    volumes:
+      - ./tls:/etc/arble/tls:ro
+    depends_on: [runtime]
+    restart: unless-stopped
+
+  runtime:
+    image: ghcr.io/arble-ai/runtime:1.8.2
+    environment:
+      ARBLE_DATABASE_URL: postgres://arble:${PG_PASSWORD}@postgres:5432/arble
+      ARBLE_REDIS_URL: redis://redis:6379/0
+      ARBLE_WORKER_URL: grpc://worker:7070
+    volumes:
+      - arble-config:/var/lib/arble/config
+    depends_on:
+      postgres: {condition: service_healthy}
+      redis: {condition: service_started}
+    restart: unless-stopped
+
+  worker:
+    image: ghcr.io/arble-ai/worker:1.8.2
+    # Sandboxing needs these; it does NOT need privileged.
+    security_opt: ["seccomp=./seccomp-arble.json"]
+    cap_drop: ["ALL"]
+    cap_add: ["SYS_ADMIN"]
+    tmpfs: ["/tmp:size=2g"]
+    restart: unless-stopped
+
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: arble
+      POSTGRES_PASSWORD: ${PG_PASSWORD}
+      POSTGRES_DB: arble
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U arble"]
+      interval: 10s
+      retries: 5
+    restart: unless-stopped
+
+  redis:
+    image: redis:7.2
+    command: ["redis-server", "--appendonly", "yes"]
+    volumes:
+      - redisdata:/data
+    restart: unless-stopped
+
+volumes:
+  arble-config:
+  pgdata:
+  redisdata:</code></pre>
+        </div>
+
+        <p>Run migrations before starting the stack for the first time, and before every upgrade:</p>
+
+        <div class="docs__code">
+          <div class="docs__codebar"><span class="docs__lang">SHELL</span><button class="docs__copy" type="button" data-copy="c-migrate" aria-label="Copy code">Copy</button></div>
+          <pre><code id="c-migrate">docker compose run --rm runtime arble server migrate
+docker compose up -d</code></pre>
+        </div>
+
+        <h3 id="docker-mcp">Networking and MCP containers</h3>
+        <p>Compose puts every service on one bridge network, so only the gateway needs a published port.
+          Local MCP servers join the same network and are reachable by service name. Register them
+          against the internal hostname, not localhost:</p>
+
+        <div class="docs__code">
+          <div class="docs__codebar"><span class="docs__lang">CODE</span><button class="docs__copy" type="button" data-copy="c-mcp-compose" aria-label="Copy code">Copy</button></div>
+          <pre><code id="c-mcp-compose">  mcp-postgres:
+    image: ghcr.io/arble-ai/mcp-postgres:1.2.0
+    environment:
+      DATABASE_URL: postgres://readonly@warehouse:5432/analytics
+    restart: unless-stopped</code></pre>
+        </div>
+
+        <div class="docs__code">
+          <div class="docs__codebar"><span class="docs__lang">SHELL</span><button class="docs__copy" type="button" data-copy="c-mcp-add" aria-label="Copy code">Copy</button></div>
+          <pre><code id="c-mcp-add">docker compose exec runtime \
+  arble mcp add postgres --url http://mcp-postgres:8080/mcp</code></pre>
+        </div>
+
+        <h2 id="kubernetes">Kubernetes</h2>
+        <p>Kubernetes is the recommended production target. The Helm chart is the supported installation
+          path; raw manifests are shown to explain what the chart produces.</p>
+
+        <h3 id="k8s-install">Namespace and installation</h3>
+        <div class="docs__code">
+          <div class="docs__codebar"><span class="docs__lang">SHELL</span><button class="docs__copy" type="button" data-copy="c-helm" aria-label="Copy code">Copy</button></div>
+          <pre><code id="c-helm">kubectl create namespace arble
+helm install arble oci://ghcr.io/arble-ai/charts/arble \
+  --version 1.8.2 \
+  --namespace arble \
+  --values values.yaml</code></pre>
+        </div>
+
+        <div class="docs__code">
+          <div class="docs__codebar"><span class="docs__lang">CODE</span><button class="docs__copy" type="button" data-copy="c-values" aria-label="Copy code">Copy</button></div>
+          <pre><code id="c-values"># values.yaml
+gateway:
+  replicaCount: 3
+  ingress:
+    enabled: true
+    className: nginx
+    host: arble.internal.example.com
+    tls:
+      secretName: arble-tls
+
+runtime:
+  replicaCount: 3
+  resources:
+    requests: {cpu: "2", memory: 4Gi}
+    limits: {cpu: "4", memory: 8Gi}
+
+worker:
+  replicaCount: 6
+  resources:
+    requests: {cpu: "1", memory: 2Gi}
+    limits: {cpu: "2", memory: 4Gi}
+
+memory:
+  persistence:
+    size: 100Gi
+    storageClass: fast-nvme
+
+postgres:
+  # Point at managed Postgres rather than running it in-cluster.
+  external: true
+  existingSecret: arble-postgres
+
+models:
+  default: local-qwen
+  providers:
+    - name: local-qwen
+      kind: openai_compatible
+      base_url: http://vllm.models.svc.cluster.local:8000/v1</code></pre>
+        </div>
+
+        <h3 id="k8s-deployment">Deployment</h3>
+        <p>The runtime is stateless, which is what makes rolling updates safe. Note the probes &#8212;
+          they are what make a rollout non-disruptive.</p>
+
+        <div class="docs__code">
+          <div class="docs__codebar"><span class="docs__lang">YAML</span><button class="docs__copy" type="button" data-copy="c-deploy" aria-label="Copy code">Copy</button></div>
+          <pre><code id="c-deploy">apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: arble-runtime
+  namespace: arble
+spec:
+  replicas: 3
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 1
+  selector:
+    matchLabels: {app: arble-runtime}
+  template:
+    metadata:
+      labels: {app: arble-runtime}
+    spec:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 10001
+        fsGroup: 10001
+      containers:
+        - name: runtime
+          image: ghcr.io/arble-ai/runtime:1.8.2
+          ports:
+            - {containerPort: 8080, name: http}
+            - {containerPort: 9090, name: metrics}
+          env:
+            - name: ARBLE_DATABASE_URL
+              valueFrom:
+                secretKeyRef: {name: arble-postgres, key: url}
+            - name: ARBLE_REDIS_URL
+              valueFrom:
+                secretKeyRef: {name: arble-redis, key: url}
+          livenessProbe:
+            httpGet: {path: /healthz, port: 8080}
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          readinessProbe:
+            httpGet: {path: /readyz, port: 8080}
+            periodSeconds: 5
+          # Runs can be long. Give in-flight work time to drain.
+          lifecycle:
+            preStop:
+              exec:
+                command: ["arble", "server", "drain", "--timeout", "120s"]
+          resources:
+            requests: {cpu: "2", memory: 4Gi}
+            limits: {cpu: "4", memory: 8Gi}
+      terminationGracePeriodSeconds: 150</code></pre>
+        </div>
+
+        <p><code>/healthz</code> reports process liveness only. <code>/readyz</code> additionally checks
+          Postgres, Redis and the default model backend &#8212; a runtime that can&#8217;t reach its
+          database reports unready and stops receiving traffic instead of failing requests.</p>
+
+        <h3 id="k8s-service">Service and Ingress</h3>
+        <div class="docs__code">
+          <div class="docs__codebar"><span class="docs__lang">YAML</span><button class="docs__copy" type="button" data-copy="c-ingress" aria-label="Copy code">Copy</button></div>
+          <pre><code id="c-ingress">apiVersion: v1
+kind: Service
+metadata:
+  name: arble-runtime
+  namespace: arble
+spec:
+  selector: {app: arble-runtime}
+  ports:
+    - {name: http, port: 8080, targetPort: http}
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: arble
+  namespace: arble
+  annotations:
+    # Streaming must not be buffered or cut off mid-run.
+    nginx.ingress.kubernetes.io/proxy-buffering: "off"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts: [arble.internal.example.com]
+      secretName: arble-tls
+  rules:
+    - host: arble.internal.example.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: arble-gateway
+                port: {name: http}</code></pre>
+        </div>
+
+        <div class="docs__note">
+          <p>Those two annotations are the most common cause of broken self-hosted deployments. Default
+            proxy buffering breaks Server-Sent Events, and a 60-second read timeout kills long runs
+            mid-execution.</p>
+        </div>
+
+        <h3 id="k8s-volumes">Persistent volumes</h3>
+        <p>Only <code>arble-memory</code> needs a PersistentVolume. Use <code>ReadWriteOnce</code> on
+          block storage &#8212; the vector index is not safe to share across Pods.</p>
+
+        <div class="docs__code">
+          <div class="docs__codebar"><span class="docs__lang">YAML</span><button class="docs__copy" type="button" data-copy="c-sts" aria-label="Copy code">Copy</button></div>
+          <pre><code id="c-sts">apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: arble-memory
+  namespace: arble
+spec:
+  serviceName: arble-memory
+  replicas: 1
+  selector:
+    matchLabels: {app: arble-memory}
+  template:
+    metadata:
+      labels: {app: arble-memory}
+    spec:
+      containers:
+        - name: memory
+          image: ghcr.io/arble-ai/memory:1.8.2
+          volumeMounts:
+            - {name: index, mountPath: /var/lib/arble/index}
+  volumeClaimTemplates:
+    - metadata: {name: index}
+      spec:
+        accessModes: [ReadWriteOnce]
+        storageClassName: fast-nvme
+        resources: {requests: {storage: 100Gi}}</code></pre>
+        </div>
+
+        <h3 id="k8s-secrets">Secrets</h3>
+        <p>Never put credentials in a ConfigMap or a Helm values file committed to git. Reference
+          existing Secrets, ideally projected from an external manager:</p>
+
+        <div class="docs__code">
+          <div class="docs__codebar"><span class="docs__lang">SHELL</span><button class="docs__copy" type="button" data-copy="c-k8s-secret" aria-label="Copy code">Copy</button></div>
+          <pre><code id="c-k8s-secret">kubectl create secret generic arble-postgres \
+  --namespace arble \
+  --from-literal=url='postgres://arble:...@pg.internal:5432/arble'</code></pre>
+        </div>
+
+        <h3 id="k8s-autoscaling">Autoscaling</h3>
+        <p>Scale the runtime on concurrent runs, not CPU &#8212; a run waiting on a model uses almost no
+          CPU while still consuming a slot.</p>
+
+        <div class="docs__code">
+          <div class="docs__codebar"><span class="docs__lang">YAML</span><button class="docs__copy" type="button" data-copy="c-hpa" aria-label="Copy code">Copy</button></div>
+          <pre><code id="c-hpa">apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: arble-runtime
+  namespace: arble
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: arble-runtime
+  minReplicas: 3
+  maxReplicas: 20
+  metrics:
+    - type: Pods
+      pods:
+        metric: {name: arble_active_runs}
+        target: {type: AverageValue, averageValue: "15"}
+  behavior:
+    scaleDown:
+      stabilizationWindowSeconds: 300</code></pre>
+        </div>
+
+        <p>Workers scale on queue depth (<code>arble_tool_queue_depth</code>). Both metrics are exported
+          on <code>:9090</code> and require an adapter such as <code>prometheus-adapter</code>.</p>
+
+        <h3 id="k8s-nodes">Node pools and rolling updates</h3>
+        <p>Separate pools by workload shape. Arble components are CPU workloads and should never be
+          scheduled onto GPU nodes, where they waste expensive capacity.</p>
+
+        <div class="docs__code">
+          <div class="docs__codebar"><span class="docs__lang">CODE</span><button class="docs__copy" type="button" data-copy="c-nodepool" aria-label="Copy code">Copy</button></div>
+          <pre><code id="c-nodepool">      nodeSelector:
+        arble.ai/pool: runtime
+      tolerations:
+        - key: arble.ai/dedicated
+          operator: Equal
+          value: runtime
+          effect: NoSchedule</code></pre>
+        </div>
+
+        <p>Taint GPU nodes for inference only, and let the model backend be the sole workload tolerating
+          that taint.</p>
+
+        <p><code>maxUnavailable: 0</code> with <code>maxSurge: 1</code> brings up a new Pod before
+          removing an old one. Combined with the <code>preStop</code> drain hook and a
+          <code>terminationGracePeriodSeconds</code> longer than the drain timeout, in-flight runs
+          complete rather than failing. Add a PodDisruptionBudget so node maintenance can&#8217;t take
+          the service down:</p>
+
+        <div class="docs__code">
+          <div class="docs__codebar"><span class="docs__lang">YAML</span><button class="docs__copy" type="button" data-copy="c-pdb" aria-label="Copy code">Copy</button></div>
+          <pre><code id="c-pdb">apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: arble-runtime
+  namespace: arble
+spec:
+  minAvailable: 2
+  selector:
+    matchLabels: {app: arble-runtime}</code></pre>
+        </div>
+
+        <h2 id="models">Models</h2>
+        <p>Arble does not ship a model. It speaks the OpenAI chat-completions protocol to whatever
+          backend you configure, which is why local and hosted providers are interchangeable.</p>
+
+        <div class="docs__tablewrap">
+          <table class="docs__table">
+            <thead>
+              <tr><th scope="col">Provider</th><th scope="col">Kind</th><th scope="col">Notes</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">Ollama</th><td class="mono">ollama</td><td>Simplest local option. Good for desktop and evaluation</td></tr>
+              <tr><th scope="row">LM Studio</th><td class="mono">openai_compatible</td><td>Desktop GUI, useful for local experimentation</td></tr>
+              <tr><th scope="row">vLLM</th><td class="mono">openai_compatible</td><td>Recommended for production local serving. High throughput</td></tr>
+              <tr><th scope="row">SGLang</th><td class="mono">openai_compatible</td><td>Strong on structured output and prefix caching</td></tr>
+              <tr><th scope="row">OpenAI-compatible</th><td class="mono">openai_compatible</td><td>Any gateway exposing <code>/v1/chat/completions</code></td></tr>
+              <tr><th scope="row">Anthropic</th><td class="mono">anthropic</td><td>Hosted. Requires egress</td></tr>
+              <tr><th scope="row">Gemini</th><td class="mono">gemini</td><td>Hosted. Requires egress</td></tr>
+              <tr><th scope="row">OpenRouter</th><td class="mono">openai_compatible</td><td>Hosted aggregator across many models</td></tr>
+              <tr><th scope="row">Custom</th><td class="mono">openai_compatible</td><td>Your own inference service</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="docs__code">
+          <div class="docs__codebar"><span class="docs__lang">YAML</span><button class="docs__copy" type="button" data-copy="c-models" aria-label="Copy code">Copy</button></div>
+          <pre><code id="c-models">models:
+  default: local-qwen
+  embedding: local-embed
+  providers:
+    - name: local-qwen
+      kind: openai_compatible
+      base_url: http://vllm.models.svc.cluster.local:8000/v1
+      model: Qwen3-32B-Instruct
+      max_concurrency: 32
+
+    - name: local-embed
+      kind: openai_compatible
+      base_url: http://tei.models.svc.cluster.local:8080/v1
+      model: bge-large-en-v1.5
+
+    - name: anthropic-fallback
+      kind: anthropic
+      api_key_secret: arble-anthropic
+      model: claude-sonnet-4-5</code></pre>
+        </div>
+
+        <h3 id="models-routing">Routing and fallback</h3>
+        <p>Route by task class rather than pinning one model everywhere. Planning benefits from a
+          stronger model; summarization and memory compaction do not.</p>
+
+        <p>A fallback chain is evaluated in order on connection failure, <code>5xx</code>, or timeout. It
+          is not evaluated on a <code>4xx</code> &#8212; a malformed request will fail the same way
+          everywhere.</p>
+
+        <div class="docs__code">
+          <div class="docs__codebar"><span class="docs__lang">YAML</span><button class="docs__copy" type="button" data-copy="c-routes" aria-label="Copy code">Copy</button></div>
+          <pre><code id="c-routes">models:
+  routes:
+    planner:
+      primary: local-qwen
+      fallback: [local-qwen-8b, anthropic-fallback]
+      timeout: 60s
+    summarizer: local-qwen-8b
+    embedding: local-embed</code></pre>
+        </div>
+
+        <p>In air-gapped deployments, omit hosted providers entirely. A configured-but-unreachable
+          provider adds a timeout to every failure path for no benefit.</p>
+
+        <h3 id="models-lb">Load balancing</h3>
+        <p>For multiple replicas of one model, put a Service or load balancer in front and give Arble a
+          single <code>base_url</code>. Arble does not implement inference-aware load balancing, and a
+          naive round-robin in front of vLLM will degrade prefix-cache hit rates.</p>
+
+        <p>Set <code>max_concurrency</code> to match what the backend can serve. Arble queues beyond it
+          rather than overwhelming the GPU and triggering timeouts across every in-flight run.</p>
+
+        <h2 id="storage">Storage</h2>
+        <p>Four storage systems, each with a distinct role. Only Postgres and the object store hold data
+          you cannot rebuild.</p>
+
+        <div class="docs__tablewrap">
+          <table class="docs__table">
+            <thead>
+              <tr><th scope="col">System</th><th scope="col">Holds</th><th scope="col">Loss impact</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">Postgres</th><td>Sessions, runs, permissions, audit log, memory metadata</td><td>Total. Back up</td></tr>
+              <tr><th scope="row">Object store</th><td>Files, screenshots, session exports</td><td>Permanent data loss. Back up</td></tr>
+              <tr><th scope="row">Redis</th><td>Queues, run scheduling, leader election, cache</td><td>Recoverable. In-flight runs fail</td></tr>
+              <tr><th scope="row">Vector index</th><td>Memory embeddings</td><td>Rebuildable from Postgres</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p><strong>SQLite</strong> is the default for desktop and single-node deployments. It is
+          genuinely production-capable for one node and one process, and unsuitable for anything with
+          multiple runtime replicas. Migrate before you scale out, not during.</p>
+
+        <p><strong>PostgreSQL</strong> 14+ is required for multi-node. Use 16, and enable
+          <code>pgvector</code> if you want the vector index in Postgres rather than a separate
+          service:</p>
+
+        <div class="docs__code">
+          <div class="docs__codebar"><span class="docs__lang">YAML</span><button class="docs__copy" type="button" data-copy="c-db" aria-label="Copy code">Copy</button></div>
+          <pre><code id="c-db">database:
+  url: postgres://arble@pg.internal:5432/arble
+  max_connections: 40
+  vector_backend: pgvector</code></pre>
+        </div>
+
+        <p>Size the connection pool as <code>max_connections &#215; runtime replicas</code> and check it
+          against the server&#8217;s limit. Exhausting Postgres connections is the most common cause of
+          a cluster-wide stall.</p>
+
+        <p><strong>Object storage</strong> is any S3-compatible endpoint &#8212; AWS S3, MinIO, Ceph RGW,
+          Cloudflare R2. Enable object versioning; it turns an accidental deletion into a recoverable
+          event.</p>
+
+        <p><strong>Redis</strong> 6.2+ handles queues and coordination. Enable AOF persistence so a
+          restart doesn&#8217;t drop queued work. Use Sentinel or Cluster for HA.</p>
+
+        <h3 id="storage-retention">Retention</h3>
+        <p>Retention is configured per data class. Defaults are conservative; tighten them to match your
+          compliance posture.</p>
+
+        <div class="docs__code">
+          <div class="docs__codebar"><span class="docs__lang">YAML</span><button class="docs__copy" type="button" data-copy="c-retention" aria-label="Copy code">Copy</button></div>
+          <pre><code id="c-retention">retention:
+  runs: 90d
+  messages: 90d
+  audit_log: 365d
+  events: 30d
+  files: 180d
+  memory: indefinite</code></pre>
+        </div>
+
+        <p>A nightly job enforces retention and vacuums reclaimed space. Audit log retention should meet
+          or exceed your longest compliance window &#8212; it is the record you will be asked for.</p>
+
+        <h2 id="memory">Memory</h2>
+        <p>Memory is what makes an agent useful on the second run. It is also the component with the most
+          sensitive contents, since it accumulates facts about your systems over time.</p>
+
+        <p><strong>Short-term</strong> memory is session context: messages and tool results in the
+          current conversation. It lives in Postgres, is bounded by the model&#8217;s context window, and
+          is discarded when the session is deleted.</p>
+
+        <p><strong>Long-term</strong> memory is durable per-project facts, deliberately written and
+          semantically retrieved. It outlives sessions by design &#8212; deleting a session does not
+          delete what it learned.</p>
+
+        <p><strong>Embeddings</strong> are generated by the configured embedding model and stored in the
+          vector index. Changing embedding models requires a full reindex, since vectors from different
+          models are not comparable.</p>
+
+        <p><strong>Compression</strong> collapses related entries into fewer, denser ones. Run it on a
+          schedule for long-lived projects &#8212; an unbounded memory costs context on every single
+          run.</p>
+
+        <div class="docs__code">
+          <div class="docs__codebar"><span class="docs__lang">SHELL</span><button class="docs__copy" type="button" data-copy="c-mem-ops" aria-label="Copy code">Copy</button></div>
+          <pre><code id="c-mem-ops">arble memory reindex --model local-embed-v2
+arble memory summarize --older-than 90d</code></pre>
+        </div>
+
+        <p><strong>Retention</strong> for memory defaults to indefinite, which is usually correct. Facts
+          don&#8217;t expire on a timer; prune them when they stop being true.</p>
+
+        <p><strong>Encryption</strong> applies at rest through your storage layer, and Arble additionally
+          encrypts memory contents with a project-scoped key before writing. A database dump does not
+          yield readable memory without the key:</p>
+
+        <div class="docs__code">
+          <div class="docs__codebar"><span class="docs__lang">YAML</span><button class="docs__copy" type="button" data-copy="c-mem-enc" aria-label="Copy code">Copy</button></div>
+          <pre><code id="c-mem-enc">memory:
+  encryption:
+    enabled: true
+    key_source: vault
+    vault_path: secret/arble/memory-key</code></pre>
+        </div>
+
+        <div class="docs__note">
+          <p>Back up the encryption key separately from the database. A backup of encrypted memory with
+            no key is not a backup.</p>
+        </div>
+
+        <h2 id="networking">Networking</h2>
+        <p>Arble needs exactly one inbound port. Everything else is internal, and treating it that way is
+          most of your security posture.</p>
+
+        <p><strong>HTTPS and TLS.</strong> TLS 1.2 minimum, 1.3 preferred. Terminate at the load balancer
+          or ingress. Plain HTTP is rejected rather than redirected &#8212; a redirect leaks the bearer
+          token in the first request.</p>
+
+        <p><strong>Reverse proxy.</strong> Any proxy works, with two required settings: response
+          buffering off, and a read timeout longer than your longest run. Both defaults are wrong for
+          streaming.</p>
+
+        <div class="docs__code">
+          <div class="docs__codebar"><span class="docs__lang">NGINX</span><button class="docs__copy" type="button" data-copy="c-nginx" aria-label="Copy code">Copy</button></div>
+          <pre><code id="c-nginx">location / {
+    proxy_pass http://arble-gateway:8080;
+    proxy_http_version 1.1;
+    proxy_buffering off;
+    proxy_read_timeout 3600s;
+    proxy_set_header X-Forwarded-Proto https;
+}</code></pre>
+        </div>
+
+        <p><strong>Load balancer.</strong> Runs are not pinned to a replica, so no session affinity is
+          required. Health checks should target <code>/readyz</code>, not <code>/healthz</code> &#8212;
+          the former knows whether dependencies are reachable.</p>
+
+        <p><strong>Internal networking.</strong> Runtime-to-worker is gRPC on <code>7070</code>, and
+          worker-to-anything-else should be denied by default. Workers execute tool code; they are the
+          component most likely to be attacked.</p>
+
+        <div class="docs__code">
+          <div class="docs__codebar"><span class="docs__lang">YAML</span><button class="docs__copy" type="button" data-copy="c-netpol" aria-label="Copy code">Copy</button></div>
+          <pre><code id="c-netpol">apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: arble-worker-egress
+  namespace: arble
+spec:
+  podSelector:
+    matchLabels: {app: arble-worker}
+  policyTypes: [Egress]
+  egress:
+    # DNS, and explicitly allowed destinations only.
+    - to:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: kube-system
+      ports: [{protocol: UDP, port: 53}]
+    - to:
+        - podSelector:
+            matchLabels: {app: vllm}
+      ports: [{protocol: TCP, port: 8000}]</code></pre>
+        </div>
+
+        <p><strong>Private DNS.</strong> Use internal names for every service-to-service hop, and make
+          <code>external_url</code> match the certificate exactly. A mismatch breaks OAuth redirects and
+          webhook signature verification in ways that are tedious to diagnose.</p>
+
+        <p><strong>Firewall.</strong> Allow <code>443</code> inbound to the load balancer. Deny
+          everything else inbound. Outbound egress should be an explicit allowlist &#8212; model
+          endpoints, your registry, and any remote MCP servers you have approved.</p>
+
+        <p><strong>Air-gapped deployments.</strong> Mirror images to an internal registry, use local
+          models only, and disable telemetry and the connector directory. Arble runs with no egress; the
+          CLI warns once at startup that update checks are unavailable.</p>
+
+        <div class="docs__code">
+          <div class="docs__codebar"><span class="docs__lang">YAML</span><button class="docs__copy" type="button" data-copy="c-airgap" aria-label="Copy code">Copy</button></div>
+          <pre><code id="c-airgap">telemetry:
+  enabled: false
+registry:
+  connector_directory: disabled
+  mcp_registry: disabled
+updates:
+  check: false</code></pre>
+        </div>
+
+        <h2 id="authentication">Authentication</h2>
+        <p>Self-hosted Arble authenticates users through your identity provider and services through API
+          keys. There is no separate Arble user directory to maintain.</p>
+
+        <p><strong>OIDC</strong> is the recommended integration and works with Okta, Entra ID, Auth0,
+          Keycloak and Google Workspace:</p>
+
+        <div class="docs__code">
+          <div class="docs__codebar"><span class="docs__lang">YAML</span><button class="docs__copy" type="button" data-copy="c-oidc" aria-label="Copy code">Copy</button></div>
+          <pre><code id="c-oidc">auth:
+  oidc:
+    issuer: https://login.example.com
+    client_id: arble-production
+    client_secret_secret: arble-oidc
+    redirect_url: https://arble.internal.example.com/auth/callback
+    scopes: [openid, profile, email, groups]
+
+  role_mapping:
+    "arble-admins": admin
+    "platform-engineering": maintainer
+    "engineering": member</code></pre>
+        </div>
+
+        <p><strong>SAML</strong> is available for providers without OIDC. It supports SP-initiated flow
+          and signed assertions; IdP-initiated flow is not supported, since it can&#8217;t carry the
+          state parameter Arble uses to prevent login CSRF.</p>
+
+        <p><strong>LDAP</strong> authenticates against Active Directory or OpenLDAP directly. Prefer OIDC
+          where you have the option &#8212; LDAP requires Arble to handle credentials, which OIDC avoids
+          entirely.</p>
+
+        <p><strong>Group mapping</strong> drives authorization. Map IdP groups to Arble roles so access
+          changes in one place.</p>
+
+        <p><strong>API keys</strong> authenticate services, scoped to a project or organization. Prefer
+          project scope &#8212; a leaked key then reaches one project&#8217;s data, not everything.</p>
+
+        <p><strong>Service accounts</strong> are non-human identities for CI and automation. They hold
+          their own permission grants and appear in the audit log under their own name, which is what
+          makes an unattended action attributable.</p>
+
+        <div class="docs__code">
+          <div class="docs__codebar"><span class="docs__lang">SHELL</span><button class="docs__copy" type="button" data-copy="c-svcacct" aria-label="Copy code">Copy</button></div>
+          <pre><code id="c-svcacct">arble service-accounts create ci-pr-review \
+  --project api-gateway \
+  --permissions "network.http:api.github.com"</code></pre>
+        </div>
+
+        <p><strong>Organizations</strong> partition projects, users and billing. In self-hosted
+          deployments most operators run one organization; use several when you need hard tenant
+          separation with no shared memory or connectors.</p>
+
+        <h2 id="secrets">Secrets</h2>
+        <p>Arble reads secrets from a configurable source and never writes them to disk in plaintext.
+          Every value marked secret is redacted from logs, traces and audit entries.</p>
+
+        <p><strong>Environment variables</strong> are acceptable for evaluation and single-host Docker.
+          They are visible in <code>docker inspect</code> and in a process listing, so avoid them in
+          production.</p>
+
+        <p><strong>HashiCorp Vault</strong> is the recommended production source, with either token or
+          Kubernetes auth:</p>
+
+        <div class="docs__code">
+          <div class="docs__codebar"><span class="docs__lang">YAML</span><button class="docs__copy" type="button" data-copy="c-vault" aria-label="Copy code">Copy</button></div>
+          <pre><code id="c-vault">secrets:
+  backend: vault
+  vault:
+    address: https://vault.internal.example.com
+    auth_method: kubernetes
+    role: arble
+    mount: secret/arble</code></pre>
+        </div>
+
+        <p><strong>Kubernetes Secrets</strong> are the practical default in-cluster. Enable encryption at
+          rest for etcd, or project from an external manager with the Secrets Store CSI driver &#8212; a
+          plain Secret is base64, not encryption.</p>
+
+        <p><strong>Docker Secrets</strong> work in Swarm, mounted at <code>/run/secrets</code>. In plain
+          Docker Compose, use a read-only mounted file rather than an environment variable.</p>
+
+        <p><strong>Rotation</strong> is non-disruptive when done in the right order. Create the new
+          value, deploy it, verify, then revoke the old one:</p>
+
+        <div class="docs__code">
+          <div class="docs__codebar"><span class="docs__lang">SHELL</span><button class="docs__copy" type="button" data-copy="c-rotate" aria-label="Copy code">Copy</button></div>
+          <pre><code id="c-rotate">arble api-keys create --name api-gateway-prod-2 --project api-gateway
+# deploy, verify, then:
+arble api-keys revoke key_8fRt2Ls</code></pre>
+        </div>
+
+        <p>Rotate the memory encryption key with <code>arble memory rotate-key</code>, which re-encrypts
+          in place. Do not rotate it by hand; a partially re-encrypted store is not recoverable without
+          both keys.</p>
+
+        <h2 id="scaling">Scaling</h2>
+        <p>Scale the plane that is actually saturated. Adding runtime replicas will not help if the
+          bottleneck is GPU throughput, and it may make it worse.</p>
+
+        <div class="docs__tablewrap">
+          <table class="docs__table">
+            <thead>
+              <tr><th scope="col">Symptom</th><th scope="col">Bottleneck</th><th scope="col">Action</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">Runs queued, low CPU</th><td>Runtime slots</td><td>Add runtime replicas</td></tr>
+              <tr><th scope="row">Tool calls queued</th><td>Worker capacity</td><td>Add worker replicas</td></tr>
+              <tr><th scope="row">High model latency</th><td>Inference</td><td>Add GPU capacity or a replica</td></tr>
+              <tr><th scope="row">Slow memory search</th><td>Vector index</td><td>Vertical scale, faster disk</td></tr>
+              <tr><th scope="row">Slow API, healthy runs</th><td>Gateway</td><td>Add gateway replicas</td></tr>
+              <tr><th scope="row">Everything slow</th><td>Postgres</td><td>Check connections, then IOPS</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p><strong>Horizontal scaling</strong> applies to the gateway, runtime and workers &#8212; all
+          stateless. This is the first lever for almost every capacity problem.</p>
+
+        <p><strong>Vertical scaling</strong> applies to <code>arble-memory</code> and Postgres. The vector
+          index is single-writer; give it more CPU, RAM and faster disk rather than more replicas.</p>
+
+        <p><strong>Queue workers</strong> execute scheduled and triggered runs. Scale them on
+          <code>arble_job_queue_depth</code>, separately from interactive traffic, so a nightly batch
+          doesn&#8217;t starve users.</p>
+
+        <p><strong>GPU pools</strong> scale independently of Arble. Keep them tainted and dedicated, and
+          size on tokens per second rather than request count &#8212; a long summarization consumes far
+          more than a short planning step.</p>
+
+        <p><strong>Memory workers</strong> handle embedding and compaction asynchronously. If memory
+          writes lag behind runs, add memory workers before scaling the index.</p>
+
+        <p><strong>Session workers</strong> maintain long-lived streaming connections. Each holds an open
+          connection, so they are memory- and file-descriptor-bound rather than CPU-bound. Raise
+          <code>ulimit -n</code> accordingly.</p>
+
+        <h2 id="ha">High availability</h2>
+        <p>HA means surviving the loss of one node without dropping requests. Three things must be true:
+          no singleton on the request path, a failover story for state, and health checks that tell the
+          truth.</p>
+
+        <p><strong>Multiple replicas.</strong> Run 3+ gateway and runtime replicas across distinct nodes.
+          Use anti-affinity so a single node failure can&#8217;t take all of them:</p>
+
+        <div class="docs__code">
+          <div class="docs__codebar"><span class="docs__lang">YAML</span><button class="docs__copy" type="button" data-copy="c-affinity" aria-label="Copy code">Copy</button></div>
+          <pre><code id="c-affinity">      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchLabels: {app: arble-runtime}
+              topologyKey: kubernetes.io/hostname</code></pre>
+        </div>
+
+        <p><strong>Leader election.</strong> Scheduled jobs, retention and migrations must run exactly
+          once. Replicas elect a leader through Redis, and only the leader executes them &#8212; no cron
+          sidecar or manual designation is required.</p>
+
+        <p><strong>Database failover.</strong> Use managed Postgres with automated failover, or Patroni if
+          self-managing. Arble reconnects with backoff and reports unready while the primary is
+          unavailable; runs in flight fail and are retryable.</p>
+
+        <p><strong>Health checks.</strong> <code>/healthz</code> for liveness, <code>/readyz</code> for
+          readiness and load-balancer membership. Never point a liveness probe at <code>/readyz</code>
+          &#8212; a brief database blip would restart every Pod simultaneously and turn a degradation
+          into an outage.</p>
+
+        <p><strong>Automatic restart.</strong> Kubernetes handles this through the liveness probe. On
+          Docker, use <code>restart: unless-stopped</code>. On bare metal, a systemd unit with
+          <code>Restart=always</code> and <code>RestartSec=5</code>.</p>
+
+        <div class="docs__note">
+          <p><code>arble-memory</code> is the one singleton. A brief window where memory search is
+            unavailable degrades run quality but does not fail runs &#8212; plan for restart, not for
+            zero downtime, on that component.</p>
+        </div>
+
+        <h2 id="monitoring">Monitoring</h2>
+        <p>Every component exports Prometheus metrics on <code>:9090/metrics</code> and structured JSON
+          logs on stdout.</p>
+
+        <div class="docs__code">
+          <div class="docs__codebar"><span class="docs__lang">YAML</span><button class="docs__copy" type="button" data-copy="c-scrape" aria-label="Copy code">Copy</button></div>
+          <pre><code id="c-scrape">scrape_configs:
+  - job_name: arble
+    kubernetes_sd_configs:
+      - {role: pod, namespaces: {names: [arble]}}
+    relabel_configs:
+      - source_labels: [__meta_kubernetes_pod_label_app]
+        regex: "arble-.*"
+        action: keep</code></pre>
+        </div>
+
+        <p>The metrics worth alerting on:</p>
+
+        <div class="docs__tablewrap">
+          <table class="docs__table">
+            <thead>
+              <tr><th scope="col">Metric</th><th scope="col">Meaning</th><th scope="col">Alert when</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row" class="mono">arble_active_runs</th><td>Runs currently executing</td><td>Sustained near capacity</td></tr>
+              <tr><th scope="row" class="mono">arble_run_duration_seconds</th><td>Run latency histogram</td><td>p95 above your SLO</td></tr>
+              <tr><th scope="row" class="mono">arble_runs_failed_total</th><td>Failed runs by error type</td><td>Rate increase</td></tr>
+              <tr><th scope="row" class="mono">arble_tool_queue_depth</th><td>Queued tool calls</td><td>Growing steadily</td></tr>
+              <tr><th scope="row" class="mono">arble_model_latency_seconds</th><td>Backend latency by provider</td><td>p95 above 30s</td></tr>
+              <tr><th scope="row" class="mono">arble_model_errors_total</th><td>Backend errors by provider</td><td>Any sustained rate</td></tr>
+              <tr><th scope="row" class="mono">arble_db_connections_in_use</th><td>Pool utilization</td><td>Above 80%</td></tr>
+              <tr><th scope="row" class="mono">arble_permission_denials_total</th><td>Denied tool calls</td><td>Spike, may indicate misconfig</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p><strong>Logs</strong> are JSON with a <code>request_id</code>, <code>session_id</code>,
+          <code>run_id</code> and <code>agent_id</code> on every line. Ship them with any collector; the
+          fields are designed to correlate a user report to a run.</p>
+
+        <div class="docs__code">
+          <div class="docs__codebar"><span class="docs__lang">JSON</span><button class="docs__copy" type="button" data-copy="c-log" aria-label="Copy code">Copy</button></div>
+          <pre><code id="c-log">{"ts":"2026-07-30T14:02:19Z","level":"info",
+ "msg":"tool call completed",
+ "request_id":"req_5Kp2Nvx","run_id":"run_2Kd8vQx",
+ "tool":"github.create_pull_request",
+ "decision":"approved","duration_ms":212}</code></pre>
+        </div>
+
+        <p><strong>Tracing</strong> uses OpenTelemetry. A trace spans the gateway, runtime, planner, each
+          tool call and each model request &#8212; which is what tells you whether a slow run was the
+          model or a tool.</p>
+
+        <div class="docs__code">
+          <div class="docs__codebar"><span class="docs__lang">YAML</span><button class="docs__copy" type="button" data-copy="c-otel" aria-label="Copy code">Copy</button></div>
+          <pre><code id="c-otel">telemetry:
+  otlp_endpoint: http://otel-collector.observability:4317
+  sample_rate: 0.1</code></pre>
+        </div>
+
+        <p>Sample at 10% in steady state. Trace volume scales with tool calls, not requests, and a single
+          complex run can emit dozens of spans.</p>
+
+        <p><strong>Health endpoints.</strong> <code>/healthz</code> liveness, <code>/readyz</code>
+          readiness with dependency checks, <code>/version</code> build and migration state. All three
+          are unauthenticated and safe to expose internally.</p>
+
+        <h2 id="security">Security</h2>
+        <p>Arble executes model-generated tool calls against your systems. Treat the worker as
+          hostile-adjacent and the permission gate as the control that matters.</p>
+
+        <div class="docs__acc">
+          <details class="docs__item">
+            <summary>Encryption</summary>
+            <p>TLS 1.3 in transit. At rest, encryption comes from your storage layer, plus
+              Arble&#8217;s own project-scoped encryption for memory and credentials. Credentials are
+              never returned by any API after creation.</p>
+          </details>
+          <details class="docs__item">
+            <summary>Permissions</summary>
+            <p>Every tool call passes the gate, whatever initiated it. Scope grants narrowly and set a
+              deny-by-default policy so an unlisted capability fails closed.</p>
+          </details>
+          <details class="docs__item">
+            <summary>Audit logs</summary>
+            <p>Every request, tool call, permission decision and configuration change is recorded
+              immutably with its actor. Ship them off-host &#8212; an audit log an attacker can edit is
+              not evidence.</p>
+          </details>
+          <details class="docs__item">
+            <summary>Sandbox</summary>
+            <p>Workers run unprivileged with cgroups v2, seccomp, a read-only root filesystem and no
+              Docker socket. Verify at startup with <code>arble server verify-sandbox</code>.</p>
+          </details>
+          <details class="docs__item">
+            <summary>Network isolation</summary>
+            <p>Deny worker egress by default and allowlist explicitly. This is the single highest-value
+              control: it bounds what a prompt-injected tool call can reach even when everything else
+              fails.</p>
+          </details>
+          <details class="docs__item">
+            <summary>Least privilege</summary>
+            <p>Non-root containers, dropped capabilities, project-scoped tokens, read-only database
+              users for analytics MCP servers. Give the platform the narrowest identity that works.</p>
+          </details>
+          <details class="docs__item">
+            <summary>Certificate management</summary>
+            <p>Use cert-manager in Kubernetes, or automate renewal. An expired internal certificate
+              fails every request at once and is a genuinely common self-hosted outage.</p>
+          </details>
+        </div>
+
+        <div class="docs__code">
+          <div class="docs__codebar"><span class="docs__lang">YAML</span><button class="docs__copy" type="button" data-copy="c-permpolicy" aria-label="Copy code">Copy</button></div>
+          <pre><code id="c-permpolicy">permissions:
+  default: never_allow
+  grants:
+    - {capability: filesystem.read, scope: "/workspace"}
+    - {capability: network.http, scope: "api.github.com"}</code></pre>
+        </div>
+
+        <div class="docs__note">
+          <p>Content reaching Arble from a web page, a repository or an MCP server is untrusted input.
+            Injected instructions are why permission scoping and egress policy exist &#8212; the model
+            should never be your only control.</p>
+        </div>
+
+        <h2 id="backups">Backups</h2>
+        <p>Back up three things. Two are small, and the third is where the data actually is.</p>
+
+        <div class="docs__tablewrap">
+          <table class="docs__table">
+            <thead>
+              <tr><th scope="col">What</th><th scope="col">Method</th><th scope="col">Frequency</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">Postgres</th><td><code>pg_dump</code> or WAL archiving</td><td>Continuous WAL + nightly base</td></tr>
+              <tr><th scope="row">Object store</th><td>Bucket replication + versioning</td><td>Continuous</td></tr>
+              <tr><th scope="row">Configuration</th><td>Version control</td><td>On change</td></tr>
+              <tr><th scope="row">Memory encryption key</th><td>Secret manager backup</td><td>On rotation</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p><strong>Database.</strong> Logical dumps are simple and slow to restore; WAL archiving gives
+          point-in-time recovery and is what you want in production:</p>
+
+        <div class="docs__code">
+          <div class="docs__codebar"><span class="docs__lang">SHELL</span><button class="docs__copy" type="button" data-copy="c-dump" aria-label="Copy code">Copy</button></div>
+          <pre><code id="c-dump">pg_dump --format=custom --compress=9 \
+  "$ARBLE_DATABASE_URL" &gt; arble-$(date +%F).dump</code></pre>
+        </div>
+
+        <p><strong>Memory</strong> metadata is in Postgres and the vector index is derived, so the
+          database backup covers it. Restore, then run <code>arble memory reindex</code>.</p>
+
+        <p><strong>Configuration</strong> belongs in git &#8212; <code>arble.yaml</code>, Helm values,
+          manifests. Never commit secrets; reference them.</p>
+
+        <p><strong>Snapshots.</strong> Volume snapshots are convenient but are not a consistent database
+          backup unless the filesystem supports atomic snapshots and you quiesce writes. Use them
+          alongside <code>pg_dump</code>, not instead of it.</p>
+
+        <p><strong>Restore</strong> into an empty database, then start the runtime &#8212; it will detect
+          the schema version and refuse to start if it mismatches the binary, which is the behavior you
+          want:</p>
+
+        <div class="docs__code">
+          <div class="docs__codebar"><span class="docs__lang">SHELL</span><button class="docs__copy" type="button" data-copy="c-restore" aria-label="Copy code">Copy</button></div>
+          <pre><code id="c-restore">pg_restore --dbname="$ARBLE_DATABASE_URL" --clean arble-2026-07-30.dump
+arble server migrate
+arble memory reindex</code></pre>
+        </div>
+
+        <p><strong>Version history.</strong> Configuration changes, permission grants and skill versions
+          are recorded, so you can see what changed before an incident:
+          <code>arble audit config --since 7d</code>.</p>
+
+        <div class="docs__note">
+          <p>A backup you have not restored is a hypothesis. Restore into staging on a schedule and time
+            it, so your RTO is measured rather than assumed.</p>
+        </div>
+
+        <h2 id="dr">Disaster recovery</h2>
+        <p>Define your targets first. RPO is how much data you can lose; RTO is how long you can be down.
+          Every choice below follows from those two numbers.</p>
+
+        <div class="docs__tablewrap">
+          <table class="docs__table">
+            <thead>
+              <tr><th scope="col">Strategy</th><th scope="col">RPO</th><th scope="col">RTO</th><th scope="col">Cost</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">Cold backup</th><td>Hours</td><td>Hours</td><td>Low</td></tr>
+              <tr><th scope="row">Warm standby</th><td>Minutes</td><td>Minutes</td><td>Medium</td></tr>
+              <tr><th scope="row">Hot standby</th><td>Seconds</td><td>Seconds</td><td>High</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p><strong>Cold backup.</strong> Nightly dumps in object storage, infrastructure as code, nothing
+          running. Restore by applying manifests and loading the dump. Appropriate for internal
+          tooling.</p>
+
+        <p><strong>Warm standby.</strong> A second environment deployed and current, scaled to zero or
+          minimal replicas, with continuous WAL shipping. Failover is a scale-up and a DNS change.</p>
+
+        <p><strong>Hot standby.</strong> Full capacity in a second region with streaming replication and
+          a global load balancer. Justified when Arble is on a critical path.</p>
+
+        <p><strong>Replication.</strong> Postgres streaming replication for the control plane,
+          cross-region bucket replication for objects, and Redis replication only if you care about
+          in-flight runs &#8212; usually you don&#8217;t, since they&#8217;re retryable.</p>
+
+        <p><strong>Failover</strong> is four steps, and the order matters: promote the database, point
+          configuration at the new primary, scale up the runtime, move DNS.</p>
+
+        <div class="docs__code">
+          <div class="docs__codebar"><span class="docs__lang">SHELL</span><button class="docs__copy" type="button" data-copy="c-failover" aria-label="Copy code">Copy</button></div>
+          <pre><code id="c-failover">arble server drain --timeout 120s     # if the old site is reachable
+# promote replica, update the database secret, then:
+kubectl -n arble rollout restart deployment/arble-runtime
+arble server verify --all</code></pre>
+        </div>
+
+        <p>What is <em>not</em> recoverable: memory encrypted with a key you didn&#8217;t back up, and
+          object-store contents with versioning disabled and no replication. Verify both are covered
+          before you need them.</p>
+
+        <h2 id="updating">Updating</h2>
+        <p>Arble uses semantic versioning. Patch and minor releases are backward compatible; major
+          releases may require migration steps documented in the release notes.</p>
+
+        <p><strong>Version compatibility.</strong> The gateway, runtime, worker and memory components
+          must share the same minor version. Mixing minors is unsupported and the runtime logs a warning
+          and refuses some operations.</p>
+
+        <p>Database schema is versioned independently. A binary refuses to start against a schema newer
+          than it understands, which is what makes rollback safe.</p>
+
+        <p><strong>Rolling updates.</strong> Run migrations first, then roll the Deployments. Migrations
+          are additive within a minor release, so the old version keeps running against the new schema
+          during the rollout:</p>
+
+        <div class="docs__code">
+          <div class="docs__codebar"><span class="docs__lang">SHELL</span><button class="docs__copy" type="button" data-copy="c-upgrade" aria-label="Copy code">Copy</button></div>
+          <pre><code id="c-upgrade">kubectl -n arble create job arble-migrate-1-8-2 \
+  --image=ghcr.io/arble-ai/runtime:1.8.2 -- arble server migrate
+
+helm upgrade arble oci://ghcr.io/arble-ai/charts/arble \
+  --version 1.8.2 --namespace arble --values values.yaml --wait</code></pre>
+        </div>
+
+        <p><strong>Zero downtime</strong> requires <code>maxUnavailable: 0</code>, working readiness
+          probes, the <code>preStop</code> drain hook, and a PodDisruptionBudget. With all four,
+          in-flight runs complete on the old replicas while new traffic goes to the new ones.</p>
+
+        <p><strong>Rollback.</strong> Roll the application back first; only roll the schema back if the
+          release notes say the migration was destructive. Because migrations are additive within a
+          minor, an application rollback is safe without a schema rollback:</p>
+
+        <div class="docs__code">
+          <div class="docs__codebar"><span class="docs__lang">SHELL</span><button class="docs__copy" type="button" data-copy="c-rollback" aria-label="Copy code">Copy</button></div>
+          <pre><code id="c-rollback">helm rollback arble --namespace arble</code></pre>
+        </div>
+
+        <p>Always test an upgrade against a staging environment restored from a production backup. A
+          migration&#8217;s duration is a function of your data volume, and finding that out in
+          production is avoidable.</p>
+
+        <h2 id="troubleshooting">Troubleshooting</h2>
+        <p>Start with <code>arble server verify --all</code>, which checks database, Redis, object store,
+          model backends and sandbox in one pass.</p>
+
+        <div class="docs__acc">
+          <details class="docs__item" open>
+            <summary>GPU unavailable</summary>
+            <p>Runs fall back or fail with <code>model_unavailable</code>. Usually the device plugin or
+              a resource request, not Arble. Check that the GPU node is tainted and the inference Pod
+              tolerates it, that <code>nvidia.com/gpu</code> appears in allocatable resources, and that
+              no Arble component is occupying the node.</p>
+          </details>
+          <details class="docs__item">
+            <summary>Model offline</summary>
+            <p><code>/readyz</code> reports unready and runs queue. Test the backend directly from
+              inside the cluster, bypassing Arble. If that works and Arble disagrees, the
+              <code>base_url</code> is wrong or a NetworkPolicy is blocking egress from the
+              runtime.</p>
+          </details>
+          <details class="docs__item">
+            <summary>Connector failed</summary>
+            <p>An expired token and an unreachable service need different fixes.
+              <code>auth: expired</code> means re-authorize. <code>status: unreachable</code> means
+              egress or DNS. For remote MCP servers, confirm the worker&#8217;s egress allowlist
+              includes the host.</p>
+          </details>
+          <details class="docs__item">
+            <summary>Permission errors</summary>
+            <p>A run stopping early is usually a denied capability, not a bug. With
+              <code>default: never_allow</code>, every capability must be granted explicitly. In CI, an
+              interactive prompt fails closed by design &#8212; pre-grant instead.</p>
+          </details>
+          <details class="docs__item">
+            <summary>Storage full</summary>
+            <p>Postgres refuses writes and runs fail broadly. Files and screenshots normally dominate.
+              Move the object store off the database volume, and confirm the retention job is actually
+              running &#8212; a leader-election failure silently stops it.</p>
+          </details>
+          <details class="docs__item">
+            <summary>Networking issues</summary>
+            <p>Streams cut off at a fixed interval, or long runs die at the same duration every time.
+              That is nearly always proxy buffering or a read timeout, not Arble. Confirm
+              <code>proxy-buffering: "off"</code> and a <code>proxy-read-timeout</code> above your
+              longest run.</p>
+          </details>
+        </div>
+
+        <div class="docs__code">
+          <div class="docs__codebar"><span class="docs__lang">SHELL</span><button class="docs__copy" type="button" data-copy="c-debug" aria-label="Copy code">Copy</button></div>
+          <pre><code id="c-debug">arble server verify --all
+arble mcp health
+arble connectors status github
+arble permissions audit --agent agt_5wTn9Kd --since 1h
+arble admin storage-usage
+arble admin retention apply --dry-run
+
+kubectl -n models logs deploy/vllm --tail=50
+kubectl -n arble get ingress arble -o yaml | grep -A5 annotations</code></pre>
+        </div>
+
+        <h2 id="best-practices">Best practices</h2>
+        <ol class="docs__list">
+          <li>Pin exact image versions in production. Never deploy <code>latest</code>.</li>
+          <li>Keep <code>arble.yaml</code>, Helm values and manifests in version control; reference secrets, never inline them.</li>
+          <li>Run migrations as a discrete step before rolling the application, not as a container entrypoint.</li>
+          <li>Use managed Postgres with automated failover unless you already operate Patroni well.</li>
+          <li>Point liveness at <code>/healthz</code> and readiness at <code>/readyz</code>. Never point liveness at a dependency check.</li>
+          <li>Set <code>maxUnavailable: 0</code>, a <code>preStop</code> drain hook, and a <code>terminationGracePeriodSeconds</code> above the drain timeout.</li>
+          <li>Add a PodDisruptionBudget so node maintenance can&#8217;t drain the service to zero.</li>
+          <li>Turn off proxy response buffering and raise the read timeout before debugging streaming.</li>
+          <li>Autoscale the runtime on <code>arble_active_runs</code>, not CPU &#8212; a run waiting on a model is idle.</li>
+          <li>Taint GPU nodes for inference only; never schedule Arble components onto them.</li>
+          <li>Deny worker egress by default and allowlist explicitly. This is your highest-value control.</li>
+          <li>Set <code>permissions.default: never_allow</code> and grant capabilities narrowly, with scopes.</li>
+          <li>Use project-scoped tokens and service accounts so unattended actions are attributable.</li>
+          <li>Integrate OIDC and map IdP groups to roles, so access changes in one place.</li>
+          <li>Back up the memory encryption key separately from the database.</li>
+          <li>Enable object versioning on the bucket; it makes deletion recoverable.</li>
+          <li>Restore a backup into staging on a schedule and time it. Measure RTO, don&#8217;t assume it.</li>
+          <li>Ship audit logs off-host, and retain them at least as long as your compliance window.</li>
+          <li>Run <code>arble memory summarize</code> periodically; unbounded memory costs context on every run.</li>
+          <li>Test upgrades against staging restored from a production backup, so migration duration is known.</li>
+        </ol>
+
+        <h2 id="reference">Reference</h2>
+        <ul class="docs__list">
+          <li><a href="#docker">Docker</a> &#8212; images, volumes, ports, Compose</li>
+          <li><a href="#kubernetes">Kubernetes</a> &#8212; Helm chart, manifests, autoscaling, node pools</li>
+          <li><a href="#docker-config">Configuration</a> &#8212; <code>arble.yaml</code> structure and precedence</li>
+          <li>Environment variables &#8212; full list via <code>arble server config --list</code></li>
+          <li><a href="#networking">Networking</a> &#8212; TLS, proxy settings, NetworkPolicy, air-gapped</li>
+          <li><a href="#storage">Storage</a> &#8212; Postgres, Redis, object storage, retention</li>
+          <li><a href="#authentication">Authentication</a> &#8212; OIDC, SAML, LDAP, service accounts</li>
+          <li><a href="#scaling">Scaling</a> &#8212; metrics, bottleneck table, worker pools</li>
+          <li><a href="#security">Security</a> &#8212; sandbox, permissions, audit, isolation</li>
+          <li><a href="#monitoring">Monitoring</a> &#8212; metrics, logs, tracing, health endpoints</li>
+          <li><a href="#backups">Backups</a> &#8212; database, objects, keys, restore procedure</li>
+          <li><a href="../../../docs/developers/cli/">CLI</a> &#8212; <code>arble server</code> and <code>arble admin</code> commands</li>
+          <li><a href="../../../docs/developers/api-reference/">API Reference</a> &#8212; REST endpoints exposed by your deployment</li>
+        </ul>
+
+        <h2 id="faq">FAQ</h2>
+        <div class="docs__acc">
+          <details class="docs__item">
+            <summary>Is self-hosted Arble feature-complete against the managed version?</summary>
+            <p>Yes, with two additions rather than omissions: <code>stdio</code> MCP servers and
+              bare-metal desktop control need a self-hosted deployment. Nothing is held back.</p>
+          </details>
+          <details class="docs__item">
+            <summary>Can I run Arble without any GPU?</summary>
+            <p>Yes. Arble is a CPU workload. Point it at a hosted model provider, or at a shared
+              inference server elsewhere. GPUs are only for local inference and local embeddings.</p>
+          </details>
+          <details class="docs__item">
+            <summary>Does Arble phone home?</summary>
+            <p>Only for update checks, which are disableable with <code>updates.check: false</code>.
+              Telemetry is opt-in. In air-gapped mode both are off and nothing egresses.</p>
+          </details>
+          <details class="docs__item">
+            <summary>Can I use SQLite in production?</summary>
+            <p>For a genuine single-node, single-process deployment, yes. It does not support multiple
+              runtime replicas. Migrate to Postgres before scaling out, not during.</p>
+          </details>
+          <details class="docs__item">
+            <summary>How do I size GPU capacity?</summary>
+            <p>Size on tokens per second at your expected concurrency, not on user count. Start by
+              measuring <code>arble_model_latency_seconds</code> p95 under realistic load and add
+              capacity until it meets your SLO.</p>
+          </details>
+          <details class="docs__item">
+            <summary>What happens to in-flight runs during an upgrade?</summary>
+            <p>With the drain hook and <code>maxUnavailable: 0</code>, they complete on the old
+              replicas. Without them, they fail and are retryable via
+              <code>POST /v1/runs/:id/retry</code>.</p>
+          </details>
+          <details class="docs__item">
+            <summary>Do I need Redis if I&#8217;m not using scheduled jobs?</summary>
+            <p>Yes for multi-replica deployments &#8212; it also handles leader election and run
+              scheduling. Single-node deployments can run without it.</p>
+          </details>
+          <details class="docs__item">
+            <summary>Can the control plane be on-prem with inference in the cloud?</summary>
+            <p>Yes, and it&#8217;s a common hybrid pattern. Configure a cloud model provider and
+              allowlist its endpoint in worker egress. Prompts and completions leave your network;
+              memory and audit logs do not.</p>
+          </details>
+          <details class="docs__item">
+            <summary>How do I isolate teams from each other?</summary>
+            <p>Projects for soft separation within a shared deployment; organizations for hard
+              separation with no shared memory or connectors. For regulatory isolation, separate
+              deployments.</p>
+          </details>
+          <details class="docs__item">
+            <summary>What is the actual blast radius if a worker is compromised?</summary>
+            <p>Whatever its egress allowlist and permission grants permit &#8212; that&#8217;s the
+              entire point of scoping both. A worker holds no database credentials and runs
+              unprivileged.</p>
+          </details>
+          <details class="docs__item">
+            <summary>Can I bring my own vector database?</summary>
+            <p><code>pgvector</code> is the default and is sufficient for most deployments. External
+              vector stores are supported through the memory service&#8217;s backend configuration; the
+              index is rebuildable either way.</p>
+          </details>
+          <details class="docs__item">
+            <summary>How long do upgrades take?</summary>
+            <p>The rollout is a normal rolling update, typically single-digit minutes. Migration
+              duration scales with data volume &#8212; measure it in staging against a production-sized
+              restore.</p>
+          </details>
+        </div>
+      
+        <nav class="pbp__nav" aria-label="Page navigation">
+          <a class="pbp__navcard pbp__navcard--prev" href="../../../docs/developers/api-reference/"><span class="pbp__navcard-l">Previous</span><span class="pbp__navcard-t">API Reference</span></a>
+          <a class="pbp__navcard pbp__navcard--next" href="../../../docs/reference/glossary/"><span class="pbp__navcard-l">Next</span><span class="pbp__navcard-t">Glossary</span></a>
+        </nav>
+        </article>
+
+      <aside class="docs__toc" aria-label="On this page">
+        <p class="docs__tocH">On this page</p>
+        <ul class="docs__toclist" id="docsToc">
+          <li class="docs__tocrow"><a href="#architecture">Architecture</a></li>
+          <li class="docs__tocrow docs__tocrow--sub"><a href="#components">Component summary</a></li>
+          <li class="docs__tocrow"><a href="#deployment">Deployment options</a></li>
+          <li class="docs__tocrow"><a href="#requirements">System requirements</a></li>
+          <li class="docs__tocrow"><a href="#docker">Docker</a></li>
+          <li class="docs__tocrow docs__tocrow--sub"><a href="#docker-install">Installation</a></li>
+          <li class="docs__tocrow docs__tocrow--sub"><a href="#docker-volumes">Volumes and ports</a></li>
+          <li class="docs__tocrow docs__tocrow--sub"><a href="#docker-config">Configuration</a></li>
+          <li class="docs__tocrow docs__tocrow--sub"><a href="#docker-compose">Docker Compose</a></li>
+          <li class="docs__tocrow docs__tocrow--sub"><a href="#docker-mcp">Networking and MCP containers</a></li>
+          <li class="docs__tocrow"><a href="#kubernetes">Kubernetes</a></li>
+          <li class="docs__tocrow docs__tocrow--sub"><a href="#k8s-install">Namespace and installation</a></li>
+          <li class="docs__tocrow docs__tocrow--sub"><a href="#k8s-deployment">Deployment</a></li>
+          <li class="docs__tocrow docs__tocrow--sub"><a href="#k8s-service">Service and Ingress</a></li>
+          <li class="docs__tocrow docs__tocrow--sub"><a href="#k8s-volumes">Persistent volumes</a></li>
+          <li class="docs__tocrow docs__tocrow--sub"><a href="#k8s-secrets">Secrets</a></li>
+          <li class="docs__tocrow docs__tocrow--sub"><a href="#k8s-autoscaling">Autoscaling</a></li>
+          <li class="docs__tocrow docs__tocrow--sub"><a href="#k8s-nodes">Node pools and rolling updates</a></li>
+          <li class="docs__tocrow"><a href="#models">Models</a></li>
+          <li class="docs__tocrow docs__tocrow--sub"><a href="#models-routing">Routing and fallback</a></li>
+          <li class="docs__tocrow docs__tocrow--sub"><a href="#models-lb">Load balancing</a></li>
+          <li class="docs__tocrow"><a href="#storage">Storage</a></li>
+          <li class="docs__tocrow docs__tocrow--sub"><a href="#storage-retention">Retention</a></li>
+          <li class="docs__tocrow"><a href="#memory">Memory</a></li>
+          <li class="docs__tocrow"><a href="#networking">Networking</a></li>
+          <li class="docs__tocrow"><a href="#authentication">Authentication</a></li>
+          <li class="docs__tocrow"><a href="#secrets">Secrets</a></li>
+          <li class="docs__tocrow"><a href="#scaling">Scaling</a></li>
+          <li class="docs__tocrow"><a href="#ha">High availability</a></li>
+          <li class="docs__tocrow"><a href="#monitoring">Monitoring</a></li>
+          <li class="docs__tocrow"><a href="#security">Security</a></li>
+          <li class="docs__tocrow"><a href="#backups">Backups</a></li>
+          <li class="docs__tocrow"><a href="#dr">Disaster recovery</a></li>
+          <li class="docs__tocrow"><a href="#updating">Updating</a></li>
+          <li class="docs__tocrow"><a href="#troubleshooting">Troubleshooting</a></li>
+          <li class="docs__tocrow"><a href="#best-practices">Best practices</a></li>
+          <li class="docs__tocrow"><a href="#reference">Reference</a></li>
+          <li class="docs__tocrow"><a href="#faq">FAQ</a></li>
+        </ul>
+      </aside>
+      </div>
+    </div>
+  </div>
+
+  <script src="../../../assets/js/docs.js?v=7" defer></script>
+  <script>window.ARBLE_DOCS_ROOT = "../../../docs/";</script>
+  <script src="../../../assets/js/docs-search.js?v=2" defer></script>
+  <script src="../../../assets/js/docs-ui.js?v=3" defer></script>
+</body>
+
+</html>

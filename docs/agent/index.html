@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agent &#8212; Arble Docs</title>
+  <meta name="description" content="The parts of Arble you interact with daily. Each concept here has a direct equivalent in the CLI and the API, so learning it once covers all three." />
+  <link rel="icon"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='3.4' fill='%230A0A0B'/%3E%3Ccircle cx='12' cy='12' r='7.2' fill='none' stroke='%230A0A0B' stroke-width='1.3' opacity='.45'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Stack+Sans+Headline:wght@200..700&display=swap" />
+  <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f%5B%5D=switzer@400,500,600,700&display=swap" />
+  <link rel="stylesheet" href="../../assets/css/docs.css?v=84" />
+</head>
+
+<!-- Documentation is its own application, not a page on the marketing site:
+     no floating nav, no CTA, no hero. The shell is a fixed sidebar plus a
+     scrolling content column, with the header split so each half aligns to
+     the column beneath it. -->
+<body class="dapp">
+  <a class="skip" href="#doc">Skip to content</a>
+
+  <div class="dapp__grid">
+
+    <aside class="dside" aria-label="Documentation navigation">
+      <div class="dside__head">
+        <a class="dside__brand" href="../../index.html" aria-label="Arble home">
+          <img src="../../assets/img/brand/logo-mark.png" width="288" height="271" alt="" aria-hidden="true" />
+        </a>
+        <span class="dside__rule" aria-hidden="true"></span>
+        <a class="dside__brand" href="../../docs/"><span>Docs</span></a>
+      </div>
+      <div class="dside__scroll">
+        <form class="docs__search" role="search" onsubmit="return false;">
+          <input class="docs__searchi" id="docsSearch" type="search" autocomplete="off"
+            placeholder="Search&#8230;" aria-label="Search documentation" />
+          <ul class="docs__searchr" id="docsSearchResults" hidden></ul>
+        </form>
+        <nav aria-label="Sections">
+        <details class="docs__grp">
+          <summary class="docs__grph"><span>Getting Started</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></summary>
+          <ul class="docs__raillist">
+            <li class="docs__railrow"><a href="../../docs/getting-started/install/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5"/><path d="M3 17v2a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-2"/></svg><span>Install</span></a></li>
+            <li class="docs__railrow"><a href="../../docs/getting-started/pair-device/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="14" y="3" width="7" height="12" rx="1.5"/><rect x="3" y="9" width="8" height="12" rx="1.5"/></svg><span>Pair Device</span></a></li>
+            <li class="docs__railrow"><a href="../../docs/getting-started/first-run/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m10 8 6 4-6 4z"/></svg><span>First Run</span></a></li>
+            <li class="docs__railrow"><a href="../../docs/getting-started/configuration/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-2.9 1.2 2 2 0 1 1-4 0 1.7 1.7 0 0 0-2.9-1.2l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1A1.7 1.7 0 0 0 2.6 15a2 2 0 1 1 0-4 1.7 1.7 0 0 0 1.8-2.9l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1A1.7 1.7 0 0 0 10 3.6a2 2 0 1 1 4 0 1.7 1.7 0 0 0 2.9 1.2l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1A1.7 1.7 0 0 0 21.4 11a2 2 0 1 1 0 4"/></svg><span>Configuration</span></a></li>
+            <li class="docs__railrow"><a href="../../docs/getting-started/system-requirements/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg><span>System Requirements</span></a></li>
+            <li class="docs__railrow"><a href="../../docs/getting-started/updates/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 21v-5h5"/></svg><span>Updates</span></a></li>
+          </ul>
+        </details>
+        <details class="docs__grp" open>
+          <summary class="docs__grph"><span>Agent</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></summary>
+          <ul class="docs__raillist">
+            <li class="docs__railrow"><a href="../../docs/agent/sessions/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span>Sessions</span></a></li>
+            <li class="docs__railrow"><a href="../../docs/agent/memory/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a3 3 0 0 0-3 3v1a3 3 0 0 0 0 6v1a3 3 0 0 0 6 0v-1a3 3 0 0 0 0-6V6a3 3 0 0 0-3-3"/></svg><span>Memory</span></a></li>
+            <li class="docs__railrow"><a href="../../docs/agent/skills/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M3 15v4a2 2 0 0 0 2 2h4m12-6v4a2 2 0 0 1-2 2h-4"/><path d="M9 9h6v6H9z"/></svg><span>Skills</span></a></li>
+            <li class="docs__railrow"><a href="../../docs/agent/permissions/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s8-4 8-10V5l-8-3-8 3v6c0 6 8 10 8 10"/></svg><span>Permissions</span></a></li>
+            <li class="docs__railrow"><a href="../../docs/agent/automation/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>Automation</span></a></li>
+            <li class="docs__railrow"><a href="../../docs/agent/desktop/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8"/></svg><span>Desktop Control</span></a></li>
+            <li class="docs__railrow"><a href="../../docs/agent/notifications/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 8-3 8h18s-3-1-3-8"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg><span>Notifications</span></a></li>
+          </ul>
+        </details>
+        <details class="docs__grp">
+          <summary class="docs__grph"><span>Developers</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></summary>
+          <ul class="docs__raillist">
+            <li class="docs__railrow"><a href="../../docs/developers/mcp-servers/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="7" rx="2"/><rect x="3" y="13" width="18" height="7" rx="2"/><path d="M7 8h.01M7 17h.01"/></svg><span>MCP Servers</span></a></li>
+            <li class="docs__railrow"><a href="../../docs/developers/tool-sdk/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.8-3.8a6 6 0 0 1-7.9 7.9l-6.9 6.9a2.1 2.1 0 0 1-3-3l6.9-6.9a6 6 0 0 1 7.9-7.9z"/></svg><span>Tool SDK</span></a></li>
+            <li class="docs__railrow"><a href="../../docs/developers/cli/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 8 4 4-4 4M12 16h7"/><rect x="2" y="3" width="20" height="18" rx="2"/></svg><span>CLI</span></a></li>
+            <li class="docs__railrow"><a href="../../docs/developers/api-reference/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8 6-6 6 6 6M16 6l6 6-6 6"/></svg><span>API Reference</span></a></li>
+            <li class="docs__railrow"><a href="../../docs/developers/self-hosting/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 2 7l10 5 10-5z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/></svg><span>Self-hosting</span></a></li>
+          </ul>
+        </details>
+        <details class="docs__grp">
+          <summary class="docs__grph"><span>Reference</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></summary>
+          <ul class="docs__raillist">
+            <li class="docs__railrow"><a href="../../docs/reference/glossary/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2"/></svg><span>Glossary</span></a></li>
+            <li class="docs__railrow"><a href="../../docs/reference/faq/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 2.4-3 4M12 17h.01"/></svg><span>FAQ</span></a></li>
+            <li class="docs__railrow"><a href="../../docs/reference/troubleshooting/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4.4-4.4"/></svg><span>Troubleshooting</span></a></li>
+            <li class="docs__railrow"><a href="../../docs/reference/release-notes/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 13h6M9 17h4"/></svg><span>Release Notes</span></a></li>
+          </ul>
+        </details>
+        </nav>
+      </div>
+      <nav class="dside__foot" aria-label="Arble">
+          <a href="../../docs/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2"/></svg><span>Docs</span></a>
+          <a href="../../docs/developers/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8 6-6 6 6 6M16 6l6 6-6 6"/></svg><span>Developers</span></a>
+          <a href="../../playbook.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10 12 5 2 10l10 5z"/><path d="M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/></svg><span>Learn</span></a>
+          <a href="../../docs/reference/troubleshooting/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.4 8.4 0 0 1 3.8-.9h.5a8.5 8.5 0 0 1 8 8z"/></svg><span>Contact support</span></a>
+      </nav>
+    </aside>
+
+    <div class="dmain">
+      <header class="dtop">
+        <button class="dnavbtn" type="button" id="navToggle" aria-label="Open navigation"
+          aria-expanded="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"
+            stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        </button>
+        <p class="docs__crumb"><a href="../../docs/">Documentation</a> <span aria-hidden="true">/</span> Agent</p>
+        <div class="docs__acts">
+          <button class="docs__act" type="button" id="copyPage" aria-label="Copy page as Markdown">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9"
+              width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            <span>Copy page</span>
+          </button>
+        </div>
+      </header>
+
+      <div class="dbody">
+        <article class="docs__body" id="doc">
+          <h1 class="docs__title">Agent</h1>
+          <p class="docs__meta"><b>1 min read</b><i>&#183;</i>Updated 30 Jul 2026</p>
+        <p class="docs__lead">The parts of Arble you interact with daily. Each concept here has a direct equivalent in the CLI and the API, so learning it once covers all three.</p>
+
+        <div class="docs__cards">
+          <a class="docs__card" href="../../docs/agent/sessions/">
+            <span class="docs__card-t">Sessions</span>
+            <span class="docs__card-d">Conversations with accumulated context: create, pause, resume, export.</span>
+          </a>
+          <a class="docs__card" href="../../docs/agent/memory/">
+            <span class="docs__card-t">Memory</span>
+            <span class="docs__card-d">Durable per-project facts, retrieved semantically and outliving sessions.</span>
+          </a>
+          <a class="docs__card" href="../../docs/agent/skills/">
+            <span class="docs__card-t">Skills</span>
+            <span class="docs__card-d">Packaged procedures — a review standard, a deploy checklist, a release process.</span>
+          </a>
+          <a class="docs__card" href="../../docs/agent/permissions/">
+            <span class="docs__card-t">Permissions</span>
+            <span class="docs__card-d">The gate every tool call passes, whatever initiated it.</span>
+          </a>
+          <a class="docs__card" href="../../docs/agent/automation/">
+            <span class="docs__card-t">Automation</span>
+            <span class="docs__card-d">Schedules, event triggers, queues and retries.</span>
+          </a>
+          <a class="docs__card" href="../../docs/agent/desktop/">
+            <span class="docs__card-t">Desktop Control</span>
+            <span class="docs__card-d">Screenshots, clipboard, window focus and input on a paired machine.</span>
+          </a>
+          <a class="docs__card" href="../../docs/agent/notifications/">
+            <span class="docs__card-t">Notifications</span>
+            <span class="docs__card-d">Getting told when a long run finishes, on the device you are holding.</span>
+          </a>
+        </div>
+
+        </article>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="../../assets/js/docs.js?v=7" defer></script>
+  <script>window.ARBLE_DOCS_ROOT = "../../docs/";</script>
+  <script src="../../assets/js/docs-search.js?v=2" defer></script>
+  <script src="../../assets/js/docs-ui.js?v=3" defer></script>
+</body>
+
+</html>

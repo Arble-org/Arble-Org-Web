@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Arble Playbook</title>
+  <meta name="description" content="35 chapters on how Arble works and how to run it." />
+  <link rel="icon"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='3.4' fill='%230A0A0B'/%3E%3Ccircle cx='12' cy='12' r='7.2' fill='none' stroke='%230A0A0B' stroke-width='1.3' opacity='.45'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Stack+Sans+Headline:wght@200..700&display=swap" />
+  <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f%5B%5D=switzer@400,500,600,700&display=swap" />
+  <link rel="stylesheet" href="assets/css/docs.css?v=84" />
+</head>
+
+<!-- The playbook is the same application as the documentation: docs.css, the
+     same shell, the same sidebar and TOC proportions. It carries no marketing
+     nav, no CTA and no site footer, for the same reason the docs do not. All
+     metrics come from docs-source/design/LINEAR-SPEC.md. -->
+<body class="dapp">
+  <a class="skip" href="#doc">Skip to chapter</a>
+
+  <div class="dapp__grid">
+
+    <aside class="dside" aria-label="Chapters">
+      <div class="dside__head">
+        <a class="dside__brand" href="index.html" aria-label="Arble home">
+          <img src="assets/img/brand/logo-mark.png" width="288" height="271" alt="" aria-hidden="true" />
+        </a>
+        <span class="dside__rule" aria-hidden="true"></span>
+        <a class="dside__brand" href="playbook.html"><span>Playbook</span></a>
+      </div>
+      <div class="dside__scroll">
+        <nav aria-label="Chapters" id="pbpRail"></nav>
+      </div>
+      <nav class="dside__foot" aria-label="Arble">
+        <a href="docs/">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path
+            d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path
+            d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2"/></svg>
+          <span>Docs</span>
+        </a>
+        <a href="docs/developers/">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path
+            d="m8 6-6 6 6 6M16 6l6 6-6 6"/></svg>
+          <span>Developers</span>
+        </a>
+        <a href="playbook.html" aria-current="page">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path
+            d="M22 10 12 5 2 10l10 5z"/><path d="M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/></svg>
+          <span>Learn</span>
+        </a>
+        <a href="docs/reference/troubleshooting/">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path
+            d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.4 8.4 0 0 1 3.8-.9h.5a8.5 8.5 0 0 1 8 8z"/></svg>
+          <span>Contact support</span>
+        </a>
+      </nav>
+    </aside>
+
+    <div class="dmain">
+      <header class="dtop">
+        <button class="dnavbtn" type="button" id="navToggle" aria-label="Open navigation"
+          aria-expanded="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"
+            stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        </button>
+        <p class="docs__crumb" id="pbpCrumb"></p>
+        <div class="docs__acts">
+          <button class="docs__act" type="button" id="copyPage" aria-label="Copy chapter as Markdown">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9"
+              width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            <span>Copy page</span>
+          </button>
+        </div>
+      </header>
+
+      <div class="dbody">
+        <!-- Chapters render straight into the article, not a wrapper: the
+             Copy-page serialiser in docs-ui.js reads direct children. -->
+        <article class="docs__body" id="doc"></article>
+        <aside class="docs__toc" aria-label="On this page" id="pbpToc" hidden>
+          <p class="docs__tocH">On this page</p>
+          <ul class="docs__toclist" id="docsToc"></ul>
+        </aside>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/js/playbook/chapters.js?v=1"></script>
+  <script src="assets/js/docs.js?v=7" defer></script>
+  <script src="assets/js/docs-ui.js?v=3" defer></script>
+  <script>
+  /* Wrapped in DOMContentLoaded so the deferred docs.js has already published
+     window.ArbleDocs by the time the first chapter renders. */
+  document.addEventListener("DOMContentLoaded", function () {
+    var PARTS = [
+      { name: "Foundations", chapters: ["01","02","03","04","05","06","07"] },
+      { name: "Agents", chapters: ["08","09","10","11","12","13"] },
+      { name: "Devices", chapters: ["14","15","16","17","18","19","20"] },
+      { name: "Arble", chapters: ["21","22","23","24","25","26","27"] },
+      { name: "Production", chapters: ["28","29","30","31","32"] },
+      { name: "Future", chapters: ["33","34","35"] },
+      { name: "Reference", chapters: ["glossary"] }
+    ];
+
+    var data = window.PLAYBOOK;
+    var CHEVRON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" ' +
+      'stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" ' +
+      'aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>';
+
+    /* Parts are collapsible groups, exactly as the documentation sections are.
+       The part holding the current chapter ships open; the rest ship closed. */
+    function renderRail(current) {
+      var html = "";
+      PARTS.forEach(function (part) {
+        var open = part.chapters.indexOf(current) !== -1;
+        html += '<details class="docs__grp"' + (open ? ' open' : '') + '>';
+        html += '<summary class="docs__grph"><span>' + part.name + '</span>' + CHEVRON + '</summary>';
+        html += '<ul class="docs__raillist">';
+        part.chapters.forEach(function (id) {
+          var ch = data[id];
+          if (!ch) return;
+          var cur = current === id;
+          html += '<li class="docs__railrow docs__railrow--wrap' + (cur ? ' is-current' : '') + '">' +
+                  '<a href="playbook.html#' + id + '"' + (cur ? ' aria-current="page"' : '') + '>' +
+                  '<span class="docs__railnum" aria-hidden="true">' +
+                  (id === "glossary" ? '·' : id) + '</span>' +
+                  '<span>' + ch.title + '</span></a></li>';
+        });
+        html += '</ul></details>';
+      });
+      document.getElementById("pbpRail").innerHTML = html;
+    }
+
+    /* Two side-by-side cards, previous on the left and next on the right. Each
+       card is one <a> so the whole box is the hit target, not just the title. */
+    function navCard(dir, num, title) {
+      return '<a class="pbp__navcard pbp__navcard--' + dir + '" href="playbook.html#' + num + '">' +
+             '<span class="pbp__navcard-l">' + (dir === 'prev' ? 'Previous chapter' : 'Next chapter') + '</span>' +
+             '<span class="pbp__navcard-t">' + title + '</span></a>';
+    }
+
+    function slug(text, i) {
+      var s = text.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+      return (s || "section") + "-" + i;
+    }
+
+    /* An On-this-page rail built from the chapter's own h2s. Hidden below three
+       headings, where a TOC is furniture rather than navigation. */
+    function renderToc(article) {
+      var toc = document.getElementById("pbpToc");
+      var list = document.getElementById("docsToc");
+      var heads = [].slice.call(article.querySelectorAll("h2"));
+      if (heads.length < 3) {
+        toc.hidden = true;
+        list.innerHTML = "";
+        return;
+      }
+      var rows = "";
+      heads.forEach(function (h, i) {
+        if (!h.id) h.id = slug(h.textContent, i + 1);
+        rows += '<li class="docs__tocrow"><a href="#' + h.id + '">' + h.textContent + '</a></li>';
+      });
+      list.innerHTML = rows;
+      toc.hidden = false;
+    }
+
+    function renderChapter(id) {
+      var ch = data[id];
+      if (!ch) { ch = data["01"]; id = "01"; }
+
+      document.title = ch.title + " — The Arble Playbook";
+      renderRail(id);
+
+      var kicker = id === "glossary"
+        ? "Reference"
+        : ch.part + " · Chapter " + id;
+      document.getElementById("pbpCrumb").innerHTML =
+        '<a href="index.html">Arble</a> <span aria-hidden="true">/</span> ' +
+        '<a href="playbook.html">Playbook</a> <span aria-hidden="true">/</span> ' + kicker;
+
+      var words = ch.content.replace(/<[^>]+>/g, " ").split(/\s+/).length;
+      var mins = Math.max(1, Math.round(words / 220));
+
+      var html = '<h1 class="docs__title">' + ch.title + '</h1>';
+      html += '<p class="docs__meta"><b>' + mins + ' min read</b>' +
+              '<i>·</i>' + kicker + '</p>';
+      html += ch.content;
+
+      var prevHtml = ch.prev ? navCard('prev', ch.prev.num, ch.prev.title) : "";
+      var nextHtml = ch.next ? navCard('next', ch.next.num || ch.next.id || "", ch.next.title) : "";
+      if (nextHtml || prevHtml) {
+        html += '<nav class="pbp__nav" aria-label="Chapter navigation">' + prevHtml + nextHtml + '</nav>';
+      }
+
+      var article = document.getElementById("doc");
+      article.innerHTML = html;
+      renderToc(article);
+      if (window.ArbleDocs) window.ArbleDocs.initToc();
+      window.scrollTo(0, 0);
+    }
+
+    /* The chapter lives in the hash, so a TOC jump scrolls without touching it
+       — otherwise following a heading link would lose the chapter on reload. */
+    document.getElementById("docsToc").addEventListener("click", function (e) {
+      var a = e.target.closest("a[href^='#']");
+      if (!a) return;
+      var target = document.getElementById(a.getAttribute("href").slice(1));
+      if (!target) return;
+      e.preventDefault();
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+
+    var hash = window.location.hash.replace("#", "");
+    renderChapter(hash && data[hash] ? hash : "01");
+
+    window.addEventListener("hashchange", function () {
+      var h = window.location.hash.replace("#", "");
+      if (h && data[h]) renderChapter(h);
+    });
+  });
+  </script>
+</body>
+
+</html>

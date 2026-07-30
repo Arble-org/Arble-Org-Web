@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tool SDK &#8212; Arble Docs</title>
+  <meta name="description" content="Build native tools in Python, TypeScript, Go or Rust." />
+  <link rel="icon"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='3.4' fill='%230A0A0B'/%3E%3Ccircle cx='12' cy='12' r='7.2' fill='none' stroke='%230A0A0B' stroke-width='1.3' opacity='.45'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Stack+Sans+Headline:wght@200..700&display=swap" />
+  <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f%5B%5D=switzer@400,500,600,700&display=swap" />
+  <link rel="stylesheet" href="../../../assets/css/docs.css?v=84" />
+</head>
+
+<!-- Documentation is its own application, not a page on the marketing site:
+     no floating nav, no CTA, no hero. The shell is a fixed sidebar plus a
+     scrolling content column, with the header split so each half aligns to
+     the column beneath it. -->
+<body class="dapp">
+  <a class="skip" href="#doc">Skip to content</a>
+
+  <div class="dapp__grid">
+
+    <aside class="dside" aria-label="Documentation navigation">
+      <div class="dside__head">
+        <a class="dside__brand" href="../../../index.html" aria-label="Arble home">
+          <img src="../../../assets/img/brand/logo-mark.png" width="288" height="271" alt="" aria-hidden="true" />
+        </a>
+        <span class="dside__rule" aria-hidden="true"></span>
+        <a class="dside__brand" href="../../../docs/"><span>Docs</span></a>
+      </div>
+      <div class="dside__scroll">
+        <form class="docs__search" role="search" onsubmit="return false;">
+          <input class="docs__searchi" id="docsSearch" type="search" autocomplete="off"
+            placeholder="Search&#8230;" aria-label="Search documentation" />
+          <ul class="docs__searchr" id="docsSearchResults" hidden></ul>
+        </form>
+        <nav aria-label="Sections">
+        <details class="docs__grp">
+          <summary class="docs__grph"><span>Getting Started</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></summary>
+          <ul class="docs__raillist">
+            <li class="docs__railrow"><a href="../../../docs/getting-started/install/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5"/><path d="M3 17v2a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-2"/></svg><span>Install</span></a></li>
+            <li class="docs__railrow"><a href="../../../docs/getting-started/pair-device/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="14" y="3" width="7" height="12" rx="1.5"/><rect x="3" y="9" width="8" height="12" rx="1.5"/></svg><span>Pair Device</span></a></li>
+            <li class="docs__railrow"><a href="../../../docs/getting-started/first-run/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m10 8 6 4-6 4z"/></svg><span>First Run</span></a></li>
+            <li class="docs__railrow"><a href="../../../docs/getting-started/configuration/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-2.9 1.2 2 2 0 1 1-4 0 1.7 1.7 0 0 0-2.9-1.2l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1A1.7 1.7 0 0 0 2.6 15a2 2 0 1 1 0-4 1.7 1.7 0 0 0 1.8-2.9l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1A1.7 1.7 0 0 0 10 3.6a2 2 0 1 1 4 0 1.7 1.7 0 0 0 2.9 1.2l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1A1.7 1.7 0 0 0 21.4 11a2 2 0 1 1 0 4"/></svg><span>Configuration</span></a></li>
+            <li class="docs__railrow"><a href="../../../docs/getting-started/system-requirements/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg><span>System Requirements</span></a></li>
+            <li class="docs__railrow"><a href="../../../docs/getting-started/updates/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 21v-5h5"/></svg><span>Updates</span></a></li>
+          </ul>
+        </details>
+        <details class="docs__grp">
+          <summary class="docs__grph"><span>Agent</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></summary>
+          <ul class="docs__raillist">
+            <li class="docs__railrow"><a href="../../../docs/agent/sessions/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span>Sessions</span></a></li>
+            <li class="docs__railrow"><a href="../../../docs/agent/memory/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a3 3 0 0 0-3 3v1a3 3 0 0 0 0 6v1a3 3 0 0 0 6 0v-1a3 3 0 0 0 0-6V6a3 3 0 0 0-3-3"/></svg><span>Memory</span></a></li>
+            <li class="docs__railrow"><a href="../../../docs/agent/skills/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M3 15v4a2 2 0 0 0 2 2h4m12-6v4a2 2 0 0 1-2 2h-4"/><path d="M9 9h6v6H9z"/></svg><span>Skills</span></a></li>
+            <li class="docs__railrow"><a href="../../../docs/agent/permissions/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s8-4 8-10V5l-8-3-8 3v6c0 6 8 10 8 10"/></svg><span>Permissions</span></a></li>
+            <li class="docs__railrow"><a href="../../../docs/agent/automation/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>Automation</span></a></li>
+            <li class="docs__railrow"><a href="../../../docs/agent/desktop/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8"/></svg><span>Desktop Control</span></a></li>
+            <li class="docs__railrow"><a href="../../../docs/agent/notifications/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 8-3 8h18s-3-1-3-8"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg><span>Notifications</span></a></li>
+          </ul>
+        </details>
+        <details class="docs__grp" open>
+          <summary class="docs__grph"><span>Developers</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></summary>
+          <ul class="docs__raillist">
+            <li class="docs__railrow"><a href="../../../docs/developers/mcp-servers/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="7" rx="2"/><rect x="3" y="13" width="18" height="7" rx="2"/><path d="M7 8h.01M7 17h.01"/></svg><span>MCP Servers</span></a></li>
+            <li class="docs__railrow is-current"><a href="../../../docs/developers/tool-sdk/" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.8-3.8a6 6 0 0 1-7.9 7.9l-6.9 6.9a2.1 2.1 0 0 1-3-3l6.9-6.9a6 6 0 0 1 7.9-7.9z"/></svg><span>Tool SDK</span></a></li>
+            <li class="docs__railrow"><a href="../../../docs/developers/cli/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 8 4 4-4 4M12 16h7"/><rect x="2" y="3" width="20" height="18" rx="2"/></svg><span>CLI</span></a></li>
+            <li class="docs__railrow"><a href="../../../docs/developers/api-reference/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8 6-6 6 6 6M16 6l6 6-6 6"/></svg><span>API Reference</span></a></li>
+            <li class="docs__railrow"><a href="../../../docs/developers/self-hosting/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 2 7l10 5 10-5z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/></svg><span>Self-hosting</span></a></li>
+          </ul>
+        </details>
+        <details class="docs__grp">
+          <summary class="docs__grph"><span>Reference</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></summary>
+          <ul class="docs__raillist">
+            <li class="docs__railrow"><a href="../../../docs/reference/glossary/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2"/></svg><span>Glossary</span></a></li>
+            <li class="docs__railrow"><a href="../../../docs/reference/faq/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 2.4-3 4M12 17h.01"/></svg><span>FAQ</span></a></li>
+            <li class="docs__railrow"><a href="../../../docs/reference/troubleshooting/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4.4-4.4"/></svg><span>Troubleshooting</span></a></li>
+            <li class="docs__railrow"><a href="../../../docs/reference/release-notes/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 13h6M9 17h4"/></svg><span>Release Notes</span></a></li>
+          </ul>
+        </details>
+        </nav>
+      </div>
+      <nav class="dside__foot" aria-label="Arble">
+          <a href="../../../docs/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2"/></svg><span>Docs</span></a>
+          <a href="../../../docs/developers/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8 6-6 6 6 6M16 6l6 6-6 6"/></svg><span>Developers</span></a>
+          <a href="../../../playbook.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10 12 5 2 10l10 5z"/><path d="M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/></svg><span>Learn</span></a>
+          <a href="../../../docs/reference/troubleshooting/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.4 8.4 0 0 1 3.8-.9h.5a8.5 8.5 0 0 1 8 8z"/></svg><span>Contact support</span></a>
+      </nav>
+    </aside>
+
+    <div class="dmain">
+      <header class="dtop">
+        <button class="dnavbtn" type="button" id="navToggle" aria-label="Open navigation"
+          aria-expanded="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"
+            stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        </button>
+        <p class="docs__crumb"><a href="../../../docs/">Documentation</a> <span aria-hidden="true">/</span> <a href="../../../docs/developers/">Developers</a> <span aria-hidden="true">/</span> Tool SDK</p>
+        <div class="docs__acts">
+          <button class="docs__act" type="button" id="copyPage" aria-label="Copy page as Markdown">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9"
+              width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            <span>Copy page</span>
+          </button>
+        </div>
+      </header>
+
+      <div class="dbody">
+        <article class="docs__body" id="doc">
+          <h1 class="docs__title">Tool SDK</h1>
+          <p class="docs__meta"><b>16 min read</b><i>&#183;</i>Updated 30 Jul 2026</p>
+        <p class="docs__lead">Tool SDK is the native extension framework for Arble. Write one
+          implementation and Arble makes it available on desktop, mobile, CLI, API, workflows and
+          agents &#8212; no adapters, no per-surface reimplementation.</p>
+
+        <p>A tool defined with Tool SDK isn&#8217;t a plugin bolted onto one client. It&#8217;s
+          registered once into Arble&#8217;s tool registry, and every runtime that can call a tool
+          &#8212; a desktop session, a scheduled workflow, a remote agent &#8212; calls it the same
+          way, with the same schema, the same permission gate and the same audit trail.</p>
+
+        <h2 id="why">Why Tool SDK</h2>
+        <p>MCP gives you a protocol for exposing tools to any compatible client. Tool SDK gives you a
+          runtime built specifically for Arble, and handles everything a tool needs to behave well
+          inside an agent loop rather than just respond to a call.</p>
+
+        <div class="docs__tablewrap">
+          <table class="docs__table">
+            <thead>
+              <tr><th scope="col">Capability</th><th scope="col">What Arble handles for you</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">Typed inputs &amp; outputs</th><td>Every call is validated against the declared schema before your code runs, and before the result reaches the agent.</td></tr>
+              <tr><th scope="row">Streaming</th><td>Progress events and partial results flow over the same channel as the final payload.</td></tr>
+              <tr><th scope="row">Authentication</th><td>API keys, OAuth tokens and local credentials resolve through the credential store &#8212; your tool never stores a secret.</td></tr>
+              <tr><th scope="row">Permissions</th><td>A tool declares what it needs; Arble asks, remembers and enforces it.</td></tr>
+              <tr><th scope="row">Memory</th><td>Tools read and write the user&#8217;s persistent memory store, so results outlive the run that produced them.</td></tr>
+              <tr><th scope="row">Resources</th><td>Files, images, database handles and URLs pass as typed values, not raw strings.</td></tr>
+              <tr><th scope="row">Cancellation &amp; timeouts</th><td>Every call carries a cancellation signal and a deadline, enforced regardless of what your code does.</td></tr>
+              <tr><th scope="row">Tracing, logging, versioning</th><td>Every call is traced end to end and attributed to the tool version that produced it.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>None of this is scaffolding you opt into later. It&#8217;s the shape a Tool SDK tool has
+          from the moment you write <code>@tool</code>.</p>
+
+        <h2 id="quick-example">Quick example</h2>
+        <p>Here&#8217;s a complete tool, start to finish:</p>
+
+        <div class="docs__code">
+          <div class="docs__codebar"><span class="docs__lang">PYTHON</span><button class="docs__copy" type="button" data-copy="c-quick" aria-label="Copy code">Copy</button></div>
+          <pre><code id="c-quick">from arble import tool, Context
+
+@tool(
+    name="weather.current",
+    description="Get current conditions for a city.",
+    permissions=["network.http"],
+)
+def current_weather(city: str, units: str = "metric", ctx: Context = None) -> dict:
+    response = ctx.http.get(
+        "https://api.weather.example/v1/current",
+        params={"city": city, "units": units},
+    )
+    response.raise_for_status()
+    data = response.json()
+    return {
+        "city": city,
+        "temperature": data["temp"],
+        "condition": data["summary"],
+        "units": units,
+    }</code></pre>
+        </div>
+
+        <p>That&#8217;s the whole tool. No manifest file, no separate schema definition, no
+          registration step. From this one function, Arble generates:</p>
+
+        <div class="docs__tablewrap">
+          <table class="docs__table">
+            <thead>
+              <tr><th scope="col">Artifact</th><th scope="col">Source</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">JSON Schema</th><td>Inferred from the function signature and type hints</td></tr>
+              <tr><th scope="row">Validation</th><td>Enforced on every call, before your code runs</td></tr>
+              <tr><th scope="row">Permission prompt</th><td>Built from the <code>permissions</code> list</td></tr>
+              <tr><th scope="row">CLI command</th><td class="mono">arble tools run weather.current --city Lisbon</td></tr>
+              <tr><th scope="row">REST endpoint</th><td class="mono">POST /v1/tools/weather.current</td></tr>
+              <tr><th scope="row">Streaming endpoint</th><td class="mono">POST /v1/tools/weather.current/stream</td></tr>
+              <tr><th scope="row">Registry entry</th><td>Name, version, owner and permission summary</td></tr>
+              <tr><th scope="row">Documentation</th><td>Parameter table and examples, from the docstring and type hints</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>The function signature is the source of truth. Change a parameter&#8217;s type and the
+          schema, validation, generated docs and CLI flags all change with it &#8212; there&#8217;s
+          nothing else to keep in sync.</p>
+
+        <h2 id="languages">Supported languages</h2>
+        <p>Tool SDK ships first-party libraries for four languages. Parity across them is a design
+          constraint, not a roadmap item: the same tool built in any of the four gets the same schema
+          inference, the same streaming model and the same registry entry shape.</p>
+
+        <div class="docs__cards">
+          <article class="docs__card">
+            <span class="docs__card-t">Python</span>
+            <span class="docs__card-d">Decorators, type hints, Pydantic models</span>
+          </article>
+          <article class="docs__card">
+            <span class="docs__card-t">TypeScript</span>
+            <span class="docs__card-d">Decorators, Zod schemas, async generators</span>
+          </article>
+          <article class="docs__card">
+            <span class="docs__card-t">Go</span>
+            <span class="docs__card-d">Struct tags, channels for streaming</span>
+          </article>
+          <article class="docs__card">
+            <span class="docs__card-t">Rust</span>
+            <span class="docs__card-d">Attribute macros, <code>Stream</code> for streaming</span>
+          </article>
+        </div>
+
+        <p>Choose based on where the tool needs to run and what it needs to link against &#8212; not
+          based on what the SDK supports, because all four support the same surface.</p>
+
+        <h2 id="lifecycle">Tool lifecycle</h2>
+        <p>A tool moves through nine stages between being an idea and being something another
+          user&#8217;s agent can call.</p>
+
+        <ol class="docs__steps docs__steps--flow">
+          <li class="docs__step"><span class="docs__step-n">1</span><span class="docs__step-t">Define</span><span class="docs__step-d">Write the function, its decorator and its docstring.</span></li>
+          <li class="docs__step"><span class="docs__step-n">2</span><span class="docs__step-t">Register</span><span class="docs__step-d">Arble reads the decorator and signature into the local registry.</span></li>
+          <li class="docs__step"><span class="docs__step-n">3</span><span class="docs__step-t">Validate</span><span class="docs__step-d">The inferred schema is checked for ambiguity before anything runs.</span></li>
+          <li class="docs__step"><span class="docs__step-n">4</span><span class="docs__step-t">Test</span><span class="docs__step-d">Run against the test harness with mock resources and permissions.</span></li>
+          <li class="docs__step"><span class="docs__step-n">5</span><span class="docs__step-t">Package</span><span class="docs__step-d">Code, dependencies and metadata bundle into a signed artifact.</span></li>
+          <li class="docs__step"><span class="docs__step-n">6</span><span class="docs__step-t">Publish</span><span class="docs__step-d">Pushed to a private, organization or public registry.</span></li>
+          <li class="docs__step"><span class="docs__step-n">7</span><span class="docs__step-t">Install</span><span class="docs__step-d">Another environment pulls the package and its permissions.</span></li>
+          <li class="docs__step"><span class="docs__step-n">8</span><span class="docs__step-t">Run</span><span class="docs__step-d">The agent calls the tool like any other registry entry.</span></li>
+          <li class="docs__step"><span class="docs__step-n">9</span><span class="docs__step-t">Share</span><span class="docs__step-d">Shared directly with a teammate or workflow, scoped by name.</span></li>
+        </ol>
+
+        <h2 id="anatomy">Tool anatomy</h2>
+        <p>Every tool is made of the same nine parts, whether it&#8217;s three lines or three
+          hundred.</p>
+
+        <div class="docs__tablewrap">
+          <table class="docs__table">
+            <tbody>
+              <tr><th scope="row">Metadata</th><td>Name, description, owner and version &#8212; the identity the registry uses to find the tool</td></tr>
+              <tr><th scope="row">Input schema</th><td>The typed shape of a valid call</td></tr>
+              <tr><th scope="row">Permissions</th><td>The capabilities the tool needs, declared up front</td></tr>
+              <tr><th scope="row">Resources</th><td>Files, documents or services the tool reads or writes as typed values</td></tr>
+              <tr><th scope="row">Execution</th><td>The function body &#8212; the only part that looks like &#8220;your code&#8221;</td></tr>
+              <tr><th scope="row">Streaming</th><td>The channel for progress events and partial results</td></tr>
+              <tr><th scope="row">Output schema</th><td>The typed shape of a successful result, validated before it reaches the agent</td></tr>
+              <tr><th scope="row">Documentation</th><td>Generated from the docstring, type hints and examples</td></tr>
+              <tr><th scope="row">Registry</th><td>Everything above, indexed and queryable by other tools and workflows</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 id="input-schemas">Input schemas</h2>
+        <p>A tool&#8217;s input schema is inferred from its function signature by default. You widen
+          or constrain it with standard typing constructs &#8212; Tool SDK doesn&#8217;t introduce its
+          own type language.</p>
+
+        <p><strong>Primitives</strong> &#8212; <code>str</code>, <code>int</code>, <code>float</code>,
+          <code>bool</code> &#8212; map directly to JSON Schema types. <strong>Objects</strong> &#8212;
+          a dataclass, <code>TypedDict</code> or Pydantic model &#8212; become nested schema objects
+          with their own validation. <strong>Arrays</strong> (<code>list[T]</code>) validate every
+          element, not just the container. <strong>Enums</strong> (<code>Literal[...]</code>) become a
+          closed set of allowed values. <strong>Optional fields</strong> follow the parameter&#8217;s
+          default &#8212; present a default and it&#8217;s optional, omit one and it&#8217;s required.</p>
+
+        <div class="docs__code">
+          <div class="docs__codebar"><span class="docs__lang">PYTHON</span><button class="docs__copy" type="button" data-copy="c-input" aria-label="Copy code">Copy</button></div>
+          <pre><code id="c-input">from pydantic import BaseModel, Field
+from typing import Literal
+
+class CreateIssueInput(BaseModel):
+    title: str = Field(..., min_length=1, max_length=256)
+    body: str = ""
+    labels: list[str] = []
+    priority: Literal["low", "medium", "high"] = "medium"
+    assignee: str | None = None
+
+@tool(name="github.create_issue", permissions=["network.http"])
+def create_issue(input: CreateIssueInput, ctx: Context) -> dict:
+    ...</code></pre>
+        </div>
+
+        <p>Validation runs before your function body executes. A call with <code>priority="urgent"</code>
+          never reaches your code &#8212; the caller gets a schema error naming the exact field and
+          constraint that failed.</p>
+
+        <h2 id="output-schemas">Output schemas</h2>
+        <p>Output schemas work the same direction in reverse: Arble validates what your function
+          returns before handing it to the agent, so a tool can&#8217;t silently return a shape the
+          caller didn&#8217;t ask for.</p>
+
+        <p><strong>Typed responses.</strong> A return type hint becomes the output schema, the same
+          way input types do. <strong>Structured outputs.</strong> Nested objects and arrays are
+          validated recursively. <strong>Streaming.</strong> A streaming tool&#8217;s output schema
+          describes the final payload; progress and partial events have their own fixed shape.
+          <strong>Resources.</strong> A tool can return a resource in place of raw data &#8212; the
+          agent gets a reference it can pass to another tool, not a blob to parse.</p>
+
+        <p><strong>Errors.</strong> Raise a typed exception instead of letting one propagate raw, so
+          the agent can reason about the failure instead of seeing an opaque trace.</p>
+
+        <div class="docs__code">
+          <div class="docs__codebar"><span class="docs__lang">PYTHON</span><button class="docs__copy" type="button" data-copy="c-output" aria-label="Copy code">Copy</button></div>
+          <pre><code id="c-output">from arble import ToolError
+
+class RateLimited(ToolError):
+    retryable = True
+
+@tool(name="github.create_issue", permissions=["network.http"])
+def create_issue(input: CreateIssueInput, ctx: Context) -> dict:
+    response = ctx.http.post("https://api.github.com/issues", json=input.dict())
+    if response.status_code == 429:
+        raise RateLimited("GitHub rate limit hit, retry after backoff")
+    response.raise_for_status()
+    return response.json()</code></pre>
+        </div>
+
+        <h2 id="resources">Resources</h2>
+        <p>A resource is anything a tool reads or writes that isn&#8217;t a plain value &#8212; Tool
+          SDK treats these as first-class typed inputs and outputs rather than paths or blobs the tool
+          has to manage itself.</p>
+
+        <div class="docs__tablewrap">
+          <table class="docs__table">
+            <thead>
+              <tr><th scope="col">Resource type</th><th scope="col">Represents</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">File</th><td>A single file on disk, opened and closed by Arble around your call</td></tr>
+              <tr><th scope="row">Directory</th><td>A scoped view of a folder, walked or written within its permission</td></tr>
+              <tr><th scope="row">Database</th><td>A connection handle to a database Arble has been granted access to</td></tr>
+              <tr><th scope="row">Image</th><td>A typed binary resource with format and dimension metadata</td></tr>
+              <tr><th scope="row">Document</th><td>A structured document (PDF, Markdown, Word) with extraction helpers</td></tr>
+              <tr><th scope="row">Table</th><td>A typed tabular resource &#8212; rows and a schema &#8212; independent of file format</td></tr>
+              <tr><th scope="row">Web API</th><td>A named external endpoint with its authentication already resolved</td></tr>
+              <tr><th scope="row">Binary resource</th><td>Untyped bytes, for anything that doesn&#8217;t fit a more specific category</td></tr>
+              <tr><th scope="row">Streaming resource</th><td>A resource whose content arrives incrementally rather than all at once</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>Declaring a parameter as <code>Resource[File]</code> instead of <code>str</code> changes
+          what the agent can pass you: a reference Arble already validated and scoped, not a raw path
+          it has to guess is valid.</p>
+
+        <h2 id="permissions">Permissions</h2>
+        <p>A tool declares what it needs, not how it will use it. Arble is the one that asks,
+          remembers and enforces &#8212; the tool&#8217;s code never contains a permission check,
+          because if the function body is running, the permission has already been granted.</p>
+
+        <div class="docs__code">
+          <div class="docs__codebar"><span class="docs__lang">PYTHON</span><button class="docs__copy" type="button" data-copy="c-perm" aria-label="Copy code">Copy</button></div>
+          <pre><code id="c-perm">@tool(
+    name="filesystem.write_report",
+    permissions=["filesystem.write:~/Reports"],
+)
+def write_report(path: str, content: str, ctx: Context) -> dict:
+    ctx.fs.write(path, content)
+    return {"path": path, "bytes": len(content)}</code></pre>
+        </div>
+
+        <div class="docs__tablewrap">
+          <table class="docs__table">
+            <thead>
+              <tr><th scope="col">Level</th><th scope="col">Behavior</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">Always allow</th><td>Granted once, applied to every future call without prompting again</td></tr>
+              <tr><th scope="row">Ask every time</th><td>Prompts on every call, regardless of prior answers</td></tr>
+              <tr><th scope="row">Never allow</th><td>Calls fail immediately with a permission error, no prompt shown</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>Grants can be scoped <strong>per tool</strong>, <strong>per workflow</strong> or <strong>per
+          session</strong>, and are inherited down a call chain &#8212; a workflow granted
+          <code>network.http</code> doesn&#8217;t make a called tool re-prompt, but a tighter scope on
+          the tool is still enforced on top, never loosened by it.</p>
+
+        <h2 id="authentication">Authentication</h2>
+        <p>Tools that talk to external services need credentials, and Tool SDK resolves them through
+          Arble&#8217;s credential store rather than asking you to manage secrets yourself.</p>
+
+        <div class="docs__acc">
+          <details class="docs__item" open>
+            <summary>API keys</summary>
+            <p><code>ctx.secrets.get("service_name")</code> resolves from the user&#8217;s stored
+              keys, and fails the call with a clear setup error if none exists.</p>
+          </details>
+          <details class="docs__item">
+            <summary>OAuth</summary>
+            <p>Declare an OAuth scope and Arble handles authorization, token storage and refresh
+              &#8212; your tool calls <code>ctx.auth.token("github")</code> and gets a valid token.</p>
+          </details>
+          <details class="docs__item">
+            <summary>Bearer tokens</summary>
+            <p>Stored once, injected on request, never logged &#8212; the same treatment as an API
+              key.</p>
+          </details>
+          <details class="docs__item">
+            <summary>Environment variables</summary>
+            <p>Resolved through <code>ctx.env</code>, not <code>os.environ</code>, so the tool
+              behaves identically when Arble supplies credentials a different way in production.</p>
+          </details>
+          <details class="docs__item">
+            <summary>Local credentials &amp; device keychain</summary>
+            <p>On desktop, Arble can resolve a credential from the OS keychain instead of its own
+              store.</p>
+          </details>
+          <details class="docs__item">
+            <summary>Secrets</summary>
+            <p>Anything marked as a secret is redacted from logs, traces and error messages
+              automatically.</p>
+          </details>
+        </div>
+
+        <p>Never accept a credential as a plain tool parameter. If a caller can pass it, it can leak
+          into a trace or a workflow definition &#8212; resolve credentials through <code>ctx</code>,
+          always.</p>
+
+        <h2 id="streaming">Streaming</h2>
+        <p>A tool that takes more than an instant should stream, not block. Make the function an async
+          generator and yield instead of returning once.</p>
+
+        <div class="docs__code">
+          <div class="docs__codebar"><span class="docs__lang">PYTHON</span><button class="docs__copy" type="button" data-copy="c-stream" aria-label="Copy code">Copy</button></div>
+          <pre><code id="c-stream">from arble import tool, Context, Progress
+
+@tool(name="repo.clone", permissions=["filesystem.write", "network.http"])
+async def clone_repository(url: str, dest: str, ctx: Context):
+    yield Progress(message="Resolving repository", percent=0)
+
+    async for received, total in ctx.git.clone(url, dest):
+        yield Progress(
+            message=f"Receiving objects ({received}/{total})",
+            percent=int(received / total * 100),
+        )
+
+    yield {"path": dest, "commit": await ctx.git.head(dest)}</code></pre>
+        </div>
+
+        <p><strong>Progress updates</strong> carry a message and an optional percent, and render as a
+          live status line without polling. <strong>Partial outputs</strong> let a tool yield pieces
+          of its result as they&#8217;re ready. <strong>Long-running tasks</strong> stay attached to
+          the same call rather than needing a separate status check &#8212; the stream is the status.
+          <strong>Cancellation</strong> arrives on <code>ctx.cancelled</code>, checked cooperatively
+          between yields. <strong>Timeouts</strong> are enforced by Arble regardless of whether the
+          tool checks cancellation.</p>
+
+        <h2 id="development">Development</h2>
+        <p><code>arble dev</code> runs a local loop built around fast iteration on a single tool.</p>
+
+        <p><strong>Hot reload.</strong> Saving the tool file re-registers it within milliseconds.
+          <strong>Inspector.</strong> A live panel showing the current schema, the last five calls and
+          any validation errors as you type. <strong>Schema viewer.</strong> Renders the generated
+          JSON Schema exactly as the registry stores it. <strong>Permission preview.</strong> Shows the
+          exact prompt a user sees on first call. <strong>Logs.</strong> Structured, per-call logs
+          filterable by tool. <strong>Registry.</strong> A local-only view matching the shape of the
+          production registry. <strong>CLI.</strong> Every capability above is also a scriptable
+          command &#8212; <code>arble tools inspect</code>, <code>arble tools schema</code>,
+          <code>arble tools logs</code>.</p>
+
+        <h2 id="testing">Testing</h2>
+        <p>Tool SDK&#8217;s test harness runs a tool without a live Arble session, so tests are fast
+          and don&#8217;t depend on network state or a real agent loop.</p>
+
+        <p><strong>Unit testing.</strong> <code>arble.testing.call(tool, **kwargs)</code> invokes a
+          tool directly against its schema. <strong>Mock tools.</strong> Any tool your tool calls
+          internally can be swapped for a mock. <strong>Replay.</strong> Record a real call once and
+          replay it in CI without hitting the live service again. <strong>Snapshots.</strong> Assert
+          that a tool&#8217;s output schema hasn&#8217;t changed unexpectedly. <strong>Permission
+          simulation.</strong> Run a tool as though a permission were denied. <strong>Failure
+          simulation.</strong> Inject a timeout or malformed response to verify error handling.</p>
+
+        <div class="docs__code">
+          <div class="docs__codebar"><span class="docs__lang">PYTHON</span><button class="docs__copy" type="button" data-copy="c-test" aria-label="Copy code">Copy</button></div>
+          <pre><code id="c-test">from arble.testing import call, deny_permission
+
+def test_create_issue_success():
+    result = call(create_issue, input=CreateIssueInput(title="Bug"))
+    assert result["title"] == "Bug"
+
+def test_create_issue_without_network_permission():
+    with deny_permission("network.http"):
+        with pytest.raises(PermissionError):
+            call(create_issue, input=CreateIssueInput(title="Bug"))</code></pre>
+        </div>
+
+        <h2 id="publishing">Publishing</h2>
+        <p><code>arble tools publish</code> pushes a packaged tool to a registry. Which registry
+          depends on who should be able to install it.</p>
+
+        <p><strong>Versioning.</strong> Tools follow semantic versioning. A published version is
+          immutable &#8212; a fix ships as a new version, never an overwrite. <strong>Signing.</strong>
+          Every package is signed with the publisher&#8217;s key; Arble refuses an unsigned or
+          tampered package on install.</p>
+
+        <div class="docs__cmp">
+          <div class="docs__cmp-col">
+            <p class="docs__cmp-h">Private registry</p>
+            <ul>
+              <li>Visible only to you</li>
+              <li>For tools still in development</li>
+            </ul>
+          </div>
+          <div class="docs__cmp-col">
+            <p class="docs__cmp-h">Organization registry</p>
+            <ul>
+              <li>Visible to your Arble organization</li>
+              <li>Gated by the same role permissions</li>
+            </ul>
+          </div>
+          <div class="docs__cmp-col docs__cmp-col--accent">
+            <p class="docs__cmp-h">Public registry</p>
+            <ul>
+              <li>Visible to any Arble user</li>
+              <li>Reviewed before listing</li>
+            </ul>
+          </div>
+        </div>
+
+        <h2 id="helpers">Built-in helpers</h2>
+        <p><code>ctx</code> gives every tool access to a set of helpers so common operations
+          don&#8217;t require a new dependency or a hand-rolled client.</p>
+
+        <div class="docs__tablewrap">
+          <table class="docs__table">
+            <thead>
+              <tr><th scope="col">Helper</th><th scope="col">Provides</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">Filesystem</th><td>Scoped read/write/list, respecting the tool&#8217;s declared path permission</td></tr>
+              <tr><th scope="row">Browser</th><td>A controllable browser context for tools that need to navigate or scrape</td></tr>
+              <tr><th scope="row">Desktop</th><td>OS-level automation &#8212; window focus, screenshots, input simulation</td></tr>
+              <tr><th scope="row">Terminal</th><td>A sandboxed shell for tools that need to run a command</td></tr>
+              <tr><th scope="row">Clipboard</th><td>Read and write the system clipboard, gated behind its own permission</td></tr>
+              <tr><th scope="row">Notifications</th><td>Post a system notification the user sees outside the session</td></tr>
+              <tr><th scope="row">Memory</th><td>Read and write the user&#8217;s persistent memory store</td></tr>
+              <tr><th scope="row">Scheduler</th><td>Queue a future or recurring call to this or another tool</td></tr>
+              <tr><th scope="row">HTTP</th><td>An HTTP client with credentials, retries and tracing pre-wired</td></tr>
+              <tr><th scope="row">Database</th><td>Query a database Arble has been granted a connection to</td></tr>
+              <tr><th scope="row">Encryption</th><td>Encrypt and decrypt values using keys Arble manages</td></tr>
+              <tr><th scope="row">Search</th><td>Query the user&#8217;s indexed local content and connected sources</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 id="example-tools">Example tools</h2>
+        <p>Each of these is a normal Tool SDK tool &#8212; nothing about them is privileged or built
+          with a different API than the one described on this page.</p>
+
+        <div class="docs__tablewrap">
+          <table class="docs__table">
+            <tbody>
+              <tr><th scope="row">Filesystem</th><td>Reads, writes and searches files within a granted directory scope</td></tr>
+              <tr><th scope="row">Browser</th><td>Navigates, clicks and extracts content from a controlled browser session</td></tr>
+              <tr><th scope="row">Weather</th><td>Fetches current conditions and forecasts for a named location</td></tr>
+              <tr><th scope="row">GitHub</th><td>Opens issues, reviews pull requests and reads repository state</td></tr>
+              <tr><th scope="row">Slack</th><td>Posts messages and reads channel history in connected workspaces</td></tr>
+              <tr><th scope="row">Email</th><td>Drafts, sends and searches messages through the connected inbox</td></tr>
+              <tr><th scope="row">Calendar</th><td>Reads availability and creates events on the connected calendar</td></tr>
+              <tr><th scope="row">Database</th><td>Runs scoped queries against a granted database connection</td></tr>
+              <tr><th scope="row">Notifications</th><td>Delivers a system notification outside the current session</td></tr>
+              <tr><th scope="row">Camera</th><td>Captures a still image from a paired device&#8217;s camera</td></tr>
+              <tr><th scope="row">Microphone</th><td>Records or transcribes audio from a paired device&#8217;s microphone</td></tr>
+              <tr><th scope="row">Memory</th><td>Reads from and writes to the user&#8217;s persistent memory store</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 id="registry">Tool registry</h2>
+        <p>Every tool Arble can call &#8212; regardless of where it came from &#8212; lands in one
+          registry, indexed the same way.</p>
+
+        <div class="docs__tablewrap">
+          <table class="docs__table">
+            <thead>
+              <tr><th scope="col">Source</th><th scope="col">Examples</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">Built-in</th><td>Filesystem, terminal, browser, memory</td></tr>
+              <tr><th scope="row">Tool SDK</th><td>Anything you build and register with <code>@tool</code></td></tr>
+              <tr><th scope="row">MCP</th><td>Tools exposed by a connected MCP server</td></tr>
+              <tr><th scope="row">Desktop</th><td>OS-level capabilities on a paired desktop</td></tr>
+              <tr><th scope="row">Remote services</th><td>Tools backed by a hosted API rather than local code</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>The planner that decides which tool to call for a given step reads name, description, input
+          schema and permission requirements &#8212; the same four fields regardless of source. Adding
+          a source of tools never means teaching the planner something new, and a tool you publish
+          through Tool SDK is chosen exactly as readily as one Arble shipped with. See
+          <a href="../../../docs/developers/mcp-servers/">MCP server</a> for how connectors join the same registry.</p>
+
+        <h2 id="performance">Performance</h2>
+        <p><strong>Cold start.</strong> A tool&#8217;s first call in a session pays a one-time cost to
+          load its code and resolve permissions; every call after reuses the warm instance.
+          <strong>Caching.</strong> Declare a result as cacheable with a TTL &#8212;
+          <code>@tool(cache_ttl=60)</code> &#8212; and repeated identical calls are served from cache.
+          <strong>Streaming.</strong> Lets Arble start planning the next step before the current one
+          fully completes, when the plan doesn&#8217;t depend on the final value. <strong>Memory.</strong>
+          Write summaries, not raw payloads &#8212; a dumped API response bloats every future context
+          that reads it back. <strong>Latency.</strong> The registry tracks p50/p95 per tool and
+          surfaces regressions before a user reports them. <strong>Retries.</strong> Mark errors
+          <code>retryable=True</code> and Arble retries with backoff automatically. <strong>Timeouts.</strong>
+          Set a tool-level default with <code>@tool(timeout=30)</code>; callers can request a shorter
+          deadline, never a longer one.</p>
+
+        <h2 id="security">Security</h2>
+        <div class="docs__acc">
+          <details class="docs__item">
+            <summary>Sandbox</summary>
+            <p>Tool code runs in an isolated process with no ambient access to the filesystem, network
+              or other tools&#8217; data &#8212; only what its declared permissions and resources
+              explicitly grant.</p>
+          </details>
+          <details class="docs__item">
+            <summary>Permissions</summary>
+            <p>Every capability is opt-in and declared up front. There is no implicit access a tool
+              can fall back on.</p>
+          </details>
+          <details class="docs__item">
+            <summary>Audit logs</summary>
+            <p>Every call &#8212; inputs, the permission grant it ran under, and its outcome &#8212; is
+              logged and queryable.</p>
+          </details>
+          <details class="docs__item">
+            <summary>Least privilege</summary>
+            <p>Scope permissions as narrowly as the tool functionally needs &#8212;
+              <code>filesystem.write:~/Reports</code>, not <code>filesystem.write:~</code>.</p>
+          </details>
+          <details class="docs__item">
+            <summary>Encryption</summary>
+            <p>Secrets and credentials are encrypted at rest and never appear in plaintext in logs,
+              traces or registry entries.</p>
+          </details>
+          <details class="docs__item">
+            <summary>Revocation</summary>
+            <p>Revoking a permission takes effect on the next call, immediately, with no reinstall or
+              restart required.</p>
+          </details>
+        </div>
+
+        <h2 id="best-practices">Best practices</h2>
+        <ol class="docs__list">
+          <li>Keep a tool&#8217;s scope narrow &#8212; one clear job, not a dozen optional modes.</li>
+          <li>Name tools <code>namespace.action</code> (<code>github.create_issue</code>), so the registry stays legible at scale.</li>
+          <li>Write the docstring for the agent, not for yourself &#8212; it&#8217;s what the planner reads.</li>
+          <li>Declare the narrowest permission that works, scoped to specific paths or hosts.</li>
+          <li>Never accept credentials as parameters &#8212; resolve them through <code>ctx.secrets</code> or <code>ctx.auth</code>.</li>
+          <li>Prefer typed models over loose <code>dict</code> parameters &#8212; the schema is only as good as the types.</li>
+          <li>Stream anything that takes more than a couple of seconds.</li>
+          <li>Check <code>ctx.cancelled</code> between yields in any streaming tool.</li>
+          <li>Raise typed <code>ToolError</code> subclasses instead of letting exceptions propagate raw.</li>
+          <li>Mark genuinely retryable errors <code>retryable=True</code>, never ones that write data non-idempotently.</li>
+          <li>Write memory entries as summaries, not raw dumps.</li>
+          <li>Version deliberately &#8212; a breaking schema change is a major version, not a patch.</li>
+          <li>Test with permission simulation, not just happy-path calls.</li>
+          <li>Return resources instead of raw paths or blobs for files, images or documents.</li>
+          <li>Keep the function body free of permission or credential checks &#8212; that&#8217;s what the decorator is for.</li>
+        </ol>
+
+        <h2 id="reference">Reference</h2>
+        <ul class="docs__list">
+          <li><a href="#">Decorators</a> &#8212; <code>@tool</code>, parameters, defaults</li>
+          <li><a href="#">Schemas</a> &#8212; type inference rules, explicit overrides</li>
+          <li><a href="#resources">Resources</a> &#8212; full resource type catalog and helpers</li>
+          <li><a href="#permissions">Permissions</a> &#8212; scope syntax, grant levels, inheritance</li>
+          <li><a href="#streaming">Streaming</a> &#8212; <code>Progress</code>, partial results, cancellation</li>
+          <li><a href="#">Memory</a> &#8212; read/write API, retention, summarization</li>
+          <li><a href="#authentication">Authentication</a> &#8212; <code>ctx.secrets</code>, <code>ctx.auth</code>, OAuth setup</li>
+          <li><a href="../../../docs/developers/cli/">CLI</a> &#8212; full <code>arble tools</code> command reference</li>
+          <li><a href="#publishing">Publishing</a> &#8212; package format, signing, registry configuration</li>
+          <li><a href="#testing">Testing</a> &#8212; <code>arble.testing</code> API reference</li>
+          <li><a href="../../../docs/developers/api-reference/">API</a> &#8212; REST and streaming endpoints for published tools</li>
+        </ul>
+
+        <h2 id="faq">FAQ</h2>
+        <div class="docs__acc">
+          <details class="docs__item">
+            <summary>Do I need MCP if I&#8217;m using Tool SDK?</summary>
+            <p>No. They solve different problems. MCP connects Arble to a server someone else runs;
+              Tool SDK is how you build a tool that runs as a native part of Arble itself. Many
+              setups use both.</p>
+          </details>
+          <details class="docs__item">
+            <summary>Can a Tool SDK tool call an MCP tool?</summary>
+            <p>Yes. From the registry&#8217;s perspective they&#8217;re both just tools &#8212; your
+              function can call one through the same <code>ctx</code> interface it uses for any
+              built-in helper.</p>
+          </details>
+          <details class="docs__item">
+            <summary>What happens if I change a tool&#8217;s input schema after publishing?</summary>
+            <p>A backward-compatible change ships as a patch. A breaking change needs a new major
+              version &#8212; the old version keeps working for anyone pinned to it.</p>
+          </details>
+          <details class="docs__item">
+            <summary>How does Arble decide which tool to call for a given task?</summary>
+            <p>The planner reads each candidate&#8217;s name, description and schema from the registry
+              and picks based on fit, regardless of whether the tool is built-in, SDK or MCP.</p>
+          </details>
+          <details class="docs__item">
+            <summary>Can I test a tool without a full Arble session running?</summary>
+            <p>Yes &#8212; the <code>arble.testing</code> harness calls a tool directly against its
+              schema and mocked context, with no live session required.</p>
+          </details>
+          <details class="docs__item">
+            <summary>Do streaming tools need a different permission model?</summary>
+            <p>No. Permissions are declared once on the tool and apply to the whole call, streamed or
+              not.</p>
+          </details>
+          <details class="docs__item">
+            <summary>Where are secrets actually stored?</summary>
+            <p>In Arble&#8217;s encrypted credential store, resolved into your tool at call time
+              through <code>ctx.secrets</code> or <code>ctx.auth</code>. Your code never touches the
+              storage layer.</p>
+          </details>
+          <details class="docs__item">
+            <summary>Can I publish a tool privately within my company only?</summary>
+            <p>Yes &#8212; the organization registry is visible only to members of your Arble
+              organization.</p>
+          </details>
+          <details class="docs__item">
+            <summary>What&#8217;s the difference between <code>permissions</code> and a resource scope?</summary>
+            <p>A permission is a capability (&#8220;this tool can write files&#8221;); a resource
+              scope narrows where. Most filesystem and network permissions carry a scope as part of
+              the same declaration.</p>
+          </details>
+          <details class="docs__item">
+            <summary>Is there a limit on how long a streaming tool can run?</summary>
+            <p>Every tool has a deadline, defaulting to 30 seconds and overridable with
+              <code>@tool(timeout=...)</code>. A streaming tool that needs longer should say so
+              explicitly rather than relying on the default.</p>
+          </details>
+        </div>
+      
+        <nav class="pbp__nav" aria-label="Page navigation">
+          <a class="pbp__navcard pbp__navcard--prev" href="../../../docs/developers/mcp-servers/"><span class="pbp__navcard-l">Previous</span><span class="pbp__navcard-t">MCP Servers</span></a>
+          <a class="pbp__navcard pbp__navcard--next" href="../../../docs/developers/cli/"><span class="pbp__navcard-l">Next</span><span class="pbp__navcard-t">CLI</span></a>
+        </nav>
+        </article>
+
+      <aside class="docs__toc" aria-label="On this page">
+        <p class="docs__tocH">On this page</p>
+        <ul class="docs__toclist" id="docsToc">
+          <li class="docs__tocrow"><a href="#why">Why Tool SDK</a></li>
+          <li class="docs__tocrow"><a href="#quick-example">Quick example</a></li>
+          <li class="docs__tocrow"><a href="#languages">Supported languages</a></li>
+          <li class="docs__tocrow"><a href="#lifecycle">Tool lifecycle</a></li>
+          <li class="docs__tocrow"><a href="#anatomy">Tool anatomy</a></li>
+          <li class="docs__tocrow"><a href="#input-schemas">Input schemas</a></li>
+          <li class="docs__tocrow"><a href="#output-schemas">Output schemas</a></li>
+          <li class="docs__tocrow"><a href="#resources">Resources</a></li>
+          <li class="docs__tocrow"><a href="#permissions">Permissions</a></li>
+          <li class="docs__tocrow"><a href="#authentication">Authentication</a></li>
+          <li class="docs__tocrow"><a href="#streaming">Streaming</a></li>
+          <li class="docs__tocrow"><a href="#development">Development</a></li>
+          <li class="docs__tocrow"><a href="#testing">Testing</a></li>
+          <li class="docs__tocrow"><a href="#publishing">Publishing</a></li>
+          <li class="docs__tocrow"><a href="#helpers">Built-in helpers</a></li>
+          <li class="docs__tocrow"><a href="#example-tools">Example tools</a></li>
+          <li class="docs__tocrow"><a href="#registry">Tool registry</a></li>
+          <li class="docs__tocrow"><a href="#performance">Performance</a></li>
+          <li class="docs__tocrow"><a href="#security">Security</a></li>
+          <li class="docs__tocrow"><a href="#best-practices">Best practices</a></li>
+          <li class="docs__tocrow"><a href="#reference">Reference</a></li>
+          <li class="docs__tocrow"><a href="#faq">FAQ</a></li>
+        </ul>
+      </aside>
+      </div>
+    </div>
+  </div>
+
+  <script src="../../../assets/js/docs.js?v=7" defer></script>
+  <script>window.ARBLE_DOCS_ROOT = "../../../docs/";</script>
+  <script src="../../../assets/js/docs-search.js?v=2" defer></script>
+  <script src="../../../assets/js/docs-ui.js?v=3" defer></script>
+</body>
+
+</html>

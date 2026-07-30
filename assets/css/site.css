@@ -1,0 +1,5606 @@
+/* ═══════════════════════════════════════════════════════════════
+   Arble — landing page styles
+   One accent, cool-biased neutrals, one semantic hue, one easing.
+   ═══════════════════════════════════════════════════════════════ */
+:root {
+  --paper: #FFFFFF;
+  --surface: #FAFAFA;
+  --surface-2: #F3F3F4;
+  --line: #ECECEC;
+  --line-2: #E2E2E4;
+  --ink: #121212;
+  --ink-2: #6C7075;
+  --ink-3: #A2A5AB;
+  --ink-4: #C9CBCF;
+  --accent: #2E49E6;
+  --accent-soft: #2E49E612;
+  --live: #12A150;
+
+  --sh-1: 0 1px 2px rgba(10, 10, 11, .04);
+  --sh-card: 0 1px 3px rgba(10, 10, 11, .04), 0 12px 40px rgba(10, 10, 11, .045);
+  --sh-float: 0 24px 70px rgba(10, 10, 11, .10);
+  --sh-phone: 0 2px 6px rgba(10, 10, 11, .06), 0 40px 80px rgba(10, 10, 11, .10), 0 90px 160px rgba(10, 10, 11, .10);
+
+  /* Type matched to the reference site: Stack Sans Headline for display, Switzer for text */
+  --sans: "Switzer", -apple-system, BlinkMacSystemFont, "SF Pro Text", Inter, system-ui, "Segoe UI", sans-serif;
+  --display-font: "Stack Sans Headline", "Switzer", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --mono: ui-monospace, "SF Mono", SFMono-Regular, "JetBrains Mono", Menlo, Consolas, monospace;
+
+  /* Device box. Reference phone renders 362px wide from a PNG with zero
+     transparent padding; our frame's alpha bbox is 94.19% of its canvas, so
+     362 / 0.9419 = 384px gives an identical *visible* phone. */
+  --stage-w: min(384px, 84vw);
+
+  --ease: cubic-bezier(.22, .61, .36, 1);
+  --ease-soft: cubic-bezier(.33, .7, 0, 1);
+
+  --max: 1240px;
+  --read: 720px;
+}
+
+/* Light-only palette — dark theme intentionally removed. */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 17px;
+  line-height: 1.62;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+  transition: background .5s var(--ease), color .5s var(--ease);
+}
+
+a {
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* --shell-pad mirrors the inline padding so children that need to run flush to
+   the shell's edge can cancel it with a negative margin and stay in step when
+   the padding changes at the breakpoint. See .frame--flush. */
+.shell {
+  --shell-pad: 40px;
+  width: 100%;
+  max-width: var(--max);
+  margin-inline: auto;
+  padding-inline: var(--shell-pad);
+}
+
+@media (max-width:640px) {
+  .shell {
+    --shell-pad: 24px;
+  }
+}
+
+.skip {
+  position: absolute;
+  left: -999px;
+}
+
+.skip:focus {
+  left: 16px;
+  top: 16px;
+  z-index: 200;
+  background: var(--ink);
+  color: var(--paper);
+  padding: 10px 16px;
+  border-radius: 10px;
+}
+
+/* barely-there physical texture — soft vignette + fine film grain, like paper */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: radial-gradient(135% 105% at 50% -12%, transparent 66%, rgba(10, 10, 11, .05) 100%);
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: .038;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ── Type scale — wide on purpose ── */
+/* Display face + OpenType features copied from the reference's headline preset */
+.display,
+.statement,
+.head {
+  font-family: var(--display-font);
+  font-feature-settings: "blwf" on, "cv09" on, "cv03" on, "cv04" on, "cv11" on;
+  font-weight: 500;
+  text-wrap: balance;
+  letter-spacing: -.03em;
+}
+
+/* reference H1: 42px / 500 / lh 46.2px (1.1) / ls -1.26px (-.03em) */
+.display {
+  font-size: clamp(29px, 3.8vw, 42px);
+  line-height: 1.1;
+}
+
+.statement {
+  font-size: clamp(38px, 6.6vw, 104px);
+  line-height: 1.1;
+}
+
+/* Section headings sat at 62px — much larger than the reference's, which read
+   about the same size as its 42px h1. Scaled to sit just under the hero.
+   (Judged by eye against the reference, not measured from its stylesheet.) */
+.head {
+  font-size: clamp(28px, 3.4vw, 44px);
+  line-height: 1.1;
+}
+
+.head--sm {
+  font-size: clamp(28px, 3.2vw, 40px);
+}
+
+.lede {
+  font-size: clamp(18px, 1.55vw, 21px);
+  line-height: 1.55;
+  color: var(--ink-2);
+  font-weight: 420;
+  letter-spacing: -.011em;
+}
+
+.body {
+  font-size: 17px;
+  line-height: 1.68;
+  color: var(--ink-2);
+  font-weight: 420;
+}
+
+.mono {
+  font-family: var(--mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.eyebrow {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.measure {
+  max-width: var(--read);
+}
+
+/* ── Section rhythm ── */
+.sec {
+  padding-block: clamp(96px, 13vw, 160px);
+}
+
+.sec--air {
+  padding-block: clamp(140px, 20vw, 260px);
+}
+
+/* The eco band already carries 64–104px of its own top padding, so a full
+   sec--air tail above it stacked into ~250px of dead space between the
+   statement and the caption. Roughly halve the section's own tail wherever it
+   runs straight into the band; the band's padding supplies the rest.
+   Matched on the adjacency rather than on #story, so it stays correct if the
+   order changes — and where :has() is unsupported it simply falls back to the
+   old, looser spacing. */
+.sec--air:has(+ .eco) {
+  padding-block-end: clamp(64px, 8vw, 112px);
+}
+
+.sec--half {
+  padding-block: clamp(76px, 9vw, 120px);
+}
+
+.sec--tight {
+  padding-block: clamp(52px, 6vw, 80px);
+}
+
+/* ── Buttons ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  /* reference button: 56px tall, padding 0 24px, radius 100px, 14/400 +.01em */
+  height: 56px;
+  padding-inline: 24px;
+  border-radius: 100px;
+  font-family: var(--display-font);
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: .01em;
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+  border: 1px solid transparent;
+  transition: transform .3s var(--ease), background .3s var(--ease), box-shadow .3s var(--ease), border-color .3s var(--ease), color .3s var(--ease);
+}
+
+.btn--primary {
+  background: var(--ink);
+  color: var(--paper);
+  /* reference: box-shadow none */
+  box-shadow: none;
+}
+
+.btn--primary:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--sh-card);
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--ink);
+  border-color: var(--line-2);
+}
+
+.btn--ghost:hover {
+  transform: translateY(-2px);
+  border-color: var(--ink-3);
+}
+
+/* reference nav CTA: 46px tall, padding 0 24px, 14/400 */
+.btn--sm {
+  height: 46px;
+  padding-inline: 24px;
+  font-size: 14px;
+}
+
+/* ═══════════════ NAV — floating hardware ═══════════════ */
+.nav {
+  position: fixed;
+  /* reference nav: fixed, top 24px */
+  inset-block-start: 24px;
+  inset-inline: 0;
+  /* above every section, the grain overlay (60) and the pinned hero — nothing
+     from a section may ever read through or over the bar */
+  z-index: 300;
+  display: flex;
+  justify-content: center;
+  padding-inline: 20px;
+  pointer-events: none;
+}
+
+/* Scrim behind the floating pill. The bar itself is only ~430px wide, so long
+   copy scrolling past it used to pass through the gap above it and the open
+   track either side, and read as a sliced line of text level with the nav.
+   A masked backdrop blur softens whatever is underneath without painting a
+   colour band — it has to sit over the grey hero sky, the black mountains and
+   the white sections alike, so any opaque veil would show a seam on at least
+   one of them. z-index -1 keeps it inside the nav's own stacking context, so
+   it stays above every section but below the pill. */
+.nav::before {
+  content: "";
+  position: absolute;
+  inset-block-start: -24px;
+  /* out past the padding-inline, so the blur reaches both viewport edges */
+  inset-inline: 0;
+  height: 116px;
+  z-index: -1;
+  pointer-events: none;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 52%, transparent 100%);
+  mask-image: linear-gradient(180deg, #000 0%, #000 52%, transparent 100%);
+}
+
+.nav__bar {
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  /* reference pill: 60px tall, padding-left 16px, radius 100px,
+     background rgb(244,244,244), box-shadow none, no backdrop-filter */
+  gap: 40px;
+  height: 60px;
+  padding: 0 8px 0 16px;
+  border-radius: 100px;
+  border: 0;
+  background: #F4F4F4;
+  box-shadow: none;
+  transition: background .5s var(--ease);
+}
+
+.nav__bar.is-stuck {
+  box-shadow: 0 3px 8px rgba(10, 10, 11, .05), 0 18px 44px -10px rgba(10, 10, 11, .13);
+  background: var(--paper);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: var(--ink);
+  flex-shrink: 0;
+}
+
+/* Black rounded tile holding the real logo, as on the reference. The mark's
+   bottom plate is black and does merge into the tile — the white and grey plates
+   above it carry the shape, which is how the reference's own mark reads.
+
+   The logo file is trimmed to its SOLID pixels, not its alpha bounds: the source
+   carries a wide soft drop shadow, and cropping to that left the plates filling
+   only the middle of the frame, which is why the mark looked small and cut. */
+.brand__mark {
+  width: 30px;
+  height: 30px;
+  border-radius: 9px;
+  background: var(--ink);
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.brand__mark img {
+  width: 78%;
+  height: 78%;
+  object-fit: contain;
+  display: block;
+}
+
+.brand__word {
+  font-family: var(--display-font);
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: -.02em;
+}
+
+/* second half of the wordmark drops back, matching "App" + "Next" */
+.brand__word--dim {
+  color: var(--ink-3);
+}
+
+.nav__links {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  margin-inline: auto;
+}
+
+/* reference nav links: Stack Sans Headline 14/400, +.01em, near-black */
+.nav__link {
+  padding: 8px 13px;
+  border-radius: 999px;
+  font-family: var(--display-font);
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: .01em;
+  color: #121212;
+  text-decoration: none;
+  transition: color .28s var(--ease), background .28s var(--ease);
+}
+
+.nav__link:hover {
+  color: var(--ink);
+  background: var(--surface-2);
+}
+
+.nav__right {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+@media (max-width:940px) {
+  .nav__links {
+    display: none;
+  }
+}
+
+/* ═══════════════ HERO ═══════════════ */
+/* Normal flow — the page scrolls as one piece. The only scroll-linked motion is
+   the phone's downward parallax; the cards run their own upward loop. `overflow`
+   clips the phone once it has drifted past the hero box. */
+/* Reference hero rhythm at 1440x900, measured in page space:
+   h1 top 200 · h1→CTA 32 · CTA→cards 11 · cards→phone 41 · hero bottom 975. */
+.hero {
+  position: relative;
+  padding-block: 200px 0;
+  text-align: center;
+  overflow: hidden;
+  /* soft grey sky so the top reads as the photo, not flat white */
+  background: linear-gradient(180deg, #eceded 0%, #f4f4f5 46%, var(--paper) 78%);
+}
+
+/* The photo fills the hero box down to its exact bottom edge, so it ends on the
+   same clean horizontal cut that slices the phone — the reference does not fade
+   its mountains out at all. */
+/* reference: absolute, top 0, full width, spanning the whole hero box */
+.hero__mtn {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.hero__mtn img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* reference: object-position 50% 50% */
+  object-position: 50% 50%;
+  display: block;
+  /* Reference applies filter: none — their source file is already black and
+     white. Ours is a colour photo, so grayscale(1) is required to match the
+     output; no contrast/brightness, since the reference specifies none. */
+  filter: grayscale(1);
+}
+
+/* Only the sky at the very top is blended into the page background. The ridge
+   and the base of the photo are left untouched, so it stays fully dark and ends
+   on a hard edge instead of dissolving into fog. */
+.hero__mtn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg,
+      #eceded 0%,
+      rgba(236, 237, 237, .18) 14%,
+      rgba(236, 237, 237, 0) 34%);
+}
+
+.hero__inner {
+  position: relative;
+  z-index: 1;
+}
+
+.tagpill {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  height: 33px;
+  padding: 0 15px 0 8px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: color-mix(in srgb, var(--paper) 55%, transparent);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  text-decoration: none;
+  transition: border-color .3s var(--ease), transform .3s var(--ease);
+}
+
+.tagpill:hover {
+  border-color: var(--line-2);
+  transform: translateY(-1px);
+}
+
+/* Eyebrow variant: the same pill as a static label rather than a link — no dot
+   slot, so the left padding evens up, and a gap under it before the heading. */
+.tagpill--flat {
+  padding-inline: 15px;
+  margin-block-end: clamp(18px, 2vw, 26px);
+}
+
+.tagpill__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--live);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--live) 16%, transparent);
+}
+
+.hero__title {
+  margin-block: 0;
+  max-width: 820px;
+  margin-inline: auto;
+}
+
+.hero__title em {
+  font-style: normal;
+  color: inherit;
+}
+
+.hero__cta {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-block-start: 32px;
+  flex-wrap: wrap;
+}
+
+.hero__demo {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-block-start: 12px;
+  font-size: 14px;
+  color: var(--ink-2);
+  text-decoration: none;
+  transition: color .28s var(--ease);
+}
+
+.hero__demo:hover {
+  color: var(--ink);
+}
+
+.hero__demo svg {
+  width: 13px;
+  height: 13px;
+}
+
+/* Stage: the cards and the device share one box, so they sit on the same centre
+   axis by construction — no independent left offsets anywhere. */
+.stage {
+  position: relative;
+  z-index: 1;
+  width: var(--stage-w);
+  margin-inline: auto;
+  margin-block-start: 31px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Card column. Cards are 325px wide with an 8px gap — 84.6% of the device box,
+   because our frame has 5.81% transparent padding: 0.846 x 384 = 325px, the
+   reference's exact card width.
+
+   Window height re-measured off the reference crop. It was 130px, which is only
+   1.8 card heights: with the mask opaque across the middle 55%, the clear band
+   came to 71.5px — one 72px card and nothing else. That is why a single card sat
+   crisp in the window with its neighbours washed to nothing, and the column read
+   as one card travelling alone rather than a moving stack.
+
+   194px is 2.7 card heights, so the clear band is 107px and two cards are legible
+   at once with a third fading at each end. Anchored on the reference: the top
+   fade completes 154px above the visible top of the phone, and the column runs
+   40px past it — the phone (z-index 3 over the column's 1) is what ends the
+   stack, not the mask. Changing this height means re-deriving .device's negative
+   margin-block-start below, which sets that 40px overlap. */
+.marquee {
+  position: relative;
+  width: 84.6%;
+  height: 194px;
+  overflow: hidden;
+  z-index: 1;
+  -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 22.5%, #000 77.5%, transparent 100%);
+  mask-image: linear-gradient(180deg, transparent 0%, #000 22.5%, #000 77.5%, transparent 100%);
+}
+
+/* Reference card loop is time-based, not scroll-linked: it advances 8px per
+   400ms = 20px/s at scrollY 0. One copy of our 6-card deck is 6 x (72+8) =
+   480px, so 480 / 20 = 24s per -50% cycle. */
+.marquee__track {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  animation: vscroll 24s linear infinite;
+}
+
+.marquee:hover .marquee__track {
+  animation-play-state: paused;
+}
+
+@keyframes vscroll {
+  from { transform: translateY(0); }
+  to { transform: translateY(-50%); }
+}
+
+/* Solid white widget cards, one title line only — matching the reference. The
+   old translucent + blurred treatment washed them out against the photo. */
+.hfeat {
+  display: flex;
+  align-items: center;
+  /* reference card: 72px tall, radius 12, padding 12, gap 10, no shadow */
+  gap: 10px;
+  width: 100%;
+  height: 72px;
+  padding: 12px;
+  border-radius: 12px;
+  background: var(--paper);
+  border: 0;
+  box-shadow: none;
+  white-space: nowrap;
+}
+
+/* reference icon container: 48x48, radius 6. Their fill is a per-card pastel
+   tint (e.g. rgb(235,249,255)); ours stays neutral to suit a mono palette. */
+.hfeat__ic {
+  width: 48px;
+  height: 48px;
+  border-radius: 6px;
+  background: var(--surface-2);
+  display: grid;
+  place-items: center;
+  color: var(--ink-2);
+  flex-shrink: 0;
+}
+
+.hfeat__ic svg {
+  width: 22px;
+  height: 22px;
+}
+
+/* reference card title: 18px / 300 / ls .18px / line-height 28.8px (1.6em) */
+.hfeat__t {
+  font-family: var(--display-font);
+  font-size: 18px;
+  font-weight: 300;
+  letter-spacing: .01em;
+  line-height: 1.6;
+  color: var(--ink);
+}
+
+/* realistic device: a transparent iPhone frame image over the live app screen */
+.device {
+  position: relative;
+  /* inherits --stage-w from .stage — identical width, identical centre axis */
+  width: 100%;
+  aspect-ratio: 1015 / 2048;
+  /* The column and the phone OVERLAP — the earlier 41px gap was a misreading of
+     the reference. There the lowest card runs behind the phone and is cut by it;
+     the 8px of dead space you see is the frame's own transparent padding, not a
+     margin. Pulling the box up 52px puts its visible top (1.5625% in) 40px above
+     the column's bottom edge, so the stack ends on the phone. Paired with
+     .marquee's height — move one, re-derive the other. */
+  margin-block-start: -52px;
+  /* Reference shows 413px of a 743px phone before the hero's bottom edge cuts
+     it (55.6%). Our visible phone starts 1.5625% into its box, so the hero must
+     run 0.015625 x H + 0.556 x H_visible past the box top; the remainder is
+     cropped. Solves to 0.9108 x --stage-w. */
+  margin-block-end: calc(var(--stage-w) * -0.9108);
+  z-index: 3;
+  filter: drop-shadow(0 44px 74px rgba(10, 10, 11, .24));
+  /* transform is written by the scroll scrubber only — no entrance keyframes */
+  will-change: transform;
+}
+
+.device__frame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* Insets read straight out of phone-frame.avif's alpha channel rather than eyeballed:
+   the transparent aperture is x 70..949 of 1015 and y 70..1979 of 2048. The old
+   4.2% sides were ~2.5% too wide EACH, so every capture was drawn wider than the
+   glass and the bezel hid the overflow — which is why screens looked zoomed and
+   clipped at the edges. The centre column reads y 176 because the dynamic island
+   is painted into the frame; columns clear of it agree on 70. */
+.device__screen {
+  position: absolute;
+  top: 3.42%;
+  left: 6.90%;
+  right: 6.50%;
+  bottom: 3.37%;
+  border-radius: 12.5% / 6.2%;
+  overflow: hidden;
+  background: var(--paper);
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* A device shown inline in a section, rather than the hero's cropped-and-drifting
+   one: no parallax, no crop, and its own width so it doesn't inherit --stage-w. */
+.featshot {
+  display: flex;
+  justify-content: center;
+  margin-block: clamp(44px, 6vw, 76px) clamp(52px, 7vw, 88px);
+}
+
+.device--inline {
+  width: min(316px, 78vw);
+  margin-block: 0;
+  will-change: auto;
+}
+
+/* The real app capture, filling the screen cutout. Anchored to the top so the
+   header stays put as the aspect ratio flexes; the frame's own rounded corners
+   come from .device__screen's border-radius + overflow. */
+.device__shot {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+}
+
+/* clear the Dynamic Island and shrink the app chrome to the smaller screen */
+.device .phone__head { padding: 52px 18px 11px; }
+.device .phone__body { padding: 13px; gap: 8px; }
+.device .bub { font-size: 12.5px; }
+
+/* Below 700px the reference's desktop breakpoint no longer applies, so these
+   are scaled-down equivalents rather than extracted values. */
+@media (max-width:700px) {
+  :root {
+    --stage-w: min(320px, 84vw);
+  }
+
+  .hero {
+    padding-block-start: 132px;
+  }
+
+  /* same 2.7 card-heights and same overlap as desktop, against a 64px card */
+  .marquee {
+    height: 172px;
+  }
+
+  .hfeat {
+    height: 64px;
+    padding: 10px;
+  }
+
+  .hfeat__ic {
+    width: 44px;
+    height: 44px;
+  }
+
+  .hfeat__t {
+    font-size: 16px;
+  }
+
+  .device {
+    margin-block-start: -46px;
+  }
+}
+
+.win__bar {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  height: 38px;
+  padding-inline: 16px;
+  border-block-end: 1px solid var(--line);
+  background: var(--surface);
+}
+
+.win__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--line-2);
+}
+
+.win__title {
+  margin-inline: auto;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--ink-3);
+  letter-spacing: .03em;
+}
+
+.win__body {
+  display: grid;
+  grid-template-columns: 190px 1fr;
+  height: 290px;
+}
+
+.win__side {
+  border-inline-end: 1px solid var(--line);
+  padding: 14px 12px;
+  background: var(--surface);
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.win__main {
+  padding: 22px 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+  text-align: start;
+}
+
+@media (max-width:760px) {
+  .win__body {
+    grid-template-columns: 1fr;
+  }
+
+  .win__side {
+    display: none;
+  }
+}
+
+.side__row {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 7px 9px;
+  border-radius: 8px;
+  font-family: var(--mono);
+  font-size: 11.5px;
+  color: var(--ink-2);
+}
+
+.side__row.is-on {
+  background: var(--paper);
+  color: var(--ink);
+  box-shadow: var(--sh-1);
+}
+
+.side__ico {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--ink-3);
+  flex-shrink: 0;
+}
+
+.side__row.is-on .side__ico {
+  background: var(--accent);
+}
+
+.skel {
+  height: 9px;
+  border-radius: 4px;
+  background: var(--surface-2);
+}
+
+.log {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--ink-2);
+}
+
+.log__tag {
+  color: var(--accent);
+}
+
+.log__ok {
+  color: var(--live);
+  margin-inline-start: auto;
+}
+
+.phone {
+  position: relative;
+  z-index: 3;
+  width: 302px;
+  height: 632px;
+  border-radius: 56px;
+  background: var(--ink);
+  padding: 10px;
+  box-shadow: var(--sh-phone), 0 0 0 1px rgba(10, 10, 11, .05);
+}
+
+@media (max-width:900px) {
+  .phone {
+    width: 250px;
+    height: 522px;
+    border-radius: 46px;
+  }
+}
+
+.phone__screen {
+  width: 100%;
+  height: 100%;
+  border-radius: 47px;
+  overflow: hidden;
+  background: var(--paper);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width:900px) {
+  .phone__screen {
+    border-radius: 38px;
+  }
+}
+
+.phone__notch {
+  position: absolute;
+  inset-block-start: 9px;
+  inset-inline-start: 50%;
+  transform: translateX(-50%);
+  width: 96px;
+  height: 27px;
+  border-radius: 999px;
+  background: var(--ink);
+  z-index: 4;
+}
+
+.phone__head {
+  padding: 48px 20px 13px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  border-block-end: 1px solid var(--line);
+}
+
+.phone__title {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -.014em;
+}
+
+.phone__status {
+  margin-inline-start: auto;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--mono);
+  font-size: 9.5px;
+  color: var(--ink-3);
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+
+.phone__status i {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--live);
+  display: inline-block;
+  font-style: normal;
+}
+
+.phone__body {
+  flex: 1;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow: hidden;
+  text-align: start;
+}
+
+.bub {
+  max-width: 84%;
+  padding: 10px 14px;
+  border-radius: 18px;
+  font-size: 13px;
+  line-height: 1.5;
+  letter-spacing: -.008em;
+}
+
+.bub--me {
+  align-self: flex-end;
+  background: var(--ink);
+  color: var(--paper);
+  border-end-end-radius: 6px;
+}
+
+.bub--it {
+  align-self: flex-start;
+  background: var(--surface-2);
+  color: var(--ink);
+  border-end-start-radius: 6px;
+}
+
+.tool {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 11px 13px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  background: var(--paper);
+}
+
+.tool__top {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  color: var(--ink-2);
+}
+
+.tool__name {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.tool__badge {
+  margin-inline-start: auto;
+  padding: 2px 7px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--live) 12%, transparent);
+  color: var(--live);
+  font-size: 9px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+.tool__badge--ask {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.tool__row {
+  display: flex;
+  gap: 7px;
+}
+
+.tool__btn {
+  flex: 1;
+  height: 28px;
+  border-radius: 8px;
+  border: 1px solid var(--line-2);
+  background: var(--paper);
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--ink-2);
+  display: grid;
+  place-items: center;
+}
+
+.tool__btn--go {
+  background: var(--ink);
+  color: var(--paper);
+  border-color: var(--ink);
+}
+
+/* floating chips */
+.chip {
+  position: absolute;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 15px 11px 12px;
+  border-radius: 16px;
+  border: 1px solid var(--line);
+  background: color-mix(in srgb, var(--paper) 84%, transparent);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: var(--sh-card);
+  white-space: nowrap;
+}
+
+.chip__ico {
+  width: 26px;
+  height: 26px;
+  border-radius: 8px;
+  background: var(--surface-2);
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  color: var(--ink-2);
+}
+
+.chip__ico svg {
+  width: 13px;
+  height: 13px;
+}
+
+.chip__t {
+  font-size: 12.5px;
+  font-weight: 540;
+  letter-spacing: -.01em;
+}
+
+.chip__s {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  color: var(--ink-3);
+  letter-spacing: .03em;
+}
+
+.chip--1 {
+  inset-block-start: 120px;
+  inset-inline-start: -1%;
+}
+
+.chip--2 {
+  inset-block-start: 330px;
+  inset-inline-start: -3%;
+}
+
+.chip--3 {
+  inset-block-start: 150px;
+  inset-inline-end: -2%;
+}
+
+.chip--4 {
+  inset-block-start: 400px;
+  inset-inline-end: -3%;
+}
+
+@media (max-width:1180px) {
+
+  .chip--2,
+  .chip--4 {
+    display: none;
+  }
+}
+
+@media (max-width:880px) {
+  .chip {
+    display: none;
+  }
+}
+
+@keyframes drift {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+.float {
+  animation: drift 7.5s var(--ease-soft) infinite;
+}
+
+.float--b {
+  animation-duration: 9.5s;
+  animation-delay: -3s;
+}
+
+.float--c {
+  animation-duration: 11s;
+  animation-delay: -5.5s;
+}
+
+/* ═══════════════ CATEGORY STRIP ═══════════════ */
+
+.cat {
+  padding: 9px 18px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: -.01em;
+  color: var(--ink-2);
+  background: var(--paper);
+  transition: border-color .3s var(--ease), color .3s var(--ease), transform .3s var(--ease);
+}
+
+.cat:hover {
+  border-color: var(--line-2);
+  color: var(--ink);
+  transform: translateY(-2px);
+}
+
+
+/* ═══════════════ LOGO LINE ═══════════════ */
+.logos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(28px, 5vw, 72px);
+  flex-wrap: wrap;
+}
+
+.logos__item {
+  font-size: clamp(16px, 2vw, 21px);
+  font-weight: 600;
+  letter-spacing: -.03em;
+  color: var(--ink);
+  opacity: .24;
+  transition: opacity .4s var(--ease);
+}
+
+.logos__item:hover {
+  opacity: .5;
+}
+
+.logos__cap {
+  text-align: center;
+  margin-block-end: clamp(40px, 6vw, 64px);
+}
+
+/* ═══════════════ SECTION HEADER ═══════════════ */
+/* max-width was 24ch, which resolves against .sechead's own 17px font — about
+   235px. That crammed the section heading into a 235px column and wrapped it
+   over six lines. The heading needs the room; the lede below caps itself. */
+.sechead {
+  text-align: center;
+  max-width: 760px;
+  margin-inline: auto;
+  margin-block-end: clamp(48px, 7vw, 80px);
+}
+
+.sechead .lede {
+  margin-block-start: 22px;
+  margin-inline: auto;
+  max-width: 48ch;
+}
+
+/* Left-aligned counterpart to the centred .sechead, for sections that open on
+   a block of prose rather than a single line. */
+.lead {
+  max-width: 58ch;
+  margin-block-end: clamp(44px, 5.5vw, 72px);
+}
+
+.lead .lede {
+  margin-block-start: clamp(20px, 2.2vw, 30px);
+}
+
+/* Two headline figures under the lead. Distinct from .metrics lower down: those
+   are mono and sit four-up as a band of their own, these are set in the display
+   face at headline scale so they read as part of the sentence above them. */
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(40px, 7vw, 104px);
+  margin-block-end: clamp(56px, 7vw, 92px);
+}
+
+.stat__n {
+  font-family: var(--display-font);
+  font-size: clamp(44px, 5.4vw, 74px);
+  font-weight: 400;
+  letter-spacing: -.035em;
+  line-height: 1;
+  color: var(--ink);
+}
+
+.stat__d {
+  margin-block-start: clamp(14px, 1.7vw, 22px);
+  font-size: clamp(15px, 1.3vw, 17px);
+  letter-spacing: -.008em;
+  color: var(--ink);
+  max-width: 22ch;
+}
+
+/* ═══════════════ FEATURE GRID (3-col) ═══════════════ */
+.fgrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+@media (max-width:880px) {
+  .fgrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.fcard {
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  padding: clamp(28px, 3vw, 40px);
+  background: var(--surface);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  transition: transform .4s var(--ease), box-shadow .4s var(--ease), border-color .4s var(--ease);
+}
+
+.fcard:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--sh-card);
+  border-color: var(--line-2);
+}
+
+.fcard__ic {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  display: grid;
+  place-items: center;
+  color: var(--ink);
+  margin-block-end: 6px;
+}
+
+.fcard__ic svg {
+  width: 19px;
+  height: 19px;
+}
+
+.fcard__t {
+  font-size: 20px;
+  font-weight: 590;
+  letter-spacing: -.022em;
+}
+
+.fcard__d {
+  font-size: 15px;
+  color: var(--ink-2);
+  line-height: 1.56;
+}
+
+/* Tall variant: icon at the top, title and body dropped to the foot of the
+   card, a deliberate column of air between them. `margin-block-end: auto` on
+   the icon is what does it — the card is already a flex column, so the auto
+   margin eats the free space instead of the text floating mid-card. */
+.fcard--tall {
+  min-height: clamp(320px, 29vw, 414px);
+  padding: clamp(26px, 2.7vw, 34px);
+}
+
+.fcard--tall .fcard__ic {
+  width: clamp(52px, 4.6vw, 64px);
+  height: clamp(52px, 4.6vw, 64px);
+  border-radius: 16px;
+  background: var(--surface-2);
+  border: 0;
+  margin-block-end: auto;
+}
+
+.fcard--tall .fcard__ic svg {
+  width: 26px;
+  height: 26px;
+}
+
+.fcard--tall .fcard__t {
+  font-size: clamp(20px, 1.9vw, 25px);
+  font-weight: 500;
+  letter-spacing: -.025em;
+}
+
+.fcard--tall .fcard__d {
+  font-size: clamp(15px, 1.35vw, 17px);
+  line-height: 1.6;
+}
+
+.fcard__k {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--ink-3);
+  letter-spacing: .02em;
+  margin-block-start: auto;
+  padding-block-start: 12px;
+}
+
+/* ═══════════════ DESKTOP MOCKUP ═══════════════ */
+.mac {
+  margin-block-start: clamp(48px, 7vw, 88px);
+  display: flex;
+  justify-content: center;
+}
+
+.mac__body {
+  width: min(1040px, 100%);
+  border-radius: 20px;
+  border: 1px solid var(--line);
+  background: var(--paper);
+  box-shadow: var(--sh-float);
+  overflow: hidden;
+}
+
+.mac__base {
+  width: min(1160px, 108%);
+  height: 13px;
+  margin-inline: auto;
+  border-radius: 0 0 14px 14px;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-block-start: 0;
+}
+
+.mac__grid {
+  display: grid;
+  grid-template-columns: 200px 1fr 250px;
+  height: 400px;
+}
+
+@media (max-width:860px) {
+  .mac__grid {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+
+  .mac__col--l,
+  .mac__col--r {
+    display: none;
+  }
+}
+
+.mac__col {
+  padding: 18px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  text-align: start;
+}
+
+.mac__col--l {
+  border-inline-end: 1px solid var(--line);
+  background: var(--surface);
+}
+
+.mac__col--r {
+  border-inline-start: 1px solid var(--line);
+  background: var(--surface);
+}
+
+.mac__col--c {
+  padding: 24px;
+  gap: 14px;
+}
+
+.term {
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.term__l {
+  font-family: var(--mono);
+  font-size: 11.5px;
+  color: var(--ink-2);
+  display: flex;
+  gap: 8px;
+}
+
+.term__p {
+  color: var(--accent);
+}
+
+.route {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.route__row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--ink-2);
+}
+
+.route__nm {
+  color: var(--ink);
+}
+
+.route__track {
+  flex: 1;
+  height: 4px;
+  border-radius: 999px;
+  background: var(--surface-2);
+  overflow: hidden;
+}
+
+.route__fill {
+  height: 100%;
+  border-radius: 999px;
+  background: var(--accent);
+  width: 0;
+  transition: width 1.3s var(--ease-soft);
+}
+
+/* ═══════════════ HORIZONTAL CARDS ═══════════════ */
+.hcards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-block-start: clamp(48px, 6vw, 72px);
+}
+
+@media (max-width:880px) {
+  .hcards {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width:520px) {
+  .hcards {
+    grid-template-columns: 1fr;
+  }
+}
+
+.hcard {
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 24px;
+  background: var(--surface);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: transform .4s var(--ease), box-shadow .4s var(--ease);
+}
+
+.hcard:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--sh-card);
+}
+
+.hcard__av {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  display: grid;
+  place-items: center;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--accent);
+}
+
+.hcard__t {
+  font-size: 15px;
+  font-weight: 560;
+  letter-spacing: -.014em;
+}
+
+.hcard__d {
+  font-family: var(--mono);
+  font-size: 11px;
+  line-height: 1.5;
+  color: var(--ink-2);
+}
+
+/* ═══════════════ CENTERED INSIGHTS ═══════════════ */
+.center {
+  text-align: center;
+}
+
+.center .statement,
+.center .head {
+  max-width: 18ch;
+  margin-inline: auto;
+}
+
+.center .statement em {
+  font-style: normal;
+  color: var(--ink-3);
+}
+
+.center__btns {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-block-start: clamp(32px, 4vw, 44px);
+  flex-wrap: wrap;
+}
+
+.center .lede {
+  max-width: 44ch;
+  margin: 26px auto 0;
+}
+
+/* ═══════════════ METRICS ═══════════════ */
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(32px, 5vw, 64px);
+}
+
+@media (max-width:820px) {
+  .metrics {
+    grid-template-columns: 1fr 1fr;
+    gap: 64px 32px;
+  }
+}
+
+.metric__n {
+  font-family: var(--mono);
+  font-size: clamp(56px, 7.5vw, 104px);
+  font-weight: 500;
+  letter-spacing: -.055em;
+  line-height: .9;
+  color: var(--ink);
+}
+
+.metric__d {
+  margin-block-start: 16px;
+  font-size: 14px;
+  color: var(--ink-2);
+  line-height: 1.45;
+  max-width: 20ch;
+}
+
+/* ═══════════════ FEATURE (2-col text + device) ═══════════════ */
+.feature {
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: clamp(56px, 9vw, 140px);
+  align-items: center;
+}
+
+@media (max-width:940px) {
+  .feature {
+    grid-template-columns: 1fr;
+    gap: 56px;
+  }
+
+  .feature__device {
+    order: -1;
+    justify-self: center;
+  }
+}
+
+.feature__copy {
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+  align-items: flex-start;
+}
+
+.pointrow {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-block-start: 6px;
+}
+
+.pointrow__i {
+  display: flex;
+  gap: 14px;
+  align-items: baseline;
+}
+
+.pointrow__k {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .04em;
+  color: var(--accent);
+  flex-shrink: 0;
+  width: 52px;
+  padding-block-start: 2px;
+}
+
+.pointrow__v {
+  font-size: 16px;
+  color: var(--ink-2);
+  line-height: 1.5;
+}
+
+.pointrow__v b {
+  color: var(--ink);
+  font-weight: 560;
+}
+
+.inlinequote {
+  margin-block-start: 8px;
+  font-size: 15px;
+  color: var(--ink-2);
+  font-style: italic;
+  border-inline-start: 2px solid var(--line-2);
+  padding-inline-start: 16px;
+}
+
+/* ═══════════════ ACCORDION DEMO ═══════════════ */
+.demo {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: clamp(56px, 9vw, 130px);
+  align-items: center;
+}
+
+@media (max-width:1000px) {
+  .demo {
+    grid-template-columns: 1fr;
+    gap: 56px;
+  }
+
+  .demo__device {
+    order: -1;
+    justify-self: center;
+  }
+}
+
+.acc {
+  display: flex;
+  flex-direction: column;
+  margin-block-start: 44px;
+  border-block-start: 1px solid var(--line);
+}
+
+.acc__item {
+  border-block-end: 1px solid var(--line);
+}
+
+.acc__btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 26px 4px;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  font-family: var(--sans);
+  text-align: start;
+  color: var(--ink);
+  transition: opacity .3s var(--ease);
+}
+
+.acc__item:not(.is-open) .acc__btn {
+  opacity: .5;
+}
+
+.acc__item:not(.is-open) .acc__btn:hover {
+  opacity: .8;
+}
+
+.acc__num {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--ink-3);
+  letter-spacing: .08em;
+  flex-shrink: 0;
+}
+
+.acc__ttl {
+  font-size: clamp(19px, 2vw, 24px);
+  font-weight: 560;
+  letter-spacing: -.02em;
+}
+
+.acc__chev {
+  margin-inline-start: auto;
+  width: 15px;
+  height: 15px;
+  color: var(--ink-3);
+  transition: transform .45s var(--ease);
+  flex-shrink: 0;
+}
+
+.acc__item.is-open .acc__chev {
+  transform: rotate(180deg);
+}
+
+.acc__panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows .5s var(--ease-soft);
+}
+
+.acc__item.is-open .acc__panel {
+  grid-template-rows: 1fr;
+}
+
+.acc__inner {
+  overflow: hidden;
+}
+
+.acc__copy {
+  padding: 0 0 26px 68px;
+  font-size: 16px;
+  line-height: 1.62;
+  color: var(--ink-2);
+  max-width: 54ch;
+}
+
+.acc__meta {
+  padding: 0 0 26px 68px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.tagm {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--surface-2);
+  color: var(--ink-2);
+  letter-spacing: .03em;
+}
+
+@media (max-width:520px) {
+
+  .acc__copy,
+  .acc__meta {
+    padding-inline-start: 0;
+  }
+}
+
+.demo__device {
+  position: relative;
+}
+
+.screen-swap {
+  transition: opacity .38s var(--ease), transform .38s var(--ease);
+}
+
+.screen-swap.is-fading {
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+/* ═══════════════ ARCHITECTURE MAP ═══════════════ */
+.map {
+  position: relative;
+  margin-block-start: clamp(56px, 8vw, 90px);
+  height: 520px;
+}
+
+@media (max-width:820px) {
+  .map {
+    height: auto;
+  }
+}
+
+.map__canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.map__nodes {
+  position: absolute;
+  inset: 0;
+}
+
+.mnode {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  align-items: flex-start;
+  padding: 12px 15px;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  background: color-mix(in srgb, var(--paper) 90%, transparent);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: border-color .3s var(--ease), box-shadow .3s var(--ease), transform .3s var(--ease);
+  white-space: nowrap;
+}
+
+.mnode:hover {
+  border-color: var(--accent);
+  box-shadow: var(--sh-card);
+  transform: translate(-50%, -50%) translateY(-3px);
+  z-index: 2;
+}
+
+.mnode--hub {
+  border-color: var(--ink);
+}
+
+.mnode--hub .mnode__t {
+  color: var(--ink);
+}
+
+.mnode__id {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--accent);
+  letter-spacing: .02em;
+}
+
+.mnode__t {
+  font-size: 14px;
+  font-weight: 580;
+  letter-spacing: -.014em;
+}
+
+.mnode__p {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--ink-3);
+}
+
+.map__list {
+  display: none;
+}
+
+@media (max-width:820px) {
+
+  .map__canvas,
+  .map__nodes {
+    display: none;
+  }
+
+  .map__list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    overflow: hidden;
+  }
+
+  .map__cell {
+    background: var(--paper);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+}
+
+@media (max-width:520px) {
+  .map__list {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ═══════════════ TESTIMONIAL GRID ═══════════════ */
+.tgrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-block-start: clamp(48px, 6vw, 72px);
+}
+
+@media (max-width:940px) {
+  .tgrid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width:560px) {
+  .tgrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.tcard {
+  border: 1px dashed var(--line-2);
+  border-radius: 20px;
+  padding: 26px 24px;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.tcard__q {
+  font-size: 15px;
+  line-height: 1.5;
+  letter-spacing: -.01em;
+  color: var(--ink);
+}
+
+.tcard__by {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  margin-block-start: auto;
+}
+
+.tcard__av {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  display: grid;
+  place-items: center;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--ink-3);
+}
+
+.tcard__nm {
+  font-size: 13px;
+  font-weight: 550;
+  letter-spacing: -.01em;
+}
+
+.tcard__rl {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--ink-3);
+}
+
+.note {
+  max-width: 660px;
+  margin: clamp(32px, 4vw, 48px) auto 0;
+  padding: 14px 18px;
+  border-radius: 14px;
+  border: 1px dashed var(--line-2);
+  font-family: var(--mono);
+  font-size: 11px;
+  line-height: 1.6;
+  color: var(--ink-3);
+  text-align: center;
+}
+
+/* ═══════════════ ABOUT ═══════════════ */
+.about {
+  max-width: 760px;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.about__body {
+  font-size: clamp(19px, 2vw, 24px);
+  line-height: 1.5;
+  letter-spacing: -.018em;
+  color: var(--ink-2);
+}
+
+.about__body b {
+  color: var(--ink);
+  font-weight: 560;
+}
+
+/* ═══════════════ FAQ ═══════════════ */
+.faq {
+  max-width: 820px;
+  margin-inline: auto;
+  margin-block-start: clamp(48px, 6vw, 72px);
+  border-block-start: 1px solid var(--line);
+}
+
+.faq .acc__item {
+  border-block-end: 1px solid var(--line);
+}
+
+.faq .acc__ttl {
+  font-size: clamp(17px, 1.8vw, 20px);
+}
+
+.faq .acc__copy {
+  padding-inline-start: 0;
+}
+
+/* ═══════════════ CTA ═══════════════ */
+.cta {
+  text-align: center;
+}
+
+.cta__btns {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-block-start: clamp(40px, 5vw, 56px);
+  flex-wrap: wrap;
+}
+
+/* ═══════════════ FOOTER ═══════════════ */
+.foot {
+  position: relative;
+  border-block-start: 1px solid var(--line);
+  padding-block: clamp(64px, 8vw, 96px) 0;
+  overflow: hidden;
+}
+
+.foot__top {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 1;
+}
+
+/* Left block of the reference footer: mark and wordmark, a line of what this is,
+   the registered address, then the social row. */
+.foot__brand {
+  max-width: 30ch;
+}
+
+.brand--foot {
+  margin-block-end: 18px;
+}
+
+.foot__tag {
+  font-size: 14px;
+}
+
+.foot__addr {
+  margin-block-start: 18px;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--ink-2);
+}
+
+/* Reads as unfinished on purpose — see the note in index.html. */
+.foot__addr-ph {
+  color: var(--ink-3);
+  font-style: italic;
+}
+
+/* Explicit track count, NOT auto-fit. .foot__cols is a flex item sized from its
+   own content, and auto-fit needs a definite width to know how many tracks to
+   make — that circularity resolves to a single track, which stacked all five
+   columns into one 118px strip. flex:1 gives it the leftover row space and the
+   count is stated outright at each breakpoint. */
+.foot__cols {
+  flex: 1 1 auto;
+  display: grid;
+  grid-template-columns: repeat(5, max-content);
+  gap: clamp(22px, 3vw, 44px);
+  justify-content: end;
+}
+
+@media (max-width:1080px) {
+  .foot__cols {
+    grid-template-columns: repeat(3, max-content);
+    justify-content: start;
+  }
+}
+
+@media (max-width:620px) {
+  .foot__cols {
+    grid-template-columns: repeat(2, max-content);
+  }
+}
+
+.foot__col {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.foot__h {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin: 0 0 4px;
+}
+
+.foot__l {
+  font-size: 14px;
+  color: var(--ink-2);
+  text-decoration: none;
+  transition: color .28s var(--ease);
+}
+
+.foot__l:hover {
+  color: var(--ink);
+}
+
+.foot__social {
+  display: flex;
+  gap: 8px;
+  margin-block-start: 14px;
+}
+
+.foot__ic {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  display: grid;
+  place-items: center;
+  color: var(--ink-2);
+  transition: border-color .3s var(--ease), color .3s var(--ease);
+}
+
+.foot__ic:hover {
+  border-color: var(--ink-3);
+  color: var(--ink);
+}
+
+.foot__ic svg {
+  width: 14px;
+  height: 14px;
+}
+
+.foot__bar {
+  margin-block-start: clamp(48px, 7vw, 90px);
+  padding-block: 24px;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 1;
+}
+
+.foot__fine {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--ink-3);
+  letter-spacing: .02em;
+}
+
+.foot__ghost {
+  position: relative;
+  z-index: 0;
+  margin-block: clamp(40px, 6vw, 72px) -6px;
+  /* "Built for intelligence" measures 7.95em at this weight and tracking, so it
+     needs 12.57vw to sit exactly edge to edge — 11.8vw leaves a small gutter.
+     The old 17vw ran it to 2045px inside a 1512px viewport and .foot's overflow
+     clipped the last four letters. Re-measure this factor if the wording, the
+     weight or the letter-spacing changes; nowrap means it cannot self-correct. */
+  font-size: clamp(36px, 11.8vw, 190px);
+  font-weight: 660;
+  letter-spacing: -.06em;
+  line-height: .8;
+  color: var(--ink);
+  opacity: .04;
+  text-align: center;
+  white-space: nowrap;
+  user-select: none;
+}
+
+/* ═══════════════ REVEAL ═══════════════ */
+.rv {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity .9s var(--ease-soft), transform .9s var(--ease-soft);
+}
+
+.rv.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+.rv--d1 {
+  transition-delay: .08s;
+}
+
+.rv--d2 {
+  transition-delay: .16s;
+}
+
+.rv--d3 {
+  transition-delay: .24s;
+}
+
+/* ═══════════════ MOTION PASS (additive) ═══════════════ */
+/* Scroll-scrubbed paragraph reveal: words are wrapped by main.js and their
+   opacity is written continuously from scroll position — dim grey → full ink.
+   Reference measurement: opacity 0.2 → 1, the text colour itself never changes,
+   with exactly one word mid-fade at a time. */
+.tscrub {
+  color: var(--ink);
+}
+
+/* The big statement paragraph after the hero. Left-aligned inside a centred
+   measure — the ragged right edge is what makes the word-by-word reveal legible
+   as a reveal; centred text shifts every line as words resolve. */
+.statement-scrub {
+  font-family: var(--display-font);
+  font-size: clamp(21px, 2.4vw, 30px);
+  font-weight: 400;
+  line-height: 1.46;
+  letter-spacing: -.014em;
+  max-width: 21ch;
+  margin-inline: auto;
+  text-wrap: normal;
+}
+
+@media (min-width:700px) {
+  .statement-scrub {
+    max-width: 620px;
+  }
+}
+
+.tscrub .w {
+  display: inline-block;
+  opacity: .2;
+  will-change: opacity;
+}
+
+/* integration strip → seamless marquee, pauses on hover */
+
+/* The integration strip drifts continuously, like the reference's partner-logo
+   row. At 46s it crawled at 25px/s — slow enough to read as static on a first
+   look. 24s over the 1171px half-track is ~49px/s: clearly moving, still calm
+   enough to read a name as it passes.
+   (Unlike the hero card loop's 20px/s, this figure is not measured off the
+   reference — its logo track carries no CSS animation I could sample, so the
+   motion is driven per-frame by a Framer runtime component.) */
+
+
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* sequenced phone transcript reveal — .seq is added by JS only when motion is allowed,
+   so no-JS / reduced-motion users always see the full transcript */
+.phone__body.seq>* {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity .5s var(--ease-soft), transform .5s var(--ease-soft);
+}
+
+.phone__body.seq.seq-go>* {
+  opacity: 1;
+  transform: none;
+  transition-delay: calc(var(--si, 0) * 320ms);
+}
+
+/* architecture: fade non-adjacent nodes while one is hovered */
+.mnode {
+  transition: border-color .3s var(--ease), box-shadow .3s var(--ease), transform .3s var(--ease), opacity .3s var(--ease);
+}
+
+.mnode.is-dim {
+  opacity: .3;
+}
+
+@media (prefers-reduced-motion:reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .rv {
+    opacity: 1;
+    transform: none;
+  }
+
+  .phone__body.seq>* {
+    opacity: 1;
+    transform: none;
+  }
+
+  .eco__track {
+    animation: none;
+  }
+}
+/* ═══════════════ PLAYBOOK CHAPTER PAGE (playbook.html) ═══════════════════════
+   Rail of chapters beside one column of prose, as on the reference. The rail is
+   sticky so the contents stay reachable through a long read; the column is held
+   to a reading measure rather than the shell's full width. */
+.pbp {
+  padding-block: clamp(120px, 13vw, 168px) clamp(64px, 8vw, 104px);
+}
+
+.pbp__grid {
+  display: grid;
+  grid-template-columns: 244px minmax(0, 1fr);
+  gap: clamp(48px, 7vw, 120px);
+  align-items: start;
+}
+
+.pbp__rail {
+  position: sticky;
+  top: 104px;
+  max-height: calc(100vh - 132px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+@media (max-width:900px) {
+  .pbp__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .pbp__rail {
+    position: static;
+    max-height: none;
+    overflow-y: visible;
+    padding-block-end: clamp(28px, 5vw, 44px);
+    border-block-end: 1px solid var(--line);
+  }
+}
+
+.pbp__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--display-font);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+  text-decoration: none;
+  margin-block-end: clamp(26px, 3vw, 36px);
+}
+
+.pbp__back svg {
+  width: 16px;
+  height: 16px;
+  transition: transform .3s var(--ease);
+}
+
+.pbp__back:hover svg {
+  transform: translateX(-3px);
+}
+
+.pbp__part {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  font-weight: 600;
+  margin: 26px 0 10px;
+}
+
+.pbp__part:first-of-type {
+  margin-block-start: 0;
+}
+
+.pbp__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.pbp__row {
+  display: grid;
+  grid-template-columns: 2.2em minmax(0, 1fr);
+  gap: 6px;
+  align-items: baseline;
+  padding: 7px 11px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.45;
+  border: 0;
+  color: var(--ink-2);
+}
+
+.pbp__row.is-current {
+  background: var(--surface);
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.pbp__cn {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  color: var(--ink-3);
+  font-variant-numeric: tabular-nums;
+  font-weight: 400;
+}
+
+.pbp__row.is-current .pbp__cn {
+  color: var(--ink-2);
+}
+
+.pbp__ct {
+  color: inherit;
+  text-decoration: none;
+}
+
+a.pbp__ct:hover {
+  color: var(--ink);
+}
+
+.pbp__row.is-current .pbp__ct {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+/* ── the chapter itself ── */
+.pbp__body {
+  max-width: 720px;
+}
+
+.pbp__body .pbp__kicker {
+  font-family: var(--display-font);
+  font-size: 12.5px;
+  font-weight: 500;
+  letter-spacing: -.01em;
+  color: #6B7280;
+  margin: 0 0 16px;
+}
+
+.pbp__title {
+  font-family: var(--display-font);
+  font-size: clamp(27px, 3vw, 39px);
+  line-height: 1.08;
+  letter-spacing: -.032em;
+  font-weight: 700;
+  margin: 0 0 22px;
+}
+
+.pbp__stand {
+  font-size: clamp(15px, 1.25vw, 16.5px);
+  line-height: 1.66;
+  color: #4B5563;
+  font-weight: 400;
+  margin: 0 0 22px;
+  max-width: 62ch;
+}
+
+.pbp__glossary dt {
+  font-family: var(--display-font);
+  font-size: 15.5px;
+  font-weight: 600;
+  letter-spacing: -.015em;
+  color: var(--ink);
+  margin-block: 24px 6px;
+}
+
+.pbp__glossary dd {
+  margin-inline-start: 0;
+  font-size: 15.5px;
+  line-height: 1.72;
+  color: #4B5563;
+}
+
+.pbp__rule {
+  border: 0;
+  border-block-start: 1px solid #ECECEC;
+  margin: 0 0 34px;
+}
+
+.pbp__body h2 {
+  font-family: var(--display-font);
+  font-size: clamp(18px, 1.6vw, 21px);
+  line-height: 1.25;
+  letter-spacing: -.022em;
+  font-weight: 600;
+  margin: 46px 0 14px;
+}
+
+.pbp__body h2:first-of-type {
+  margin-block-start: 0;
+}
+
+.pbp__body p {
+  font-size: 15.5px;
+  line-height: 1.75;
+  color: #4B5563;
+  font-weight: 400;
+  margin: 0 0 18px;
+  max-width: 74ch;
+}
+
+.pbp__body ul,
+.pbp__body ol {
+  margin: 0 0 18px;
+  padding-inline-start: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.pbp__body li {
+  font-size: 15.5px;
+  line-height: 1.72;
+  color: #4B5563;
+}
+
+.pbp__body li strong,
+.pbp__body p strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.pbp__body code {
+  font-family: var(--mono);
+  font-size: .85em;
+  background: var(--surface-2);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+/* Chapter navigation: two bordered cards side by side, previous left and next
+   right. Columns are assigned explicitly rather than left to flow, so a chapter
+   with only a next card still has it on the right where the reader expects it. */
+.pbp__nav {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-block-start: 56px;
+}
+
+.pbp__navcard {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 20px 22px;
+  border: 1px solid #ECECEC;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: border-color .25s var(--ease), background .25s var(--ease);
+}
+
+.pbp__navcard--prev {
+  grid-column: 1;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.pbp__navcard--next {
+  grid-column: 2;
+  align-items: flex-end;
+  text-align: right;
+}
+
+.pbp__navcard:hover {
+  border-color: var(--ink-3);
+  background: var(--surface-2);
+}
+
+.pbp__navcard-l {
+  font-size: 12.5px;
+  color: var(--ink-3);
+  font-weight: 400;
+}
+
+.pbp__navcard-t {
+  font-family: var(--display-font);
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -.015em;
+  color: var(--ink);
+}
+
+/* Stacked below the breakpoint: two cards side by side on a phone leaves each
+   too narrow to hold a chapter title on one line. */
+@media (max-width:620px) {
+  .pbp__nav {
+    grid-template-columns: 1fr;
+  }
+
+  .pbp__navcard--prev,
+  .pbp__navcard--next {
+    grid-column: 1;
+  }
+}
+
+/* Playbook page nav — taller bar, more breathing room */
+.pbp-page .nav__bar {
+  height: 64px;
+  padding: 0 20px 0 24px;
+}
+
+/* Playbook "All Chapters" back link sits above the part list */
+.pbp__back {
+  margin-block-end: 32px;
+}
+
+/* No hero above it on this page, so the footer supplies its own top rule only. */
+.foot--slim {
+  padding-block: 0;
+}
+
+/* Current page in the nav, for pages that are not the home page. */
+.nav__link.is-on {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+/* ═══════════════ PLAYBOOK — cover plate, then the chapter index ══════════════
+   The reference sets its title in a serif. Ours stays in the page's display face:
+   the type system is two families deep on purpose, and a third one introduced for
+   a single section would read as a different site's block dropped in. */
+
+/* Line art on white, so no card, no radius and no shadow — the plate sits
+   directly on the paper as it does on the reference.
+
+   Capped at 600px, not 820: the cover is title + promise + plate + button, and
+   at 820 the plate alone was 558px tall, which pushed the title off the top of
+   the screen so you never saw what the section was. 600 puts the plate at 408px
+   and the whole cover lands in one viewport. */
+.pb__art {
+  margin: clamp(30px, 4vw, 52px) auto 0;
+  max-width: min(600px, 100%);
+}
+
+.pb__art img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.pb__cta {
+  display: flex;
+  justify-content: center;
+  margin-block-start: clamp(28px, 3.4vw, 46px);
+}
+
+.pb__cta .btn svg {
+  width: 17px;
+  height: 17px;
+  margin-inline-start: 9px;
+  transition: transform .3s var(--ease);
+}
+
+.pb__cta .btn:hover svg {
+  transform: translateX(3px);
+}
+
+/* ═══════════════ DOWNLOAD — closing CTA over a fanned trio of phones ═════════
+   The reference (finbill.framer.website) sets copy and buttons centred, then
+   fans three phones underneath and lets the section edge cut them off, so the
+   row reads as running on past the fold. The crop is the effect — give .dl__fan
+   enough height to show the whole phone and the fan turns into three ordinary
+   pictures sitting in a row. */
+.dl {
+  position: relative;
+  padding-block-start: clamp(64px, 8vw, 118px);
+  overflow: hidden;
+}
+
+.dl__say {
+  text-align: center;
+  max-width: 46rem;
+  margin-inline: auto;
+}
+
+.dl__say .lede {
+  margin-block-start: clamp(18px, 2vw, 26px);
+  margin-inline: auto;
+  max-width: 40ch;
+}
+
+.dl__btns {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+  margin-block-start: clamp(28px, 3.2vw, 42px);
+}
+
+/* Deliberately shorter than the phones inside it — the overflow is what crops
+   them. Height is a share of --fan-w so the crop lands at the same point on the
+   device however the fan is sized. */
+.dl__fan {
+  --fan-w: clamp(196px, 21vw, 306px);
+  position: relative;
+  /* 1.33 phone-widths of phone show before the crop, measured off the reference.
+     At 1.42 too much of the blank lower screen was visible and the group read as
+     three tall slabs rather than a fan running off the page. */
+  height: calc(var(--fan-w) * 1.33);
+  margin-block-start: clamp(40px, 5vw, 72px);
+}
+
+.dl__ph {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: var(--fan-w);
+  margin-inline-start: calc(var(--fan-w) / -2);
+}
+
+/* The flanking two are pushed out 80% of a phone width and dropped 27% of one,
+   so the centre overlaps both — no rotation, as on the reference.
+
+   The drop is written against --fan-w, not as a Y percentage: a percentage in
+   translate resolves against the element's own HEIGHT, so 9% there was 0.18 of a
+   phone WIDTH, not 0.27, and the side phones sat too high. Both axes now measure
+   in the same unit. */
+.dl__ph--l {
+  transform: translate3d(-80%, calc(var(--fan-w) * .27), 0);
+  z-index: 1;
+}
+
+.dl__ph--r {
+  transform: translate3d(80%, calc(var(--fan-w) * .27), 0);
+  z-index: 1;
+}
+
+.dl__ph--c {
+  z-index: 2;
+}
+
+/* One phone only below the breakpoint: at phone width the outer two are almost
+   entirely off screen, so they cost bandwidth and shadow area for nothing. */
+@media (max-width:700px) {
+  .dl__ph--l,
+  .dl__ph--r {
+    display: none;
+  }
+}
+
+/* ═══════════════ PROOF — frosted card over a full-bleed photograph ═══════════
+   One glass panel floating on the mountain plate. The blur is the whole effect,
+   so the card is transparent enough for the ridge to read through it and the
+   text is carried by a scrim inside the same box rather than by an opaque fill.
+
+   The photo is an <img> under the card, not a background-image, so it can be
+   lazy-loaded and given intrinsic dimensions — a 1920x1080 background-image
+   would block on the stylesheet and reserve no space. */
+.proof {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: clamp(560px, 82vh, 860px);
+  /* Literal inline value, not var(--shell-pad): that custom property is declared
+     on .shell, and this section deliberately has none — referencing it here made
+     the whole shorthand invalid, which dropped the padding entirely and ran the
+     card to both screen edges on a phone. */
+  padding: clamp(56px, 8vw, 110px) clamp(24px, 3vw, 40px);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.proof__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
+/* Measured off the reference: its panel is ~368x363 CSS px — near square, and
+   noticeably smaller than the 460x462 this started at. The card is meant to sit
+   ON the photograph, not cover it. */
+.proof__card {
+  width: min(372px, 100%);
+  padding: clamp(22px, 2vw, 26px);
+  border-radius: 28px;
+  border: 1px solid rgba(255, 255, 255, .14);
+  background: rgba(122, 122, 126, .28);
+  -webkit-backdrop-filter: blur(26px) saturate(120%);
+  backdrop-filter: blur(26px) saturate(120%);
+  color: #fff;
+}
+
+/* Overlapping stack, so the row reads as a group rather than a list. The two
+   trailing ghosts are the reference's "and more" tiles.
+
+   The row animates on a loop: each tile flies in from the left, lands at its own
+   slight tilt, holds, then leaves to the right — the reference's stack deals
+   itself out like a hand of cards rather than sitting still. Stagger comes from
+   per-tile animation-delay, tilt from the --r custom property, so one keyframe
+   set drives all five. */
+.proof__avs {
+  display: flex;
+  align-items: center;
+  margin-block-end: clamp(18px, 1.8vw, 22px);
+}
+
+.proof__av {
+  --r: 0deg;
+  width: 36px;
+  height: 36px;
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  border-radius: 11px;
+  border: 2px solid rgba(255, 255, 255, .9);
+  background: rgba(255, 255, 255, .22);
+  color: rgba(255, 255, 255, .8);
+  font-family: var(--display-font);
+  font-size: 13px;
+  opacity: 0;
+  animation: proofDeal 7s cubic-bezier(.22, .61, .36, 1) infinite;
+  will-change: transform, opacity;
+}
+
+.proof__av:nth-child(1) { --r: -7deg; animation-delay: 0s; }
+.proof__av:nth-child(2) { --r: 4deg;  animation-delay: .16s; }
+.proof__av:nth-child(3) { --r: -5deg; animation-delay: .32s; }
+.proof__av:nth-child(4) { animation-delay: .48s; }
+.proof__av:nth-child(5) { animation-delay: .62s; }
+
+.proof__av + .proof__av {
+  margin-inline-start: -9px;
+}
+
+/* Tiles carrying Bit. The sprite is olive and gold, so it needs a light backing
+   to read against the mountain photograph — the translucent fill the dash
+   placeholders used left it muddy. The sprite's own viewBox runs edge to edge,
+   hence the inset: at 100% its head and feet clip on the tile's radius. */
+.proof__av--bit {
+  background: rgba(255, 255, 255, .88);
+  overflow: hidden;
+}
+
+.proof__av--bit img {
+  width: 86%;
+  height: 86%;
+  display: block;
+  object-fit: contain;
+  /* pixel art: keep the sprite's hard edges when it is scaled off-grid */
+  image-rendering: pixelated;
+}
+
+.proof__av--ghost {
+  border-color: transparent;
+  background: rgba(255, 255, 255, .16);
+  margin-inline-start: 8px;
+}
+
+.proof__av--ghost + .proof__av--ghost {
+  margin-inline-start: 6px;
+}
+
+@keyframes proofDeal {
+  0%        { opacity: 0; transform: translate3d(-20px, 0, 0) scale(.68) rotate(-15deg); }
+  11%       { opacity: 1; transform: translate3d(0, 0, 0) scale(1) rotate(var(--r)); }
+  64%       { opacity: 1; transform: translate3d(0, 0, 0) scale(1) rotate(var(--r)); }
+  77%, 100% { opacity: 0; transform: translate3d(22px, 0, 0) scale(.68) rotate(12deg); }
+}
+
+/* Dealt-out is decoration, not content: hold the finished stack instead. */
+@media (prefers-reduced-motion: reduce) {
+  .proof__av {
+    opacity: 1;
+    animation: none;
+    transform: rotate(var(--r));
+  }
+}
+
+/* Sized to hold on ONE line inside the card, as the reference's figure does —
+   at 31px "500+ typed tools, one gate" broke after "one" and the figure stopped
+   reading as a single statement. */
+.proof__stat {
+  font-family: var(--display-font);
+  font-size: clamp(17px, 1.5vw, 19.5px);
+  line-height: 1.14;
+  letter-spacing: -.02em;
+  font-weight: 500;
+}
+
+/* The long drop between the figure and the quote is the reference's whole
+   rhythm — the two halves are separate statements sharing one pane, not a
+   heading with a caption under it. */
+.proof__quote {
+  margin: clamp(56px, 9vw, 110px) 0 0;
+  font-family: var(--display-font);
+  font-size: clamp(15.5px, 1.35vw, 17px);
+  line-height: 1.36;
+  letter-spacing: -.015em;
+}
+
+.proof__by {
+  margin-block-start: clamp(20px, 2vw, 26px);
+  font-size: 13.5px;
+  color: rgba(255, 255, 255, .72);
+}
+
+/* Where backdrop-filter is unavailable the card would sit as a flat grey box
+   over a busy photo; fall back to an opaque-enough fill that keeps the text
+   legible instead. */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .proof__card {
+    background: rgba(38, 38, 40, .74);
+  }
+}
+
+/* The screens section sets its own headline and lede a step down from the page
+   default: measured against the reference at the same window size, .head ran
+   ~14% and .lede ~15% larger, which is what made this block feel oversized. */
+#screens .sechead .head {
+  font-size: clamp(26px, 2.6vw, 38px);
+  line-height: 1.08;
+}
+
+#screens .sechead .lede {
+  font-size: clamp(15.5px, 1.3vw, 18px);
+  line-height: 1.56;
+  max-width: 46ch;
+}
+
+/* Vertical rhythm matched to finbill's, normalised against the segmented
+   control's own height so the comparison survives whatever window it was
+   measured in. Reference runs lede -> control at 0.93x that height and control
+   -> panel at 0.71x; the page defaults gave 1.40x and 0.84x, which is what left
+   the control stranded in the middle of the section. */
+#connect .sechead {
+  margin-block-end: clamp(34px, 3.6vw, 52px);
+}
+
+#connect .seg {
+  margin-block-end: clamp(28px, 2.8vw, 40px);
+}
+
+/* ═══════════════ SCREENS CAROUSEL — coverflow of app captures ═══════════════
+   One phone in focus with its neighbours pushed aside, scaled down and faded
+   nearly into the paper, as on the reference. Every slide is absolutely
+   positioned on the same centre axis and offset by transform alone, so the row
+   costs no layout to animate and the stage never reflows as it advances.
+
+   main.js writes transform/opacity/z-index per slide from its distance to the
+   active one — the numbers live there, not here, because the wrap-around
+   arithmetic needs them anyway. This file owns the geometry and the transition.
+
+   Full-bleed: the flanking phones run past the shell's padding to the viewport
+   edges, which is what makes the row read as continuing rather than stopping at
+   a margin. */
+.pcar {
+  /* Measured off the reference at the same window size: its centre phone is
+     ~0.91 the width ours was, and at 300px the row crowded the copy above it. */
+  --pcar-w: clamp(190px, 19vw, 272px);
+  margin-block-start: clamp(40px, 5vw, 68px);
+}
+
+.pcar__stage {
+  position: relative;
+  width: 100vw;
+  margin-inline: calc(50% - 50vw);
+  /* 1015:2048 is the frame asset's aspect; the caption sits in the tail below */
+  height: calc(var(--pcar-w) * 2.0177 + 46px);
+  overflow: hidden;
+}
+
+.pslide {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: var(--pcar-w);
+  margin: 0 0 0 calc(var(--pcar-w) / -2);
+  transition: transform .62s cubic-bezier(.22, .61, .36, 1), opacity .62s cubic-bezier(.22, .61, .36, 1);
+  will-change: transform, opacity;
+}
+
+.pslide .device--inline {
+  width: 100%;
+}
+
+/* The stage's grey wash was not a background — body is pure white and nothing in
+   the carousel paints one. It was these shadows pooling: .device ships a
+   0 44px 74px rgba(10,10,11,.24) drop-shadow for the hero, and five of them
+   overlapping at that blur radius smear into a band across the whole row.
+   Tighter and lighter here keeps each phone lifted without the pool. */
+.pslide .device {
+  filter: drop-shadow(0 14px 30px rgba(10, 10, 11, .10));
+}
+
+/* No object-fit override here. With the aperture measured correctly above, its
+   aspect is 0.4605 against the captures' 0.4643 — cover now crops 0.8%, not the
+   3.6% that made an earlier fill hack look necessary. */
+
+.pslide__cap {
+  margin-block-start: 20px;
+  text-align: center;
+  font-family: var(--display-font);
+  font-size: 14px;
+  letter-spacing: -.005em;
+  color: var(--ink-2);
+}
+
+/* .ph-screen — the grey "capture pending" panel — is gone: every phone on the
+   page now carries a real simulator capture. */
+
+.pcar__nav {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  margin-block-start: clamp(24px, 3vw, 38px);
+}
+
+.pcar__b {
+  width: 46px;
+  height: 46px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 999px;
+  background: var(--surface-2);
+  color: var(--ink-2);
+  cursor: pointer;
+  transition: background .2s ease, color .2s ease;
+}
+
+.pcar__b svg {
+  width: 20px;
+  height: 20px;
+}
+
+.pcar__b:hover {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.pcar__b:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+}
+
+/* No sliding for readers who asked for less motion: the stage collapses to the
+   active phone alone, which is the whole content of the slide anyway. */
+@media (prefers-reduced-motion: reduce) {
+  .pslide {
+    transition: none;
+  }
+}
+
+/* ═══════════════ SHOWCASE — 2-up card, big visual + claim ═══════════════
+   Each card holds a real app capture cropped to a window rather than a whole
+   phone: at two-up the frame furniture would shrink the actual screen content
+   past readability. The visual is anchored to the top so the header stays put. */
+.showcase {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(16px, 1.6vw, 24px);
+  margin-block: clamp(40px, 5vw, 64px);
+}
+
+@media (max-width:800px) {
+  .showcase {
+    grid-template-columns: 1fr;
+  }
+}
+
+.showcase__card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  padding: clamp(14px, 1.4vw, 20px);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(18px, 2vw, 28px);
+}
+
+.showcase__vis {
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--surface-2);
+  aspect-ratio: 4 / 3;
+}
+
+/* The existing showcase holds upright phone captures, so 4:3 suits it. The
+   operations shots are landscape 3:2 — matching the box to the source means
+   they seat with no crop at all, rather than losing an edge to cover(). */
+.showcase__vis--wide {
+  aspect-ratio: 3 / 2;
+}
+
+/* These compositions are centred, not top-weighted like the phone captures, so
+   the shared `object-position: top center` would shave the lower card off. */
+.showcase__vis--wide img {
+  object-position: center;
+}
+
+.showcase__vis img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+}
+
+.showcase__cap {
+  font-size: clamp(16px, 1.35vw, 19px);
+  line-height: 1.5;
+  letter-spacing: -.012em;
+  color: var(--ink);
+  padding-inline: clamp(4px, .6vw, 10px);
+  padding-block-end: clamp(6px, .8vw, 12px);
+  margin: 0;
+}
+
+/* ═══════════════ BAND — full-bleed image with a claim over it ═══════════════ */
+.band {
+  position: relative;
+  border-radius: 26px;
+  overflow: hidden;
+  min-height: clamp(320px, 42vw, 520px);
+  display: flex;
+  align-items: flex-end;
+  isolation: isolate;
+}
+
+.band__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 62%;
+  filter: grayscale(1) brightness(.62);
+  z-index: -1;
+}
+
+/* Scrim so the caption holds contrast wherever the photo lands */
+.band::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(180deg, transparent 34%, rgba(12, 11, 9, .74) 100%);
+}
+
+.band__body {
+  padding: clamp(24px, 3vw, 44px);
+  max-width: 46ch;
+}
+
+/* The display font's "0" is narrow, so 46ch lands at ~450px and holds only
+   ~32 characters a line — the operations caption broke to three. Widened to
+   sit at the reference's ~490px of text, i.e. two lines. Scoped so the
+   runtime band above keeps the tighter column it was set with. */
+.band--wide .band__body {
+  max-width: 58ch;
+}
+
+/* The runtime band holds a landscape photo that crops happily to a letterbox.
+   This one holds a product shot where the phone fills almost the full frame
+   height, so the shared 2.2:1 box would cut its top and its dock off. Matching
+   the box to the source's 16:9 seats it whole.
+
+   Below ~570px of width .band's 320px min-height takes over and the frame turns
+   squarer — deliberately left alone. The subject here is an upright phone, so a
+   centred square-ish crop holds it and loses only the mug and part of the
+   plant; a true 16:9 strip that narrow would be ~180px tall and could not fit
+   the icon and caption it has to carry. */
+.band--wide {
+  aspect-ratio: 16 / 9;
+}
+
+/* The mountains are grayscaled to match the hero's treatment. This frame is a
+   product shot: the phone's screen is the subject, and draining it flattens
+   exactly the part that carries the message. Kept in colour but pulled back —
+   saturate() settles the warm wood against the page's cool neutrals, and
+   brightness() buys the white caption its contrast. For a fully monochrome
+   page, swap this one line back to grayscale(1) brightness(.62). */
+.band--wide .band__img {
+  filter: saturate(.72) brightness(.82);
+  object-position: center;
+}
+
+.band__ic {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 11px;
+  margin-block-end: clamp(12px, 1.4vw, 18px);
+  background: rgba(255, 255, 255, .14);
+  color: #fff;
+}
+
+.band__ic svg {
+  width: 21px;
+  height: 21px;
+}
+
+.band__cap {
+  font-family: var(--display-font);
+  font-size: clamp(19px, 2vw, 27px);
+  font-weight: 400;
+  line-height: 1.38;
+  letter-spacing: -.016em;
+  color: #fff;
+  margin: 0;
+}
+
+/* Sections that form one continuous run of ruled editorial rather than separate
+   blocks. Full .sec--half padding on both sides of the join stacked to ~240px
+   of dead space between the two frames, and where they met they drew two
+   hairlines a quarter-turn apart. Collapsing the padding at the seam and
+   dropping the lower frame's top border joins them on a single rule. */
+.sec--run:has(+ .sec--run) {
+  padding-block-end: 0;
+}
+
+.sec--run + .sec--run {
+  padding-block-start: 0;
+}
+
+.sec--run + .sec--run > .frame {
+  border-block-start: 0;
+}
+
+/* ═══════════════ DAILY — copy card beside a picture card ═══════════════
+   align-items default (stretch) is doing the work: the picture card takes its
+   height from the copy beside it, so opening a longer accordion row grows both
+   together and the two never fall out of step. */
+.dsplit {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(16px, 1.8vw, 26px);
+}
+
+@media (max-width:900px) {
+  .dsplit {
+    grid-template-columns: 1fr;
+  }
+}
+
+.dsplit__copy {
+  background: var(--surface-2);
+  border-radius: 26px;
+  padding: clamp(26px, 3.2vw, 44px);
+}
+
+.dsplit__copy .lede {
+  margin-block-start: clamp(14px, 1.6vw, 20px);
+  max-width: 40ch;
+}
+
+/* The source is a phone shot on pure black, so the card carries the same black
+   and the picture can bleed to all four edges without a seam wherever cover()
+   lands. Anchored to the top: when the card is wider than the picture the crop
+   comes off the wrist, not the screen. */
+.dsplit__vis {
+  border-radius: 26px;
+  overflow: hidden;
+  background: #000;
+  min-height: clamp(320px, 42vw, 520px);
+}
+
+.dsplit__vis img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+/* ── accordion ── */
+.acc {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-block-start: clamp(26px, 3.4vw, 44px);
+}
+
+.acc__i {
+  background: var(--paper);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: box-shadow .3s var(--ease);
+}
+
+.acc__i.is-open {
+  box-shadow: var(--sh-1);
+}
+
+.acc__q {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+  padding: clamp(16px, 1.8vw, 22px) clamp(16px, 1.8vw, 24px);
+  border: 0;
+  background: none;
+  font-family: inherit;
+  text-align: start;
+  cursor: pointer;
+  color: var(--ink);
+}
+
+.acc__t {
+  font-family: var(--display-font);
+  font-size: clamp(17px, 1.6vw, 21px);
+  font-weight: 500;
+  letter-spacing: -.02em;
+}
+
+.acc__q:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+}
+
+/* Plus that loses its upright stroke when the row opens, becoming a minus.
+   Two pseudo-elements rather than swapped glyphs, so it can tween. */
+.acc__m {
+  position: relative;
+  flex: 0 0 auto;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--surface-2);
+}
+
+.acc__m::before,
+.acc__m::after {
+  content: "";
+  position: absolute;
+  inset: 50% auto auto 50%;
+  width: 13px;
+  height: 1.6px;
+  border-radius: 2px;
+  background: var(--ink-2);
+  translate: -50% -50%;
+  transition: transform .32s var(--ease), opacity .32s var(--ease);
+}
+
+.acc__m::after {
+  transform: rotate(90deg);
+}
+
+.acc__i.is-open .acc__m::after {
+  transform: rotate(0deg);
+  opacity: 0;
+}
+
+/* 0fr → 1fr animates to the panel's own natural height, so nothing has to be
+   measured in JS or re-measured when the column reflows. The inner element
+   needs min-height:0 or the grid row refuses to collapse below its content. */
+.acc__wrap {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows .36s var(--ease);
+}
+
+.acc__i.is-open .acc__wrap {
+  grid-template-rows: 1fr;
+}
+
+.acc__a {
+  overflow: hidden;
+  min-height: 0;
+  margin: 0;
+  padding-inline: clamp(16px, 1.8vw, 24px);
+  font-size: clamp(15px, 1.35vw, 17px);
+  line-height: 1.6;
+  color: var(--ink-2);
+  opacity: 0;
+  transition: opacity .28s var(--ease), padding-block-end .36s var(--ease);
+}
+
+.acc__i.is-open .acc__a {
+  opacity: 1;
+  padding-block-end: clamp(18px, 2vw, 24px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .acc__wrap,
+  .acc__a,
+  .acc__m::before,
+  .acc__m::after {
+    transition: none;
+  }
+}
+
+/* ═══════════════ INTERSECTION — centred statement over one wide image ═══════════════ */
+
+/* Larger than a normal section head — nearer the hero than the feature
+   headings, because it is the page's one aside rather than the top of a list.
+
+   Capped at 46px, not 54. Our container maxes at 1240px where the reference's
+   runs to ~1600, so the same absolute size reads much bigger here: at 54px the
+   line measured 736px, 59% of the container, against the reference's 48%. 46px
+   puts it at ~51% — the proportion the reference actually holds. */
+.head--lg {
+  font-size: clamp(28px, 3.6vw, 46px);
+  line-height: 1.06;
+}
+
+/* Wide enough for the headline to hold one line on a desktop, with slack.
+
+   This was 46ch and it broke the heading in half: `ch` resolves against THIS
+   element's font size, not the h2's, so 46ch off the inherited 17px body size
+   came out at ~390px — narrower than .sechead's own 760px default rather than
+   wider. A length unit is the only safe way to size a box around type that is
+   several steps larger than the box's own font.
+
+   704px, not 736: at 736 the box exactly equalled the headline's natural width,
+   so sub-pixel rounding tipped it onto two lines anyway. The headline now
+   measures ~627px, leaving room to spare. */
+.sechead--wide {
+  max-width: 44rem;
+}
+
+/* Holds a compound together across a line break. "human–agent" was breaking at
+   the dash, leaving a line ending on it. */
+.keep {
+  white-space: nowrap;
+}
+
+/* Flush variant of the frame: the picture runs to the rules on both sides, so
+   the shell's own inline padding is cancelled on this one element only and the
+   copy above keeps its measure. */
+.frame--flush .intersect {
+  margin-inline: calc(-1 * var(--shell-pad));
+}
+
+/* Tighter than the standard .sechead tail. The statement and the picture are
+   one composition and should land in a single screen, as they do on the
+   reference; the default 80px pushed the hand below the fold. The artwork was
+   the other half of that — it shipped with 18% empty canvas above the particles
+   and 19% below, and is now cropped to its ink. */
+#intersect .sechead {
+  margin-block-end: clamp(28px, 3.2vw, 46px);
+  /* The reference sets the statement well down from the rule above it rather
+     than hard against it — the headline needs air over it to read as the
+     opening of a composition instead of a caption on the section before. */
+  padding-block-start: clamp(40px, 6.4vw, 92px);
+}
+
+/* The lede under this one headline is deliberately small. Measured against the
+   reference: its subtitle runs about a third smaller than its headline's
+   companion text elsewhere, on a ~50-character measure, sitting close under the
+   headline. At the page default (21px, 48ch, 22px gap) it read as a second
+   headline and swallowed the size contrast the composition is built on. */
+#intersect .sechead .lede {
+  font-size: clamp(15px, 1.15vw, 16.5px);
+  line-height: 1.5;
+  max-width: 54ch;
+  margin-block-start: clamp(10px, 1vw, 14px);
+}
+
+.intersect img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* ═══════════════ FEATURE ROWS — two 50/50 rows, mirrored ═══════════════
+   The hairline frame the reference draws around this block: a rule top and
+   bottom, one down each side at the shell's padding edge, and one more between
+   the rows. Drawn on the container rather than per-row so the corners meet. */
+.frame {
+  position: relative;
+  border-block: 1px solid var(--line);
+}
+
+.frame::before,
+.frame::after {
+  content: "";
+  position: absolute;
+  inset-block: 0;
+  width: 1px;
+  background: var(--line);
+  pointer-events: none;
+}
+
+.frame::before { inset-inline-start: 0; }
+.frame::after  { inset-inline-end: 0; }
+
+.frow {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(36px, 5vw, 80px);
+  align-items: center;
+  padding-block: clamp(52px, 6.5vw, 96px);
+}
+
+.frow + .frow {
+  border-block-start: 1px solid var(--line);
+}
+
+/* Copy leads in the DOM for both rows, so reading order and the mobile stack
+   are always text-then-picture. This only moves the panel to the left column,
+   and only where there are two columns to move it between. */
+@media (min-width:861px) {
+  .frow--flip .frow__say { order: 2; }
+}
+
+@media (max-width:860px) {
+  .frow {
+    grid-template-columns: 1fr;
+    gap: clamp(28px, 5vw, 44px);
+  }
+}
+
+.frow__say {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: clamp(18px, 2vw, 26px);
+  max-width: 34rem;
+}
+
+.frow__say .body {
+  margin: 0;
+  max-width: 40ch;
+}
+
+/* The eyebrow's asterisk. Sits inside .tagpill, which is already a flex row. */
+.tagpill__ast {
+  width: 11px;
+  height: 11px;
+  flex: 0 0 auto;
+  fill: none;
+  color: var(--ink-3);
+}
+
+/* 3:2, not the reference's 5:4 — every image supplied for this page has come
+   out 3:2, so matching the source means cover() crops nothing. The remote shot
+   would have lost the macOS and Linux pills off its left edge at 5:4. */
+.frow__vis {
+  aspect-ratio: 3 / 2;
+  border-radius: 26px;
+  overflow: hidden;
+  background: var(--surface-2);
+}
+
+.frow__vis img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+/* ═══════════════ CONNECT — segmented control over swapping panes ═══════════════
+   Deliberately click-only, unlike the trust accordion above it, which advances
+   on a timer. Two self-advancing carousels in one page reads as a template
+   tic; this one waits to be asked. */
+.seg {
+  position: relative;
+  display: flex;
+  width: max-content;
+  max-width: 100%;
+  margin-inline: auto;
+  margin-block-end: clamp(30px, 4vw, 48px);
+  padding: 6px;
+  border-radius: 999px;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+}
+
+/* The travelling indicator. Sits under the labels and is positioned entirely
+   from JS-written custom properties, so nothing here assumes equal thirds. */
+.seg__pill {
+  position: absolute;
+  top: 6px;
+  left: 0;
+  height: calc(100% - 12px);
+  width: var(--segw, 0);
+  transform: translate3d(var(--segx, 0), 0, 0);
+  border-radius: 999px;
+  background: var(--paper);
+  box-shadow: var(--sh-1);
+  transition: transform .42s var(--ease), width .42s var(--ease);
+}
+
+.seg__b {
+  position: relative;
+  z-index: 1;
+  flex: 0 0 auto;
+  border: 0;
+  background: none;
+  padding: 10px clamp(16px, 2.2vw, 26px);
+  border-radius: 999px;
+  font-family: inherit;
+  font-size: clamp(14px, 1.35vw, 17px);
+  letter-spacing: -.012em;
+  color: var(--ink-3);
+  cursor: pointer;
+  transition: color .3s var(--ease);
+}
+
+.seg__b:hover {
+  color: var(--ink-2);
+}
+
+.seg__b.is-on {
+  color: var(--ink);
+}
+
+.seg__b:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* One cell, three panes: the block takes the height of the tallest, so
+   switching never shifts the page under the reader. */
+.panes {
+  display: grid;
+  grid-template: minmax(0, auto) / minmax(0, 1fr);
+}
+
+/* visibility, not display or [hidden], so the inactive panes still contribute
+   their height to the shared cell while leaving the tab order and the
+   accessibility tree. The 0s delay holds visibility until the fade finishes. */
+.pane {
+  grid-area: 1 / 1;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(6px);
+  transition: opacity .45s var(--ease), transform .45s var(--ease),
+    visibility 0s linear .45s;
+}
+
+.pane.is-on {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition: opacity .45s var(--ease), transform .45s var(--ease), visibility 0s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .seg__pill,
+  .pane {
+    transition: none;
+  }
+
+  .pane {
+    transform: none;
+  }
+}
+
+/* All three sources are normalised to 16/7 before they ship — the apps shot is
+   cropped past its baked-in titling, the context shot is edge-extended sideways
+   to widen it without losing a card — so the box matches the file exactly and
+   cover() has nothing left to crop. Keep new artwork at 16/7 and it drops
+   straight in. */
+.panelshot {
+  aspect-ratio: 16 / 7;
+  border-radius: 26px;
+  overflow: hidden;
+  background: var(--surface-2);
+}
+
+.panelshot img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.closer {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) auto;
+  gap: clamp(28px, 5vw, 72px);
+  align-items: start;
+  margin-block-start: clamp(30px, 3.6vw, 50px);
+}
+
+@media (max-width:800px) {
+  .closer {
+    grid-template-columns: 1fr;
+    gap: clamp(24px, 4vw, 34px);
+  }
+}
+
+.closer__t {
+  font-family: var(--display-font);
+  font-size: clamp(20px, 2vw, 27px);
+  font-weight: 500;
+  letter-spacing: -.025em;
+  line-height: 1.2;
+  color: var(--ink);
+}
+
+.closer__d {
+  margin-block-start: clamp(12px, 1.4vw, 18px);
+  font-size: clamp(15px, 1.35vw, 18px);
+  line-height: 1.6;
+  letter-spacing: -.01em;
+  color: var(--ink-2);
+  max-width: 46ch;
+}
+
+.ticks {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(12px, 1.5vw, 20px);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.tick {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: clamp(15px, 1.35vw, 18px);
+  letter-spacing: -.012em;
+  color: var(--ink);
+}
+
+.tick__m {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  color: var(--ink-2);
+}
+
+.tick__m svg {
+  width: 17px;
+  height: 17px;
+}
+
+/* ═══════════════ TRUST SHOWCASE — accordion left, swapping stage right ═══════════════
+   The stage is the fixed element: all three captures sit stacked inside it and
+   crossfade, so switching tabs never reflows the column beside it. */
+.tshow {
+  display: grid;
+  grid-template-columns: 1fr 1.06fr;
+  gap: clamp(40px, 6vw, 92px);
+  align-items: center;
+}
+
+@media (max-width:940px) {
+  .tshow {
+    grid-template-columns: 1fr;
+    gap: clamp(36px, 6vw, 56px);
+  }
+}
+
+.tshow__side .lede {
+  margin-block-start: clamp(20px, 2.2vw, 30px);
+  max-width: 44ch;
+}
+
+.tabs {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-block-start: clamp(34px, 4vw, 52px);
+  max-width: 420px;
+}
+
+/* Each tab is a real button. overflow:hidden clips the fill to the radius, and
+   the label sits above it on its own layer so the sweep passes behind. */
+.tab {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  width: 100%;
+  padding: 15px 18px;
+  border: 0;
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--surface-2);
+  color: var(--ink-2);
+  font-family: inherit;
+  font-size: clamp(15px, 1.35vw, 17px);
+  letter-spacing: -.012em;
+  text-align: start;
+  cursor: pointer;
+  transition: color .32s var(--ease), background-color .32s var(--ease);
+}
+
+.tab:hover {
+  color: var(--ink);
+}
+
+.tab.is-on {
+  color: var(--ink);
+}
+
+.tab:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* The dwell made visible. scaleX from a left origin is compositor-only, so the
+   sweep costs nothing; the tab is repainted only when it changes state. */
+.tab__fill {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--line-2);
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+
+.tab.is-on .tab__fill {
+  animation: tabFill var(--dwell, 5200ms) linear forwards;
+}
+
+@keyframes tabFill {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+.tab__ic {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 21px;
+  height: 21px;
+  color: currentColor;
+}
+
+.tab__ic svg {
+  width: 19px;
+  height: 19px;
+}
+
+.tab__t {
+  min-width: 0;
+}
+
+/* Dark stage. The texture is a photograph rather than a CSS pattern because it
+   carries a soft vignette and a cool glow at the foot that a repeating gradient
+   cannot; cover() on a 4:3 box crops it barely at any width. */
+.tshow__stage {
+  aspect-ratio: 4 / 3;
+  border-radius: 26px;
+  overflow: hidden;
+  background: #0B0B0C url("assets/img/marketing/trust-bg.jpg") center / cover no-repeat;
+  /* One explicit track so the three captures stack in a single cell and every
+     max-height: 100% below resolves against a definite box. minmax(0, 1fr),
+     not 1fr: a bare 1fr keeps an automatic minimum, so the row grew to the
+     tallest capture instead of clamping it. */
+  display: grid;
+  grid-template: minmax(0, 1fr) / minmax(0, 1fr);
+  place-items: center;
+  /* Sets how large the capture sits in the panel. Measured off the reference,
+     its card fills ~70% of the panel height; at 3.4vw this padding left ours at
+     ~80%, which crowded the edges and left the glow nowhere to fall. */
+  padding: clamp(26px, 4.6vw, 68px);
+}
+
+/* Each capture keeps its own aspect and is bounded rather than cropped — the
+   three are different shapes and each is a whole composition.
+
+   Bounded by max-width/max-height rather than object-fit: contain, because
+   contain letterboxes inside a full-size box and leaves the radius and shadow
+   hanging in transparent space away from the picture. Bounding the element
+   makes the box the picture, so the frame lands on its real edges. Each source
+   carries its own pale backdrop, so on this dark stage it has to read as a card
+   set down on the panel; without the radius and shadow it reads as a pasted
+   rectangle.
+
+   They stack via grid-area rather than position:absolute deliberately. On an
+   absolutely positioned replaced element the two max-* constraints are applied
+   per-axis, so a square capture came out 416x293 — squashed. In flow, the
+   replaced-element sizing rules take the more restrictive constraint and keep
+   the ratio. */
+.tshow__shot {
+  grid-area: 1 / 1;
+  /* The width/height attributes are kept on the markup so the box is reserved
+     before the file lands, but they map to CSS width/height as presentational
+     hints — leaving them set made both max-* clamps apply per-axis and squashed
+     the square capture to 416x293. Back to auto, so only the intrinsic ratio
+     drives the fit. */
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 14px;
+  box-shadow: 0 26px 58px rgba(0, 0, 0, .5);
+  opacity: 0;
+  transform: scale(.986);
+  transition: opacity .5s var(--ease), transform .5s var(--ease);
+  pointer-events: none;
+}
+
+/* Cut-out variant: the source has a real alpha channel and draws its own card
+   edge. The rectangular frame above comes off, and the halo is rebuilt with
+   drop-shadow() — which samples the alpha channel and so traces the card's
+   actual silhouette, where box-shadow would trace the transparent bounding box
+   and hang a hard-edged rectangle in the empty corners.
+
+   Three passes, ordered: a tight white rim to lift the edge off the panel, a
+   wide soft white bloom for the glow itself, then a dark cast underneath so the
+   card still sits on the surface rather than floating free of it. Add this
+   class to any shot supplied on transparency; leave it off for ones with a
+   baked-in backdrop, which need the rectangular frame instead. */
+.tshow__shot--cut {
+  border-radius: 0;
+  box-shadow: none;
+  filter:
+    drop-shadow(0 0 2px rgba(255, 255, 255, .34))
+    drop-shadow(0 0 38px rgba(255, 255, 255, .26))
+    drop-shadow(0 24px 44px rgba(0, 0, 0, .55));
+}
+
+.tshow__shot.is-on {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tab.is-on .tab__fill {
+    animation: none;
+    transform: scaleX(1);
+  }
+
+  .tshow__shot {
+    transition: none;
+  }
+}
+
+/* ═══════════════ TABCHIPS — a tab-like row above a section heading ═══════════════
+   Named tabchip, not chip: .chip is already taken by the absolutely-positioned
+   floating chip group (.chip--1..4). Reusing it pulled these out of flow, so the
+   row collapsed to zero height and the pills overlapped the heading. */
+.tabchips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin-block-end: 22px;
+}
+
+.tabchip {
+  padding: 7px 15px;
+  border-radius: 999px;
+  background: var(--surface-2);
+  color: var(--ink-3);
+  font-family: var(--display-font);
+  font-size: 13px;
+  letter-spacing: .01em;
+}
+
+.tabchip.is-on {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+/* Rail variant: the same pills, but running as a left-aligned marquee instead
+   of a centred static row. Overflow is masked at both ends so a pill enters and
+   leaves rather than popping, which is what puts a half-cut chip against the
+   left edge at rest. Pauses on hover, like the page's other two rails.
+
+   Width is tied to .lead's measure, not the shell's: on the reference the rail
+   is a short strip sitting directly over the copy column, and running it the
+   full page width read as a separate full-bleed band instead of the column's
+   own header. The fade is symmetric for the same reason — at full width the
+   left edge was near-solid and only the right end read as a marquee. */
+.tabchips--rail {
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+  gap: 0;
+  overflow: hidden;
+  max-width: min(100%, 46ch);
+  margin-block-end: clamp(26px, 3vw, 38px);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+}
+
+.tabchips__track {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 8px;
+  width: max-content;
+  animation: chipScroll 34s linear infinite;
+  will-change: transform;
+}
+
+.tabchips--rail:hover .tabchips__track {
+  animation-play-state: paused;
+}
+
+.tabchips__track .tabchip {
+  flex: 0 0 auto;
+}
+
+@keyframes chipScroll {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(-50%, 0, 0); }
+}
+
+/* ═══════════════ ECOSYSTEM MARQUEE ═══════════════
+   One full-bleed beige band holding a single row that mixes wordmarks with
+   capability pills. Grouped rows would read as a category table; one shelf is
+   the claim. Track content is emitted twice from one array in main.js, so the
+   -50% keyframe is seamless by construction. */
+.eco {
+  background: var(--paper);
+  padding-block: clamp(64px, 7.5vw, 104px);
+  overflow: hidden;
+}
+
+/* Spec called for Inter 15/0.08em/#8B8B8B. Size, tracking and colour are as
+   specified; the face is our display font, because introducing a third family
+   for one line would break the page's type system. */
+.eco__cap {
+  text-align: center;
+  font-family: var(--display-font);
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: .08em;
+  color: #8B8B8B;
+  margin-block-end: clamp(34px, 4vw, 52px);
+}
+
+/* Edge fade rather than a hard cut, so items enter and leave rather than pop */
+.eco__rail {
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+
+.eco__track {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  width: max-content;
+  gap: 85px;
+  /* linear, no easing, no acceleration; translate3d keeps it on the GPU */
+  animation: ecoScroll 45s linear infinite;
+  will-change: transform;
+}
+
+.eco__track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes ecoScroll {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(-50%, 0, 0); }
+}
+
+/* Brand marks: icon + wordmark pair, matching the reference's treatment. One
+   optical height for every icon, one weight for every name, no card and no
+   border — the only thing distinguishing items is the mark itself.
+   Icons are simple-icons paths (CC0-1.0), inlined so they inherit currentColor. */
+.eco__logo {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  color: #9A9A9A;
+  opacity: .55;
+  transition: opacity .25s var(--ease), color .25s var(--ease), transform .25s var(--ease);
+}
+
+/* Normalised so no mark dominates another, whatever its own bounding box */
+.eco__logo svg {
+  width: 23px;
+  height: 23px;
+  flex: 0 0 auto;
+  fill: currentColor;
+  display: block;
+}
+
+.eco__name {
+  font-family: var(--display-font);
+  font-size: 27px;
+  font-weight: 500;
+  letter-spacing: -.012em;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.eco__logo:hover {
+  opacity: 1;
+  color: #444444;
+  transform: scale(1.05);
+}
+
+
+
+/* Fewer items in view on smaller screens; identical speed, per spec. */
+@media (max-width:1100px) {
+  .eco__track { gap: 70px; }
+  .eco__name { font-size: 23px; }
+  .eco__logo svg { width: 21px; height: 21px; }
+}
+
+@media (max-width:700px) {
+  .eco__track { gap: 52px; }
+  .eco__name { font-size: 19px; }
+  .eco__logo svg { width: 18px; height: 18px; }
+}
+
+/* ═══════════════ CONNECTORS / MCP SERVERS PAGE (mcp-servers.html) ════════════
+   Built from the page's existing primitives — .shell, .head, .lede, .btn,
+   .tabchip, .sec spacing — so this page inherits the type scale and rhythm
+   rather than introducing a second one. Only the pieces with no equivalent
+   elsewhere get new classes. */
+
+.mcp-hero {
+  padding-block-start: clamp(132px, 14vw, 190px);
+}
+
+.mcp-hero .lede {
+  max-width: 52ch;
+  margin-block-start: clamp(18px, 2vw, 26px);
+}
+
+.mcp-hero__stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(28px, 5vw, 72px);
+  margin-block-start: clamp(38px, 4.6vw, 60px);
+}
+
+.mcp-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.mcp-stat__n {
+  font-family: var(--display-font);
+  font-size: clamp(20px, 2vw, 26px);
+  font-weight: 600;
+  letter-spacing: -.025em;
+  color: var(--ink);
+}
+
+.mcp-stat__or {
+  font-weight: 400;
+  color: var(--ink-3);
+}
+
+.mcp-stat__d {
+  font-size: 14px;
+  color: var(--ink-3);
+}
+
+/* ── search + chips ── */
+.mcp-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px 18px;
+  margin-block-end: clamp(30px, 3.6vw, 46px);
+}
+
+.mcp-search {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex: 0 1 320px;
+}
+
+.mcp-search svg {
+  position: absolute;
+  left: 14px;
+  width: 16px;
+  height: 16px;
+  color: var(--ink-3);
+  pointer-events: none;
+}
+
+.mcp-search input {
+  width: 100%;
+  padding: 11px 14px 11px 38px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--paper);
+  font: inherit;
+  font-size: 14px;
+  color: var(--ink);
+}
+
+.mcp-search input:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 1px;
+}
+
+.mcp-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.mcp-chips .tabchip {
+  border: 0;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.mcp-empty {
+  color: var(--ink-3);
+  font-size: 15px;
+  margin: 0 0 24px;
+}
+
+/* ── the category grid ── */
+.mcp-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: clamp(26px, 3.4vw, 44px);
+}
+
+.mcp-cat__h {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin: 0 0 14px;
+}
+
+.mcp-cat__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.mcp-srv {
+  font-size: 15px;
+  color: var(--ink-2);
+}
+
+/* ── featured cards ── */
+.mcp-feat {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: clamp(14px, 1.6vw, 20px);
+}
+
+.mcp-featcard {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  padding: clamp(20px, 2.2vw, 28px);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--paper);
+  text-align: left;
+  cursor: pointer;
+  transition: border-color .25s var(--ease), background .25s var(--ease);
+}
+
+.mcp-featcard:hover {
+  border-color: var(--ink-3);
+}
+
+.mcp-featcard.is-on {
+  border-color: var(--ink);
+  background: var(--surface-2);
+}
+
+.mcp-featcard__cat {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.mcp-featcard__t {
+  font-family: var(--display-font);
+  font-size: 19px;
+  font-weight: 600;
+  letter-spacing: -.02em;
+  color: var(--ink);
+}
+
+.mcp-featcard__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-block-start: 4px;
+}
+
+.mcp-tag {
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--surface-2);
+  color: var(--ink-3);
+  font-size: 12px;
+}
+
+.mcp-featcard.is-on .mcp-tag {
+  background: var(--paper);
+}
+
+/* ── detail panel ── */
+.mcp-detail {
+  padding: clamp(24px, 3vw, 38px);
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  background: var(--surface-2);
+}
+
+.mcp-detail__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-block-end: clamp(22px, 2.6vw, 32px);
+}
+
+.mcp-detail__t {
+  font-family: var(--display-font);
+  font-size: clamp(21px, 2.2vw, 28px);
+  font-weight: 600;
+  letter-spacing: -.025em;
+  margin: 0 0 10px;
+}
+
+.mcp-detail__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.mcp-badge {
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--paper);
+  font-size: 12px;
+  color: var(--ink-3);
+}
+
+.mcp-badge--official {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--paper);
+}
+
+.mcp-detail__l {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin: 0 0 14px;
+}
+
+.mcp-caps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 10px 24px;
+}
+
+.mcp-caps li {
+  position: relative;
+  padding-inline-start: 24px;
+  font-size: 15px;
+  color: var(--ink-2);
+}
+
+/* Tick drawn in CSS rather than an inline SVG per row — the list is rewritten
+   by JS and this keeps that markup to a bare <li>. */
+.mcp-caps li::before {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: .48em;
+  width: 9px;
+  height: 5px;
+  border-inline-start: 1.8px solid var(--ink);
+  border-block-end: 1.8px solid var(--ink);
+  transform: rotate(-45deg);
+}
+
+/* ── install terminal ── */
+.mcp-term {
+  padding: clamp(20px, 2.4vw, 30px);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--surface-2);
+}
+
+.mcp-term__bar {
+  display: flex;
+  gap: 7px;
+  margin-block-end: 20px;
+}
+
+.mcp-term__bar span {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: var(--line);
+}
+
+.mcp-term__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 16px;
+  border-radius: 11px;
+  background: var(--paper);
+}
+
+.mcp-term__row code {
+  font-family: var(--mono);
+  font-size: 13.5px;
+  color: var(--ink);
+  overflow-x: auto;
+}
+
+.mcp-copy {
+  flex: 0 0 auto;
+  padding: 6px 13px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: transparent;
+  font: inherit;
+  font-size: 12.5px;
+  color: var(--ink-2);
+  cursor: pointer;
+  transition: border-color .2s var(--ease), color .2s var(--ease);
+}
+
+.mcp-copy:hover {
+  border-color: var(--ink-3);
+  color: var(--ink);
+}
+
+.mcp-term__or {
+  margin: 14px 0;
+  text-align: center;
+  font-size: 13px;
+  color: var(--ink-3);
+}
+
+/* ── flow ──
+   A travelling highlight rather than each step animating alone, so the row
+   reads as one request moving along it. */
+.mcp-flow {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 8px;
+}
+
+.mcp-flow__step {
+  position: relative;
+  padding: 10px 16px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--paper);
+  font-size: 14px;
+  color: var(--ink-2);
+  animation: mcpFlow 7s var(--ease) infinite;
+  animation-delay: calc(var(--i) * .38s);
+}
+
+.mcp-flow__step--hub {
+  border-color: var(--ink);
+  background: var(--ink);
+  color: var(--paper);
+  font-weight: 600;
+}
+
+.mcp-flow__step + .mcp-flow__step::before {
+  content: "";
+  width: 14px;
+  height: 1px;
+  background: var(--line);
+  display: inline-block;
+  margin-inline-end: 14px;
+  vertical-align: middle;
+}
+
+@keyframes mcpFlow {
+  0%, 100% { transform: translateY(0); }
+  6%       { transform: translateY(-4px); }
+  14%      { transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mcp-flow__step { animation: none; }
+}
+
+/* ── marketplace ── */
+.mcp-market {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: clamp(14px, 1.6vw, 20px);
+}
+
+.mcp-mcard {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--paper);
+}
+
+.mcp-mcard__thumb {
+  flex: 0 0 auto;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: var(--surface-2);
+}
+
+.mcp-mcard__body {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin-inline-end: auto;
+  min-width: 0;
+}
+
+.mcp-mcard__cat {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.mcp-mcard__t {
+  font-family: var(--display-font);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.mcp-stars {
+  font-size: 12px;
+  color: var(--ink-3);
+  letter-spacing: .06em;
+}
+
+/* ── security ── */
+.mcp-sec {
+  display: grid;
+  grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr);
+  gap: clamp(28px, 5vw, 72px);
+  padding: clamp(28px, 3.6vw, 52px);
+  border-radius: 26px;
+  background: var(--surface-2);
+}
+
+@media (max-width:860px) {
+  .mcp-sec {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.mcp-sec__say .lede {
+  margin-block-start: 16px;
+}
+
+.mcp-sec__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.mcp-sec__list li {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-block-end: 18px;
+  border-block-end: 1px solid var(--line);
+}
+
+.mcp-sec__list li:last-child {
+  padding-block-end: 0;
+  border-block-end: 0;
+}
+
+.mcp-sec__t {
+  font-family: var(--display-font);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.mcp-sec__d {
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--ink-2);
+}
+
+/* ── tiers ── */
+.mcp-tiers {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: clamp(14px, 1.6vw, 20px);
+}
+
+.mcp-tier {
+  padding: clamp(20px, 2.2vw, 26px);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+}
+
+.mcp-tier__t {
+  font-family: var(--display-font);
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: -.02em;
+  margin: 0 0 8px;
+}
+
+.mcp-tier__d {
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--ink-2);
+  margin: 0;
+}
+
+/* ── sdk ── */
+.mcp-sdk__langs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-block-end: clamp(22px, 2.6vw, 32px);
+}
+
+.mcp-sdk__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* ═══════════════ DOCS LAYOUT (mcp-servers.html) ═════════════════════════════
+   Three columns — doc set, prose, on-this-page — in the site's light theme
+   rather than the reference's dark one. Type scale, spacing and the prev/next
+   cards are inherited from the playbook page so the two read as one doc set. */
+.docs {
+  padding-block: clamp(112px, 12vw, 152px) clamp(60px, 7vw, 92px);
+}
+
+.docs__grid {
+  display: grid;
+  grid-template-columns: 210px minmax(0, 1fr) 190px;
+  gap: clamp(28px, 4vw, 64px);
+  align-items: start;
+}
+
+/* Both rails are sticky; the prose scrolls between them. */
+.docs__rail,
+.docs__toc {
+  position: sticky;
+  top: 100px;
+  max-height: calc(100vh - 128px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+/* Rails go first below the breakpoint, and stop being sticky — a full-height
+   sticky list above the article is unusable on a phone. */
+@media (max-width:1080px) {
+  .docs__grid {
+    grid-template-columns: 200px minmax(0, 1fr);
+  }
+
+  .docs__toc {
+    display: none;
+  }
+}
+
+@media (max-width:820px) {
+  .docs__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .docs__rail {
+    position: static;
+    max-height: none;
+    overflow-y: visible;
+    padding-block-end: 26px;
+    border-block-end: 1px solid var(--line);
+  }
+}
+
+/* ── left rail ── */
+.docs__railh {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin: 24px 0 8px;
+}
+
+.docs__railh:first-child {
+  margin-block-start: 0;
+}
+
+.docs__raillist {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.docs__railrow {
+  padding: 6px 10px;
+  border-radius: 7px;
+  border-inline-start: 2px solid transparent;
+  font-size: 13px;
+  color: var(--ink-3);
+}
+
+.docs__railrow.is-current {
+  background: var(--surface-2);
+  border-inline-start-color: var(--ink);
+  color: var(--ink);
+  font-weight: 600;
+}
+
+/* ── prose column ── */
+.docs__body {
+  max-width: 720px;
+}
+
+.docs__crumb {
+  font-size: 12.5px;
+  color: var(--ink-3);
+  margin: 0 0 10px;
+}
+
+.docs__crumb span {
+  margin-inline: 5px;
+}
+
+.docs__title {
+  font-family: var(--display-font);
+  font-size: clamp(27px, 3vw, 39px);
+  line-height: 1.08;
+  letter-spacing: -.032em;
+  font-weight: 700;
+  margin: 0 0 26px;
+}
+
+/* Placeholder plate for the hero image — deliberately plain, so it is obvious
+   at a glance that it is not finished artwork. */
+.docs__plate {
+  margin: 0 0 30px;
+  aspect-ratio: 16 / 9;
+  display: grid;
+  place-items: center;
+  border: 1px dashed var(--line);
+  border-radius: 16px;
+  background: var(--surface-2);
+}
+
+.docs__plate-l {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.docs__lead {
+  font-size: 16.5px;
+  line-height: 1.7;
+  color: var(--ink-2);
+  margin: 0 0 18px;
+}
+
+.docs__body p {
+  font-size: 15.5px;
+  line-height: 1.75;
+  color: #4B5563;
+  margin: 0 0 18px;
+}
+
+.docs__body h2 {
+  font-family: var(--display-font);
+  font-size: clamp(19px, 1.7vw, 23px);
+  line-height: 1.24;
+  letter-spacing: -.024em;
+  font-weight: 600;
+  margin: 46px 0 14px;
+  scroll-margin-top: 110px;
+}
+
+.docs__body h3 {
+  font-family: var(--display-font);
+  font-size: 16.5px;
+  letter-spacing: -.018em;
+  font-weight: 600;
+  margin: 30px 0 10px;
+  scroll-margin-top: 110px;
+}
+
+.docs__body code {
+  font-family: var(--mono);
+  font-size: .88em;
+  background: var(--surface-2);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+/* ── callout ── */
+.docs__note {
+  padding: 16px 18px;
+  border-radius: 12px;
+  border-inline-start: 2px solid var(--ink);
+  background: var(--surface-2);
+  margin-block-end: 22px;
+}
+
+.docs__note p {
+  margin: 0;
+  font-size: 14.5px;
+}
+
+/* ── code blocks ── */
+.docs__code {
+  position: relative;
+  margin: 0 0 20px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface-2);
+  overflow: hidden;
+}
+
+.docs__code pre {
+  margin: 0;
+  padding: 16px 76px 16px 18px;
+  overflow-x: auto;
+}
+
+.docs__code code {
+  background: none;
+  padding: 0;
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--ink);
+  white-space: pre;
+}
+
+.docs__copy {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 5px 11px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--paper);
+  font: inherit;
+  font-size: 12px;
+  color: var(--ink-2);
+  cursor: pointer;
+  transition: border-color .2s var(--ease), color .2s var(--ease);
+}
+
+.docs__copy:hover {
+  border-color: var(--ink-3);
+  color: var(--ink);
+}
+
+.docs__copy.is-done {
+  border-color: var(--ink);
+  color: var(--ink);
+}
+
+/* ── directory ── */
+.docs__dir {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 24px 20px;
+  margin-block-end: 8px;
+}
+
+.docs__dirh {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  font-weight: 600;
+  margin: 0 0 10px;
+}
+
+.docs__dirlist {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.docs__dirlist li {
+  font-size: 14.5px;
+  color: var(--ink-2);
+}
+
+/* ── prose lists (numbered best-practices, linked reference lists) ── */
+.docs__list {
+  margin: 0 0 20px;
+  padding-inline-start: 22px;
+}
+
+.docs__list li {
+  font-size: 15.5px;
+  line-height: 1.75;
+  color: #4B5563;
+  margin-block-end: 10px;
+}
+
+.docs__list li:last-child {
+  margin-block-end: 0;
+}
+
+.docs__list a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* ── docs search (sidebar) ──
+   Sits above the rail. The result list is absolutely positioned so it overlays
+   the nav rather than pushing it down while you type. */
+.docs__search {
+  position: relative;
+  margin-block-end: 22px;
+}
+
+.docs__searchi {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: var(--surface-2);
+  font: inherit;
+  font-size: 13.5px;
+  color: var(--ink);
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.docs__searchi::placeholder { color: var(--ink-3); }
+
+.docs__searchi:focus {
+  outline: none;
+  border-color: var(--ink-3);
+  background: var(--paper);
+}
+
+.docs__searchr {
+  position: absolute;
+  z-index: 20;
+  inset-inline: 0;
+  top: calc(100% + 6px);
+  list-style: none;
+  margin: 0;
+  padding: 5px;
+  border: 1px solid var(--line);
+  border-radius: 11px;
+  background: var(--paper);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, .10);
+  max-height: 320px;
+  overflow-y: auto;
+}
+
+.docs__searchr a {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  padding: 7px 9px;
+  border-radius: 7px;
+  text-decoration: none;
+}
+
+.docs__searchr a:hover { background: var(--surface-2); }
+
+.docs__searchr-t { font-size: 13.5px; color: var(--ink); }
+
+.docs__searchr-s {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.docs__searchempty {
+  padding: 8px 9px;
+  font-size: 13px;
+  color: var(--ink-3);
+}
+
+/* ── API endpoint signature: method badge + path ── */
+.docs__ep {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 0 0 16px;
+}
+
+.docs__epm {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: .08em;
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: 5px;
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.docs__epu {
+  font-family: var(--mono);
+  font-size: 13.5px;
+  color: var(--ink);
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  padding: 3px 9px;
+  border-radius: 5px;
+}
+
+/* Inline error-code list under an endpoint. */
+.docs__errs {
+  font-size: 14px;
+  color: var(--ink-3);
+  margin: 0 0 20px;
+}
+
+.docs__errs code {
+  font-size: .92em;
+}
+
+/* ── accordions ── */
+.docs__acc {
+  border-block-start: 1px solid var(--line);
+}
+
+.docs__item {
+  border-block-end: 1px solid var(--line);
+}
+
+.docs__item summary {
+  padding: 15px 0;
+  font-family: var(--display-font);
+  font-size: 15.5px;
+  font-weight: 500;
+  color: var(--ink);
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.docs__item summary::-webkit-details-marker {
+  display: none;
+}
+
+/* Chevron drawn in CSS so each row stays a bare summary element. */
+.docs__item summary::after {
+  content: "";
+  flex: 0 0 auto;
+  width: 7px;
+  height: 7px;
+  border-inline-end: 1.6px solid var(--ink-3);
+  border-block-end: 1.6px solid var(--ink-3);
+  transform: rotate(45deg) translateY(-2px);
+  transition: transform .25s var(--ease);
+}
+
+.docs__item[open] summary::after {
+  transform: rotate(225deg) translateY(-2px);
+}
+
+.docs__item p {
+  margin: 0 0 16px;
+  max-width: 62ch;
+}
+
+/* ── right rail ── */
+.docs__tocH {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin: 0 0 12px;
+}
+
+.docs__toclist {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.docs__tocrow a {
+  display: block;
+  padding: 5px 0 5px 11px;
+  border-inline-start: 2px solid var(--line);
+  font-size: 12.5px;
+  color: var(--ink-3);
+  text-decoration: none;
+  transition: color .2s var(--ease), border-color .2s var(--ease);
+}
+
+.docs__tocrow--sub a {
+  padding-inline-start: 22px;
+}
+
+.docs__tocrow a:hover {
+  color: var(--ink-2);
+}
+
+.docs__tocrow.is-on a {
+  border-inline-start-color: var(--ink);
+  color: var(--ink);
+  font-weight: 600;
+}
+
+/* ── docs: architecture tree ── */
+.docs__tree {
+  padding: clamp(20px, 2.4vw, 30px);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--surface-2);
+  margin-block-end: 22px;
+}
+
+.docs__tree-top {
+  display: flex;
+  justify-content: center;
+  margin-block-end: 26px;
+}
+
+.docs__node {
+  display: inline-block;
+  padding: 8px 16px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--paper);
+  font-family: var(--display-font);
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.docs__node--hub {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--paper);
+}
+
+.docs__tree-cols {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 20px;
+}
+
+/* Connector stems drawn in CSS so the diagram stays real text, not an image. */
+.docs__tree-col {
+  position: relative;
+  text-align: center;
+  padding-block-start: 18px;
+}
+
+.docs__tree-col::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 1px;
+  height: 14px;
+  background: var(--line);
+}
+
+.docs__tree-list {
+  list-style: none;
+  margin: 12px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.docs__tree-list li {
+  font-size: 13px;
+  color: var(--ink-2);
+}
+
+/* ── docs: two-column comparison ── */
+.docs__cmp {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-block-end: 22px;
+}
+
+.docs__cmp-col {
+  padding: 20px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+}
+
+.docs__cmp-col--accent {
+  background: var(--surface-2);
+  border-color: var(--ink);
+}
+
+.docs__cmp-h {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin: 0 0 12px;
+}
+
+.docs__cmp-col ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.docs__cmp-col li {
+  font-size: 14.5px;
+  color: var(--ink-2);
+}
+
+/* ── docs: tables ── */
+.docs__tablewrap {
+  overflow-x: auto;
+  margin-block-end: 8px;
+}
+
+.docs__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14.5px;
+}
+
+.docs__table th,
+.docs__table td {
+  padding: 11px 14px;
+  text-align: left;
+  border-block-end: 1px solid var(--line);
+}
+
+.docs__table thead th {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  font-weight: 600;
+}
+
+.docs__table tbody th {
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.docs__table td {
+  color: var(--ink-2);
+}
+
+.docs__yes { color: var(--ink); font-weight: 700; }
+.docs__no { color: var(--ink-3); }
+.docs__partial { color: var(--ink-3); font-size: 13px; }
+
+.docs__table .mono {
+  font-family: var(--mono);
+  font-size: 12.5px;
+}
+
+.docs__dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  margin-inline-end: 8px;
+  background: var(--ink-3);
+}
+
+.docs__dot--ok { background: #3F9C6B; }
+.docs__dot--off { background: transparent; border: 1px solid var(--ink-3); }
+
+.docs__cap {
+  font-size: 13px !important;
+  color: var(--ink-3) !important;
+  margin-block-start: 10px;
+}
+
+/* ── docs: capability cards ── */
+.docs__cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 14px;
+  margin-block-end: 22px;
+}
+
+.docs__card {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+}
+
+.docs__card-t {
+  font-family: var(--display-font);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.docs__card-d {
+  font-size: 13.5px;
+  color: var(--ink-3);
+}
+
+/* Reading-time / meta line inside a card. Sits last, pushed to the bottom so
+   cards of differing description lengths still align their meta row. */
+.docs__card-m {
+  margin-block-start: auto;
+  padding-block-start: 10px;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+/* Card that is itself a link. Kept visually identical to a static card until
+   hover, so a grid of mixed linked/unlinked cards reads evenly. */
+a.docs__card {
+  text-decoration: none;
+  transition: border-color .2s var(--ease), transform .2s var(--ease);
+}
+
+a.docs__card:hover {
+  border-color: var(--ink-3);
+  transform: translateY(-2px);
+}
+
+a.docs__card:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
+
+/* Wider grid for the featured guides — two up on desktop, one on mobile. */
+.docs__cards--wide {
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.docs__card-caps {
+  list-style: none;
+  margin: 10px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.docs__card-caps li {
+  font-size: 13px;
+  color: var(--ink-2);
+}
+
+/* ── docs: numbered steps / flows ── */
+.docs__steps {
+  list-style: none;
+  margin: 0 0 22px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.docs__step {
+  display: grid;
+  grid-template-columns: 26px minmax(0, 1fr);
+  gap: 4px 12px;
+  padding: 13px 0;
+  border-block-end: 1px solid var(--line);
+}
+
+.docs__step-n {
+  grid-row: span 2;
+  width: 22px;
+  height: 22px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--mono);
+  font-size: 11px;
+}
+
+.docs__step-t {
+  font-family: var(--display-font);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.docs__step-d {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--ink-2);
+}
+
+.docs__step--slim {
+  grid-template-columns: 26px minmax(0, 1fr);
+}
+
+.docs__step--slim .docs__step-n {
+  grid-row: auto;
+}
+
+/* ── docs: workflow chains ── */
+.docs__flows {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-block-end: 22px;
+}
+
+.docs__flow {
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+}
+
+.docs__flow-t {
+  font-family: var(--display-font);
+  font-size: 15px !important;
+  font-weight: 600;
+  margin: 0 0 12px !important;
+}
+
+.docs__chain {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.docs__chain li {
+  position: relative;
+  padding: 7px 12px;
+  border-radius: 8px;
+  background: var(--surface-2);
+  font-size: 13.5px;
+  color: var(--ink-2);
+}
+
+/* Arrow between links in the chain, drawn rather than typed so the list stays
+   readable as text for a screen reader. */
+.docs__chain li + li::before {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: 18px;
+  width: 1px;
+  height: 4px;
+  background: var(--ink-3);
+}
+
+.docs__linkrow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-block-end: 22px;
+}
+
+.docs__plate--wide { aspect-ratio: 16 / 9; }
+.docs__plate--tall { aspect-ratio: 4 / 3; max-width: 460px; }
+
+/* ── docs: real screenshots, replacing the dashed placeholders ── */
+.docs__shot {
+  margin: 0 0 24px;
+}
+
+.docs__shot img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+  border: 1px solid var(--line);
+}
+
+/* The hero plate is a dark render; a light hairline on it reads as a seam, so
+   it gets a shadow to sit on the page instead of a border. */
+.docs__shot--dark img {
+  border: 0;
+  box-shadow: 0 18px 44px rgba(10, 10, 11, .18);
+}

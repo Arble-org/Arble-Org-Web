@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MCP Servers &#8212; Arble Docs</title>
+  <meta name="description" content="Connect any Model Context Protocol server; its tools join the same registry." />
+  <link rel="icon"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='3.4' fill='%230A0A0B'/%3E%3Ccircle cx='12' cy='12' r='7.2' fill='none' stroke='%230A0A0B' stroke-width='1.3' opacity='.45'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Stack+Sans+Headline:wght@200..700&display=swap" />
+  <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f%5B%5D=switzer@400,500,600,700&display=swap" />
+  <link rel="stylesheet" href="../../../assets/css/docs.css?v=84" />
+</head>
+
+<!-- Documentation is its own application, not a page on the marketing site:
+     no floating nav, no CTA, no hero. The shell is a fixed sidebar plus a
+     scrolling content column, with the header split so each half aligns to
+     the column beneath it. -->
+<body class="dapp">
+  <a class="skip" href="#doc">Skip to content</a>
+
+  <div class="dapp__grid">
+
+    <aside class="dside" aria-label="Documentation navigation">
+      <div class="dside__head">
+        <a class="dside__brand" href="../../../index.html" aria-label="Arble home">
+          <img src="../../../assets/img/brand/logo-mark.png" width="288" height="271" alt="" aria-hidden="true" />
+        </a>
+        <span class="dside__rule" aria-hidden="true"></span>
+        <a class="dside__brand" href="../../../docs/"><span>Docs</span></a>
+      </div>
+      <div class="dside__scroll">
+        <form class="docs__search" role="search" onsubmit="return false;">
+          <input class="docs__searchi" id="docsSearch" type="search" autocomplete="off"
+            placeholder="Search&#8230;" aria-label="Search documentation" />
+          <ul class="docs__searchr" id="docsSearchResults" hidden></ul>
+        </form>
+        <nav aria-label="Sections">
+        <details class="docs__grp">
+          <summary class="docs__grph"><span>Getting Started</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></summary>
+          <ul class="docs__raillist">
+            <li class="docs__railrow"><a href="../../../docs/getting-started/install/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5"/><path d="M3 17v2a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-2"/></svg><span>Install</span></a></li>
+            <li class="docs__railrow"><a href="../../../docs/getting-started/pair-device/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="14" y="3" width="7" height="12" rx="1.5"/><rect x="3" y="9" width="8" height="12" rx="1.5"/></svg><span>Pair Device</span></a></li>
+            <li class="docs__railrow"><a href="../../../docs/getting-started/first-run/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m10 8 6 4-6 4z"/></svg><span>First Run</span></a></li>
+            <li class="docs__railrow"><a href="../../../docs/getting-started/configuration/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-2.9 1.2 2 2 0 1 1-4 0 1.7 1.7 0 0 0-2.9-1.2l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1A1.7 1.7 0 0 0 2.6 15a2 2 0 1 1 0-4 1.7 1.7 0 0 0 1.8-2.9l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1A1.7 1.7 0 0 0 10 3.6a2 2 0 1 1 4 0 1.7 1.7 0 0 0 2.9 1.2l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1A1.7 1.7 0 0 0 21.4 11a2 2 0 1 1 0 4"/></svg><span>Configuration</span></a></li>
+            <li class="docs__railrow"><a href="../../../docs/getting-started/system-requirements/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg><span>System Requirements</span></a></li>
+            <li class="docs__railrow"><a href="../../../docs/getting-started/updates/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 21v-5h5"/></svg><span>Updates</span></a></li>
+          </ul>
+        </details>
+        <details class="docs__grp">
+          <summary class="docs__grph"><span>Agent</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></summary>
+          <ul class="docs__raillist">
+            <li class="docs__railrow"><a href="../../../docs/agent/sessions/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span>Sessions</span></a></li>
+            <li class="docs__railrow"><a href="../../../docs/agent/memory/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a3 3 0 0 0-3 3v1a3 3 0 0 0 0 6v1a3 3 0 0 0 6 0v-1a3 3 0 0 0 0-6V6a3 3 0 0 0-3-3"/></svg><span>Memory</span></a></li>
+            <li class="docs__railrow"><a href="../../../docs/agent/skills/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M3 15v4a2 2 0 0 0 2 2h4m12-6v4a2 2 0 0 1-2 2h-4"/><path d="M9 9h6v6H9z"/></svg><span>Skills</span></a></li>
+            <li class="docs__railrow"><a href="../../../docs/agent/permissions/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s8-4 8-10V5l-8-3-8 3v6c0 6 8 10 8 10"/></svg><span>Permissions</span></a></li>
+            <li class="docs__railrow"><a href="../../../docs/agent/automation/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>Automation</span></a></li>
+            <li class="docs__railrow"><a href="../../../docs/agent/desktop/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8"/></svg><span>Desktop Control</span></a></li>
+            <li class="docs__railrow"><a href="../../../docs/agent/notifications/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 8-3 8h18s-3-1-3-8"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg><span>Notifications</span></a></li>
+          </ul>
+        </details>
+        <details class="docs__grp" open>
+          <summary class="docs__grph"><span>Developers</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></summary>
+          <ul class="docs__raillist">
+            <li class="docs__railrow is-current"><a href="../../../docs/developers/mcp-servers/" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="7" rx="2"/><rect x="3" y="13" width="18" height="7" rx="2"/><path d="M7 8h.01M7 17h.01"/></svg><span>MCP Servers</span></a></li>
+            <li class="docs__railrow"><a href="../../../docs/developers/tool-sdk/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.8-3.8a6 6 0 0 1-7.9 7.9l-6.9 6.9a2.1 2.1 0 0 1-3-3l6.9-6.9a6 6 0 0 1 7.9-7.9z"/></svg><span>Tool SDK</span></a></li>
+            <li class="docs__railrow"><a href="../../../docs/developers/cli/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 8 4 4-4 4M12 16h7"/><rect x="2" y="3" width="20" height="18" rx="2"/></svg><span>CLI</span></a></li>
+            <li class="docs__railrow"><a href="../../../docs/developers/api-reference/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8 6-6 6 6 6M16 6l6 6-6 6"/></svg><span>API Reference</span></a></li>
+            <li class="docs__railrow"><a href="../../../docs/developers/self-hosting/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 2 7l10 5 10-5z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/></svg><span>Self-hosting</span></a></li>
+          </ul>
+        </details>
+        <details class="docs__grp">
+          <summary class="docs__grph"><span>Reference</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></summary>
+          <ul class="docs__raillist">
+            <li class="docs__railrow"><a href="../../../docs/reference/glossary/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2"/></svg><span>Glossary</span></a></li>
+            <li class="docs__railrow"><a href="../../../docs/reference/faq/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 2.4-3 4M12 17h.01"/></svg><span>FAQ</span></a></li>
+            <li class="docs__railrow"><a href="../../../docs/reference/troubleshooting/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4.4-4.4"/></svg><span>Troubleshooting</span></a></li>
+            <li class="docs__railrow"><a href="../../../docs/reference/release-notes/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 13h6M9 17h4"/></svg><span>Release Notes</span></a></li>
+          </ul>
+        </details>
+        </nav>
+      </div>
+      <nav class="dside__foot" aria-label="Arble">
+          <a href="../../../docs/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2"/></svg><span>Docs</span></a>
+          <a href="../../../docs/developers/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8 6-6 6 6 6M16 6l6 6-6 6"/></svg><span>Developers</span></a>
+          <a href="../../../playbook.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10 12 5 2 10l10 5z"/><path d="M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/></svg><span>Learn</span></a>
+          <a href="../../../docs/reference/troubleshooting/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.4 8.4 0 0 1 3.8-.9h.5a8.5 8.5 0 0 1 8 8z"/></svg><span>Contact support</span></a>
+      </nav>
+    </aside>
+
+    <div class="dmain">
+      <header class="dtop">
+        <button class="dnavbtn" type="button" id="navToggle" aria-label="Open navigation"
+          aria-expanded="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"
+            stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        </button>
+        <p class="docs__crumb"><a href="../../../docs/">Documentation</a> <span aria-hidden="true">/</span> <a href="../../../docs/developers/">Developers</a> <span aria-hidden="true">/</span> MCP Servers</p>
+        <div class="docs__acts">
+          <button class="docs__act" type="button" id="copyPage" aria-label="Copy page as Markdown">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9"
+              width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            <span>Copy page</span>
+          </button>
+        </div>
+      </header>
+
+      <div class="dbody">
+        <article class="docs__body" id="doc">
+          <h1 class="docs__title">MCP Servers</h1>
+          <p class="docs__meta"><b>6 min read</b><i>&#183;</i>Updated 30 Jul 2026</p>
+        <figure class="docs__shot docs__shot--dark">
+          <img src="../../../assets/img/docs/mcp-hero.jpg" width="1440" height="720" loading="lazy"
+            alt="A matte black square plate photographed at an angle on a dark background, embossed with the words Remote MCP Server." />
+        </figure>
+
+        <p class="docs__lead">The Model Context Protocol gives any compatible tool a standard way to
+          offer capabilities to an agent. Arble speaks it natively, so a server you install becomes a
+          set of typed tools sitting alongside the built-in ones &#8212; same registry, same permission
+          gate, same audit log.</p>
+
+        <div class="docs__note">
+          <p><strong>Before you start.</strong> Package names, endpoints and the figures in the health
+            table below are placeholders that show the shape of each thing. Replace them with real
+            values before publishing.</p>
+        </div>
+
+        <h2 id="architecture">How Arble uses MCP</h2>
+        <p>Most clients treat MCP as the way they get tools. Arble treats it as one of three sources,
+          all of which land in the same registry and are chosen between by the same agent.</p>
+
+        <figure class="docs__shot">
+          <img src="../../../assets/img/docs/mcp-architecture.jpg" width="1440" height="960" loading="lazy"
+            alt="Arble agent at the top branching into three columns — Built-in tools listing file system, terminal, browser and memory; MCP servers listing GitHub, Slack, Gmail and Postgres; and Local devices listing macOS, Windows and Linux APIs and a mobile bridge. All three feed a unified tool registry captioned every tool, one registry, same permissions, which in turn feeds five example calls: read file from built-in, open PR from an MCP server, take screenshot from a local device, query database and notify team from MCP servers." />
+        </figure>
+
+        <p>Because they share a registry, the agent does not need to know which source a tool came
+          from. A skill can read a file with a built-in tool, open a pull request through an MCP
+          server, and take a screenshot on a paired desktop, in one run.</p>
+
+        <h3 id="builtin-vs-mcp">Built-in vs MCP</h3>
+        <p>The split is roughly: things tied to your device are built in, and things tied to an
+          external account arrive through a server.</p>
+
+        <div class="docs__cmp">
+          <div class="docs__cmp-col">
+            <p class="docs__cmp-h">Built into Arble</p>
+            <ul>
+              <li>Memory</li>
+              <li>Browser</li>
+              <li>Terminal</li>
+              <li>File system</li>
+              <li>Desktop control</li>
+              <li>Mobile bridge</li>
+            </ul>
+          </div>
+          <div class="docs__cmp-col">
+            <p class="docs__cmp-h">Added through MCP</p>
+            <ul>
+              <li>GitHub</li>
+              <li>Slack</li>
+              <li>Jira</li>
+              <li>Notion</li>
+              <li>Figma</li>
+              <li>AWS</li>
+            </ul>
+          </div>
+        </div>
+
+        <h3 id="advantages">Why not a plain client</h3>
+        <p>MCP is a protocol for exposing tools. It says nothing about memory, device access or how
+          approval works &#8212; those are the client's job, and most clients leave them out.</p>
+
+        <div class="docs__tablewrap">
+          <table class="docs__table">
+            <thead>
+              <tr><th scope="col">Capability</th><th scope="col">MCP alone</th><th scope="col">Arble</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">Connect many servers at once</th><td class="docs__yes" aria-label="yes">&#10003;</td><td class="docs__yes" aria-label="yes">&#10003;</td></tr>
+              <tr><th scope="row">Persistent local memory</th><td class="docs__no" aria-label="no">&#8212;</td><td class="docs__yes" aria-label="yes">&#10003;</td></tr>
+              <tr><th scope="row">Native desktop automation</th><td class="docs__no" aria-label="no">&#8212;</td><td class="docs__yes" aria-label="yes">&#10003;</td></tr>
+              <tr><th scope="row">Mobile companion device</th><td class="docs__no" aria-label="no">&#8212;</td><td class="docs__yes" aria-label="yes">&#10003;</td></tr>
+              <tr><th scope="row">Permission gate on every call</th><td class="docs__partial">Varies</td><td class="docs__yes" aria-label="yes">&#10003;</td></tr>
+              <tr><th scope="row">Multi-agent orchestration</th><td class="docs__partial">Varies</td><td class="docs__yes" aria-label="yes">&#10003;</td></tr>
+              <tr><th scope="row">Built-in tools alongside MCP</th><td class="docs__no" aria-label="no">&#8212;</td><td class="docs__yes" aria-label="yes">&#10003;</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 id="featured">Featured servers</h2>
+        <p>A handful worth starting with. The full list is below.</p>
+
+        <div class="docs__cards">
+          <article class="docs__card">
+            <span class="docs__card-t">GitHub</span>
+            <span class="docs__card-d">Review pull requests</span>
+            <ul class="docs__card-caps">
+              <li>Read repos</li>
+              <li>Create PRs</li>
+              <li>Review code</li>
+            </ul>
+          </article>
+          <article class="docs__card">
+            <span class="docs__card-t">Slack</span>
+            <span class="docs__card-d">Summarise conversations</span>
+            <ul class="docs__card-caps">
+              <li>Read channels</li>
+              <li>Post messages</li>
+              <li>Threads</li>
+            </ul>
+          </article>
+          <article class="docs__card">
+            <span class="docs__card-t">Figma</span>
+            <span class="docs__card-d">Inspect designs</span>
+            <ul class="docs__card-caps">
+              <li>Read frames</li>
+              <li>Inspect layers</li>
+              <li>Export assets</li>
+            </ul>
+          </article>
+          <article class="docs__card">
+            <span class="docs__card-t">Gmail</span>
+            <span class="docs__card-d">Draft replies</span>
+            <ul class="docs__card-caps">
+              <li>Read mail</li>
+              <li>Draft</li>
+              <li>Search</li>
+            </ul>
+          </article>
+          <article class="docs__card">
+            <span class="docs__card-t">Postgres</span>
+            <span class="docs__card-d">Query production data</span>
+            <ul class="docs__card-caps">
+              <li>SQL</li>
+              <li>Schema</li>
+              <li>Transactions</li>
+            </ul>
+          </article>
+        </div>
+
+        <h3 id="directory">Directory</h3>
+        <p>Every server Arble is known to work with. Each installs separately and can be revoked on
+          its own.</p>
+
+        <div class="docs__dir">
+          <section class="docs__dircat">
+            <h4 class="docs__dirh">Development</h4>
+            <ul class="docs__dirlist">
+              <li>GitHub</li>
+              <li>GitLab</li>
+              <li>VS Code</li>
+              <li>Docker</li>
+              <li>Kubernetes</li>
+              <li>Terminal</li>
+            </ul>
+          </section>
+          <section class="docs__dircat">
+            <h4 class="docs__dirh">Productivity</h4>
+            <ul class="docs__dirlist">
+              <li>Notion</li>
+              <li>Google Drive</li>
+              <li>Slack</li>
+              <li>Linear</li>
+              <li>Jira</li>
+              <li>Confluence</li>
+            </ul>
+          </section>
+          <section class="docs__dircat">
+            <h4 class="docs__dirh">Communication</h4>
+            <ul class="docs__dirlist">
+              <li>Gmail</li>
+              <li>Outlook</li>
+              <li>Discord</li>
+              <li>Telegram</li>
+              <li>Teams</li>
+              <li>WhatsApp</li>
+            </ul>
+          </section>
+          <section class="docs__dircat">
+            <h4 class="docs__dirh">Design</h4>
+            <ul class="docs__dirlist">
+              <li>Figma</li>
+              <li>Canva</li>
+              <li>Framer</li>
+              <li>Photoshop</li>
+            </ul>
+          </section>
+          <section class="docs__dircat">
+            <h4 class="docs__dirh">Cloud</h4>
+            <ul class="docs__dirlist">
+              <li>AWS</li>
+              <li>Azure</li>
+              <li>GCP</li>
+              <li>Cloudflare</li>
+              <li>Vercel</li>
+              <li>Railway</li>
+            </ul>
+          </section>
+          <section class="docs__dircat">
+            <h4 class="docs__dirh">Data</h4>
+            <ul class="docs__dirlist">
+              <li>Postgres</li>
+              <li>MySQL</li>
+              <li>MongoDB</li>
+              <li>Redis</li>
+              <li>Supabase</li>
+              <li>Pinecone</li>
+            </ul>
+          </section>
+          <section class="docs__dircat">
+            <h4 class="docs__dirh">AI</h4>
+            <ul class="docs__dirlist">
+              <li>OpenAI</li>
+              <li>Anthropic</li>
+              <li>Gemini</li>
+              <li>OpenRouter</li>
+              <li>Ollama</li>
+              <li>LM Studio</li>
+            </ul>
+          </section>
+          <section class="docs__dircat">
+            <h4 class="docs__dirh">Browser</h4>
+            <ul class="docs__dirlist">
+              <li>Chrome</li>
+              <li>Firefox</li>
+              <li>Playwright</li>
+              <li>Puppeteer</li>
+            </ul>
+          </section>
+        </div>
+
+        <h2 id="install-flow">Installing a server</h2>
+        <p>Five steps, the same for every server.</p>
+
+        <ol class="docs__steps">
+          <li class="docs__step"><span class="docs__step-n">1</span><span class="docs__step-t">Install</span><span class="docs__step-d">Add the server from the directory, or point Arble at an endpoint.</span></li>
+          <li class="docs__step"><span class="docs__step-n">2</span><span class="docs__step-t">Authenticate</span><span class="docs__step-d">Sign in to the underlying service. Tokens go to the device keystore.</span></li>
+          <li class="docs__step"><span class="docs__step-n">3</span><span class="docs__step-t">Review permissions</span><span class="docs__step-d">See every tool the server exposes and decide which run without asking.</span></li>
+          <li class="docs__step"><span class="docs__step-n">4</span><span class="docs__step-t">Ready</span><span class="docs__step-d">The server's tools appear in the registry next to the built-in ones.</span></li>
+          <li class="docs__step"><span class="docs__step-n">5</span><span class="docs__step-t">Use in agent</span><span class="docs__step-d">Ask for the work. The agent picks the tool.</span></li>
+        </ol>
+
+        <figure class="docs__shot">
+          <img src="../../../assets/img/docs/mcp-install.jpg" width="1440" height="810" loading="lazy"
+            alt="Five numbered stages shown as frosted cards: a grid of service icons for install, a padlock for authentication, a list of permission toggles for review, the Arble mark for ready, and a prompt field with a response for use in the agent." />
+        </figure>
+
+        <h3 id="setup">Setup by client</h3>
+        <p>Every client below connects to the same server. Pick the one you use.</p>
+
+        <p><strong>General.</strong> Any MCP-capable client needs a command, its arguments, and an
+          optional environment:</p>
+        <div class="docs__code">
+          <div class="docs__codebar"><span class="docs__lang">CODE</span><button class="docs__copy" type="button" data-copy="c-general" aria-label="Copy code">Copy</button></div>
+          <pre><code id="c-general">Command:      npx
+Arguments:    -y mcp-remote https://mcp.example.com/mcp
+Environment:  none</code></pre>
+        </div>
+        <p><strong>Claude, Cursor, Windsurf.</strong> Add from settings, or paste into the config file:</p>
+        <div class="docs__code">
+          <div class="docs__codebar"><span class="docs__lang">JSON</span><button class="docs__copy" type="button" data-copy="c-claude" aria-label="Copy code">Copy</button></div>
+          <pre><code id="c-claude">{
+  "mcpServers": {
+    "arble": {
+      "command": "npx",
+      "args": ["-y", "mcp-remote", "https://mcp.example.com/mcp"]
+    }
+  }
+}</code></pre>
+        </div>
+        <p><strong>Claude Code.</strong> Register once, then run <code>/mcp</code> in a session to authenticate.</p>
+        <div class="docs__code">
+          <div class="docs__codebar"><span class="docs__lang">CODE</span><button class="docs__copy" type="button" data-copy="c-cc" aria-label="Copy code">Copy</button></div>
+          <pre><code id="c-cc">claude mcp add --transport http arble https://mcp.example.com/mcp</code></pre>
+        </div>
+        <p><strong>Codex.</strong> The IDE extension and the CLI share one configuration.</p>
+        <div class="docs__code">
+          <div class="docs__codebar"><span class="docs__lang">CODE</span><button class="docs__copy" type="button" data-copy="c-codex" aria-label="Copy code">Copy</button></div>
+          <pre><code id="c-codex">codex mcp add arble --url https://mcp.example.com/mcp</code></pre>
+        </div>
+        <p><strong>Visual Studio Code.</strong> Command palette &#8594; <strong>MCP: Add Server</strong> &#8594; <strong>Command (stdio)</strong>, then:</p>
+        <div class="docs__code">
+          <div class="docs__codebar"><span class="docs__lang">SHELL</span><button class="docs__copy" type="button" data-copy="c-vscode" aria-label="Copy code">Copy</button></div>
+          <pre><code id="c-vscode">npx -y mcp-remote https://mcp.example.com/mcp</code></pre>
+        </div>
+        <p><strong>Zed.</strong> Add a context server in settings:</p>
+        <div class="docs__code">
+          <div class="docs__codebar"><span class="docs__lang">JSON</span><button class="docs__copy" type="button" data-copy="c-zed" aria-label="Copy code">Copy</button></div>
+          <pre><code id="c-zed">{
+  "context_servers": {
+    "arble": {
+      "source": "custom",
+      "command": "npx",
+      "args": ["-y", "mcp-remote", "https://mcp.example.com/mcp"],
+      "env": {}
+    }
+  }
+}</code></pre>
+        </div>
+
+        <h3 id="remote-local">Remote vs local</h3>
+        <p>Most servers can run either way. The choice is about privacy and availability, not
+          capability.</p>
+
+        <div class="docs__cmp">
+          <div class="docs__cmp-col">
+            <p class="docs__cmp-h">Remote server</p>
+            <ul>
+              <li>Runs in the cloud</li>
+              <li>Reached over HTTPS</li>
+              <li>Shared across your devices</li>
+              <li>Online whenever the service is</li>
+            </ul>
+          </div>
+          <div class="docs__cmp-col docs__cmp-col--accent">
+            <p class="docs__cmp-h">Local server</p>
+            <ul>
+              <li>Runs on your own machine</li>
+              <li>Never leaves the device</li>
+              <li>Private by construction</li>
+              <li>Works with no connection</li>
+            </ul>
+          </div>
+        </div>
+
+        <p>Choose remote when the service is a cloud product anyway and you want it on every device.
+          Choose local when the data should not leave the machine, or when you need it to work with
+          no connection.</p>
+
+        <h2 id="permissions">Permission flow</h2>
+        <p>An MCP tool is not privileged. It takes exactly the same path as a built-in one.</p>
+
+        <ol class="docs__steps docs__steps--flow">
+          <li class="docs__step"><span class="docs__step-n">1</span><span class="docs__step-t">Request</span><span class="docs__step-d">The model proposes a call with arguments.</span></li>
+          <li class="docs__step"><span class="docs__step-n">2</span><span class="docs__step-t">Permission check</span><span class="docs__step-d">Rules and mode decide: auto, ask, or deny.</span></li>
+          <li class="docs__step"><span class="docs__step-n">3</span><span class="docs__step-t">Sandbox</span><span class="docs__step-d">The server runs in its own process, scoped to what it was granted.</span></li>
+          <li class="docs__step"><span class="docs__step-n">4</span><span class="docs__step-t">Execute</span><span class="docs__step-d">The call runs and returns a typed result.</span></li>
+          <li class="docs__step"><span class="docs__step-n">5</span><span class="docs__step-t">Audit log</span><span class="docs__step-d">What ran, with what, and what came back is recorded.</span></li>
+        </ol>
+
+        <figure class="docs__shot">
+          <img src="../../../assets/img/docs/mcp-permission.jpg" width="1440" height="1080" loading="lazy"
+            alt="Permission flow beside an approval sheet. On the left, five numbered steps: request, permission check, sandbox, execute and audit log. On the right, a GitHub MCP Server sheet showing a create_pull_request call with its arguments, three permissions each set to ask every time or allow always, a note that the server is running locally, and Deny and Approve buttons." />
+        </figure>
+
+        <h3 id="security">Security</h3>
+        <div class="docs__acc">
+          <details class="docs__item">
+            <summary>Permission sandbox</summary>
+            <p>Each server is a separate process with only the access it was granted.</p>
+          </details>
+          <details class="docs__item">
+            <summary>Local execution</summary>
+            <p>A local server is a process you own. Nothing is relayed through Arble.</p>
+          </details>
+          <details class="docs__item">
+            <summary>Encrypted transport</summary>
+            <p>Remote servers are reached over TLS. Local ones never touch the network.</p>
+          </details>
+          <details class="docs__item">
+            <summary>Scoped permissions</summary>
+            <p>Rules are per tool and per server, not one switch for everything.</p>
+          </details>
+          <details class="docs__item">
+            <summary>Audit logging</summary>
+            <p>Every call is recorded with its arguments, result and approval.</p>
+          </details>
+          <details class="docs__item">
+            <summary>Server revocation</summary>
+            <p>Remove a server and its tools leave the registry immediately.</p>
+          </details>
+          <details class="docs__item">
+            <summary>Secret management</summary>
+            <p>Tokens live in the device keystore, never in config files or logs.</p>
+          </details>
+        </div>
+
+        <h3 id="health">Server health</h3>
+        <p>Connected servers, what they cost you in latency, and what they are allowed to do.</p>
+
+        <div class="docs__tablewrap">
+          <table class="docs__table docs__table--health">
+            <thead>
+              <tr><th scope="col">Server</th><th scope="col">Status</th><th scope="col">Latency</th><th scope="col">Version</th><th scope="col">Permissions</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">GitHub</th><td><span class="docs__dot docs__dot--ok" aria-hidden="true"></span>Connected</td><td class="mono">48 ms</td><td class="mono">v1.4.2</td><td>6 tools</td></tr>
+              <tr><th scope="row">Slack</th><td><span class="docs__dot docs__dot--ok" aria-hidden="true"></span>Connected</td><td class="mono">72 ms</td><td class="mono">v1.1.0</td><td>4 tools</td></tr>
+              <tr><th scope="row">Postgres</th><td><span class="docs__dot docs__dot--ok" aria-hidden="true"></span>Connected</td><td class="mono">11 ms</td><td class="mono">v2.0.1</td><td>3 tools</td></tr>
+              <tr><th scope="row">Notion</th><td><span class="docs__dot docs__dot--off" aria-hidden="true"></span>Disabled</td><td class="mono">—</td><td class="mono">v1.0.7</td><td>0 tools</td></tr>
+              <tr><th scope="row">AWS</th><td><span class="docs__dot docs__dot--ok" aria-hidden="true"></span>Healthy</td><td class="mono">130 ms</td><td class="mono">v0.9.4</td><td>9 tools</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="docs__cap">Example values. Wire this table to live server state before publishing.</p>
+
+        <h2 id="workflows">Example workflows</h2>
+        <p>Servers compose. One instruction can cross as many as the task needs.</p>
+
+        <div class="docs__flows">
+          <section class="docs__flow">
+            <h3 class="docs__flow-t">Ship a feature</h3>
+            <ol class="docs__chain">
+              <li>GitHub</li>
+              <li>Terminal</li>
+              <li>VS Code</li>
+              <li>Playwright</li>
+              <li>Slack</li>
+            </ol>
+          </section>
+          <section class="docs__flow">
+            <h3 class="docs__flow-t">Handle support</h3>
+            <ol class="docs__chain">
+              <li>Gmail</li>
+              <li>Linear</li>
+              <li>Notion</li>
+              <li>Slack</li>
+            </ol>
+          </section>
+          <section class="docs__flow">
+            <h3 class="docs__flow-t">Deploy</h3>
+            <ol class="docs__chain">
+              <li>GitHub</li>
+              <li>Docker</li>
+              <li>Kubernetes</li>
+              <li>Cloudflare</li>
+            </ol>
+          </section>
+        </div>
+
+        <figure class="docs__shot">
+          <img src="../../../assets/img/docs/mcp-workflow.jpg" width="1440" height="810" loading="lazy"
+            alt="Three example workflows as horizontal chains of app icons: GitHub to terminal to VS Code to a test runner to Slack; Gmail to Linear to Notion to Slack; and GitHub to Docker to Kubernetes to Cloudflare." />
+        </figure>
+
+        <h2 id="build">Write your own</h2>
+        <p>If the tool you need has no server, write one. The protocol is open and the SDK ships for
+          Python, TypeScript, Go and Rust.</p>
+
+        <ol class="docs__steps docs__steps--flow">
+          <li class="docs__step docs__step--slim"><span class="docs__step-n">1</span><span class="docs__step-t">Create</span></li>
+          <li class="docs__step docs__step--slim"><span class="docs__step-n">2</span><span class="docs__step-t">Register tools</span></li>
+          <li class="docs__step docs__step--slim"><span class="docs__step-n">3</span><span class="docs__step-t">Run</span></li>
+          <li class="docs__step docs__step--slim"><span class="docs__step-n">4</span><span class="docs__step-t">Publish</span></li>
+          <li class="docs__step docs__step--slim"><span class="docs__step-n">5</span><span class="docs__step-t">Share</span></li>
+        </ol>
+
+        <div class="docs__linkrow">
+          <a class="btn btn--primary btn--sm" href="#">Tool SDK</a>
+          <a class="btn btn--ghost btn--sm" href="#">Templates</a>
+          <a class="btn btn--ghost btn--sm" href="#">Examples</a>
+          <a class="btn btn--ghost btn--sm" href="#">Publishing guide</a>
+        </div>
+
+        <figure class="docs__shot">
+          <img src="../../../assets/img/docs/mcp-sdk.jpg" width="1440" height="810" loading="lazy"
+            alt="Writing your own server: five steps down the left — create, register tools, run, publish, share — beside a Python file defining two tools with the decorator syntax, a terminal showing the server starting and exposing both tools, and SDK options for Python, TypeScript, Go and Rust." />
+        </figure>
+
+        <h2 id="use-cases">Common use cases</h2>
+        <div class="docs__acc">
+          <details class="docs__item" open>
+            <summary>Triage a repository</summary>
+            <p>Ask for the open pull requests touching a directory you own, and have the agent summarise what each changes before you open any of them.</p>
+          </details>
+          <details class="docs__item">
+            <summary>Draft from a thread</summary>
+            <p>Point the agent at a mail thread and a document, and have it draft the reply with the document's numbers already in it.</p>
+          </details>
+          <details class="docs__item">
+            <summary>Reproduce a bug</summary>
+            <p>Give it a failing test name. It reads the file, runs the suite in a container, and reports which assertion broke.</p>
+          </details>
+          <details class="docs__item">
+            <summary>Close the loop on a design</summary>
+            <p>Read a Figma frame, generate the component, and open the pull request with the frame linked in the description.</p>
+          </details>
+        </div>
+
+        <h2 id="faq">FAQ</h2>
+        <div class="docs__acc">
+          <details class="docs__item">
+            <summary>What is a Model Context Protocol server?</summary>
+            <p>A small program that exposes a set of typed tools over a standard protocol. Arble connects to it and those tools become available to the agent, alongside the built-in ones.</p>
+          </details>
+          <details class="docs__item">
+            <summary>Where does a server run?</summary>
+            <p>Either on your own machine as a local process, or as a remote endpoint you point Arble at. A local server never sends anything over the network; a remote one is reached over TLS.</p>
+          </details>
+          <details class="docs__item">
+            <summary>Does installing a server give it access to my data?</summary>
+            <p>No. A server exposes tools; it does not receive your session, your memory or your keys. Every call it offers still passes the permission gate before it runs.</p>
+          </details>
+          <details class="docs__item">
+            <summary>Can a server act without asking me?</summary>
+            <p>Only if you grant it that. Read-only calls can be auto-approved; anything that writes, sends or spends stops at the gate by default, exactly like a built-in tool.</p>
+          </details>
+          <details class="docs__item">
+            <summary>What happens when a server is unreachable?</summary>
+            <p>Its tools are reported as unavailable and the agent says so, rather than silently substituting a different route or retrying an operation that may already have run.</p>
+          </details>
+          <details class="docs__item">
+            <summary>Can I write my own?</summary>
+            <p>Yes. The protocol is open and the SDK ships for several languages. A server that exposes one useful tool is a reasonable afternoon's work.</p>
+          </details>
+        </div>
+      
+        <nav class="pbp__nav" aria-label="Page navigation">
+          <a class="pbp__navcard pbp__navcard--prev" href="../../../docs/agent/notifications/"><span class="pbp__navcard-l">Previous</span><span class="pbp__navcard-t">Notifications</span></a>
+          <a class="pbp__navcard pbp__navcard--next" href="../../../docs/developers/tool-sdk/"><span class="pbp__navcard-l">Next</span><span class="pbp__navcard-t">Tool SDK</span></a>
+        </nav>
+        </article>
+
+      <aside class="docs__toc" aria-label="On this page">
+        <p class="docs__tocH">On this page</p>
+        <ul class="docs__toclist" id="docsToc">
+          <li class="docs__tocrow"><a href="#architecture">How Arble uses MCP</a></li>
+          <li class="docs__tocrow docs__tocrow--sub"><a href="#builtin-vs-mcp">Built-in vs MCP</a></li>
+          <li class="docs__tocrow docs__tocrow--sub"><a href="#advantages">Why not a plain client</a></li>
+          <li class="docs__tocrow"><a href="#featured">Featured servers</a></li>
+          <li class="docs__tocrow docs__tocrow--sub"><a href="#directory">Directory</a></li>
+          <li class="docs__tocrow"><a href="#install-flow">Installing a server</a></li>
+          <li class="docs__tocrow docs__tocrow--sub"><a href="#setup">Setup by client</a></li>
+          <li class="docs__tocrow docs__tocrow--sub"><a href="#remote-local">Remote vs local</a></li>
+          <li class="docs__tocrow"><a href="#permissions">Permission flow</a></li>
+          <li class="docs__tocrow docs__tocrow--sub"><a href="#security">Security</a></li>
+          <li class="docs__tocrow docs__tocrow--sub"><a href="#health">Server health</a></li>
+          <li class="docs__tocrow"><a href="#workflows">Example workflows</a></li>
+          <li class="docs__tocrow"><a href="#build">Write your own</a></li>
+          <li class="docs__tocrow"><a href="#use-cases">Common use cases</a></li>
+          <li class="docs__tocrow"><a href="#faq">FAQ</a></li>
+        </ul>
+      </aside>
+      </div>
+    </div>
+  </div>
+
+  <script src="../../../assets/js/docs.js?v=7" defer></script>
+  <script>window.ARBLE_DOCS_ROOT = "../../../docs/";</script>
+  <script src="../../../assets/js/docs-search.js?v=2" defer></script>
+  <script src="../../../assets/js/docs-ui.js?v=3" defer></script>
+</body>
+
+</html>

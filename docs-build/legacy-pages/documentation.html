@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Documentation &#8212; Arble Docs</title>
+  <meta name="description"
+    content="Arble documentation: install, pair a device, run your first agent, build tools, connect MCP servers, use the CLI and API, and self-host in production." />
+  <link rel="icon"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='3.4' fill='%230A0A0B'/%3E%3Ccircle cx='12' cy='12' r='7.2' fill='none' stroke='%230A0A0B' stroke-width='1.3' opacity='.45'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Stack+Sans+Headline:wght@200..700&display=swap" />
+  <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f%5B%5D=switzer@400,500,600,700&display=swap" />
+  <link rel="stylesheet" href="assets/css/site.css?v=78" />
+</head>
+
+<body class="pbp-page">
+  <a class="skip" href="#doc">Skip to content</a>
+
+  <nav class="nav" aria-label="Primary">
+    <div class="nav__bar" id="navbar">
+      <a class="brand" href="index.html" aria-label="Arble home">
+        <span class="brand__mark" aria-hidden="true">
+          <img src="assets/img/brand/logo-mark.png" width="288" height="271" alt="" />
+        </span>
+        <span class="brand__word">Ar<span class="brand__word--dim">ble</span></span>
+      </a>
+      <div class="nav__links">
+        <a class="nav__link" href="index.html#operations">Features</a>
+        <a class="nav__link" href="index.html#trust">Safety</a>
+        <a class="nav__link" href="mcp-servers.html">Connectors</a>
+        <a class="nav__link" href="index.html#screens">Screens</a>
+        <a class="nav__link" href="playbook.html">Playbook</a>
+      </div>
+      <div class="nav__right">
+        <a class="btn btn--primary btn--sm" href="index.html#cta">Get Started</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="docs">
+    <div class="shell docs__grid">
+
+      <aside class="docs__rail" aria-label="Documentation">
+        <p class="docs__railh">Resources</p>
+        <ul class="docs__raillist">
+          <li class="docs__railrow is-current" aria-current="page"><a href="documentation.html">Documentation</a></li>
+          <li class="docs__railrow"><a href="playbook.html">Playbook</a></li>
+        </ul>
+        <p class="docs__railh">Getting started</p>
+        <ul class="docs__raillist">
+          <li class="docs__railrow"><span>Install</span></li>
+          <li class="docs__railrow"><span>Pairing a device</span></li>
+          <li class="docs__railrow"><span>First run</span></li>
+        </ul>
+        <p class="docs__railh">Agent</p>
+        <ul class="docs__raillist">
+          <li class="docs__railrow"><span>Sessions</span></li>
+          <li class="docs__railrow"><span>Skills</span></li>
+          <li class="docs__railrow"><span>Permissions</span></li>
+          <li class="docs__railrow"><span>Memory</span></li>
+        </ul>
+        <p class="docs__railh">Connectors</p>
+        <ul class="docs__raillist">
+          <li class="docs__railrow"><a href="mcp-servers.html">MCP server</a></li>
+          <li class="docs__railrow"><span>Directory</span></li>
+          <li class="docs__railrow"><span>Building a server</span></li>
+        </ul>
+        <p class="docs__railh">Reference</p>
+        <ul class="docs__raillist">
+          <li class="docs__railrow"><a href="cli.html">CLI</a></li>
+          <li class="docs__railrow"><a href="tool-sdk.html">Tool SDK</a></li>
+          <li class="docs__railrow"><a href="api-reference.html">API Reference</a></li>
+          <li class="docs__railrow"><span>Glossary</span></li>
+        </ul>
+        <p class="docs__railh">Infrastructure</p>
+        <ul class="docs__raillist">
+          <li class="docs__railrow"><a href="self-hosting.html">Self-hosting</a></li>
+        </ul>
+      </aside>
+
+      <article class="docs__body" id="doc">
+        <p class="docs__crumb">Resources <span aria-hidden="true">/</span> Documentation</p>
+        <h1 class="docs__title">Documentation</h1>
+
+        <p class="docs__lead">Everything you need to build with Arble. This documentation covers the
+          full lifecycle: installing Arble, building on it, automating work with it, deploying it, and
+          operating it in production.</p>
+
+        <p>It is organized by what you are trying to do rather than by feature. If you are new, start
+          with <a href="#quick-start">Quick start</a>. If you are integrating, go to
+          <a href="#developers">Developers</a>. If you are deploying, go to
+          <a href="self-hosting.html">Self-hosting</a>.</p>
+
+        <div class="docs__note">
+          <p><strong>New to agent systems?</strong> The <a href="playbook.html">Playbook</a> teaches the
+            concepts &#8212; models, context, planning, tool calling &#8212; independently of
+            Arble&#8217;s features. Read it alongside these guides, not instead of them.</p>
+        </div>
+
+        <h2 id="choose-your-path">Choose your path</h2>
+        <p>Three readers arrive at this page with different questions. Pick the row that describes you
+          and skip the rest.</p>
+
+        <div class="docs__tablewrap">
+          <table class="docs__table">
+            <thead>
+              <tr><th scope="col">You are</th><th scope="col">Start here</th><th scope="col">Then</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Using Arble for the first time</th>
+                <td><a href="#quick-start">Quick start</a></td>
+                <td><a href="#getting-started">Getting Started</a>, then <a href="#agent">Agent</a></td>
+              </tr>
+              <tr>
+                <th scope="row">Building on Arble</th>
+                <td><a href="#developers">Developers</a></td>
+                <td><a href="tool-sdk.html">Tool SDK</a> or <a href="api-reference.html">API Reference</a></td>
+              </tr>
+              <tr>
+                <th scope="row">Operating Arble in production</th>
+                <td><a href="self-hosting.html">Self-hosting</a></td>
+                <td><a href="cli.html">CLI</a>, then Monitoring and Backups</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p><strong>First-time users.</strong> You need Arble installed, one device paired, and one
+          successful agent run. Do not read the reference material yet &#8212; it will make more sense
+          after you have watched a run approve a tool call.
+          <a href="#quick-start">Quick start</a> is 18 minutes end to end.</p>
+
+        <p><strong>Developers.</strong> You are integrating Arble into something, or extending what it
+          can do. The decision that shapes everything else is whether you are connecting a service that
+          already exists (use <a href="mcp-servers.html">MCP</a>) or building a capability that
+          doesn&#8217;t (use the <a href="tool-sdk.html">Tool SDK</a>). Read
+          <a href="#agent">Permissions</a> early regardless &#8212; it is the constraint most
+          integrations discover late.</p>
+
+        <p><strong>Power users.</strong> You already understand the agent loop and want leverage:
+          scheduled runs, multi-agent fan-out, scripted pipelines, memory you curate deliberately. The
+          <a href="cli.html">CLI</a> and <a href="#agent">Automation</a> guides are where the depth is,
+          and the <a href="playbook.html">Playbook</a> explains the failure modes you will start hitting
+          at volume.</p>
+
+        <h2 id="quick-start">Quick start</h2>
+        <p>Four steps from nothing to a working agent. Do them in order &#8212; each assumes the
+          previous one.</p>
+
+        <div class="docs__cards">
+          <article class="docs__card">
+            <span class="docs__card-t">Install Arble</span>
+            <span class="docs__card-d">Install the desktop app or the CLI. Both talk to the same local
+              daemon, so the choice is preference, not capability.</span>
+            <span class="docs__card-m">3 min read</span>
+          </article>
+          <article class="docs__card">
+            <span class="docs__card-t">Set up your first device</span>
+            <span class="docs__card-d">Pair a phone or a second machine. Pairing is what makes desktop
+              control, mobile notifications and cross-device sessions work.</span>
+            <span class="docs__card-m">4 min read</span>
+          </article>
+          <article class="docs__card">
+            <span class="docs__card-t">Run your first agent</span>
+            <span class="docs__card-d">Give Arble a task, watch it plan, approve its first tool call.
+              This is where the permission model stops being abstract.</span>
+            <span class="docs__card-m">5 min read</span>
+          </article>
+          <article class="docs__card">
+            <span class="docs__card-t">Connect your first tool</span>
+            <span class="docs__card-d">Add a connector or an MCP server and watch its tools appear in
+              the same registry as the built-in ones.</span>
+            <span class="docs__card-m">6 min read</span>
+          </article>
+        </div>
+
+        <p>Total: about 18 minutes to a system that can read your files, reach one external service,
+          and remember what it learned.</p>
+
+        <h2 id="documentation-overview">Documentation overview</h2>
+        <p>The documentation has four parts. They map to four different questions.</p>
+
+        <div class="docs__tablewrap">
+          <table class="docs__table">
+            <thead>
+              <tr><th scope="col">Section</th><th scope="col">Answers</th><th scope="col">For</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row"><a href="#getting-started">Getting Started</a></th><td>How do I install and configure it?</td><td>First-time users</td></tr>
+              <tr><th scope="row"><a href="#agent">Agent</a></th><td>How do I use it day to day?</td><td>All users</td></tr>
+              <tr><th scope="row"><a href="#developers">Developers</a></th><td>How do I extend and integrate it?</td><td>Developers</td></tr>
+              <tr><th scope="row">Reference</th><td>What exactly does this command or endpoint do?</td><td>Everyone, eventually</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p><strong>Getting Started</strong> is setup and first contact &#8212; installation, pairing,
+          configuration, requirements, updates. Read it once, then rarely again.</p>
+
+        <p><strong>Agent</strong> covers the things you interact with every day: sessions, skills,
+          permissions, memory, automation. This is the section that rewards rereading as your usage
+          deepens.</p>
+
+        <p><strong>Developers</strong> is the extension surface &#8212; MCP servers, the Tool SDK, the
+          CLI, the REST API, and self-hosting. Each assumes you write code.</p>
+
+        <p><strong>Reference</strong> is lookup material: command signatures, endpoint schemas,
+          environment variables, the glossary. You arrive here from a search box, not from a table of
+          contents.</p>
+
+        <p>Sections are ordered by when you need them, not by importance. Every page carries a
+          <strong>Previous</strong> and <strong>Next</strong> link following that order, so reading
+          straight through is a coherent path if you prefer it.</p>
+
+        <h2 id="conventions">Conventions</h2>
+        <p>A few things mean something specific throughout the documentation.</p>
+
+        <p><strong>Callouts</strong> come in three kinds. A plain callout adds context you can skip. One
+          marked with a caution flags something that causes data loss or an outage &#8212; those are
+          rare and always earned. One marked as a note on defaults tells you the shown value is what we
+          would deploy, not just what compiles.</p>
+
+        <p><strong>Code blocks</strong> are complete and runnable. Where a value must be yours, it
+          appears as a named placeholder in angle brackets &#8212; <code>&lt;your-host&gt;</code>
+          &#8212; never as <code>foo</code> or an ellipsis. Shell examples showing output prefix the
+          command with <code>$</code> and leave the output unprefixed; blocks without a <code>$</code>
+          are pure input and safe to copy whole.</p>
+
+        <p><strong>Identifiers</strong> in examples are stable across pages. <code>ses_8kQ2mVx</code> is
+          the same session in the CLI guide and the API reference, so you can follow one object through
+          both.</p>
+
+        <p><strong>Version markers.</strong> Anything introduced after 1.0 carries the version it landed
+          in. If a flag or field has no marker, it has always existed.</p>
+
+        <p><strong>Platform differences</strong> are stated inline rather than split into separate pages.
+          Where macOS, Linux and Windows genuinely diverge, all three appear together.</p>
+
+        <h2 id="getting-started">Getting started</h2>
+        <p>For anyone who has not yet run Arble, or who is setting it up on a new machine. Nothing here
+          assumes prior knowledge of agent systems.</p>
+
+        <div class="docs__cards">
+          <article class="docs__card">
+            <span class="docs__card-t">Install</span>
+            <span class="docs__card-d">Package managers for macOS, Linux and Windows, plus a standalone
+              binary and a Docker image. Covers verifying a release signature.</span>
+          </article>
+          <article class="docs__card">
+            <span class="docs__card-t">Pairing a Device</span>
+            <span class="docs__card-d">Link a phone or second machine so sessions, notifications and
+              device control span both. Explains what a pairing grants, and how to revoke it.</span>
+          </article>
+          <article class="docs__card">
+            <span class="docs__card-t">First Run</span>
+            <span class="docs__card-d">Model selection, the initial permission prompts, and where state
+              is written. Worth reading rather than clicking through.</span>
+          </article>
+          <article class="docs__card">
+            <span class="docs__card-t">Configuration</span>
+            <span class="docs__card-d">The <code>arble.json</code> project file and the user config
+              file. Precedence rules, and which settings must never be committed.</span>
+          </article>
+          <article class="docs__card">
+            <span class="docs__card-t">System Requirements</span>
+            <span class="docs__card-d">Supported operating systems, the kernel features sandboxing
+              depends on, and realistic sizing with and without a local GPU.</span>
+          </article>
+          <article class="docs__card">
+            <span class="docs__card-t">Updates</span>
+            <span class="docs__card-d">How Arble updates itself, how to pin a version, and what stays
+              compatible across a minor release.</span>
+          </article>
+          <article class="docs__card">
+            <span class="docs__card-t">Troubleshooting</span>
+            <span class="docs__card-d">The failures people hit first, organized by symptom &#8212; since
+              that is what you have when you arrive.</span>
+          </article>
+        </div>
+
+        <h2 id="agent">Agent</h2>
+        <p>The agent is the part of Arble you talk to. These guides explain the machinery behind it
+          &#8212; and each concept here has a direct equivalent in the CLI and the API, so learning it
+          once covers all three surfaces.</p>
+
+        <div class="docs__cards">
+          <article class="docs__card">
+            <span class="docs__card-t">Sessions</span>
+            <span class="docs__card-d">A conversation with accumulated context. Creating, pausing,
+              resuming and exporting &#8212; and when to start fresh instead, which affects both cost
+              and output quality.</span>
+          </article>
+          <article class="docs__card">
+            <span class="docs__card-t">Skills</span>
+            <span class="docs__card-d">Packaged procedures. How to install, pin, enable and disable
+              them, and the distinction that matters: a tool is one capability, a skill is a way of
+              working.</span>
+          </article>
+          <article class="docs__card">
+            <span class="docs__card-t">Permissions</span>
+            <span class="docs__card-d">The gate every tool call passes. Grant levels, scoping,
+              inheritance, and how to make unattended runs fail closed rather than hang.</span>
+          </article>
+          <article class="docs__card">
+            <span class="docs__card-t">Memory</span>
+            <span class="docs__card-d">Durable per-project facts, retrieved semantically. Why memory
+              outlives the session that wrote it, and when to summarize.</span>
+          </article>
+          <article class="docs__card">
+            <span class="docs__card-t">Automation</span>
+            <span class="docs__card-d">Schedules, event triggers, queues and retries. How to keep a
+              batch job from starving interactive work.</span>
+          </article>
+          <article class="docs__card">
+            <span class="docs__card-t">Notifications</span>
+            <span class="docs__card-d">Getting told when a long run finishes, on the device you are
+              actually holding.</span>
+          </article>
+          <article class="docs__card">
+            <span class="docs__card-t">Desktop Control</span>
+            <span class="docs__card-d">Screenshots, clipboard, window focus and input simulation, and
+              the permission each action requires.</span>
+          </article>
+        </div>
+
+        <h2 id="developers">Developers</h2>
+        <p>Five entry points for building on Arble. They are complementary, not alternatives &#8212;
+          most real integrations use two or three.</p>
+
+        <div class="docs__cards">
+          <a class="docs__card" href="mcp-servers.html">
+            <span class="docs__card-t">MCP Servers</span>
+            <span class="docs__card-d">Connect Arble to any Model Context Protocol server; its tools
+              join the same registry and permission gate as built-in ones.</span>
+          </a>
+          <a class="docs__card" href="tool-sdk.html">
+            <span class="docs__card-t">Tool SDK</span>
+            <span class="docs__card-d">Build native tools in Python, TypeScript, Go or Rust. One
+              implementation runs on desktop, mobile, CLI, API and workflows.</span>
+          </a>
+          <a class="docs__card" href="cli.html">
+            <span class="docs__card-t">CLI</span>
+            <span class="docs__card-d">Drive every part of Arble from the terminal &#8212; the same
+              client the app uses, so anything you can do by hand you can script.</span>
+          </a>
+          <a class="docs__card" href="api-reference.html">
+            <span class="docs__card-t">API Reference</span>
+            <span class="docs__card-d">The REST and streaming API. Sessions, runs, memory, tools and
+              permissions as HTTP resources.</span>
+          </a>
+          <a class="docs__card" href="self-hosting.html">
+            <span class="docs__card-t">Self-hosting</span>
+            <span class="docs__card-d">Deploy Arble on infrastructure you own &#8212; Docker,
+              Kubernetes or bare metal, including air-gapped environments.</span>
+          </a>
+        </div>
+
+        <div class="docs__note">
+          <p><strong>Which one do I need?</strong> Use <strong>MCP</strong> to connect something that
+            already exists. Use the <strong>Tool SDK</strong> to build something that doesn&#8217;t. Use
+            the <strong>CLI</strong> to automate. Use the <strong>API</strong> to embed Arble in your own
+            product.</p>
+        </div>
+
+        <h2 id="playbook">Playbook</h2>
+        <p>The <a href="playbook.html">Playbook</a> is not product documentation. It teaches the
+          concepts underneath AI systems &#8212; what a context window is, why planning is hard, how
+          tool calling actually works &#8212; using Arble as an example rather than a subject.</p>
+
+        <p>Read it if you want to understand <em>why</em> an agent behaves the way it does. The rest of
+          this documentation tells you what to type.</p>
+
+        <div class="docs__tablewrap">
+          <table class="docs__table">
+            <thead>
+              <tr><th scope="col">Chapter</th><th scope="col">Covers</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">Introduction to AI Operating Systems</th><td>Why an agent needs an OS rather than a chat window</td></tr>
+              <tr><th scope="row">Large Language Models</th><td>What the model does, and where its limits actually are</td></tr>
+              <tr><th scope="row">Transformers</th><td>Attention, tokens, and why sequence length costs what it does</td></tr>
+              <tr><th scope="row">Context Windows</th><td>The budget every run spends, and how to spend it well</td></tr>
+              <tr><th scope="row">Memory</th><td>Why context alone is insufficient, and what persistence buys</td></tr>
+              <tr><th scope="row">Agents</th><td>The loop: observe, plan, act, repeat</td></tr>
+              <tr><th scope="row">Planning</th><td>Decomposition, and why plans fail in predictable ways</td></tr>
+              <tr><th scope="row">Tool Calling</th><td>Schemas, validation, and the contract between model and system</td></tr>
+              <tr><th scope="row">MCP</th><td>A protocol for exposing capability, and what it deliberately omits</td></tr>
+              <tr><th scope="row">Automation</th><td>Moving from prompted work to triggered work</td></tr>
+              <tr><th scope="row">Computer Use</th><td>Driving a GUI, and why it is harder than driving an API</td></tr>
+              <tr><th scope="row">Production AI Systems</th><td>Reliability, cost, observability and failure modes</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>Chapters are self-contained. Read the one you need; there is no required order.</p>
+
+        <h2 id="connectors">Connectors</h2>
+        <p>A connector is an authenticated link to an external service. Installing one adds its tools to
+          the registry; authenticating it makes them usable. Everything a connector contributes still
+          passes the permission gate.</p>
+
+        <p>Two things follow from that design and are worth knowing up front. First, the agent cannot
+          tell a connector&#8217;s tools apart from built-in ones &#8212; they share one registry and one
+          schema shape, so adding a connector never requires teaching the planner anything new. Second, a
+          connector holds its own credential, scoped to its own service, so disabling one revokes exactly
+          that access and nothing else.</p>
+
+        <div class="docs__tablewrap">
+          <table class="docs__table">
+            <thead>
+              <tr><th scope="col">Category</th><th scope="col">Examples</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">Development</th><td>GitHub, GitLab, Docker, Kubernetes</td></tr>
+              <tr><th scope="row">Productivity</th><td>Notion, Linear, Jira, Google Drive</td></tr>
+              <tr><th scope="row">Communication</th><td>Gmail, Slack, Outlook, Teams</td></tr>
+              <tr><th scope="row">Cloud</th><td>AWS, Azure, GCP, Cloudflare, Vercel</td></tr>
+              <tr><th scope="row">Data</th><td>PostgreSQL, MySQL, MongoDB, Redis</td></tr>
+              <tr><th scope="row">Design</th><td>Figma, Canva, Framer</td></tr>
+              <tr><th scope="row">AI Providers</th><td>Anthropic, OpenAI, Gemini, Ollama, vLLM</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>Connectors compose. One instruction can cross as many as the task needs &#8212; read a Figma
+          frame, generate the component, open the pull request, post the link to Slack.</p>
+
+        <p>See the <a href="mcp-servers.html">MCP Servers</a> guide for the full directory and for
+          connecting a service that isn&#8217;t listed.</p>
+
+        <h2 id="featured-guides">Featured guides</h2>
+        <p>Task-shaped walkthroughs. Each ends with something running.</p>
+
+        <div class="docs__cards docs__cards--wide">
+          <a class="docs__card" href="tool-sdk.html">
+            <span class="docs__card-t">Building your first Tool</span>
+            <span class="docs__card-d">Write a typed tool and watch Arble generate its schema,
+              permission prompt, CLI command and REST endpoint from the function signature alone.</span>
+          </a>
+          <a class="docs__card" href="mcp-servers.html">
+            <span class="docs__card-t">Installing an MCP Server</span>
+            <span class="docs__card-d">Add a server, authenticate it, scope its permissions per tool
+              rather than per server, and confirm it with a health check.</span>
+          </a>
+          <a class="docs__card" href="self-hosting.html#models">
+            <span class="docs__card-t">Running Local Models</span>
+            <span class="docs__card-d">Point Arble at Ollama or vLLM, configure routing by task class,
+              and set a fallback chain that doesn&#8217;t fire on malformed requests.</span>
+          </a>
+          <a class="docs__card" href="self-hosting.html#docker">
+            <span class="docs__card-t">Deploying with Docker</span>
+            <span class="docs__card-d">Bring up a production-shaped stack on one host &#8212; real
+              Postgres, real Redis, a separated worker.</span>
+          </a>
+          <a class="docs__card" href="cli.html#desktop">
+            <span class="docs__card-t">Desktop Automation</span>
+            <span class="docs__card-d">Chain screenshots, window focus and input into a reviewable
+              automation file instead of a long shell pipeline.</span>
+          </a>
+          <a class="docs__card" href="self-hosting.html#memory">
+            <span class="docs__card-t">Memory Architecture</span>
+            <span class="docs__card-d">How short-term context, long-term facts and embeddings fit
+              together, and why deleting a session does not delete what it learned.</span>
+          </a>
+          <a class="docs__card" href="api-reference.html#workflows">
+            <span class="docs__card-t">Building Workflows</span>
+            <span class="docs__card-d">Turn a one-off run into a scheduled or event-triggered workflow
+              with queues, retries and per-step history.</span>
+          </a>
+        </div>
+
+        <h2 id="popular-pages">Popular pages</h2>
+        <p>The pages people open most, in the order they usually need them.</p>
+
+        <ol class="docs__list">
+          <li>Install &#8212; get Arble running</li>
+          <li><a href="cli.html">CLI</a> &#8212; the full command surface</li>
+          <li><a href="api-reference.html">API Reference</a> &#8212; endpoints, schemas, errors</li>
+          <li>Memory &#8212; what persists, and how to control it</li>
+          <li>Permissions &#8212; grants, scopes, unattended runs</li>
+          <li><a href="tool-sdk.html">Tool SDK</a> &#8212; build native tools</li>
+          <li><a href="mcp-servers.html">MCP Servers</a> &#8212; connect existing services</li>
+          <li><a href="playbook.html">Playbook</a> &#8212; the concepts underneath</li>
+          <li><a href="self-hosting.html">Self-hosting</a> &#8212; run it on your own infrastructure</li>
+        </ol>
+
+        <h2 id="latest-documentation">Latest documentation</h2>
+        <p>Recently added or substantially revised.</p>
+
+        <div class="docs__tablewrap">
+          <table class="docs__table">
+            <thead>
+              <tr><th scope="col">Page</th><th scope="col">Change</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row"><a href="tool-sdk.html">Tool SDK</a></th><td>New page &#8212; decorators, schemas, streaming, publishing</td></tr>
+              <tr><th scope="row"><a href="cli.html">CLI</a></th><td>New page &#8212; full command reference, scripting, CI</td></tr>
+              <tr><th scope="row"><a href="api-reference.html">API Reference</a></th><td>New page &#8212; REST, SSE streaming, webhooks, errors</td></tr>
+              <tr><th scope="row"><a href="self-hosting.html">Self-hosting</a></th><td>New page &#8212; Docker, Kubernetes, HA, disaster recovery</td></tr>
+              <tr><th scope="row">Memory</th><td>Expanded &#8212; encryption at rest, reindexing, retention</td></tr>
+              <tr><th scope="row"><a href="mcp-servers.html">MCP Directory</a></th><td>Expanded &#8212; per-tool permissions, health checks</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>Every page carries a last-reviewed date at the bottom. If a page contradicts the product, the
+          page is wrong &#8212; please <a href="#contributing">tell us</a>.</p>
+
+        <h2 id="search-documentation">Search documentation</h2>
+        <p>Search covers page text, command signatures, endpoint paths and schema field names in one
+          index. It matches on meaning as well as exact strings, so a description of a problem finds the
+          page that solves it.</p>
+
+        <div class="docs__tablewrap">
+          <table class="docs__table">
+            <thead>
+              <tr><th scope="col">Search by</th><th scope="col">Example query</th><th scope="col">Lands on</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">Concept</th><td class="mono">why is my agent slow</td><td>Performance, Context Windows</td></tr>
+              <tr><th scope="row">Command</th><td class="mono">arble permissions grant</td><td>CLI</td></tr>
+              <tr><th scope="row">Guide</th><td class="mono">deploy behind a proxy</td><td>Self-hosting networking</td></tr>
+              <tr><th scope="row">API</th><td class="mono">POST /v1/runs</td><td>API Reference</td></tr>
+              <tr><th scope="row">Connector</th><td class="mono">postgres read only</td><td>MCP Servers</td></tr>
+              <tr><th scope="row">Playbook</th><td class="mono">how does tool calling work</td><td>Playbook</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>Press <code>/</code> anywhere to focus the search field. Results are grouped by section, so
+          you can tell a reference hit from a conceptual one before you click.</p>
+
+        <p>Exact-string queries are matched literally &#8212; searching <code>run_not_retryable</code>
+          finds the error code, not pages that discuss retrying. Wrapping a phrase in quotes forces the
+          same behavior for ordinary words.</p>
+
+        <p>Two habits make search noticeably better here. Search the error, not your theory about the
+          error &#8212; error codes and messages are indexed verbatim, and the page that defines a code
+          is almost always the page that explains the fix. And search the command you were about to guess
+          at; every flag in the <a href="cli.html">CLI</a> reference is indexed individually, so
+          <code>--no-prompt</code> resolves directly rather than requiring you to find the CLI page
+          first.</p>
+
+        <h2 id="need-help">Need help</h2>
+        <p>Start with the documentation and the Playbook. If the answer isn&#8217;t there, the remaining
+          options are ordered by how quickly they typically resolve things.</p>
+
+        <div class="docs__cards">
+          <article class="docs__card">
+            <span class="docs__card-t">Documentation</span>
+            <span class="docs__card-d">You are here. Use search before browsing &#8212; the hierarchy is
+              for exploring, the index is for finding.</span>
+          </article>
+          <a class="docs__card" href="playbook.html">
+            <span class="docs__card-t">Playbook</span>
+            <span class="docs__card-d">For conceptual confusion rather than a specific error. Behavior
+              that seems wrong is often working as designed, for a reason explained here.</span>
+          </a>
+          <article class="docs__card">
+            <span class="docs__card-t">Community</span>
+            <span class="docs__card-d">Other operators, and the fastest route for &#8220;how do people
+              usually do this.&#8221; Not an official support channel.</span>
+          </article>
+          <article class="docs__card">
+            <span class="docs__card-t">GitHub</span>
+            <span class="docs__card-d">Bug reports and feature requests. Include the
+              <code>request_id</code> and the output of <code>arble version</code>.</span>
+          </article>
+          <article class="docs__card">
+            <span class="docs__card-t">Status</span>
+            <span class="docs__card-d">Current availability of hosted services. Check here before
+              debugging a connector that stopped working an hour ago.</span>
+          </article>
+          <article class="docs__card">
+            <span class="docs__card-t">Blog</span>
+            <span class="docs__card-d">Deeper writeups on architecture decisions and new
+              capabilities.</span>
+          </article>
+          <article class="docs__card">
+            <span class="docs__card-t">Release Notes</span>
+            <span class="docs__card-d">What changed, what broke, and what you need to do about it. Read
+              before upgrading a production deployment.</span>
+          </article>
+        </div>
+
+        <div class="docs__note">
+          <p><strong>Filing a good bug report.</strong> Include the <code>request_id</code>,
+            <code>arble version</code> output, and the relevant <code>arble trace &lt;agent&gt;</code>
+            excerpt. Those three make most reports reproducible immediately.</p>
+        </div>
+
+        <h2 id="contributing">Contributing</h2>
+        <p>This documentation is versioned alongside the product, and corrections from people using it in
+          production are the most valuable input it gets.</p>
+
+        <p><strong>Reporting mistakes.</strong> Every page has an edit link and an issue link. A one-line
+          report that a command&#8217;s flag is wrong is worth more than a long complaint that a page is
+          unclear.</p>
+
+        <p><strong>Editing pages.</strong> Open a pull request against the docs repository. Prose changes
+          need no issue first; structural changes are worth discussing before you write.</p>
+
+        <p><strong>Examples.</strong> The highest-leverage contribution. A realistic example that works
+          beats three paragraphs describing what it would look like. Examples must run as written.</p>
+
+        <p><strong>Translations.</strong> Community-maintained, tracked per page against the English
+          source so a stale translation is visibly stale rather than quietly wrong.</p>
+
+        <h2 id="documentation-principles">Documentation principles</h2>
+        <p>What we optimize for, so you know what to expect and what to hold us to.</p>
+
+        <p><strong>Technical accuracy over approachability.</strong> Where the two conflict, accuracy
+          wins. A simplification that misleads costs more than a sentence that requires rereading.</p>
+
+        <p><strong>Minimal writing.</strong> Every sentence earns its place. No preamble restating the
+          heading, no summary restating the section.</p>
+
+        <p><strong>Real examples.</strong> Examples use plausible values and run as written. No
+          <code>foo</code>, no <code>your-thing-here</code>, no code that would fail if pasted.</p>
+
+        <p><strong>Production-ready guidance.</strong> Defaults shown are defaults we would deploy. Where
+          a shortcut is only appropriate for evaluation, the page says so explicitly.</p>
+
+        <p><strong>No unnecessary abstraction.</strong> Concepts are introduced when they are needed, not
+          in a glossary you must read first. If a page can be understood without a diagram, it has no
+          diagram.</p>
+
+        <p>We also state what we don&#8217;t know. Where behavior depends on your model, your hardware or
+          your data volume, the page tells you to measure rather than guessing on your behalf.</p>
+
+        <nav class="pbp__nav" aria-label="Page navigation">
+          <a class="pbp__navcard pbp__navcard--prev" href="playbook.html">
+            <span class="pbp__navcard-l">Previous</span>
+            <span class="pbp__navcard-t">Playbook</span>
+          </a>
+          <a class="pbp__navcard pbp__navcard--next" href="#">
+            <span class="pbp__navcard-l">Next</span>
+            <span class="pbp__navcard-t">Changelog</span>
+          </a>
+        </nav>
+      </article>
+
+      <aside class="docs__toc" aria-label="On this page">
+        <p class="docs__tocH">On this page</p>
+        <ul class="docs__toclist" id="docsToc">
+          <li class="docs__tocrow"><a href="#choose-your-path">Choose your path</a></li>
+          <li class="docs__tocrow"><a href="#quick-start">Quick start</a></li>
+          <li class="docs__tocrow"><a href="#documentation-overview">Documentation overview</a></li>
+          <li class="docs__tocrow"><a href="#conventions">Conventions</a></li>
+          <li class="docs__tocrow"><a href="#getting-started">Getting started</a></li>
+          <li class="docs__tocrow"><a href="#agent">Agent</a></li>
+          <li class="docs__tocrow"><a href="#developers">Developers</a></li>
+          <li class="docs__tocrow"><a href="#playbook">Playbook</a></li>
+          <li class="docs__tocrow"><a href="#connectors">Connectors</a></li>
+          <li class="docs__tocrow"><a href="#featured-guides">Featured guides</a></li>
+          <li class="docs__tocrow"><a href="#popular-pages">Popular pages</a></li>
+          <li class="docs__tocrow"><a href="#latest-documentation">Latest documentation</a></li>
+          <li class="docs__tocrow"><a href="#search-documentation">Search documentation</a></li>
+          <li class="docs__tocrow"><a href="#need-help">Need help</a></li>
+          <li class="docs__tocrow"><a href="#contributing">Contributing</a></li>
+          <li class="docs__tocrow"><a href="#documentation-principles">Documentation principles</a></li>
+        </ul>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="foot foot--slim">
+    <div class="shell">
+      <div class="foot__bar">
+        <span class="foot__fine">&#169; 2026 Arble. Built to run on your hardware.</span>
+        <span class="foot__fine">Made for people who read the permissions.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/docs.js?v=2" defer></script>
+</body>
+
+</html>

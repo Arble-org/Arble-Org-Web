@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Arble — The AI Operating System</title>
+  <meta name="description"
+    content="Arble runs a full agent loop on your phone — your tools, your keys, your context. An operating system, not a chat window." />
+  <link rel="icon"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='3.4' fill='%230A0A0B'/%3E%3Ccircle cx='12' cy='12' r='7.2' fill='none' stroke='%230A0A0B' stroke-width='1.3' opacity='.45'/%3E%3C/svg%3E" />
+  <!-- Type matched to the reference: Stack Sans Headline for display, Switzer for text -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Stack+Sans+Headline:wght@200..700&display=swap" />
+  <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f%5B%5D=switzer@400,500,600,700&display=swap" />
+  <link rel="stylesheet" href="assets/css/site.css?v=82" />
+</head>
+
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <!-- ═══ NAV ═══ -->
+  <nav class="nav" aria-label="Primary">
+    <div class="nav__bar" id="navbar">
+      <a class="brand" href="#top" aria-label="Arble home">
+        <span class="brand__mark" aria-hidden="true">
+          <img src="assets/img/brand/logo-mark.png" width="288" height="271" alt="" />
+        </span>
+        <span class="brand__word">Ar<span class="brand__word--dim">ble</span></span>
+      </a>
+      <div class="nav__links">
+        <a class="nav__link" href="#operations">Features</a>
+        <a class="nav__link" href="#trust">Safety</a>
+        <a class="nav__link" href="#connect">Integrations</a>
+        <a class="nav__link" href="#screens">Screens</a>
+        <a class="nav__link" href="playbook.html">Playbook</a>
+      </div>
+      <div class="nav__right">
+        <a class="btn btn--primary btn--sm" href="#cta">Get Started</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main">
+
+    <!-- ═══ HERO ═══ -->
+    <header class="hero" id="top">
+      <div class="hero__mtn" aria-hidden="true">
+        <img src="assets/img/marketing/hero-mountains.jpg" alt="" decoding="async" fetchpriority="high" />
+      </div>
+      <div class="shell hero__inner">
+        <h1 class="display hero__title">One intelligence.<br>Every device you own.</h1>
+        <div class="hero__cta">
+          <a class="btn btn--primary" href="#cta">Get Started</a>
+        </div>
+      </div>
+
+      <div class="stage">
+        <!-- cards drift upward on their own loop, independent of scroll -->
+        <div class="marquee" aria-hidden="true">
+          <div class="marquee__track" id="marqueeTrack"></div>
+        </div>
+
+        <!-- Real capture of the running app, not a hand-built HTML replica: the
+             replica silently went stale every time the app changed. Every
+             assets/app-*.webp on this page is a straight iPhone 17 Pro simulator
+             capture, resized to 852px wide. Recapture from the simulator and
+             re-run the same resize when a screen changes. -->
+        <div class="device">
+          <div class="device__screen">
+            <img class="device__shot" src="assets/img/app/app-chat.webp?v=2" width="852" height="1852"
+              alt="The Arble app on iPhone: the chat screen with the Arble mascot, the greeting &#8220;Hi, I&#8217;m Arble &#8212; your personal AI assistant. Ask me anything.&#8221; and a message box at the bottom." />
+          </div>
+          <img class="device__frame" src="assets/img/brand/phone-frame.avif" alt="" aria-hidden="true" />
+        </div>
+      </div>
+    </header>
+
+    <!-- ═══ STATEMENT — the paragraph reveals word by word, scrubbed to scroll ═══
+         Sits directly after the hero, as on the reference. Each word lifts from
+         dim to full ink exactly in step with scroll position, and reverses when
+         you scroll back up — main.js drives it, so there is no fixed-duration
+         animation to fall out of sync with the page. -->
+    <section class="sec--air" id="story">
+      <div class="shell">
+        <p class="statement-scrub" data-scrub-text>Arble runs the whole agent loop on the device in your hand —
+          the tools, the memory, the permission gate and the model router. Your keys never leave the enclave, your
+          context never leaves the phone, and the work carries on whether or not you are watching.</p>
+      </div>
+    </section>
+
+    <!-- ═══ ECOSYSTEM MARQUEE — one row, logos and capabilities mixed ═══
+         A single track rather than grouped rows: grouping reads as a category
+         table, and the point here is that everything sits on one shelf. The row
+         is built once in main.js and emitted twice from the same array, so the
+         -50% loop cannot seam. Full-bleed beige band, no cards, no borders. -->
+    <section class="eco" aria-label="Compatible models, runtimes and tools">
+      <p class="eco__cap">Built for the modern AI ecosystem</p>
+      <div class="eco__rail" aria-hidden="true">
+        <div class="eco__track" id="ecoTrack"></div>
+      </div>
+    </section>
+
+    <!-- ═══ OPERATIONS — 2-up cards over a full-width band ═══
+         Structurally this is the page's existing .showcase and .band components
+         stacked, so it inherits their radii, gaps and caption scale rather than
+         inventing a second set. The two card visuals are 3:2 and the band is
+         16:9 — each box is matched to its source so nothing is cropped; see
+         .showcase__vis--wide and .band--wide. -->
+    <section class="sec" id="operations">
+      <div class="shell">
+        <div class="sechead rv">
+          <h2 class="head">Built for the way<br>you actually work.</h2>
+        </div>
+
+        <div class="showcase">
+          <article class="showcase__card rv">
+            <div class="showcase__vis showcase__vis--wide">
+              <img src="assets/img/marketing/ops-activity.jpg" width="1200" height="800" loading="lazy"
+                alt="Two activity cards stacked: 'Research complete — Arble has summarized 12 sources, 2 mins ago', and below it 'DeepSeek-V4 running — Processing your request'." />
+            </div>
+            <p class="showcase__cap">See every tool call, permission prompt and background run
+              the moment it happens</p>
+          </article>
+          <article class="showcase__card rv rv--d1">
+            <div class="showcase__vis showcase__vis--wide">
+              <img src="assets/img/marketing/ops-capabilities.jpg" width="1200" height="789" loading="lazy"
+                alt="Three status cards — Personal Agent, Context Memory and Private &amp; Secure — each marked Active, describing on-device assistance, cross-app memory and data that never leaves the device." />
+            </div>
+            <p class="showcase__cap">Agent, memory and permissions run as one on-device system,
+              not three add-ons</p>
+          </article>
+        </div>
+
+        <div class="band band--wide rv">
+          <img class="band__img" src="assets/img/marketing/ops-device.jpg" width="1600" height="900" loading="lazy"
+            alt="An iPhone standing in a dock on a wooden side table, showing Arble's home screen — a Good morning greeting, an ON-DEVICE badge, and shortcuts to chat, tools, context memory and settings — beside a potted plant and a mug." />
+          <div class="band__body">
+            <span class="band__ic" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                stroke-linecap="round">
+                <path d="M4 20V13M9 20V7M14 20V10M19 20V4" />
+              </svg>
+            </span>
+            <p class="band__cap">Understand where your tokens, time and context go — measured
+              on-device</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ SCALE — chip rail, left-aligned lead, two counters, 3-up cards ═══
+         Assembled from parts the page already owns: .tabchip for the rail,
+         .metric's data-count hook for the counters (main.js counts them on
+         reveal), and .fgrid/.fcard for the row beneath. The rail's chips are
+         built in main.js from one array and emitted twice, the same way the
+         ecosystem row is, so its -50% loop cannot seam. -->
+    <section class="sec" id="scale">
+      <div class="shell">
+        <div class="tabchips tabchips--rail" aria-hidden="true">
+          <div class="tabchips__track" id="chipTrack"></div>
+        </div>
+
+        <div class="lead rv">
+          <h2 class="head">Running quietly,<br>every day.</h2>
+          <p class="lede">Arble handles the work you would otherwise do by hand — reading the
+            mail, holding the context, calling the tool, asking before it writes. From a single
+            question to a schedule that runs while the app is closed, it all happens in one
+            place, on hardware you already own. As you hand it more, the runtime takes it
+            without new accounts, new servers or new bills.</p>
+        </div>
+
+        <div class="stats rv">
+          <div>
+            <div class="stat__n" data-count="579">579</div>
+            <div class="stat__d">Typed tools available</div>
+          </div>
+          <div>
+            <div class="stat__n" data-count="61">61</div>
+            <div class="stat__d">Toolsets built in</div>
+          </div>
+        </div>
+
+        <div class="fgrid">
+          <article class="fcard fcard--tall rv">
+            <span class="fcard__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1.6">
+                <rect x="6.5" y="2.5" width="11" height="19" rx="2.6" />
+                <path d="M10.6 5.4h2.8" stroke-linecap="round" />
+              </svg></span>
+            <h3 class="fcard__t">Always on device</h3>
+            <p class="fcard__d">The agent loop, your keys and your context stay on the hardware
+              you own. There is no Arble server in the path.</p>
+          </article>
+          <article class="fcard fcard--tall rv rv--d1">
+            <span class="fcard__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1.6">
+                <circle cx="12" cy="13" r="8" />
+                <path d="M12 9v4.2l2.6 1.6M5 4.2 7.6 2.3M19 4.2 16.4 2.3" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg></span>
+            <h3 class="fcard__t">Built for daily use</h3>
+            <p class="fcard__d">Schedules and heartbeats keep agents working while the app is
+              closed, and every wake-up is logged for you to read back.</p>
+          </article>
+          <article class="fcard fcard--tall rv rv--d2">
+            <span class="fcard__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+                <path d="M4 20V13.5M9.3 20V8M14.7 20V11M20 20V4.5" />
+              </svg></span>
+            <h3 class="fcard__t">Scales with you</h3>
+            <p class="fcard__d">Swap one model for another, add a toolset, run more agents at
+              once — nothing above the router has to change.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ TRUST — accordion left, swapping stage right ═══
+         The page's one interactive moment. Three tabs drive one stage: picking
+         a tab crossfades its capture in, and the active tab's bar fills over the
+         dwell so the auto-advance is visible rather than surprising. Built as a
+         real tablist (roving tabIndex, arrow keys) because it is operable, not
+         decoration. main.js drives it; it idles until scrolled into view, pauses
+         on hover and focus, and holds on tab one under prefers-reduced-motion. -->
+    <section class="sec" id="trust">
+      <div class="shell">
+        <div class="tshow">
+          <div class="tshow__side rv">
+            <h2 class="head">Safety you can<br>actually see.</h2>
+            <p class="lede">Every write stops to ask, every answer keeps its sources, and every
+              job it runs reports back when it is done.</p>
+
+            <div class="tabs" role="tablist" aria-label="What Arble shows you">
+              <button class="tab is-on" role="tab" id="ttab-0" aria-controls="tstage"
+                aria-selected="true" type="button">
+                <span class="tab__fill" aria-hidden="true"></span>
+                <span class="tab__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="1.7">
+                    <path d="M4 12.4l5 5L20 6.6" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg></span>
+                <span class="tab__t">Ask before writing</span>
+              </button>
+              <button class="tab" role="tab" id="ttab-1" aria-controls="tstage"
+                aria-selected="false" tabindex="-1" type="button">
+                <span class="tab__fill" aria-hidden="true"></span>
+                <span class="tab__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="1.7">
+                    <path d="M12 4.2 3.4 19.2h17.2z" stroke-linejoin="round" />
+                    <path d="M12 10.2v3.4M12 16.4v.2" stroke-linecap="round" />
+                  </svg></span>
+                <span class="tab__t">Show the sources</span>
+              </button>
+              <button class="tab" role="tab" id="ttab-2" aria-controls="tstage"
+                aria-selected="false" tabindex="-1" type="button">
+                <span class="tab__fill" aria-hidden="true"></span>
+                <span class="tab__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="1.7" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path d="M3.6 6.6l1.8 1.8 3-3.2M3.6 13.2l1.8 1.8 3-3.2M3.6 19.8l1.8 1.8 3-3.2" />
+                    <path d="M12.4 6.6h8M12.4 13.2h8M12.4 19.8h8" />
+                  </svg></span>
+                <span class="tab__t">Show what it ran</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="tshow__stage rv rv--d1" id="tstage" role="tabpanel" aria-live="polite">
+            <img class="tshow__shot tshow__shot--cut is-on" src="assets/img/marketing/trust-approve.png"
+              width="800" height="800" loading="lazy" data-for="ttab-0"
+              alt="A signing sheet: a Message reading 'Let's build something amazing', a From field naming Priya, two wallet addresses, and a Sign button." />
+            <img class="tshow__shot tshow__shot--cut" src="assets/img/marketing/trust-sources.png"
+              width="1000" height="666" loading="lazy" data-for="ttab-1"
+              alt="A warning card: 'Potential hallucination detected — multiple sources disagree, Arble recommends verifying this answer', with a Review Sources button." />
+            <img class="tshow__shot tshow__shot--cut" src="assets/img/marketing/trust-capabilities.png"
+              width="1100" height="590" loading="lazy" data-for="ttab-2"
+              alt="Seven completion cards floating around a desk — research complete, web search complete, vision analysis, code generated, OCR complete, reasoning, and a PDF indexed — each ticked off with how long ago it finished." />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ CONNECT — eyebrow, centred lead, wide panel, closing two-up ═══
+         Three panes, one grid cell. Every source is normalised to 16/7 before
+         it ships, so the box crops nothing: the apps shot is cut past the
+         headline baked into its top, and the context shot is edge-extended
+         sideways rather than cropped, which widens it without losing a card.
+         The only headline you read is the real one above, in our type. -->
+    <section class="sec" id="connect">
+      <div class="shell">
+        <div class="sechead rv">
+          <span class="tagpill tagpill--flat">Integrations</span>
+          <h2 class="head">Connect every tool.<br>Work from one place.</h2>
+          <p class="lede">Arble reaches into the apps you already use, so the work happens where
+            it already lives.</p>
+        </div>
+
+        <!-- Segmented control. The travelling pill is one element whose offset
+             and width main.js writes from the live button box, so it stays true
+             at any label length or font size rather than assuming equal thirds. -->
+        <div class="seg" id="connectSeg" role="tablist" aria-label="What Arble does">
+          <span class="seg__pill" aria-hidden="true"></span>
+          <button class="seg__b is-on" role="tab" id="cseg-0" aria-controls="cpane-0"
+            aria-selected="true" type="button">Apps</button>
+          <button class="seg__b" role="tab" id="cseg-1" aria-controls="cpane-1"
+            aria-selected="false" tabindex="-1" type="button">Devices</button>
+          <button class="seg__b" role="tab" id="cseg-2" aria-controls="cpane-2"
+            aria-selected="false" tabindex="-1" type="button">Execution</button>
+        </div>
+
+        <!-- All three panes share one grid cell, so the block is always as tall
+             as the tallest and switching tabs never shifts the page under you. -->
+        <div class="panes rv">
+          <div class="pane is-on" id="cpane-0" role="tabpanel" aria-labelledby="cseg-0">
+            <div class="panelshot">
+              <img src="assets/img/marketing/connect-apps.jpg?v=2" width="1600" height="900" loading="lazy"
+                alt="A phone and a laptop floating side by side in greyscale, joined by a trail of light, surrounded by panels showing a code editor, a build log, an analytics dashboard, a test checklist reading one hundred per cent, and a deployment panel." />
+            </div>
+            <div class="closer">
+              <div class="closer__say">
+                <h3 class="closer__t">One workspace, every tool</h3>
+                <p class="closer__d">Mail, files, code and calendars all answer to the same agent
+                  — no tab-switching, no copy-paste, no second place to look.</p>
+              </div>
+              <ul class="ticks">
+                <li class="tick"><span class="tick__m" aria-hidden="true"><svg viewBox="0 0 24 24"
+                      fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"
+                      stroke-linejoin="round">
+                      <path d="M4.5 12.5l5 5L19.5 7" />
+                    </svg></span>Connect and revoke in one tap</li>
+                <li class="tick"><span class="tick__m" aria-hidden="true"><svg viewBox="0 0 24 24"
+                      fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"
+                      stroke-linejoin="round">
+                      <path d="M4.5 12.5l5 5L19.5 7" />
+                    </svg></span>Nothing routes through our servers</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="pane" id="cpane-1" role="tabpanel" aria-labelledby="cseg-1">
+            <div class="panelshot">
+              <img src="assets/img/marketing/connect-devices.jpg" width="1600" height="700" loading="lazy"
+                alt="An Arble panel reading 'Connected to everything. Working for you — all your devices, one secure connection', above a row of device tiles for macOS, Windows, Linux, a desktop and a server, each showing a green online dot, plus an empty slot to add another." />
+            </div>
+            <div class="closer">
+              <div class="closer__say">
+                <h3 class="closer__t">Every device, one connection</h3>
+                <p class="closer__d">Phone, laptop, desktop or the server in the cupboard — pair
+                  once and the same agent, memory and permissions follow you onto each of them.</p>
+              </div>
+              <ul class="ticks">
+                <li class="tick"><span class="tick__m" aria-hidden="true"><svg viewBox="0 0 24 24"
+                      fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"
+                      stroke-linejoin="round">
+                      <path d="M4.5 12.5l5 5L19.5 7" />
+                    </svg></span>Pairs over your own network</li>
+                <li class="tick"><span class="tick__m" aria-hidden="true"><svg viewBox="0 0 24 24"
+                      fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"
+                      stroke-linejoin="round">
+                      <path d="M4.5 12.5l5 5L19.5 7" />
+                    </svg></span>macOS, Windows and Linux</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="pane" id="cpane-2" role="tabpanel" aria-labelledby="cseg-2">
+            <div class="panelshot">
+              <img src="assets/img/marketing/connect-context.jpg?v=2" width="1600" height="900" loading="lazy"
+                alt="A hub diagram in greyscale: AI Memory at the centre, described as remembering, understanding and working in context, wired out to Web, Files and Email on the left and Calendar, Chats and Code on the right." />
+            </div>
+            <div class="closer">
+              <div class="closer__say">
+                <h3 class="closer__t">A loop you can follow</h3>
+                <p class="closer__d">Every request runs the same five stages — understand, plan,
+                  execute, verify, complete — and you can watch it move through each one.</p>
+              </div>
+              <ul class="ticks">
+                <li class="tick"><span class="tick__m" aria-hidden="true"><svg viewBox="0 0 24 24"
+                      fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"
+                      stroke-linejoin="round">
+                      <path d="M4.5 12.5l5 5L19.5 7" />
+                    </svg></span>Five stages, every request</li>
+                <li class="tick"><span class="tick__m" aria-hidden="true"><svg viewBox="0 0 24 24"
+                      fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"
+                      stroke-linejoin="round">
+                      <path d="M4.5 12.5l5 5L19.5 7" />
+                    </svg></span>Each step logged as it lands</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ FEATURE ROWS — two 50/50 rows, mirrored ═══
+         Not the existing .feature, which is 1fr/400px and sized around the
+         phone mockup it holds elsewhere; these want an even split and a much
+         larger visual. Copy comes first in the DOM in both rows so the reading
+         order and the mobile stack are always text-then-picture — .frow--flip
+         moves the panel to the left column on wide screens only.
+
+         Both visuals are 3:2 to match their sources — the platforms shot was
+         1.23 and was edge-extended sideways rather than cropped, which would
+         have taken the Windows tile off its top. Keep new art 3:2 and
+         greyscale, in line with the rest of the page.
+
+         Runs straight into #intersect below: see .sec--run, which drops the
+         padding and the doubled rule where the two frames meet. -->
+    <section class="sec--half sec--run" id="clarity">
+      <div class="shell frame">
+
+        <div class="frow frow--flip rv">
+          <div class="frow__say">
+            <span class="tagpill tagpill--flat">
+              <svg class="tagpill__ast" viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M12 3v18M4.2 7.5l15.6 9M19.8 7.5l-15.6 9"
+                  stroke="currentColor" stroke-width="2.2" stroke-linecap="round" />
+              </svg>Pair and control
+            </span>
+            <h2 class="head head--sm">Your desktop,<br>in your pocket.</h2>
+            <p class="body">Pair once and your phone drives the machine — trackpad, keyboard,
+              files and screen. macOS, Windows or Linux, over your own network, with no relay in
+              the middle holding the session.</p>
+            <a class="btn btn--primary" href="#cta">Get Started</a>
+          </div>
+          <div class="frow__vis">
+            <img src="assets/img/marketing/clarity-remote.jpg" width="1400" height="933" loading="lazy"
+              alt="A laptop being driven from a phone: the phone shows a trackpad and media keys, the laptop shows a Connected panel, and macOS, Windows and Linux each sit in a status pill marked Online." />
+          </div>
+        </div>
+
+        <div class="frow rv">
+          <div class="frow__say">
+            <span class="tagpill tagpill--flat">
+              <svg class="tagpill__ast" viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M12 3v18M4.2 7.5l15.6 9M19.8 7.5l-15.6 9"
+                  stroke="currentColor" stroke-width="2.2" stroke-linecap="round" />
+              </svg>One app, everywhere
+            </span>
+            <h2 class="head head--sm">The same Arble,<br>on every screen.</h2>
+            <p class="body">Desktop or phone, macOS, Windows or Linux — one interface, one memory,
+              one set of permissions. Nothing here is a cut-down companion app that can only watch
+              while the real work happens elsewhere.</p>
+            <a class="btn btn--primary" href="#cta">Get Started</a>
+          </div>
+          <div class="frow__vis">
+            <img src="assets/img/marketing/clarity-platforms.jpg" width="1400" height="933" loading="lazy"
+              alt="The Arble desktop window and the phone app side by side on a lit plinth, wired up to macOS, Windows and Linux tiles above them — the same sidebar, cards and list on both screens." />
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ═══ INTERSECTION — centred statement over one wide image ═══
+         Same hairline frame as the rows above, so the two read as one block of
+         ruled editorial rather than two unrelated sections. The picture carries
+         its own annotation — the marker, leader line and "The Arble" label are
+         painted into the artwork, not overlaid here — so it needs no furniture
+         of its own and sits flush to the frame with no radius. -->
+    <section class="sec--half sec--run" id="intersect">
+      <div class="shell frame frame--flush">
+        <div class="sechead sechead--wide rv">
+          <h2 class="head head--lg">The <span class="keep">human&#8211;agent</span> intersection.</h2>
+          <p class="lede">Arble reaches exactly as far as you let it. Every line past that point
+            is yours to approve, revoke, or read back afterwards.</p>
+        </div>
+        <div class="intersect rv rv--d1">
+          <img src="assets/img/marketing/intersect-hand.jpg" width="1800" height="636" loading="lazy"
+            alt="A drift of fine grey particles resolving out of the left edge and reaching toward an outstretched human hand on the right; a small square marker in the particle field is labelled 'The Arble'." />
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ DAILY — copy card beside a picture card, accordion inside ═══
+         Two equal cards on one row, stretched to a shared height so the picture
+         always matches the copy beside it however the accordion is left open.
+
+         The accordion is a real disclosure list: one button per row carrying
+         aria-expanded, panels that stay in the DOM. Opening is animated with a
+         0fr→1fr grid row rather than a measured max-height, so the panel takes
+         its own natural height and nothing has to be re-measured on resize. -->
+    <section class="sec" id="daily">
+      <div class="shell">
+        <div class="dsplit">
+          <div class="dsplit__copy rv">
+            <h2 class="head head--sm">Built to carry the work<br>you would rather not do.</h2>
+            <p class="lede">The reading, the drafting and the chasing — handled in one place, on
+              hardware you already own.</p>
+
+            <div class="acc" id="dailyAcc">
+              <div class="acc__i is-open">
+                <button class="acc__q" type="button" aria-expanded="true" aria-controls="acc-p0">
+                  <span class="acc__t">Save time</span>
+                  <span class="acc__m" aria-hidden="true"></span>
+                </button>
+                <div class="acc__wrap" id="acc-p0" role="region">
+                  <p class="acc__a">Arble reads the mail, drafts the reply and files the result.
+                    You approve; it acts.</p>
+                </div>
+              </div>
+              <div class="acc__i">
+                <button class="acc__q" type="button" aria-expanded="false" aria-controls="acc-p1">
+                  <span class="acc__t">Stay organised</span>
+                  <span class="acc__m" aria-hidden="true"></span>
+                </button>
+                <div class="acc__wrap" id="acc-p1" role="region">
+                  <p class="acc__a">Notes, files and threads stay searchable, so you never explain
+                    the same thing twice.</p>
+                </div>
+              </div>
+              <div class="acc__i">
+                <button class="acc__q" type="button" aria-expanded="false" aria-controls="acc-p2">
+                  <span class="acc__t">Keep working</span>
+                  <span class="acc__m" aria-hidden="true"></span>
+                </button>
+                <div class="acc__wrap" id="acc-p2" role="region">
+                  <p class="acc__a">Schedules and heartbeats run with the app closed, and every
+                    wake-up is logged for you to read back.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="dsplit__vis rv rv--d1">
+            <img src="assets/img/marketing/daily-hand.jpg" width="1100" height="1393" loading="lazy"
+              alt="A hand holding a phone running Arble: a header with Chat, Files, Agents, Tools and Settings, tiles reading 47 tasks completed this week and a 12 day streak, and a recent activity list — research complete, DeepSeek-V4 running, PDF indexed, code generated." />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ SCREENS — coverflow carousel of app captures ═══
+         The reference (appnext.framer.website) runs this as a manual carousel:
+         one phone in focus, its neighbours pushed out, scaled down and faded
+         almost to the background, with a pair of round arrows underneath. Ours
+         keeps the arrows but drives itself — main.js advances it on a timer and
+         stops on hover, focus or when the section is off screen, so a reader who
+         never touches it still sees every screen.
+
+         The phone is the same .device / .device__screen / phone-frame.avif
+         template the hero uses, so there is one frame in the page, not two.
+
+         Every slide is a real capture. The order is a tour of the product in the
+         order someone actually meets it: ask, browse, remember, tools, the
+         permission gate, what it did, then what you can plug into it, then the
+         machines it reaches and the settings that shape it. main.js reads the
+         slide count off the DOM, so adding or removing one needs no JS change. -->
+    <!-- ═══ APP TOUR ═══ -->
+    <section class="sec" id="screens">
+      <div class="shell">
+        <div class="sechead rv">
+          <h2 class="head">Every screen,<br>one runtime.</h2>
+          <p class="lede">The whole loop is something you can look at — what it can reach, what it
+            remembers, and what it did while you were away.</p>
+        </div>
+
+        <div class="pcar rv" id="pcar">
+          <div class="pcar__stage" id="pcarStage">
+            <figure class="pslide">
+              <div class="device device--inline">
+                <div class="device__screen">
+                  <img class="device__shot" src="assets/img/app/app-chat.webp?v=2" width="852" height="1852"
+                    loading="lazy"
+                    alt="The Arble chat screen: the mascot above the greeting &#8220;Hi, I&#8217;m Arble &#8212; your personal AI assistant. Ask me anything&#8221;, with an attach button and a message box." />
+                </div>
+                <img class="device__frame" src="assets/img/brand/phone-frame.avif" alt="" aria-hidden="true" />
+              </div>
+              <figcaption class="pslide__cap">Chat</figcaption>
+            </figure>
+
+            <figure class="pslide">
+              <div class="device device--inline">
+                <div class="device__screen">
+                  <img class="device__shot" src="assets/img/app/app-drawer.webp?v=2" width="852" height="1852"
+                    loading="lazy"
+                    alt="The session drawer: a New session button, a chat search box, links to Memory, Tools, Notes, Files, Status, Nodes and Settings, and a Recents list of past chats." />
+                </div>
+                <img class="device__frame" src="assets/img/brand/phone-frame.avif" alt="" aria-hidden="true" />
+              </div>
+              <figcaption class="pslide__cap">Sessions</figcaption>
+            </figure>
+
+            <figure class="pslide">
+              <div class="device device--inline">
+                <div class="device__screen">
+                  <img class="device__shot" src="assets/img/app/app-memory.webp?v=2" width="852" height="1852"
+                    loading="lazy"
+                    alt="The Memory screen: a search box over memories and conversations, tabs for All, Notes and Conversations, and saved conversation entries with dates." />
+                </div>
+                <img class="device__frame" src="assets/img/brand/phone-frame.avif" alt="" aria-hidden="true" />
+              </div>
+              <figcaption class="pslide__cap">Memory</figcaption>
+            </figure>
+
+            <figure class="pslide">
+              <div class="device device--inline">
+                <div class="device__screen">
+                  <img class="device__shot" src="assets/img/app/app-tools.webp?v=2" width="852" height="1852"
+                    loading="lazy"
+                    alt="The Tools screen listing built-in tool sets — calculator, web_search, memory_search, daily_digest, translation, qr_code and image_gen — each with its tool count and whether it is always loaded or loads on demand." />
+                </div>
+                <img class="device__frame" src="assets/img/brand/phone-frame.avif" alt="" aria-hidden="true" />
+              </div>
+              <figcaption class="pslide__cap">Tools</figcaption>
+            </figure>
+
+            <figure class="pslide">
+              <div class="device device--inline">
+                <div class="device__screen">
+                  <img class="device__shot" src="assets/img/app/app-permissions.webp?v=2" width="852" height="1852"
+                    loading="lazy"
+                    alt="The permission mode sheet: Ask permissions selected, with Accept edits, Plan mode, Auto mode and Bypass permissions listed below, each explaining what it allows." />
+                </div>
+                <img class="device__frame" src="assets/img/brand/phone-frame.avif" alt="" aria-hidden="true" />
+              </div>
+              <figcaption class="pslide__cap">Permission modes</figcaption>
+            </figure>
+
+            <figure class="pslide">
+              <div class="device device--inline">
+                <div class="device__screen">
+                  <img class="device__shot" src="assets/img/app/app-status.webp?v=2" width="852" height="1852"
+                    loading="lazy"
+                    alt="The Status screen: token usage totals, an active heartbeat on a 30-minute interval with Trigger Now and Edit Tasks, and an activity log of heartbeat runs." />
+                </div>
+                <img class="device__frame" src="assets/img/brand/phone-frame.avif" alt="" aria-hidden="true" />
+              </div>
+              <figcaption class="pslide__cap">Status</figcaption>
+            </figure>
+
+            <figure class="pslide">
+              <div class="device device--inline">
+                <div class="device__screen">
+                  <img class="device__shot" src="assets/img/app/app-connectors.webp?v=2" width="852" height="1852"
+                    loading="lazy"
+                    alt="The Connectors screen: a Directory row for browsing skills and connectors, then Gmail with a Connect to Gmail button, Microsoft for Outlook, OneDrive and Teams, and Notion." />
+                </div>
+                <img class="device__frame" src="assets/img/brand/phone-frame.avif" alt="" aria-hidden="true" />
+              </div>
+              <figcaption class="pslide__cap">Connectors</figcaption>
+            </figure>
+
+            <figure class="pslide">
+              <div class="device device--inline">
+                <div class="device__screen">
+                  <img class="device__shot" src="assets/img/app/app-skills.webp?v=2" width="852" height="1852"
+                    loading="lazy"
+                    alt="The Directory on its Skills tab: a field to paste a SKILL.md link, and a catalogue of PDF, Word, Excel and PowerPoint skills, each with an add button." />
+                </div>
+                <img class="device__frame" src="assets/img/brand/phone-frame.avif" alt="" aria-hidden="true" />
+              </div>
+              <figcaption class="pslide__cap">Directory &#183; Skills</figcaption>
+            </figure>
+
+            <figure class="pslide">
+              <div class="device device--inline">
+                <div class="device__screen">
+                  <img class="device__shot" src="assets/img/app/app-mcp-directory.webp?v=2" width="852" height="1852"
+                    loading="lazy"
+                    alt="The Directory on its Connectors tab: DeepWiki, Context7, Hugging Face, GitHub, Linear, Notion MCP, Sentry and Stripe, each marked either no sign-in or sign-in required." />
+                </div>
+                <img class="device__frame" src="assets/img/brand/phone-frame.avif" alt="" aria-hidden="true" />
+              </div>
+              <figcaption class="pslide__cap">Directory &#183; Connectors</figcaption>
+            </figure>
+
+            <figure class="pslide">
+              <div class="device device--inline">
+                <div class="device__screen">
+                  <img class="device__shot" src="assets/img/app/app-providers.webp?v=2" width="852" height="1852"
+                    loading="lazy"
+                    alt="The provider picker in Settings: NVIDIA NIM, Ollama, Claude, OpenAI, Perplexity, GitHub, Kimi, DeepSeek, GitHub Copilot and Telegram, with DeepSeek selected and its available models listed." />
+                </div>
+                <img class="device__frame" src="assets/img/brand/phone-frame.avif" alt="" aria-hidden="true" />
+              </div>
+              <figcaption class="pslide__cap">Providers and models</figcaption>
+            </figure>
+
+            <figure class="pslide">
+              <div class="device device--inline">
+                <div class="device__screen">
+                  <img class="device__shot" src="assets/img/app/app-pairing.webp?v=2" width="852" height="1852"
+                    loading="lazy"
+                    alt="The Connect a Computer screen: a Scan pairing QR button, an on-your-network list searching for agents, a field to paste a pairing code, and manual name and address fields." />
+                </div>
+                <img class="device__frame" src="assets/img/brand/phone-frame.avif" alt="" aria-hidden="true" />
+              </div>
+              <figcaption class="pslide__cap">Connect a computer</figcaption>
+            </figure>
+
+            <figure class="pslide">
+              <div class="device device--inline">
+                <div class="device__screen">
+                  <img class="device__shot" src="assets/img/app/app-nodes.webp?v=2" width="852" height="1852"
+                    loading="lazy"
+                    alt="The Nodes screen: a Gateway card on ANP 1.1 WebSocket, sync domains for memory, reminders, heartbeat, llm_config and nodes, and a Sync Now button." />
+                </div>
+                <img class="device__frame" src="assets/img/brand/phone-frame.avif" alt="" aria-hidden="true" />
+              </div>
+              <figcaption class="pslide__cap">Nodes</figcaption>
+            </figure>
+
+            <figure class="pslide">
+              <div class="device device--inline">
+                <div class="device__screen">
+                  <img class="device__shot" src="assets/img/app/app-notes.webp?v=2" width="852" height="1852"
+                    loading="lazy"
+                    alt="The Notes screen: an empty notes panel inviting a first note, and a Reminders section with an add-reminder field and no pending reminders." />
+                </div>
+                <img class="device__frame" src="assets/img/brand/phone-frame.avif" alt="" aria-hidden="true" />
+              </div>
+              <figcaption class="pslide__cap">Notes and reminders</figcaption>
+            </figure>
+
+            <figure class="pslide">
+              <div class="device device--inline">
+                <div class="device__screen">
+                  <img class="device__shot" src="assets/img/app/app-appearance.webp?v=2" width="852" height="1852"
+                    loading="lazy"
+                    alt="The Appearance settings: dark and light theme, six accent colours, compact, regular and comfy density, three font choices, and toggles for chat bubbles, liquid glass, ambient glow, motion and thought bubbles." />
+                </div>
+                <img class="device__frame" src="assets/img/brand/phone-frame.avif" alt="" aria-hidden="true" />
+              </div>
+              <figcaption class="pslide__cap">Appearance</figcaption>
+            </figure>
+          </div>
+
+          <div class="pcar__nav">
+            <button class="pcar__b" type="button" data-dir="-1" aria-label="Previous screen">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M14.5 5.5L8 12l6.5 6.5" />
+              </svg>
+            </button>
+            <button class="pcar__b" type="button" data-dir="1" aria-label="Next screen">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M9.5 5.5L16 12l-6.5 6.5" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ PROOF — frosted card over a full-bleed photograph ═══
+         The reference (appnext.framer.website) floats a single heavy-blur glass
+         panel over a full-bleed photo: avatar stack, one headline figure, a long
+         gap, then a quote and its attribution. Ours is the same construction on
+         the dark mountain plate, which already reads as the page's greyscale.
+
+         Full-bleed by construction — the section carries no .shell, so the photo
+         runs edge to edge and only the card is measured.
+
+         There is no testimonial here. The invented quote that used to sit in this
+         card was attributed to nobody and shipped with its own "replace before
+         launch" caption visible on the page. Praise nobody gave is a trust and a
+         legal problem, so the card now states what the build actually contains —
+         counted from src/agent/tools/builtin, not estimated. Put a real,
+         attributable quote back only when someone has actually given one.
+
+         The tiles carry Bit, the app's own mascot, in three of its moods rather
+         than stock faces — so nobody reads them as photographs of real
+         customers. Each SVG is generated from the app's sprite data
+         (src/components/mascots/bitSprite.ts), so the website mascot and the
+         in-app mascot are the same pixels. -->
+    <section class="proof" aria-label="What is in the build">
+      <img class="proof__bg" src="assets/img/marketing/proof-mountain.jpg" width="1920" height="1080"
+        loading="lazy" alt="" aria-hidden="true" />
+      <div class="proof__card rv">
+        <div class="proof__avs" aria-hidden="true">
+          <span class="proof__av proof__av--bit">
+            <img src="assets/img/brand/mascot-happy.svg" width="46" height="46" loading="lazy" alt="" />
+          </span>
+          <span class="proof__av proof__av--bit">
+            <img src="assets/img/brand/mascot-working.svg" width="46" height="46" loading="lazy" alt="" />
+          </span>
+          <span class="proof__av proof__av--bit">
+            <img src="assets/img/brand/mascot-thinking.svg" width="46" height="46" loading="lazy" alt="" />
+          </span>
+          <span class="proof__av proof__av--ghost"></span>
+          <span class="proof__av proof__av--ghost"></span>
+        </div>
+
+        <p class="proof__stat">579 typed tools, one gate</p>
+
+        <blockquote class="proof__quote">Mail, calendars, files, code hosts, home devices
+          and your own servers &#8212; 61 toolsets, every write stopping at the same
+          permission prompt.</blockquote>
+        <p class="proof__by">Counted in this build, not projected</p>
+      </div>
+    </section>
+
+    <!-- ═══ PLAYBOOK — cover, then the full chapter index ═══
+         Modelled on inferia.ai/playbook: centred title and one-line promise, a
+         large line-art plate, a single dark call to action, and the chapter list
+         grouped into parts with running numbers.
+
+         The chapter rows are NOT links. None of these 35 pages exist yet, and 35
+         href="#" anchors would be 35 dead ends for anyone using a keyboard or a
+         screen reader — they read as navigable and go nowhere. Wrap each .pb__t
+         in an <a> once the pages are real; the row markup does not need to
+         change. The button points at the index below, which does exist. -->
+    <section class="sec" id="playbook">
+      <div class="shell">
+        <div class="sechead rv">
+          <h2 class="head head--lg">The Arble Playbook</h2>
+          <p class="lede">35 chapters on how Arble works and how to run it. Free.</p>
+        </div>
+
+        <figure class="pb__art rv rv--d1">
+          <img src="assets/img/marketing/playbook.png" width="1400" height="952" loading="lazy"
+            alt="Line drawing of two identical portable machines standing face to face, each with a large circular dial, side sliders, plus and minus knobs and a row of transport buttons." />
+        </figure>
+
+        <div class="pb__cta rv">
+          <a class="btn btn--primary" href="playbook.html">Read the Playbook
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M5 12h13M12.5 6l6 6-6 6" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ DOWNLOAD — closing CTA over a fanned trio of phones ═══
+         Modelled on finbill.framer.website: centred headline, subline, a pair of
+         store buttons, then three phones fanned below and cropped by the section
+         edge so the row reads as continuing past the fold rather than stopping.
+
+         This also carries id="cta" — it is the page's only closing call to
+         action since the old one came out, and every "Get Started" on the page
+         points back here.
+
+         Same .device / .device__screen / phone-frame.avif template as the hero
+         and the carousel; the flanking two are pushed out and down and sit
+         behind the centre one on z-index, no rotation, as on the reference.
+
+         The fan is decorative — .dl__fan is aria-hidden, so these three captures
+         carry empty alt text on purpose. The carousel above is where the screens
+         are described for anyone reading with a screen reader. -->
+
+    <section class="dl" id="cta">
+      <div class="shell">
+        <div class="dl__say rv">
+          <h2 class="head head--lg">Ready to work<br>differently?</h2>
+          <p class="lede">Bring your own models. Keep your own data. Start in about four minutes.</p>
+          <div class="dl__btns">
+            <a class="btn btn--primary" href="#top">Download for iOS</a>
+            <a class="btn btn--ghost" href="#top">Download for Android</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="dl__fan" aria-hidden="true">
+        <div class="device device--inline dl__ph dl__ph--l">
+          <div class="device__screen">
+            <img class="device__shot" src="assets/img/app/app-connectors.webp?v=2" width="852" height="1852"
+              loading="lazy" alt="" />
+          </div>
+          <img class="device__frame" src="assets/img/brand/phone-frame.avif" alt="" />
+        </div>
+        <div class="device device--inline dl__ph dl__ph--c">
+          <div class="device__screen">
+            <img class="device__shot" src="assets/img/app/app-chat.webp?v=2" width="852" height="1852"
+              loading="lazy" alt="" />
+          </div>
+          <img class="device__frame" src="assets/img/brand/phone-frame.avif" alt="" />
+        </div>
+        <div class="device device--inline dl__ph dl__ph--r">
+          <div class="device__screen">
+            <img class="device__shot" src="assets/img/app/app-status.webp?v=2" width="852" height="1852"
+              loading="lazy" alt="" />
+          </div>
+          <img class="device__frame" src="assets/img/brand/phone-frame.avif" alt="" />
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer class="foot">
+    <div class="shell">
+      <div class="foot__top">
+        <div class="foot__brand">
+          <a class="brand brand--foot" href="#top">
+            <span class="brand__mark" aria-hidden="true">
+              <img src="assets/img/brand/logo-mark.png" width="288" height="271" alt="" />
+            </span>
+            <span class="brand__word">Arble</span>
+          </a>
+          <p class="body foot__tag">The AI operating system that runs where your data already lives.</p>
+
+          <!-- No registered address block. The reference site has one; we do not
+               have the real address, and an invented one is a factual claim.
+               Better absent than filled with instructions to ourselves. Add a
+               <p class="foot__addr"> here once there is a real address. -->
+
+          <div class="foot__social">
+            <a class="foot__ic" href="https://github.com/Arble-org/arble-mobile-1.0" aria-label="Arble on GitHub"><svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M12 2C6.5 2 2 6.6 2 12.2c0 4.5 2.9 8.3 6.8 9.7.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.4-3.4-1.4-.5-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.6 2.4 1.1 3 .9.1-.7.4-1.1.6-1.4-2.2-.3-4.6-1.2-4.6-5.1 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.7 0 0 .8-.3 2.7 1a9 9 0 0 1 5 0c1.9-1.3 2.7-1 2.7-1 .5 1.4.2 2.4.1 2.7.6.7 1 1.6 1 2.7 0 3.9-2.3 4.8-4.6 5.1.4.3.7.9.7 1.9v2.8c0 .3.2.6.7.5 4-1.4 6.8-5.2 6.8-9.7C22 6.6 17.5 2 12 2z" />
+              </svg></a>
+            </div>
+        </div>
+        <div class="foot__cols">
+          <!-- Marketing links only. Documentation lives in its own column so the
+               footer never doubles as docs navigation — the docs sidebar and
+               search do that job. -->
+          <div class="foot__col">
+            <p class="foot__h">Product</p>
+            <a class="foot__l" href="index.html#operations">Features</a>
+            <a class="foot__l" href="index.html#trust">Safety</a>
+            <a class="foot__l" href="index.html#connect">Integrations</a>
+            <a class="foot__l" href="index.html#screens">Screens</a>
+            <a class="foot__l" href="index.html#cta">Download</a>
+          </div>
+          <div class="foot__col">
+            <p class="foot__h">Documentation</p>
+            <a class="foot__l" href="docs/getting-started/install/">Install</a>
+            <a class="foot__l" href="docs/agent/memory/">Memory</a>
+            <a class="foot__l" href="docs/agent/permissions/">Permissions</a>
+            <a class="foot__l" href="docs/developers/tool-sdk/">Tool SDK</a>
+            <a class="foot__l" href="docs/developers/cli/">CLI</a>
+            <a class="foot__l" href="docs/developers/api-reference/">API Reference</a>
+            <a class="foot__l" href="docs/developers/mcp-servers/">MCP Servers</a>
+            <a class="foot__l" href="docs/developers/self-hosting/">Self-hosting</a>
+          </div>
+          <div class="foot__col">
+            <p class="foot__h">Resources</p>
+            <a class="foot__l" href="docs/">Documentation</a>
+            <a class="foot__l" href="playbook.html">Arble Playbook</a>
+            <a class="foot__l" href="docs/reference/release-notes/">Release Notes</a>
+          </div>
+          <div class="foot__col">
+            <p class="foot__h">Company</p>
+            <a class="foot__l" href="index.html#story">About</a>
+            <a class="foot__l" href="#">Contact</a>
+            <a class="foot__l" href="index.html#story">Manifesto</a>
+          </div>
+          <!-- Blog, Status, Careers and Press Kit came out: they were href="#"
+               with nothing behind them, which is filler carried over from the
+               reference layout.
+
+               Contact, Privacy, Terms and Cookies stay dead for now on purpose —
+               a product site is expected to have them, so deleting them would be
+               a regression rather than a cleanup. They are the one remaining
+               launch blocker in this footer: point each at a real page. -->
+          <div class="foot__col">
+            <p class="foot__h">Legal</p>
+            <a class="foot__l" href="#">Privacy</a>
+            <a class="foot__l" href="#">Terms</a>
+            <a class="foot__l" href="playbook.html#30">Security</a>
+            <a class="foot__l" href="index.html#trust">Trust Center</a>
+            <a class="foot__l" href="#">Cookies</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="foot__ghost" id="footGhost" aria-hidden="true">Built for intelligence</div>
+    <div class="shell">
+      <div class="foot__bar">
+        <span class="foot__fine">© 2026 Arble. Built to run on your hardware.</span>
+        <span class="foot__fine">Made for people who read the permissions.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/site.js?v=12" defer></script>
+</body>
+
+</html>
