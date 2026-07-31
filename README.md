@@ -12,25 +12,24 @@ single build-time link back to it.
 
 ```
 index.html            the marketing page
+about.html            the About page
+contact.html          the Contact page
 playbook.html         the Playbook reader (36 chapters, rendered client-side)
-styles.css            marketing styles
-main.js               marketing interactions
+blog.html             the Blog page
+changelog.html        the Changelog page
+404.html              404 page
 
-docs.css              the documentation application (light only)
-docs.js               code copy buttons + on-this-page scroll spy
-docs-ui.js            drawer, reading progress, Copy page
-docs-search.js        client-side search over docs/search-index.json
+assets/
+  css/                site.css (128K), docs.css (40K), about.css, contact.css
+  js/                 site.js, docs.js, docs-ui.js, docs-search.js, about.js, playbook/chapters.js
+  img/                about/, app/, brand/, docs/, marketing/
+
 docs/                 27 generated pages — DO NOT EDIT, see below
-docs-src/             documentation sources and design specs
-_build/               the docs generator (build.py + content.py + bodies.py)
+docs-source/          documentation sources, legacy pages, design specs, and archive
+docs-build/           the docs generator (build.py, content.py, bodies.py, legal.py, feeds.py)
 
-playbook-data.js              chapters 1–13 and the glossary
-expanded-chapters.js          expanded chapter bodies
-playbook-chapters-14-20.js    chapters 14–20
-playbook-expanded-agents.js   agent chapters
-
-assets/               images: app captures, photography, mascot, phone frame
-scripts/              regeneration helpers (screenshots, mascot)
+legal/                generated legal pages (privacy, terms, security, trust, cookies)
+scripts/              regeneration helpers (screenshots, mascot, serve.sh)
 ```
 
 ## Run it
@@ -55,9 +54,9 @@ Sources:
 
 | File | Holds |
 |---|---|
-| `_build/content.py` | the navigation tree, page summaries, section leads |
-| `_build/bodies.py` | page bodies written for the new structure |
-| `docs-build/legacy-pages/*.html` | long-form pages lifted into the shared chrome |
+| `docs-build/content.py` | the navigation tree, page summaries, section leads |
+| `docs-build/bodies.py` | page bodies written for the new structure |
+| `docs-source/legacy-pages/*.html` | long-form pages lifted into the shared chrome |
 
 The build writes 27 pages, 4 section indexes, a home page, `search-index.json`
 and `sitemap.xml`. Bump `CSS_V` in `build.py` when `docs.css` changes so browsers

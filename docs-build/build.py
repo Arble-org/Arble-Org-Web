@@ -358,8 +358,8 @@ def lift_article(path):
     truncates the page at its first card. Walk the tags and balance them.
     """
     # These pages were written standalone before the docs became generated; they
-    # now live in docs-build/legacy-pages/ and are lifted into the shared chrome.
-    for cand in (os.path.join(ROOT, "docs-build", "legacy-pages", path),
+    # now live in docs-source/legacy-pages/ and are lifted into the shared chrome.
+    for cand in (os.path.join(ROOT, "docs-source", "legacy-pages", path),
                  os.path.join(ROOT, path)):
         if os.path.isfile(cand):
             src = open(cand, encoding="utf-8").read()
@@ -508,7 +508,7 @@ def sitemap():
     page is added. Marketing pages are listed explicitly since they are not part
     of NAV.
     """
-    urls = ["", "playbook.html", "changelog.html", "blog.html", "docs/"]
+    urls = ["", "about.html", "contact.html", "playbook.html", "changelog.html", "blog.html", "docs/"]
     urls += [f"docs/{slug}/" for _, slug, _ in NAV]
     urls += [f"docs/{key}/" for key in ORDER]
     urls += [f"legal/{p}/" for p in

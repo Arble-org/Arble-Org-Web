@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://arble.ai/</loc></url>
+  <url><loc>https://arble.ai/about.html</loc></url>
+  <url><loc>https://arble.ai/contact.html</loc></url>
   <url><loc>https://arble.ai/playbook.html</loc></url>
   <url><loc>https://arble.ai/changelog.html</loc></url>
   <url><loc>https://arble.ai/blog.html</loc></url>
