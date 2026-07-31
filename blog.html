@@ -315,41 +315,145 @@
               above left.</figcaption>
           </figure>
 
-          <div class="docs__tablewrap">
-            <table class="docs__table">
-              <thead><tr><th scope="col">Category</th><th scope="col">What goes in it</th></tr></thead>
-              <tbody>
-                <tr><th scope="row">Engineering</th><td>How a part of Arble is built, and the constraints that shaped it.</td></tr>
-                <tr><th scope="row">Research</th><td>Open questions in memory, planning and evaluation. Results included when we have them.</td></tr>
-                <tr><th scope="row">Product</th><td>What shipped, explained past the changelog entry.</td></tr>
-                <tr><th scope="row">Infrastructure</th><td>Running Arble in production: deployment, scaling, observability, failure.</td></tr>
-                <tr><th scope="row">Security</th><td>The trust boundary, credentials, permissions and what we deliberately cannot do.</td></tr>
-                <tr><th scope="row">AI</th><td>Models, tool calling, context and the mechanics underneath them.</td></tr>
-                <tr><th scope="row">Design</th><td>Interface decisions, and the reasoning behind restraint.</td></tr>
-                <tr><th scope="row">Developer Experience</th><td>The CLI, the SDKs, the API and the documentation.</td></tr>
-                <tr><th scope="row">Release Notes</th><td>Deep dives on a release where the changelog entry is not enough.</td></tr>
-                <tr><th scope="row">Playbook</th><td>Chapters from the Playbook, published as standalone reading.</td></tr>
-              </tbody>
-            </table>
-          </div>
+          <h3>Engineering</h3>
+          <p>How a part of Arble is built, and the constraints that shaped it. These are the
+            pieces that go past the interface into the mechanism: how the registry indexes
+            tools, what a session actually owns, why compaction summarises the middle of a
+            conversation rather than the start. If an article in this category does not
+            contain at least one decision that could reasonably have gone the other way, it
+            has not earned the category.</p>
+
+          <h3>Research</h3>
+          <p>Open questions in memory, planning and evaluation, and what we have measured
+            against them. Research here is applied &#8212; the test of a result is whether it
+            changed something in the product, and articles say plainly when it did not.
+            Negative results are published, because the field has enough papers reporting
+            only the runs that worked.</p>
+
+          <h3>Product</h3>
+          <p>What shipped, explained past the changelog entry. The
+            <a href="changelog.html">changelog</a> tells you a capability exists and what to
+            run; a product article tells you why it exists in that shape, what was considered
+            and rejected, and where it will not help you. Roughly one per significant
+            release.</p>
+
+          <h3>Infrastructure</h3>
+          <p>Running Arble in production: deployment topologies, capacity, upgrade
+            mechanics, observability and failure. Written for the person on call. Incident
+            write-ups appear here when the lesson generalises beyond our own
+            infrastructure.</p>
+
+          <h3>Security</h3>
+          <p>The trust boundary, credential handling, the permission model, and the things
+            we deliberately cannot do. Security articles here name limitations as directly
+            as capabilities &#8212; the <a href="legal/security/">Security</a> documentation
+            lists what is unimplemented, and articles in this category explain why a gap is
+            still open rather than pretending it is closed.</p>
+
+          <h3>AI</h3>
+          <p>Models, tool calling, context and the mechanics underneath them. This is the
+            category for explaining how something actually works when the popular
+            explanation is wrong or vague &#8212; what a schema does to a model's output
+            distribution, what a reasoning trace is and is not evidence of.</p>
+
+          <h3>Design</h3>
+          <p>Interface decisions, and the reasoning behind restraint. Most design writing
+            here is about what was removed: the status badge that reported nothing
+            actionable, the second confirmation that trained people to click through, the
+            colour that carried meaning nobody could learn.</p>
+
+          <h3>Developer Experience</h3>
+          <p>The CLI, the SDKs, the API and the documentation around them. A command surface
+            is a user interface with different constraints, and this category treats it that
+            way &#8212; error messages, defaults, and what happens when someone pipes the
+            output somewhere we did not anticipate.</p>
+
+          <h3>Release Notes</h3>
+          <p>Deep dives on a release where the changelog entry is not enough. Reserved for
+            releases that changed a model rather than adding a capability &#8212; per-tool
+            permissions, or the move from disconnect-cancels-run to explicit
+            cancellation.</p>
+
+          <h3>Playbook</h3>
+          <p>Chapters from <a href="playbook.html">the Playbook</a>, published as standalone
+            reading. The Playbook teaches the concepts underneath AI systems using Arble as
+            an example rather than a subject; chapters that stand alone well are surfaced
+            here.</p>
+
+          <h2 id="start-here">Start here</h2>
+          <p>Three reading paths, depending on what you came for. Each is ordered, and each
+            assumes the one before it.</p>
+
+          <h3>If you are evaluating Arble</h3>
+          <p>Read <a href="#">Building an AI operating system</a> for the architecture, then
+            <a href="#">Why permissions matter</a> for the control model, then
+            <a href="#">Why local-first matters for agents</a> for the trust argument. About
+            an hour. You will finish knowing what the product is and what it refuses to
+            do.</p>
+
+          <h3>If you are building on Arble</h3>
+          <p>Start with <a href="#">How tool calling actually works</a>, then
+            <a href="#">Designing native tools</a>, then
+            <a href="#">MCP versus native tools</a> to decide where your integration belongs.
+            Follow with <a href="#">Introducing the Tool SDK</a> and keep the
+            <a href="docs/developers/tool-sdk/">Tool SDK reference</a> open beside it.</p>
+
+          <h3>If you are running Arble in production</h3>
+          <p><a href="#">Running Arble on Kubernetes</a> first, then
+            <a href="#">Observability for systems that decide</a>, then
+            <a href="#">Building reliable AI workflows</a>. The
+            <a href="docs/developers/self-hosting/">Self-hosting guide</a> is the reference
+            these three assume.</p>
 
           <h2 id="series">Series</h2>
-          <p>Articles that continue rather than stand alone.</p>
+          <p>Articles that continue rather than stand alone. A series is not a numbered list
+            of related posts &#8212; each one assumes the previous, and the last one in a
+            series is usually the one worth reading twice.</p>
 
-          <div class="docs__tablewrap">
-            <table class="docs__table">
-              <thead><tr><th scope="col">Series</th><th scope="col">About</th><th scope="col">Published</th></tr></thead>
-              <tbody>
-                <tr><th scope="row">Building Arble</th><td>The runtime, component by component, in the order we built them.</td><td>9</td></tr>
-                <tr><th scope="row">AI Operating Systems</th><td>What the category means, and what it takes to earn the name.</td><td>5</td></tr>
-                <tr><th scope="row">Architecture Notes</th><td>Short pieces on a single decision and the alternatives rejected.</td><td>12</td></tr>
-                <tr><th scope="row">Research Papers Explained</th><td>A paper we read closely, and what it changed in the product.</td><td>7</td></tr>
-                <tr><th scope="row">Developer Diaries</th><td>A feature from first sketch to release, including the dead ends.</td><td>6</td></tr>
-                <tr><th scope="row">Release Deep Dives</th><td>One release, examined properly.</td><td>4</td></tr>
-                <tr><th scope="row">Infrastructure Journal</th><td>Incidents, capacity work and what production taught us.</td><td>8</td></tr>
-              </tbody>
-            </table>
-          </div>
+          <h3>Building Arble <span class="ed__cat">9 articles</span></h3>
+          <p>The runtime, component by component, in the order we built them: the loop, the
+            registry, the permission gate, memory, the router, sync. Each article ends where
+            the next begins, so reading the series through is a reasonable substitute for
+            reading the architecture documentation. It is also the honest record of what we
+            built in the wrong order and had to revisit &#8212; memory came before we
+            understood retrieval, and it shows.</p>
+
+          <h3>AI Operating Systems <span class="ed__cat">5 articles</span></h3>
+          <p>What the category means, and what it takes to earn the name. An assistant with
+            integrations is not an operating system; the difference is whether tools,
+            permissions, memory and routing are one system with one set of rules, or four
+            products wearing the same colour. The series argues that position, including the
+            parts of it that are contestable.</p>
+
+          <h3>Architecture Notes <span class="ed__cat">12 articles</span></h3>
+          <p>Short pieces &#8212; usually under a thousand words &#8212; on a single decision
+            and the alternatives rejected. Why the registry is indexed at load rather than
+            cached lazily. Why permission decisions cache per session but not per workspace.
+            Why namespacing tools by server beat first-writer-wins.</p>
+
+          <h3>Research Papers Explained <span class="ed__cat">7 articles</span></h3>
+          <p>A paper we read closely, summarised for engineers, followed by what it changed
+            in the product. The second half is the point: a paper that changed nothing is
+            still worth explaining, and the article says so rather than manufacturing
+            relevance.</p>
+
+          <h3>Developer Diaries <span class="ed__cat">6 articles</span></h3>
+          <p>One feature from first sketch to release, including the dead ends. These are
+            written during the work rather than reconstructed afterwards, which is why they
+            contain decisions that turned out to be wrong and are left in.</p>
+
+          <h3>Release Deep Dives <span class="ed__cat">4 articles</span></h3>
+          <p>One release, examined properly. Reserved for releases that changed a model
+            rather than adding a capability &#8212; the move to per-tool permissions, and the
+            change from disconnect-cancels-run to explicit cancellation, both of which needed
+            more explanation than a changelog entry allows.</p>
+
+          <h3>Infrastructure Journal <span class="ed__cat">8 articles</span></h3>
+          <p>Incidents, capacity work and what production taught us. Incident write-ups
+            follow the same structure every time: what happened, what the customer saw, the
+            timeline, the contributing causes, and what changed afterwards. No individual is
+            named, and no cause is recorded as human error &#8212; if a person could make
+            that mistake, the system permitted it.</p>
 
           <h2 id="topics">Topics</h2>
           <ul class="ed__topics">
@@ -363,50 +467,109 @@
           </ul>
 
           <h2 id="picks">Editor&#8217;s picks</h2>
-          <p>Evergreen pieces. If you are new here, start with the first three.</p>
-          <ul>
-            <li><a href="#">How memory works</a> &#8212; what is stored, what is retrieved, and what
-              is deliberately forgotten.</li>
-            <li><a href="#">Why permissions matter</a> &#8212; the argument for stopping to ask,
-              written for people who find it annoying.</li>
-            <li><a href="#">From prompt to execution</a> &#8212; one request traced through every
-              stage of the runtime.</li>
-            <li><a href="#">Designing native tools</a> &#8212; what makes a tool easy for a model to
-              call correctly.</li>
-            <li><a href="#">Building reliable AI workflows</a> &#8212; retries, idempotency and
-              knowing where to resume.</li>
-            <li><a href="#">Streaming responses explained</a> &#8212; what the transport guarantees
-              and what it does not.</li>
-            <li><a href="#">The evolution of MCP</a> &#8212; how the protocol changed what a tool
-              ecosystem could look like.</li>
-            <li><a href="#">Building production agents</a> &#8212; the difference between a demo and
-              something you leave running.</li>
-            <li><a href="#">Context engineering in practice</a> &#8212; budgeting a window across
-              instructions, history and results.</li>
-            <li><a href="#">Evaluating agents that act</a> &#8212; why benchmarks that score text
-              miss most of what matters.</li>
-          </ul>
+          <p>Evergreen pieces that have not dated. Each entry says who it is for, because a
+            recommendation without a reader in mind is just a list.</p>
+
+          <p><strong><a href="#">How memory works</a>.</strong> What is stored, what is
+            retrieved, and what is deliberately forgotten. The article most often sent to
+            people who assume memory means a bigger context window. For anyone deciding what
+            to trust an agent to remember.</p>
+
+          <p><strong><a href="#">Why permissions matter</a>.</strong> The argument for
+            stopping to ask, written for people who find it annoying &#8212; which is the
+            right audience, because they are the ones who will switch it off. Pairs with
+            <a href="docs/agent/permissions/">the Permissions reference</a>.</p>
+
+          <p><strong><a href="#">From prompt to execution</a>.</strong> One request traced
+            through every stage of the runtime, with the intermediate state shown at each
+            boundary. The fastest way to understand the system if you learn by following a
+            single path rather than reading a map.</p>
+
+          <p><strong><a href="#">Designing native tools</a>.</strong> What makes a tool easy
+            for a model to call correctly: parameter naming, the cost of optional arguments,
+            and why a good description does more work than a good schema. Required reading
+            before publishing to a shared registry.</p>
+
+          <p><strong><a href="#">Building reliable AI workflows</a>.</strong> Retries,
+            idempotency and knowing where to resume. Written after we shipped pause and
+            resume and discovered how many steps were not safe to run twice.</p>
+
+          <p><strong><a href="#">Streaming responses explained</a>.</strong> What the
+            transport guarantees and what it does not. Contains the disconnect bug in full,
+            because it is a good example of a failure that looked like a network problem for
+            two releases.</p>
+
+          <p><strong><a href="#">The evolution of MCP</a>.</strong> How the protocol changed
+            what a tool ecosystem could look like, and what it deliberately leaves to the
+            host &#8212; including authorisation, which is why per-tool permissions were ours
+            to design.</p>
+
+          <p><strong><a href="#">Building production agents</a>.</strong> The difference
+            between a demo and something you leave running: idempotency, budget, failure
+            handling, and knowing what the agent should do when it is uncertain.</p>
+
+          <p><strong><a href="#">Context engineering in practice</a>.</strong> Budgeting a
+            finite window across instructions, history and tool results, with the arithmetic
+            worked through on a real session.</p>
+
+          <p><strong><a href="#">Evaluating agents that act</a>.</strong> Why benchmarks that
+            score text miss most of what matters, and what we measure instead. The companion
+            to the <a href="#">Evaluation</a> research piece, written for practitioners rather
+            than researchers.</p>
 
           <h2 id="research">Research</h2>
-          <p>Longer work, usually with something measured in it.</p>
-          <ul>
-            <li><a href="#">Reasoning systems</a> &#8212; what the reasoning trace is good for, and
-              what it cannot tell you.</li>
-            <li><a href="#">Agent planning</a> &#8212; plan-then-act against act-then-replan, on
-              tasks that fail halfway.</li>
-            <li><a href="#">Memory compression</a> &#8212; summarising a session without losing what
-              set it up.</li>
-            <li><a href="#">Execution graphs</a> &#8212; representing a run as a graph, and what that
-              buys for resumption.</li>
-            <li><a href="#">Context engineering</a> &#8212; allocating a finite window between
-              instruction, history and result.</li>
-            <li><a href="#">Local inference</a> &#8212; where on-device models are genuinely
-              sufficient, with numbers.</li>
-            <li><a href="#">Evaluation</a> &#8212; measuring agents by what they changed rather than
-              what they said.</li>
-            <li><a href="#">Computer use</a> &#8212; operating an interface built for a human, and
-              why it stays hard.</li>
-          </ul>
+          <p>Longer work, usually with something measured in it. Applied rather than
+            theoretical: each of these exists because a product decision was blocked on not
+            knowing the answer.</p>
+
+          <h3><a href="#">Reasoning systems</a></h3>
+          <p>What a reasoning trace is good for, and what it cannot tell you. A trace is
+            generated text about a decision, not a recording of one, and treating it as an
+            audit log produces false confidence. We look at where traces correlate with
+            correctness, where they do not, and what to log instead when you need to know why
+            an agent did something.</p>
+
+          <h3><a href="#">Agent planning</a></h3>
+          <p>Plan-then-act against act-then-replan, measured on tasks that fail halfway
+            through. Upfront planning reads better and recovers worse. The interesting result
+            is the middle: planning to the first irreversible step, then replanning, beat
+            both on our task set.</p>
+
+          <h3><a href="#">Memory compression</a></h3>
+          <p>Summarising a session without losing what set it up. Truncating from the start
+            is the cheapest strategy and the worst one, because the instructions that
+            constrain the whole session live there. What we compact, what we pin, and how
+            much context a summary actually costs to reconstruct.</p>
+
+          <h3><a href="#">Execution graphs</a></h3>
+          <p>Representing a run as a graph rather than a transcript, and what that buys for
+            resumption. If a workflow knows which steps completed and what each produced, a
+            restart resumes instead of replaying &#8212; which is what makes pause and resume
+            across a process restart possible at all.</p>
+
+          <h3><a href="#">Context engineering</a></h3>
+          <p>Allocating a finite window between instructions, history and tool results. Tool
+            results are the variable nobody budgets for: a single large result can evict the
+            instructions that made the call sensible. Budgeting by token rather than by
+            character, and degrading predictably when the budget is exceeded.</p>
+
+          <h3><a href="#">Local inference</a></h3>
+          <p>Where on-device models are genuinely sufficient, with numbers. Classification,
+            routing, extraction and short summarisation hold up well; multi-step tool use
+            does not, yet. The honest version of the local-first argument requires saying
+            which half is which.</p>
+
+          <h3><a href="#">Evaluation</a></h3>
+          <p>Measuring agents by what they changed rather than what they said. Text
+            benchmarks score the transcript, which is the least consequential artefact an
+            agent produces. What a state-based evaluation looks like, and why it is so much
+            more expensive to build.</p>
+
+          <h3><a href="#">Computer use</a></h3>
+          <p>Operating an interface built for a human, and why it stays hard. Screen
+            understanding has improved faster than the reliability of the actions taken from
+            it; the failure mode is no longer misreading the screen but misjudging what a
+            click will do.</p>
 
           <h2 id="updates">Recent product updates</h2>
 
@@ -435,23 +598,46 @@
           </div>
 
           <h2 id="philosophy">How we build</h2>
-          <p>Seven positions that decide most arguments before they start.</p>
-          <ul>
-            <li><strong>Build simple systems.</strong> A system you can hold in your head is one you
-              can debug at three in the morning.</li>
-            <li><strong>Document everything.</strong> Undocumented behaviour is not a feature; it is
-              a rumour.</li>
-            <li><strong>Design for humans.</strong> The person approving a tool call is not a
-              formality in the loop. They are the point of it.</li>
-            <li><strong>Own your infrastructure.</strong> If a capability requires our servers to be
-              up, it is a weaker capability.</li>
-            <li><strong>Respect permissions.</strong> An agent should reach exactly as far as it was
-              allowed, and no further, even when further would be helpful.</li>
-            <li><strong>Prefer local execution.</strong> Send data off the device when there is a
-              reason, not by default.</li>
-            <li><strong>Measure before optimising.</strong> Every performance claim on this blog has
-              a number behind it, or it does not appear.</li>
-          </ul>
+          <p>Seven positions that decide most arguments before they start. They are listed
+            here because they explain the shape of decisions elsewhere on this blog, and
+            because a position you cannot state is one you will quietly abandon under
+            deadline.</p>
+
+          <p><strong>Build simple systems.</strong> A system you can hold in your head is one
+            you can debug at three in the morning. The practical test is whether a new
+            engineer can predict what happens next without reading the implementation. When
+            the answer is no, the design is wrong even if the code is correct.</p>
+
+          <p><strong>Document everything.</strong> Undocumented behaviour is not a feature,
+            it is a rumour. Anything a user can observe is documented, including the parts
+            that are unfinished &#8212; the
+            <a href="legal/security/#threat-model">threat model</a> lists what is out of
+            scope, and the Security page names controls that do not exist yet.</p>
+
+          <p><strong>Design for humans.</strong> The person approving a tool call is not a
+            formality in the loop; they are the point of it. This constrains interface work
+            more than it sounds: a prompt that appears too often trains people to approve
+            without reading, which is worse than no prompt because it manufactures consent.</p>
+
+          <p><strong>Own your infrastructure.</strong> If a capability requires our servers
+            to be up, it is a weaker capability. The registry, the permission gate and memory
+            all work with no network. That constraint has cost us features, and we have kept
+            it anyway.</p>
+
+          <p><strong>Respect permissions.</strong> An agent reaches exactly as far as it was
+            allowed and no further, including when further would obviously be helpful. The
+            moment an agent is permitted to decide its own scope, the permission model is
+            decoration.</p>
+
+          <p><strong>Prefer local execution.</strong> Data leaves the device when there is a
+            reason, not by default. Where it must leave &#8212; to a model provider, to an
+            MCP server &#8212; the interface says so before it happens rather than in a
+            policy nobody opens.</p>
+
+          <p><strong>Measure before optimising.</strong> Every performance claim on this blog
+            has a number and a method behind it, or it does not appear. The registry work in
+            1.8 is quoted as 400&nbsp;ms to under 20&nbsp;ms because those were measured on a
+            stated workload, not estimated from the shape of the fix.</p>
 
           <h2 id="authors">Who writes here</h2>
           <div class="docs__tablewrap">
@@ -504,10 +690,42 @@
             <li><strong>Engineering stories.</strong> Incidents, regressions and the things we got
               wrong, written without a redemption arc.</li>
           </ul>
-          <p>What does not belong: launch announcements without mechanism, competitor comparisons,
-            speculation about the field, and anything whose argument is that we are excited. If a
-            piece could be written by someone who had not read the source, it is not for this
-            blog.</p>
+          <p>What does not belong: launch announcements without mechanism, competitor
+            comparisons, speculation about the field, and anything whose argument is that we
+            are excited. If a piece could be written by someone who had not read the source,
+            it is not for this blog.</p>
+
+          <h3>How we write</h3>
+          <p>Six rules, applied in review.</p>
+          <ul>
+            <li><strong>Lead with the mechanism.</strong> The first paragraph says what the
+              thing does. Context comes after, once the reader knows what it is context
+              for.</li>
+            <li><strong>Numbers or nothing.</strong> A performance claim carries the
+              measurement and the workload it was measured on. "Significantly faster" is
+              rejected in review.</li>
+            <li><strong>Name the trade-off.</strong> Every design decision cost something. An
+              article that presents a choice as free has left out the interesting half.</li>
+            <li><strong>Show the failure.</strong> Where we got it wrong, the article says so
+              in the same voice it uses for everything else, without an apology and without a
+              redemption arc.</li>
+            <li><strong>One idea per paragraph.</strong> If a paragraph needs a semicolon to
+              hold together, it is two paragraphs.</li>
+            <li><strong>Link, do not restate.</strong> Reference documentation is the source
+              of truth for how something works today. An article that duplicates it will
+              disagree with it within two releases.</li>
+          </ul>
+
+          <p>Articles are reviewed by someone who did not build the thing being described.
+            That reviewer's job is to find the sentence that only makes sense if you already
+            know the answer.</p>
+
+          <h3>Corrections</h3>
+          <p>When an article is wrong, it is corrected in place with a note at the top saying
+            what changed and when. Articles describing architecture we have since replaced
+            carry a banner rather than being deleted &#8212; the reasoning at the time is
+            usually still worth reading, and quietly removing it would misrepresent the
+            record.</p>
 
           <nav class="pbp__nav" aria-label="Page navigation">
             <a class="pbp__navcard pbp__navcard--prev" href="changelog.html">
@@ -525,6 +743,7 @@
             <li class="docs__tocrow"><a href="#featured">Featured</a></li>
             <li class="docs__tocrow"><a href="#latest">Latest</a></li>
             <li class="docs__tocrow"><a href="#categories">Categories</a></li>
+            <li class="docs__tocrow"><a href="#start-here">Start here</a></li>
             <li class="docs__tocrow"><a href="#series">Series</a></li>
             <li class="docs__tocrow"><a href="#topics">Topics</a></li>
             <li class="docs__tocrow"><a href="#picks">Editor&#8217;s picks</a></li>
