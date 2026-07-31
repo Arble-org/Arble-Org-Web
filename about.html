@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — Arble</title>
+  <meta name="description"
+    content="Arble is building the operating system for human–AI collaboration. Learn why we exist, how we build, and what we believe." />
+  <link rel="icon"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='3.4' fill='%230A0A0B'/%3E%3Ccircle cx='12' cy='12' r='7.2' fill='none' stroke='%230A0A0B' stroke-width='1.3' opacity='.45'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Stack+Sans+Headline:wght@200..700&display=swap" />
+  <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f%5B%5D=switzer@400,500,600,700&display=swap" />
+  <link rel="stylesheet" href="assets/css/site.css?v=82" />
+  <link rel="stylesheet" href="assets/css/about.css?v=2" />
+</head>
+
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <!-- NAV -->
+  <nav class="nav" aria-label="Primary">
+    <div class="nav__bar" id="navbar">
+      <a class="brand" href="index.html" aria-label="Arble home">
+        <span class="brand__mark" aria-hidden="true">
+          <img src="assets/img/brand/logo-mark.png" width="288" height="271" alt="" />
+        </span>
+        <span class="brand__word">Ar<span class="brand__word--dim">ble</span></span>
+      </a>
+      <div class="nav__links">
+        <a class="nav__link" href="index.html#operations">Features</a>
+        <a class="nav__link" href="index.html#trust">Safety</a>
+        <a class="nav__link" href="index.html#connect">Integrations</a>
+        <a class="nav__link nav__link--active" href="about.html">About</a>
+        <a class="nav__link" href="playbook.html">Playbook</a>
+      </div>
+      <div class="nav__right">
+        <a class="btn btn--primary btn--sm" href="index.html#cta">Get Started</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main">
+
+    <!-- 1. HERO -->
+    <header class="ab-hero" id="top">
+      <div class="shell ab-hero__inner">
+        <div class="ab-hero__copy rv">
+          <p class="eyebrow ab-hero__eyebrow">About Arble</p>
+          <h1 class="ab-hero__title">Computers should understand people.</h1>
+          <p class="lede ab-hero__lead">
+            Software is fragmented across dozens of disconnected tools. We built Arble as an operating system layer that bridges intent and execution—on hardware you already own.
+          </p>
+          <div class="ab-hero__cta">
+            <a class="btn btn--primary" href="docs/">Explore Documentation</a>
+            <a class="btn btn--ghost" href="playbook.html">Read Manifesto</a>
+          </div>
+        </div>
+        <div class="ab-hero__vis rv rv--d1">
+          <img src="assets/img/about/about-hero.png" width="1200" height="800" loading="eager" alt="Minimal workspace with Arble running on-device" style="width:100%;height:100%;object-fit:cover;border-radius:16px;display:block;" />
+        </div>
+      </div>
+    </header>
+
+    <!-- 2. STORY -->
+    <section class="sec--ab" id="story">
+      <div class="shell">
+        <div class="ab-split rv">
+          <div class="ab-split__label">
+            <span class="eyebrow">Our Story</span>
+          </div>
+          <div class="ab-split__body">
+            <p class="ab-editorial">
+              Modern computing forces constant context switching between single-purpose applications. The problem is not model capability—it is the absence of a unified operating layer.
+            </p>
+            <p class="ab-editorial ab-editorial--secondary">
+              Arble runs the full agent loop on your local hardware. It maintains session memory, manages permission boundaries, and executes tools directly without third-party servers holding your data.
+            </p>
+            <div class="ab-stats">
+              <div class="ab-stat">
+                <div class="ab-stat__n" data-count="579">579</div>
+                <div class="ab-stat__d">Typed tools</div>
+              </div>
+              <div class="ab-stat">
+                <div class="ab-stat__n" data-count="61">61</div>
+                <div class="ab-stat__d">Built-in toolsets</div>
+              </div>
+              <div class="ab-stat">
+                <div class="ab-stat__n">1</div>
+                <div class="ab-stat__d">Unified runtime</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. PROBLEM -->
+    <section class="sec--ab" id="problem">
+      <div class="shell">
+        <div class="ab-split rv">
+          <div class="ab-split__label">
+            <span class="eyebrow">The Problem</span>
+          </div>
+          <div class="ab-split__body">
+            <h2 class="head">Context does not transfer.<br>Work does.</h2>
+            <p class="lede" style="margin-block-start:16px;">Knowledge workers navigate dozens of isolated apps daily. Every boundary drop resets context and manual overhead.</p>
+          </div>
+        </div>
+        <div class="ab-problem-img rv rv--d1">
+          <img src="assets/img/about/about-problem.png" width="1600" height="700" loading="lazy" alt="Minimal photography illustrating fragmented digital workflows" style="width:100%;height:auto;border-radius:14px;display:block;" />
+        </div>
+        <div class="ab-cards rv rv--d2">
+          <article class="ab-card">
+            <div class="ab-card__ic" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+              </svg>
+            </div>
+            <h3 class="ab-card__t">Today's software</h3>
+            <ul class="ab-card__list">
+              <li>Fragmented apps &amp; lost context</li>
+              <li>Repetitive manual coordination</li>
+              <li>Opaque background data routing</li>
+            </ul>
+          </article>
+          <article class="ab-card ab-card--alt">
+            <div class="ab-card__ic" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+              </svg>
+            </div>
+            <h3 class="ab-card__t">How Arble solves it</h3>
+            <ul class="ab-card__list ab-card__list--check">
+              <li>Intent-driven operating interface</li>
+              <li>Persistent local memory across sessions</li>
+              <li>Explicit, user-governed permission gates</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. PHILOSOPHY -->
+    <section class="sec--ab" id="philosophy">
+      <div class="shell">
+        <div class="ab-philosophy rv">
+          <div class="ab-philosophy__label">
+            <span class="eyebrow">Our Philosophy</span>
+          </div>
+          <div class="ab-philosophy__body">
+            <blockquote class="ab-quote">
+              <p class="ab-quote__text">"AI should amplify what people can do, not subtract what people decide."</p>
+              <footer class="ab-quote__attr">— Core principle behind Arble permissions</footer>
+            </blockquote>
+            <div class="ab-philosophy__copy">
+              <p class="body">Software should dissolve into the background. You define intent; the runtime handles tool execution, state tracking, and formatting—leaving final decision-making entirely with you.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. PRINCIPLES -->
+    <section class="sec--ab" id="principles">
+      <div class="shell">
+        <div class="sechead rv">
+          <span class="tagpill tagpill--flat">Principles</span>
+          <h2 class="head">What shapes every decision we make.</h2>
+        </div>
+        <div class="ab-principles rv rv--d1">
+          <article class="ab-principle">
+            <div class="ab-principle__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+            <h3 class="ab-principle__t">Human-first</h3>
+            <p class="ab-principle__d">Automated actions operate strictly within explicit boundaries you set.</p>
+          </article>
+          <article class="ab-principle">
+            <div class="ab-principle__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M9 5.5h6M12 18v.01"/></svg></div>
+            <h3 class="ab-principle__t">Local-first</h3>
+            <p class="ab-principle__d">Keys, context, and the agent loop execute on hardware you own.</p>
+          </article>
+          <article class="ab-principle">
+            <div class="ab-principle__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div>
+            <h3 class="ab-principle__t">Privacy-first</h3>
+            <p class="ab-principle__d">Zero telemetry data sales. Enclave protection for all local credentials.</p>
+          </article>
+          <article class="ab-principle">
+            <div class="ab-principle__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></div>
+            <h3 class="ab-principle__t">Transparent AI</h3>
+            <p class="ab-principle__d">Every tool invocation, source link, and write action is fully auditable.</p>
+          </article>
+          <article class="ab-principle">
+            <div class="ab-principle__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+            <h3 class="ab-principle__t">Developer friendly</h3>
+            <p class="ab-principle__d">Extensible via Tool SDK, MCP servers, CLI, and self-hosting infrastructure.</p>
+          </article>
+          <article class="ab-principle">
+            <div class="ab-principle__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+            <h3 class="ab-principle__t">Built for longevity</h3>
+            <p class="ab-principle__d">Architected for steady maintenance and reliable long-term developer APIs.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. PRODUCT (PLATFORM) -->
+    <section class="sec--ab" id="product">
+      <div class="shell">
+        <div class="sechead rv">
+          <span class="tagpill tagpill--flat">Product</span>
+          <h2 class="head">An operating system, not an app.</h2>
+          <p class="lede">Arble connects intent to action across desktop, mobile, CLI, and custom servers.</p>
+        </div>
+        <div class="ab-platform-img rv rv--d1">
+          <img src="assets/img/about/about-platform.png" width="1600" height="700" loading="lazy" alt="Arble desktop and mobile ecosystem illustration" style="width:100%;height:auto;border-radius:14px;display:block;" />
+        </div>
+        <div class="ab-platform-grid rv rv--d2">
+          <div class="ab-platform-item">
+            <h3 class="ab-platform-item__t">Desktop Agent</h3>
+            <p class="ab-platform-item__d">macOS, Windows &amp; Linux native runtime.</p>
+          </div>
+          <div class="ab-platform-item">
+            <h3 class="ab-platform-item__t">Mobile Companion</h3>
+            <p class="ab-platform-item__d">On-device agent execution on iOS &amp; Android.</p>
+          </div>
+          <div class="ab-platform-item">
+            <h3 class="ab-platform-item__t">Persistent Memory</h3>
+            <p class="ab-platform-item__d">Cross-session context that stays local.</p>
+          </div>
+          <div class="ab-platform-item">
+            <h3 class="ab-platform-item__t">Permission Gates</h3>
+            <p class="ab-platform-item__d">Granular control over write and execute tools.</p>
+          </div>
+          <div class="ab-platform-item">
+            <h3 class="ab-platform-item__t">MCP Directory</h3>
+            <p class="ab-platform-item__d">Native Model Context Protocol server support.</p>
+          </div>
+          <div class="ab-platform-item">
+            <h3 class="ab-platform-item__t">Tool SDK &amp; CLI</h3>
+            <p class="ab-platform-item__d">Custom toolsets and command-line execution.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. TEAM (FOUNDERS - EXACTLY 2) -->
+    <section class="sec--ab" id="team">
+      <div class="shell">
+        <div class="sechead sechead--center rv">
+          <span class="tagpill tagpill--flat">Leadership</span>
+          <h2 class="head">Built by a focused team.</h2>
+        </div>
+        <div class="ab-team-duo rv rv--d1">
+          <article class="ab-founder">
+            <div class="ab-founder__portrait" aria-label="Founder portrait placeholder">
+              <div class="ab-placeholder ab-placeholder--portrait">
+                <div class="ab-placeholder__label">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                  Founder Photo
+                </div>
+              </div>
+              <div class="ab-founder__social">
+                <a class="ab-social-ic" href="https://x.com/Arbleorg" target="_blank" rel="noopener noreferrer" aria-label="Twitter / X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+                <a class="ab-social-ic" href="https://www.linkedin.com/company/arble-org/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
+              </div>
+            </div>
+            <div class="ab-founder__info">
+              <p class="ab-founder__name">[Founder Name]</p>
+              <p class="ab-founder__role">Founder &amp; CEO</p>
+              <p class="ab-founder__bio">Developer infrastructure background. Focused on reducing human-machine friction through intent-first interfaces.</p>
+            </div>
+          </article>
+
+          <article class="ab-founder">
+            <div class="ab-founder__portrait" aria-label="Co-founder portrait placeholder">
+              <div class="ab-placeholder ab-placeholder--portrait">
+                <div class="ab-placeholder__label">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                  Founder Photo
+                </div>
+              </div>
+              <div class="ab-founder__social">
+                <a class="ab-social-ic" href="https://x.com/Arbleorg" target="_blank" rel="noopener noreferrer" aria-label="Twitter / X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+                <a class="ab-social-ic" href="https://www.linkedin.com/company/arble-org/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
+              </div>
+            </div>
+            <div class="ab-founder__info">
+              <p class="ab-founder__name">[Founder Name]</p>
+              <p class="ab-founder__role">Co-founder &amp; CTO</p>
+              <p class="ab-founder__bio">Systems engineering specialist. Architected the local agent execution loop, permission engine, and tool runtime.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. FAQ (EXACTLY 5 QUESTIONS) -->
+    <section class="sec--ab" id="faq">
+      <div class="shell">
+        <div class="sechead sechead--center rv">
+          <span class="tagpill tagpill--flat">Questions</span>
+          <h2 class="head">Frequently asked questions.</h2>
+        </div>
+        <div class="ab-faq rv rv--d1" id="aboutFaq">
+
+          <div class="ab-faq__item is-open">
+            <button class="ab-faq__q" type="button" aria-expanded="true" aria-controls="faq-p0" id="faq-q0">
+              <span class="ab-faq__t">Why does Arble exist?</span>
+              <span class="ab-faq__m" aria-hidden="true"></span>
+            </button>
+            <div class="ab-faq__wrap" id="faq-p0" role="region" aria-labelledby="faq-q0">
+              <p class="ab-faq__a">To unify fragmented tools into an operating system layer that acts on your intent locally without surrendering data privacy.</p>
+            </div>
+          </div>
+
+          <div class="ab-faq__item">
+            <button class="ab-faq__q" type="button" aria-expanded="false" aria-controls="faq-p1" id="faq-q1">
+              <span class="ab-faq__t">Why call it an AI operating system?</span>
+              <span class="ab-faq__m" aria-hidden="true"></span>
+            </button>
+            <div class="ab-faq__wrap" id="faq-p1" role="region" aria-labelledby="faq-q1">
+              <p class="ab-faq__a">It manages runtime resources, tool execution, session memory, and security permissions across applications—functioning as a true OS layer.</p>
+            </div>
+          </div>
+
+          <div class="ab-faq__item">
+            <button class="ab-faq__q" type="button" aria-expanded="false" aria-controls="faq-p2" id="faq-q2">
+              <span class="ab-faq__t">How is Arble different from assistants?</span>
+              <span class="ab-faq__m" aria-hidden="true"></span>
+            </button>
+            <div class="ab-faq__wrap" id="faq-p2" role="region" aria-labelledby="faq-q2">
+              <p class="ab-faq__a">Unlike web chat boxes, Arble executes real local tools, persists memory across sessions, and keeps API credentials in hardware enclaves.</p>
+            </div>
+          </div>
+
+          <div class="ab-faq__item">
+            <button class="ab-faq__q" type="button" aria-expanded="false" aria-controls="faq-p3" id="faq-q3">
+              <span class="ab-faq__t">Why local-first?</span>
+              <span class="ab-faq__m" aria-hidden="true"></span>
+            </button>
+            <div class="ab-faq__wrap" id="faq-p3" role="region" aria-labelledby="faq-q3">
+              <p class="ab-faq__a">Local execution ensures zero network dependency for core logic, instant response times, and complete ownership of your contextual data.</p>
+            </div>
+          </div>
+
+          <div class="ab-faq__item">
+            <button class="ab-faq__q" type="button" aria-expanded="false" aria-controls="faq-p4" id="faq-q4">
+              <span class="ab-faq__t">Can developers extend Arble?</span>
+              <span class="ab-faq__m" aria-hidden="true"></span>
+            </button>
+            <div class="ab-faq__wrap" id="faq-p4" role="region" aria-labelledby="faq-q4">
+              <p class="ab-faq__a">Yes. You can build typed tools via our Tool SDK, connect custom MCP servers, or automate execution using the CLI and API.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. CTA -->
+    <section class="ab-final-cta" id="get-started">
+      <div class="shell">
+        <div class="ab-final-cta__inner rv">
+          <p class="eyebrow ab-final-cta__label">The future of software</p>
+          <h2 class="ab-final-cta__headline">The next interface won't be menus.<br>It will be intent.</h2>
+          <p class="lede ab-final-cta__sub">Bring your own models. Keep your own data. Start in four minutes.</p>
+          <div class="ab-final-cta__btns">
+            <a class="btn btn--primary" href="index.html#cta">Download Arble</a>
+            <a class="btn btn--ghost" href="docs/">Documentation</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="foot">
+    <div class="shell">
+      <div class="foot__top">
+        <div class="foot__brand">
+          <a class="brand brand--foot" href="index.html">
+            <span class="brand__mark" aria-hidden="true">
+              <img src="assets/img/brand/logo-mark.png" width="288" height="271" alt="" />
+            </span>
+            <span class="brand__word">Arble</span>
+          </a>
+          <p class="body foot__tag">The AI operating system that runs where your data already lives.</p>
+          <div class="foot__social">
+            <a class="foot__ic" href="https://github.com/Arble-org/arble-mobile-1.0" aria-label="Arble on GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.5 2 2 6.6 2 12.2c0 4.5 2.9 8.3 6.8 9.7.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.4-3.4-1.4-.5-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.6 2.4 1.1 3 .9.1-.7.4-1.1.6-1.4-2.2-.3-4.6-1.2-4.6-5.1 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.7 0 0 .8-.3 2.7 1a9 9 0 015 0c1.9-1.3 2.7-1 2.7-1 .5 1.4.2 2.4.1 2.7.6.7 1 1.6 1 2.7 0 3.9-2.3 4.8-4.6 5.1.4.3.7.9.7 1.9v2.8c0 .3.2.6.7.5 4-1.4 6.8-5.2 6.8-9.7C22 6.6 17.5 2 12 2z"/></svg></a>
+          </div>
+        </div>
+        <div class="foot__cols">
+          <div class="foot__col">
+            <p class="foot__h">Product</p>
+            <a class="foot__l" href="index.html#operations">Features</a>
+            <a class="foot__l" href="index.html#trust">Safety</a>
+            <a class="foot__l" href="index.html#connect">Integrations</a>
+            <a class="foot__l" href="index.html#screens">Screens</a>
+            <a class="foot__l" href="index.html#cta">Download</a>
+          </div>
+          <div class="foot__col">
+            <p class="foot__h">Documentation</p>
+            <a class="foot__l" href="docs/getting-started/install/">Install</a>
+            <a class="foot__l" href="docs/agent/memory/">Memory</a>
+            <a class="foot__l" href="docs/agent/permissions/">Permissions</a>
+            <a class="foot__l" href="docs/developers/tool-sdk/">Tool SDK</a>
+            <a class="foot__l" href="docs/developers/cli/">CLI</a>
+            <a class="foot__l" href="docs/developers/api-reference/">API Reference</a>
+            <a class="foot__l" href="docs/developers/mcp-servers/">MCP Servers</a>
+            <a class="foot__l" href="docs/developers/self-hosting/">Self-hosting</a>
+          </div>
+          <div class="foot__col">
+            <p class="foot__h">Resources</p>
+            <a class="foot__l" href="docs/">Documentation</a>
+            <a class="foot__l" href="playbook.html">Arble Playbook</a>
+            <a class="foot__l" href="changelog.html">Changelog</a>
+            <a class="foot__l" href="blog.html">Blog</a>
+            <a class="foot__l" href="docs/reference/release-notes/">Release Notes</a>
+          </div>
+          <div class="foot__col">
+            <p class="foot__h">Company</p>
+            <a class="foot__l" href="about.html">About</a>
+            <a class="foot__l" href="contact.html">Contact</a>
+            <a class="foot__l" href="playbook.html">Manifesto</a>
+          </div>
+          <div class="foot__col">
+            <p class="foot__h">Legal</p>
+            <a class="foot__l" href="legal/privacy/">Privacy</a>
+            <a class="foot__l" href="legal/terms/">Terms</a>
+            <a class="foot__l" href="legal/security/">Security</a>
+            <a class="foot__l" href="legal/trust/">Trust Center</a>
+            <a class="foot__l" href="legal/cookies/">Cookies</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="foot__ghost" aria-hidden="true">Built for intelligence</div>
+    <div class="shell">
+      <div class="foot__bar">
+        <span class="foot__fine">© 2026 Arble. Built to run on your hardware.</span>
+        <span class="foot__fine">Made for people who read the permissions.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/site.js?v=12" defer></script>
+  <script src="assets/js/about.js?v=2" defer></script>
+</body>
+
+</html>
