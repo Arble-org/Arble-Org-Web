@@ -27,9 +27,25 @@ UPDATED = "30 July 2026"
 TBD = '<span class="lg__tbd">[Organization-specific information required]</span>'
 
 
+FIG_MAP = {
+    "Local vs Cloud Processing": ("../../assets/img/about/privacy-1.webp", "Local vs Cloud Processing"),
+    "Data Lifecycle": ("../../assets/img/about/privacy-2.webp", "Data Lifecycle"),
+    "Zero Trust Security Model": ("../../assets/img/about/security-1.webp", "Zero Trust Security Model"),
+    "Security Architecture": ("../../assets/img/about/security-2.webp", "Security Architecture"),
+    "Permission Approval Flow": ("../../assets/img/about/security-3.webp", "Permission Approval Flow"),
+    "Incident Response Timeline": ("../../assets/img/about/security-4.webp", "Incident Response Timeline"),
+    "Cookie Categories": ("../../assets/img/about/cookies-1.webp", "Cookie Categories"),
+    "Trust Principles & Architecture": ("../../assets/img/about/trust-1.webp", "Trust Principles & Architecture"),
+    "Terms of Service Overview": ("../../assets/img/about/terms-1.webp", "Terms of Service Overview"),
+}
+
+
 def fig(label):
-    """Figure placeholder. Rendered, not described in prose, so an unfilled slot
-    is visible on the page rather than buried in the source."""
+    if label in FIG_MAP:
+        src, alt = FIG_MAP[label]
+        return (f'<figure class="docs__shot"><img src="{src}" width="1600" height="700" loading="lazy" '
+                f'alt="{alt}" style="width:100%;height:auto;border-radius:12px;display:block;" />'
+                f'<figcaption class="docs__cap">{label}</figcaption></figure>')
     return (f'<figure class="docs__shot"><div class="ph16" role="img" '
             f'aria-label="Figure placeholder: {label}"></div>'
             f'<figcaption class="docs__cap">[Figure Placeholder &#8212; {label}]'
@@ -381,6 +397,8 @@ exist because that capability can be misused.</p>
   <li><strong>Review.</strong> Check output before acting on it where the consequences
     matter.</li>
 </ul>
+
+{fig("Terms of Service Overview")}
 
 <h2 id="ai-content">AI-generated content</h2>
 
@@ -747,6 +765,8 @@ the technical detail behind each answer.</p>
   <li><strong>Stated limits.</strong> Gaps are documented, in
     <a href="../security/#threat-model">the threat model</a> and here.</li>
 </ul>
+
+{fig("Trust Principles & Architecture")}
 
 <h2 id="infrastructure">Infrastructure</h2>
 

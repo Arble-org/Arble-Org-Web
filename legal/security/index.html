@@ -141,7 +141,7 @@ implemented yet, it says so.</p>
 
 <div class="docs__tablewrap"><table class="docs__table"><thead><tr><th scope="col">Threat</th><th scope="col">Position</th></tr></thead><tbody><tr><th scope="row">Network attacker on a shared network</th><td>In scope. Transport is encrypted; relays carry ciphertext</td></tr><tr><th scope="row">Malicious or compromised MCP server</th><td>In scope. Per-tool permissions, explicit consent, revocable</td></tr><tr><th scope="row">Stolen unlocked device</th><td>Partially. Credentials sit behind the OS keystore; app-level lock is <span class="lg__tbd">[Organization-specific information required]</span></td></tr><tr><th scope="row">Compromised AI provider</th><td>In scope for blast radius: providers see conversation content by design, never your stored credentials</td></tr><tr><th scope="row">Malicious tool the user installed deliberately</th><td>Partially. Tools declare capability and are gated, but a tool you approve runs</td></tr><tr><th scope="row">Physical forensic attack on a seized device</th><td>Out of scope. Full-disk encryption is the platform's job</td></tr><tr><th scope="row">Nation-state targeting of an individual</th><td>Out of scope. We do not claim this</td></tr></tbody></table></div>
 
-<figure class="docs__shot"><div class="ph16" role="img" aria-label="Figure placeholder: Zero Trust Security Model"></div><figcaption class="docs__cap">[Figure Placeholder &#8212; Zero Trust Security Model]</figcaption></figure>
+<figure class="docs__shot"><img src="../../assets/img/about/security-1.webp" width="1600" height="700" loading="lazy" alt="Zero Trust Security Model" style="width:100%;height:auto;border-radius:12px;display:block;" /><figcaption class="docs__cap">Zero Trust Security Model</figcaption></figure>
 
 <h2 id="architecture">Security architecture</h2>
 
@@ -149,7 +149,7 @@ implemented yet, it says so.</p>
 
 <div class="docs__tablewrap"><table class="docs__table"><thead><tr><th scope="col">Boundary</th><th scope="col">Crossing it means</th><th scope="col">Control</th></tr></thead><tbody><tr><th scope="row">Device &#8594; AI provider</th><td>Conversation content leaves</td><td>Provider chosen by you, key supplied by you</td></tr><tr><th scope="row">Device &#8594; connected service</th><td>Scoped data leaves</td><td>OAuth scopes, revocable per service</td></tr><tr><th scope="row">Device &#8594; MCP server</th><td>Tool arguments leave</td><td>Per-tool grants, consent before first call</td></tr><tr><th scope="row">Device &#8592;&#8594; paired device</th><td>Commands and files move</td><td>Key exchanged at pairing; relay sees ciphertext</td></tr></tbody></table></div>
 
-<figure class="docs__shot"><div class="ph16" role="img" aria-label="Figure placeholder: Security Architecture"></div><figcaption class="docs__cap">[Figure Placeholder &#8212; Security Architecture]</figcaption></figure>
+<figure class="docs__shot"><img src="../../assets/img/about/security-2.webp" width="1600" height="700" loading="lazy" alt="Security Architecture" style="width:100%;height:auto;border-radius:12px;display:block;" /><figcaption class="docs__cap">Security Architecture</figcaption></figure>
 
 <h2 id="encryption">Encryption</h2>
 
@@ -171,7 +171,7 @@ is enforced per tool call rather than per session.</p>
 
 <div class="docs__tablewrap"><table class="docs__table"><thead><tr><th scope="col">Mode</th><th scope="col">Behaviour</th><th scope="col">Use when</th></tr></thead><tbody><tr><th scope="row">Ask permissions</th><td>Prompts before each tool that changes anything</td><td>Default. Anything you have not seen run before</td></tr><tr><th scope="row">Accept edits</th><td>Auto-allows safe writes; still asks for destructive ones</td><td>Routine work in a directory you trust</td></tr><tr><th scope="row">Plan mode</th><td>Read-only. The agent may look, not act</td><td>Investigating without risk</td></tr><tr><th scope="row">Auto mode</th><td>A safety classifier vets each call</td><td>Long unattended runs you have scoped</td></tr><tr><th scope="row">Bypass permissions</th><td>Allows everything except blocked rules</td><td>Never, unless you fully control the blast radius</td></tr></tbody></table></div>
 
-<figure class="docs__shot"><div class="ph16" role="img" aria-label="Figure placeholder: Permission Approval Flow"></div><figcaption class="docs__cap">[Figure Placeholder &#8212; Permission Approval Flow]</figcaption></figure>
+<figure class="docs__shot"><img src="../../assets/img/about/security-3.webp" width="1600" height="700" loading="lazy" alt="Permission Approval Flow" style="width:100%;height:auto;border-radius:12px;display:block;" /><figcaption class="docs__cap">Permission Approval Flow</figcaption></figure>
 
 <div class="docs__note"><p>Modes are per session with a workspace default. Raising a mode does not retroactively approve calls already refused.</p></div>
 
@@ -267,7 +267,7 @@ otherwise.</p>
 
 <h2 id="incident">Incident response</h2>
 
-<figure class="docs__shot"><div class="ph16" role="img" aria-label="Figure placeholder: Incident Response Timeline"></div><figcaption class="docs__cap">[Figure Placeholder &#8212; Incident Response Timeline]</figcaption></figure>
+<figure class="docs__shot"><img src="../../assets/img/about/security-4.webp" width="1600" height="700" loading="lazy" alt="Incident Response Timeline" style="width:100%;height:auto;border-radius:12px;display:block;" /><figcaption class="docs__cap">Incident Response Timeline</figcaption></figure>
 
 <p>Detect, contain, eradicate, recover, review. Notification timelines to affected users
 and regulators: <span class="lg__tbd">[Organization-specific information required]</span>. Post-incident reviews are published where the lesson is
