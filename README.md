@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/img/brand/logo-mark.png" alt="Arble" width="200">
+  <img src="assets/img/brand/logo-mark.png" alt="Arble" width="130">
 </p>
 
 <h3 align="center">The website, documentation and Playbook for Arble.</h3>
