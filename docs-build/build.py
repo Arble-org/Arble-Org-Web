@@ -32,7 +32,7 @@ CSS_V = "87"
 # Absolute origin, used only for sitemap.xml. Every link inside the site stays
 # relative, so this is the one place a domain is hard-coded — change it here and
 # in robots.txt if the site moves.
-BASE_URL = "https://arble.ai"
+BASE_URL = "https://arble.org"
 
 # ── helpers ───────────────────────────────────────────────────────────────────
 

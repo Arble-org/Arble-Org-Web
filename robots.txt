@@ -1,5 +1,5 @@
-# Arble — https://arble.ai
+# Arble — https://arble.org
 User-agent: *
 Allow: /
 
-Sitemap: https://arble.ai/sitemap.xml
+Sitemap: https://arble.org/sitemap.xml

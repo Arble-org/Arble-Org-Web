@@ -12,7 +12,7 @@ import os
 import re
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-BASE = "https://arble.ai"
+BASE = "https://arble.org"
 
 
 def strip(s):
