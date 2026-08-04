@@ -966,10 +966,45 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
   transform-origin: 0 50%; transform: scaleX(0);
 }
 
+/* ═══ DRAWER TOGGLE + MOBILE TOC DISCLOSURE ══════════════════════════════
+   These two live ABOVE the responsive block on purpose. Both are hidden on
+   desktop and switched on inside a media query, and a media query carries no
+   extra specificity — so if the plain rule came afterwards it would win and the
+   control would stay invisible at exactly the widths that need it. That is what
+   used to happen to .dnavbtn: the drawer, its scrim and all of docs-ui.js were
+   wired correctly, but the button that opens them computed display:none at
+   375px, leaving every docs page and the playbook with no navigation at all
+   below 900px. Keep new toggles here, not after the queries. */
+.dnavbtn {
+  display: none;
+  width: 32px; height: 32px; place-items: center;
+  border: 0; border-radius: 9999px; background: none; color: var(--ink-2); cursor: pointer;
+}
+.dnavbtn:hover { background: var(--surface-2); }
+.dnavbtn svg { width: 18px; height: 18px; }
+
+/* Injected by docs-ui.js below 900px only; the desktop rail keeps its plain
+   .docs__tocH heading and is never collapsible. */
+.dtocbtn {
+  display: none;
+  inline-size: 100%; align-items: center; justify-content: space-between; gap: var(--s3);
+  min-block-size: 44px; padding: 0; border: 0; background: none; cursor: pointer;
+  font: inherit; font-size: 12px; font-weight: var(--w-semi); letter-spacing: .055em;
+  text-transform: uppercase; color: var(--ink-3); text-align: start;
+}
+.dtocbtn svg {
+  width: 16px; height: 16px; flex: none;
+  transition: transform 200ms var(--ease);
+}
+.dtocbtn[aria-expanded="true"] svg { transform: rotate(180deg); }
+
 /* ═══ RESPONSIVE ═════════════════════════════════════════════════════════ */
 
 @media (max-width: 1180px) {
-  .dbody { grid-template-columns: minmax(0, 1fr); }
+  /* One column, so the 76px that separated the article from the rail sideways
+     is now vertical dead space between the "On this page" row and the H1.
+     row-gap only — the column gap no longer has two tracks to sit between. */
+  .dbody { grid-template-columns: minmax(0, 1fr); row-gap: var(--s6); }
   .docs__toc {
     position: static; max-height: none; order: -1; padding-inline-end: 0;
     border-block-end: 1px solid var(--line);
@@ -994,9 +1029,29 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
     transition: transform 200ms cubic-bezier(.32,.72,0,1);
   }
   .dside.is-open { transform: none; }
-  .dnavbtn { display: inline-grid; }
+  /* 44px hit area for touch. The negative inline-start margin keeps the glyph
+     optically on the same line as the breadcrumb, so the header does not shift
+     when the button appears. */
+  .dnavbtn {
+    display: inline-grid;
+    width: 44px; height: 44px; margin-inline-start: -6px;
+    /* .dtop is a flex row, and a long breadcrumb was shrinking the button off
+       its 44px to 38px. */
+    flex: none;
+  }
   .dbody { padding-inline: var(--page-pad); }
   .dtop { padding-inline: var(--page-pad); }
+
+  /* The mark is 20px, which is the whole link's hit area in the drawer header. */
+  .dside__brand { min-height: 44px; }
+
+  /* The rail becomes a disclosure. Left expanded it pushed the article's own H1
+     a full screen down the page on every docs URL. */
+  .docs__tocH { display: none; }
+  .dtocbtn { display: flex; }
+  .docs__toc.is-collapsed { border-block-end: 0; padding-block-end: 0; margin-block-end: var(--s5); }
+  .docs__toc.is-collapsed .docs__toclist { display: none; }
+  .docs__toclist { margin-block-start: var(--s2); }
 }
 
 @media (max-width: 700px) {
@@ -1008,16 +1063,11 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
   .pbp__nav { grid-template-columns: 1fr; }
   .pbp__navcard--next { grid-column: 1; text-align: start; }
   .docs__act span { display: none; }
-  .docs__act { padding-inline: 9px; }
+  /* Losing the label shrank this to 36x32. Both axes back over 44 for touch —
+     after the base rule at the top of the file, so the 32px height is overridden
+     rather than reinstated. */
+  .docs__act { padding-inline: 0; width: 44px; height: 44px; justify-content: center; }
 }
-
-.dnavbtn {
-  display: none;
-  width: 32px; height: 32px; place-items: center;
-  border: 0; border-radius: 9999px; background: none; color: var(--ink-2); cursor: pointer;
-}
-.dnavbtn:hover { background: var(--surface-2); }
-.dnavbtn svg { width: 18px; height: 18px; }
 
 .dscrim {
   position: fixed; inset: 0; z-index: 45;
@@ -1178,4 +1228,13 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
   background: color-mix(in srgb, var(--warn) 12%, transparent);
   color: var(--warn);
   white-space: nowrap;
+}
+
+/* nowrap keeps the token in one piece on a normal column, but the longest of
+   these is 44 characters and at 320px it ran 46px past the viewport. Below the
+   width where it can no longer fit on one line, let it wrap. */
+@media (max-width: 620px) {
+  .lg__tbd {
+    white-space: normal;
+  }
 }

@@ -22,7 +22,7 @@ import os
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "legal")
-CSS_V = "86"
+CSS_V = "87"
 UPDATED = "30 July 2026"
 TBD = '<span class="lg__tbd">[Organization-specific information required]</span>'
 
@@ -1203,7 +1203,7 @@ def page(i):
   </div>
 
   <script src="../../assets/js/docs.js?v=7" defer></script>
-  <script src="../../assets/js/docs-ui.js?v=3" defer></script>
+  <script src="../../assets/js/docs-ui.js?v=4" defer></script>
   <script>
     /* Build the on-this-page rail from the headings actually present, so the
        TOC cannot drift from the content the way a hand-written list does. */

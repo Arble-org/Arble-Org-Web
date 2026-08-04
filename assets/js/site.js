@@ -16,6 +16,72 @@
   window.addEventListener("resize", runScrubbers, { passive: true });
   function clamp01(v) { return v < 0 ? 0 : v > 1 ? 1 : v; }
 
+  /* ── mobile menu ──
+     Only ever runs below 940px, which is where .nav__links is hidden. The
+     desktop bar has no burger to click and no drawer to open, so none of this
+     can reach it; the resize guard closes and resets the menu if a window
+     crosses back over the breakpoint while it is open. */
+  var burger = document.getElementById("navBurger");
+  var drawer = document.getElementById("navMenu");
+  if (burger && drawer) {
+    var navOpen = false;
+
+    /* The burger is part of the ring, not outside it. This is a disclosure, not
+       a modal dialog: the panel is owned by the button and follows it in the
+       DOM, so focus stays put on open and Tab walks into the panel by itself —
+       which is also the only behaviour that survives a pointer click, since the
+       browser focuses the button as the click's own default action and would
+       take focus straight back off any link we moved it to. Including the
+       burger here is what stops Shift+Tab escaping the open menu. */
+    function focusables() {
+      return [burger].concat(
+        [].slice.call(drawer.querySelectorAll("a[href], button:not([disabled])"))
+      );
+    }
+
+    function setNav(open) {
+      navOpen = open;
+      drawer.classList.toggle("is-open", open);
+      burger.setAttribute("aria-expanded", open ? "true" : "false");
+      burger.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+      /* Class rather than an inline style: the lock lives in the same media
+         query as the drawer, so it cannot strand the desktop page at
+         overflow:hidden, and it restores body's own overflow-x on removal. */
+      document.body.classList.toggle("nav-open", open);
+      if (!open) burger.focus();
+    }
+
+    burger.addEventListener("click", function () { setNav(!navOpen); });
+
+    /* A link either scrolls the page or leaves it — either way the panel goes. */
+    drawer.addEventListener("click", function (e) {
+      if (e.target.closest("a")) setNav(false);
+    });
+
+    document.addEventListener("click", function (e) {
+      if (!navOpen) return;
+      if (drawer.contains(e.target) || burger.contains(e.target)) return;
+      setNav(false);
+    });
+
+    document.addEventListener("keydown", function (e) {
+      if (!navOpen) return;
+      if (e.key === "Escape") { setNav(false); return; }
+      if (e.key !== "Tab") return;
+      /* Keep Tab inside the panel while it covers the page. */
+      var f = focusables();
+      if (!f.length) return;
+      var first = f[0], last = f[f.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    });
+
+    var wide = window.matchMedia("(min-width: 941px)");
+    function onWide(e) { if (e.matches && navOpen) setNav(false); }
+    if (wide.addEventListener) wide.addEventListener("change", onWide);
+    else wide.addListener(onWide);
+  }
+
   /* ── hero background concentric contour rings ── */
   var bgSvg = document.querySelector(".hero-bg svg g");
   if (bgSvg && bgSvg.children.length === 0) {

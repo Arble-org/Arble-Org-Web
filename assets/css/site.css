@@ -409,9 +409,163 @@ body::after {
   flex-shrink: 0;
 }
 
+/* ── mobile menu ──
+   Both of these are display:none until the media query below turns them on, so
+   nothing here reaches the desktop bar. .nav__links keeps its own nodes and its
+   own rules; the drawer is a parallel set of links, not a re-parented one. */
+.nav__burger {
+  display: none;
+}
+
+.nav__drawer {
+  display: none;
+}
+
 @media (max-width:940px) {
   .nav__links {
     display: none;
+  }
+
+  .nav__burger {
+    display: grid;
+    place-items: center;
+    /* 44px of touch target around a 16px glyph */
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 0;
+    border-radius: 999px;
+    background: none;
+    color: var(--ink);
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .nav__burger:hover {
+    background: var(--surface-2);
+  }
+
+  .nav__burger-box {
+    display: grid;
+    gap: 5px;
+    width: 17px;
+  }
+
+  .nav__burger-line {
+    display: block;
+    height: 1.5px;
+    border-radius: 2px;
+    background: currentColor;
+    transition: transform .3s var(--ease), opacity .2s var(--ease);
+  }
+
+  /* Into an X. transform-only, so it composites and never reflows the bar. */
+  .nav__burger[aria-expanded="true"] .nav__burger-line:first-child {
+    transform: translateY(3.25px) rotate(45deg);
+  }
+
+  .nav__burger[aria-expanded="true"] .nav__burger-line:last-child {
+    transform: translateY(-3.25px) rotate(-45deg);
+  }
+
+  /* Hung off .nav, which is the fixed positioned ancestor, so the panel tracks
+     the pill and cannot be clipped by any section below it. */
+  .nav__drawer {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    position: absolute;
+    inset-block-start: calc(100% + 10px);
+    inset-inline: 20px;
+    max-height: calc(100dvh - 140px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding: 10px;
+    border-radius: 26px;
+    background: var(--paper);
+    box-shadow: 0 3px 8px rgba(10, 10, 11, .05), 0 18px 44px -10px rgba(10, 10, 11, .16);
+    /* Closed state. visibility (not just opacity) keeps the links out of the
+       tab order and out of the accessibility tree while the menu is shut. */
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-8px);
+    pointer-events: none;
+    transition: opacity .26s var(--ease), transform .26s var(--ease), visibility .26s;
+  }
+
+  .nav__drawer.is-open {
+    visibility: visible;
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+  }
+
+  .nav__dlink {
+    display: flex;
+    align-items: center;
+    min-height: 48px;
+    padding-inline: 16px;
+    border-radius: 18px;
+    font-family: var(--display-font);
+    font-size: 17px;
+    font-weight: 400;
+    letter-spacing: -.01em;
+    color: var(--ink);
+    text-decoration: none;
+  }
+
+  .nav__dlink:hover {
+    background: var(--surface-2);
+  }
+
+  .nav__dcta {
+    height: 52px;
+    margin-block-start: 8px;
+  }
+
+  /* Scoped to the breakpoint so the desktop page can never be stranded at
+     overflow:hidden, and so removing the class restores body's own
+     overflow-x rather than an inline override. */
+  body.nav-open {
+    overflow: hidden;
+  }
+}
+
+/* At the narrow end the pill runs out of room: brand + burger + CTA overflowed
+   its 280px of usable width at 320px. Tightening the gap and the CTA's padding
+   seats all three rather than dropping the CTA, which is the one control on the
+   bar that has to stay reachable. */
+@media (max-width:560px) {
+  .nav {
+    padding-inline: 12px;
+  }
+
+  .nav__bar {
+    gap: 12px;
+    padding: 0 6px 0 12px;
+  }
+
+  .nav__right .btn--sm {
+    height: 42px;
+    padding-inline: 15px;
+    font-size: 13px;
+  }
+
+  .nav__drawer {
+    inset-inline: 12px;
+  }
+}
+
+/* The page's reduced-motion block zeroes animation-duration but not transitions
+   — every animated component opts out by name, so these two do the same. Placed
+   after the ≤940px block above, because a media query adds no specificity and
+   the later rule is the one that wins. The menu still opens and closes; it just
+   arrives immediately. */
+@media (prefers-reduced-motion:reduce) {
+
+  .nav__drawer,
+  .nav__burger-line {
+    transition: none;
   }
 }
 
@@ -769,6 +923,15 @@ body::after {
 
   .device {
     margin-block-start: -46px;
+  }
+
+  /* The pull-up above is the HERO's overlap with the marquee. `.device--inline`
+     zeroes it, but that rule sits earlier in the file and a media query adds no
+     specificity, so this one was winning and dragging every inline phone 46px
+     up out of its own box — which is what sliced the top off the carousel's
+     phone and off the download fan. Re-asserted here, after it. */
+  .device--inline {
+    margin-block-start: 0;
   }
 }
 
@@ -2142,10 +2305,28 @@ body::after {
 }
 
 @media (max-width:620px) {
+  /* minmax(0, 1fr), not max-content: max-content sized both tracks to the
+     longest label, so the pair huddled in ~200px of a 327px row with the rest
+     of the line empty. Equal fractions let the two columns fill the width. */
   .foot__cols {
-    grid-template-columns: repeat(2, max-content);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 28px clamp(16px, 5vw, 32px);
+  }
+
+  /* Touch targets. The links were 23px rows on a 12px gap — 35px of reachable
+     height each. Moving the spacing inside the anchor buys the full 44px
+     without opening the column up, so the footer grows only ~9px a row. */
+  .foot__col {
+    gap: 0;
+  }
+
+  .foot__l {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
   }
 }
+
 
 .foot__col {
   display: flex;
@@ -2198,6 +2379,17 @@ body::after {
 .foot__ic svg {
   width: 14px;
   height: 14px;
+}
+
+/* Below the base rule, not up with the other ≤620px footer overrides: those sit
+   ahead of `.foot__ic` in the file, and a media query carries no extra
+   specificity, so the plain 34px would have won and the target would have
+   stayed under 44. */
+@media (max-width:620px) {
+  .foot__ic {
+    width: 44px;
+    height: 44px;
+  }
 }
 
 .foot__bar {
@@ -2801,12 +2993,23 @@ a.pbp__ct:hover {
   z-index: 2;
 }
 
-/* One phone only below the breakpoint: at phone width the outer two are almost
-   entirely off screen, so they cost bandwidth and shadow area for nothing. */
+/* The outer two used to be display:none here, on the grounds that at phone width
+   they fell almost entirely off screen. They did — but only because --fan-w kept
+   its desktop floor of 196px, which puts the flanking centres 157px either side
+   of a 187px axis. Narrowing the phone and pulling the spread in from 80% to 58%
+   seats all three inside a 375px viewport with the same overlap the desktop fan
+   has, so the group still reads as one fan rather than a lone handset. */
 @media (max-width:700px) {
-  .dl__ph--l,
+  .dl__fan {
+    --fan-w: clamp(132px, 39vw, 200px);
+  }
+
+  .dl__ph--l {
+    transform: translate3d(-58%, calc(var(--fan-w) * .27), 0);
+  }
+
   .dl__ph--r {
-    display: none;
+    transform: translate3d(58%, calc(var(--fan-w) * .27), 0);
   }
 }
 
@@ -3108,6 +3311,22 @@ a.pbp__ct:hover {
   outline-offset: 3px;
 }
 
+/* On a wide screen the flanking phones are the point — the row reads as
+   continuing past the viewport. At phone width they land 254px off centre and
+   all that survives the clip is a 9px grey sliver hard against each edge, which
+   reads as a rendering fault rather than a fan. Below 700px the stage carries
+   the active phone alone. Keyed off the aria-hidden the carousel already writes,
+   and !important because the opacity it pairs with is an inline style. */
+@media (max-width:700px) {
+  .pslide[aria-hidden="true"] {
+    opacity: 0 !important;
+  }
+
+  .pcar__nav {
+    margin-block-start: 20px;
+  }
+}
+
 /* No sliding for readers who asked for less motion: the stage collapses to the
    active phone alone, which is the whole content of the slide anyway. */
 @media (prefers-reduced-motion: reduce) {
@@ -3237,6 +3456,20 @@ a.pbp__ct:hover {
    the icon and caption it has to carry. */
 .band--wide {
   aspect-ratio: 16 / 9;
+}
+
+/* The comment above assumed min-height would simply win once 16/9 got shorter
+   than 320px. It does not: with an auto width, the ratio resolves off the used
+   height, so the box computed 320 x 16/9 = 569px WIDE and burst out of the
+   column on every viewport under ~617px. body's overflow-x:hidden swallowed the
+   scrollbar, so what showed instead was a clipped caption and a nav bar
+   centring itself against a 593px page — the Get Started button sat off-screen.
+   Dropping the ratio below that width hands the box back to min-height, which
+   is what the comment above describes. */
+@media (max-width:620px) {
+  .band--wide {
+    aspect-ratio: auto;
+  }
 }
 
 /* The mountains are grayscaled to match the hero's treatment. This frame is a
@@ -3678,6 +3911,14 @@ a.pbp__ct:hover {
 .seg__b:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
+}
+
+/* 39px tall at the clamp's floor. The travelling pill is height:calc(100% - 12px)
+   off the track, so it follows the taller button on its own. */
+@media (max-width:620px) {
+  .seg__b {
+    padding-block: 13px;
+  }
 }
 
 /* One cell, three panes: the block takes the height of the tallest, so

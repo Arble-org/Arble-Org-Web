@@ -42,6 +42,64 @@
     });
   }
 
+  /* ── "On this page" disclosure, narrow viewports only ──
+     Below 1180px the CSS moves the rail above the article. On a phone that put
+     a full screen of links in front of the H1, so here it becomes a collapsed
+     disclosure. Everything is behind matchMedia, and the injected button is
+     removed again on the way back up, so the desktop rail keeps exactly the
+     markup and the plain .docs__tocH heading it has always had. */
+  var toc = document.querySelector(".docs__toc");
+  var tocList = toc && toc.querySelector(".docs__toclist");
+  if (toc && tocList) {
+    var narrow = matchMedia("(max-width: 900px)");
+    var tocBtn = null;
+
+    if (!tocList.id) tocList.id = "docsTocList";
+
+    function collapse(on) {
+      toc.classList.toggle("is-collapsed", on);
+      if (tocBtn) tocBtn.setAttribute("aria-expanded", on ? "false" : "true");
+    }
+
+    function buildBtn() {
+      var b = document.createElement("button");
+      b.type = "button";
+      b.className = "dtocbtn";
+      b.setAttribute("aria-expanded", "false");
+      b.setAttribute("aria-controls", tocList.id);
+      b.innerHTML = '<span>On this page</span>' +
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" ' +
+        'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>';
+      b.addEventListener("click", function () {
+        collapse(!toc.classList.contains("is-collapsed"));
+      });
+      return b;
+    }
+
+    function syncToc() {
+      if (narrow.matches) {
+        if (!tocBtn) {
+          tocBtn = buildBtn();
+          tocList.parentNode.insertBefore(tocBtn, tocList);
+        }
+        collapse(true);
+      } else if (tocBtn) {
+        tocBtn.remove();
+        tocBtn = null;
+        toc.classList.remove("is-collapsed");
+      }
+    }
+
+    /* Following a link should hand the screen back to the prose. */
+    tocList.addEventListener("click", function (e) {
+      if (narrow.matches && e.target.closest("a")) collapse(true);
+    });
+
+    if (narrow.addEventListener) narrow.addEventListener("change", syncToc);
+    else narrow.addListener(syncToc);
+    syncToc();
+  }
+
   /* ── reading progress ──
      A 2px bar driven by scroll position over the article, not the document, so
      it reaches 100% when the prose ends rather than when the footer does. */

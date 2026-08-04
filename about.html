@@ -14,7 +14,7 @@
   <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Stack+Sans+Headline:wght@200..700&display=swap" />
   <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f%5B%5D=switzer@400,500,600,700&display=swap" />
-  <link rel="stylesheet" href="assets/css/site.css?v=82" />
+  <link rel="stylesheet" href="assets/css/site.css?v=86" />
   <link rel="stylesheet" href="assets/css/about.css?v=2" />
 </head>
 
@@ -39,7 +39,28 @@
       </div>
       <div class="nav__right">
         <a class="btn btn--primary btn--sm" href="index.html#cta">Get Started</a>
+        <!-- Below 940px .nav__links is hidden and this takes over. It is
+             display:none at every width above that, so the desktop bar is the
+             same three items it has always been. -->
+        <button class="nav__burger" type="button" id="navBurger" aria-expanded="false"
+          aria-controls="navMenu" aria-label="Open menu">
+          <span class="nav__burger-box" aria-hidden="true">
+            <span class="nav__burger-line"></span>
+            <span class="nav__burger-line"></span>
+          </span>
+        </button>
       </div>
+    </div>
+
+    <!-- Same destinations as .nav__links. Duplicated as markup rather than
+         moved, because the desktop bar must keep its own nodes untouched. -->
+    <div class="nav__drawer" id="navMenu">
+      <a class="nav__dlink" href="index.html#operations">Features</a>
+      <a class="nav__dlink" href="index.html#trust">Safety</a>
+      <a class="nav__dlink" href="index.html#connect">Integrations</a>
+      <a class="nav__dlink" href="about.html">About</a>
+      <a class="nav__dlink" href="playbook.html">Playbook</a>
+      <a class="btn btn--primary nav__dcta" href="index.html#cta">Get Started</a>
     </div>
   </nav>
 
@@ -450,7 +471,7 @@
     </div>
   </footer>
 
-  <script src="assets/js/site.js?v=12" defer></script>
+  <script src="assets/js/site.js?v=16" defer></script>
   <script src="assets/js/about.js?v=2" defer></script>
 </body>
 

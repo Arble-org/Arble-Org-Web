@@ -27,7 +27,7 @@ from bodies import BODIES  # noqa: E402
 # Repository root: this file lives in docs-build/, so one level up.
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "docs")
-CSS_V = "86"
+CSS_V = "87"
 
 # Absolute origin, used only for sitemap.xml. Every link inside the site stays
 # relative, so this is the one place a domain is hard-coded — change it here and
@@ -342,7 +342,7 @@ def shell(*, title, crumb, h1, body, current, depth, prev, nxt, desc):
   <script src="{p}assets/js/docs.js?v=7" defer></script>
   <script>window.ARBLE_DOCS_ROOT = "{p}docs/";</script>
   <script src="{p}assets/js/docs-search.js?v=2" defer></script>
-  <script src="{p}assets/js/docs-ui.js?v=3" defer></script>
+  <script src="{p}assets/js/docs-ui.js?v=4" defer></script>
 </body>
 
 </html>
