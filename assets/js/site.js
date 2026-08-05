@@ -95,13 +95,24 @@
     }
   }
 
-  /* ── hero feature cards ── */
+  /* ── hero feature cards ──
+     Four, not six. Six answered "what is this?" with six competing answers
+     before the page had given one, which is the thing the positioning line
+     above the CTA now does. These four all argue the same point — the work
+     happens on your device and under your control — so the deck reinforces
+     the headline instead of listing the product.
+
+     Dropped: "Model routing", which is vocabulary a first-time visitor does
+     not have yet, and "61 toolsets", which reads as an arbitrary number this
+     high on the page. Both are made properly further down, where there is room
+     to give them context.
+
+     The track renders two copies against a -50% keyframe, so the loop stays
+     seamless at any count. */
   var MCARDS = [
     { t: "On-device runtime", i: '<path d="M12 3l7.5 3.8v5c0 4.4-3.1 8.2-7.5 9.4-4.4-1.2-7.5-5-7.5-9.4v-5z" stroke-linejoin="round"/><path d="M9.2 12.2l2 2 3.6-4" stroke-linecap="round" stroke-linejoin="round"/>' },
     { t: "Permission gate", i: '<path d="M4 12.5l5 5L20 6.5" stroke-linecap="round" stroke-linejoin="round"/>' },
     { t: "Persistent memory", i: '<path d="M12 3v18M3 8h4M3 16h4M17 8h4M17 16h4" stroke-linecap="round"/><circle cx="12" cy="12" r="3"/>' },
-    { t: "Model routing", i: '<path d="M4 12h7M11 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="19" cy="12" r="1.6"/>' },
-    { t: "61 toolsets", i: '<rect x="3" y="3" width="7" height="7" rx="1.6"/><rect x="14" y="3" width="7" height="7" rx="1.6"/><rect x="3" y="14" width="7" height="7" rx="1.6"/><rect x="14" y="14" width="7" height="7" rx="1.6"/>' },
     { t: "Runs offline", i: '<path d="M13 3l-8 10h6l-1 8 8-10h-6z" stroke-linejoin="round"/>' }
   ];
 

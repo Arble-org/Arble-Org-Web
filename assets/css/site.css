@@ -677,11 +677,25 @@ body::after {
   color: inherit;
 }
 
+/* The hero's measured rhythm was h1 → CTA 32px. This line takes 18 of that and
+   leaves 20 below it, so the CTA drops by ~44px rather than the ~70 a full
+   .lede would have cost. Sized between the display face and body copy: large
+   enough to read as a statement, small enough that it cannot compete with the
+   h1 above it. */
+.hero__pos {
+  margin-block: 18px 0;
+  font-family: var(--display-font);
+  font-size: clamp(17px, 1.5vw, 21px);
+  font-weight: 400;
+  letter-spacing: -.015em;
+  color: var(--ink-2);
+}
+
 .hero__cta {
   display: flex;
   gap: 12px;
   justify-content: center;
-  margin-block-start: 32px;
+  margin-block-start: 20px;
   flex-wrap: wrap;
 }
 
