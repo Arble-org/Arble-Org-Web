@@ -516,10 +516,36 @@
   gap: 16px;
 }
 
+/* The cap lives on the portrait, not on the image inside it: .ab-founder__social
+   is absolutely positioned against this box, so capping the <img> alone would
+   leave the hover overlay spanning the full column while the photo sat narrower
+   than it. Both now share one box. */
 .ab-founder__portrait {
   position: relative;
+  max-width: 280px;
   border-radius: 12px;
   overflow: hidden;
+}
+
+/* 4:5 with no height ceiling. The old 380px max-height fought the ratio — at a
+   340px column it clipped the box to 340x380 (0.895), so cover() quietly shaved
+   the sides. Against the 280px cap the ratio resolves exactly to 280x350 and the
+   files, already cropped to 4:5, are shown whole.
+
+   height:auto is load-bearing, not tidying. The markup carries height="950" for
+   layout stability, and that attribute is a presentational hint that applies
+   when no CSS sets height — which makes both axes definite and has the browser
+   ignore aspect-ratio outright. The old max-height hid this by clamping the
+   950 down; without it the portraits rendered 280x950. */
+.ab-founder__img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: center top;
+  border-radius: 12px;
+  background: var(--surface-2);
 }
 
 .ab-founder__social {
