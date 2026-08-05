@@ -2965,6 +2965,91 @@ a.pbp__ct:hover {
   margin-block-start: clamp(28px, 3.2vw, 42px);
 }
 
+/* ── store badges ──
+   The app is not released, so these are not links. They keep the two marks a
+   visitor scans for while saying plainly that there is nothing to tap yet.
+   Built from the site's own button geometry rather than Apple's and Google's
+   supplied badge artwork: those badges read "Download on the App Store", which
+   would be untrue today, and both vendors' guidelines cover their use for
+   shipping apps. A mark plus our own wording is the honest form. */
+.storebtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  height: 56px;
+  padding-inline: 22px;
+  border-radius: 100px;
+  border: 1px solid var(--line-2);
+  background: transparent;
+  color: var(--ink-3);
+  font-family: var(--display-font);
+  white-space: nowrap;
+  /* No hover lift and no pointer: nothing here responds, and pretending
+     otherwise is what makes a dead control feel broken rather than pending. */
+  cursor: default;
+}
+
+.storebtn__ic {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  flex: none;
+  color: var(--ink-2);
+}
+
+.storebtn__ic svg {
+  width: 100%;
+  height: 100%;
+}
+
+.storebtn__txt {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: -.01em;
+  color: var(--ink);
+  text-align: start;
+}
+
+.storebtn__txt small {
+  font-size: 10.5px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.dl__soon {
+  margin-block-start: 18px;
+  font-size: 14px;
+  color: var(--ink-3);
+}
+
+.dl__soon a {
+  color: var(--ink-2);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.dl__soon a:hover {
+  color: var(--ink);
+}
+
+@media (max-width:520px) {
+  /* Two 56px pills will not sit side by side at this width; stacking them
+     keeps each one a full-width target rather than letting them shrink. */
+  .dl__btns {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .storebtn {
+    justify-content: center;
+  }
+}
+
 /* Deliberately shorter than the phones inside it — the overflow is what crops
    them. Height is a share of --fan-w so the crop lands at the same point on the
    device however the fan is sized. */
