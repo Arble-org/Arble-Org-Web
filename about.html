@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Stack+Sans+Headline:wght@200..700&display=swap" />
   <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f%5B%5D=switzer@400,500,600,700&display=swap" />
   <link rel="stylesheet" href="assets/css/site.css?v=86" />
-  <link rel="stylesheet" href="assets/css/about.css?v=4" />
+  <link rel="stylesheet" href="assets/css/about.css?v=5" />
 </head>
 
 <body>
@@ -32,10 +32,11 @@
       </a>
       <div class="nav__links">
         <a class="nav__link" href="index.html#operations">Features</a>
-        <a class="nav__link" href="index.html#trust">Safety</a>
         <a class="nav__link" href="index.html#connect">Integrations</a>
-        <a class="nav__link nav__link--active" href="about.html">About</a>
+        <a class="nav__link" href="index.html#trust">Safety</a>
         <a class="nav__link" href="playbook.html">Playbook</a>
+        <a class="nav__link nav__link--active" href="about.html">About</a>
+
       </div>
       <div class="nav__right">
         <a class="btn btn--primary btn--sm" href="index.html#cta">Get Started</a>
@@ -56,11 +57,12 @@
          moved, because the desktop bar must keep its own nodes untouched. -->
     <div class="nav__drawer" id="navMenu">
       <a class="nav__dlink" href="index.html#operations">Features</a>
-      <a class="nav__dlink" href="index.html#trust">Safety</a>
       <a class="nav__dlink" href="index.html#connect">Integrations</a>
-      <a class="nav__dlink" href="about.html">About</a>
+      <a class="nav__dlink" href="index.html#trust">Safety</a>
       <a class="nav__dlink" href="playbook.html">Playbook</a>
+      <a class="nav__dlink" href="about.html">About</a>
       <a class="btn btn--primary nav__dcta" href="index.html#cta">Get Started</a>
+
     </div>
   </nav>
 
@@ -110,7 +112,7 @@
                 <div class="ab-stat__d">Built-in toolsets</div>
               </div>
               <div class="ab-stat">
-                <div class="ab-stat__n">1</div>
+                <div class="ab-stat__n">One</div>
                 <div class="ab-stat__d">Unified runtime</div>
               </div>
             </div>
@@ -271,7 +273,7 @@
     <section class="sec--ab" id="team">
       <div class="shell">
         <div class="sechead sechead--center rv">
-          <span class="tagpill tagpill--flat">Leadership</span>
+          <span class="tagpill tagpill--flat">The Team</span>
           <h2 class="head">Built by a focused team.</h2>
         </div>
         <div class="ab-team-duo rv rv--d1">
@@ -301,7 +303,7 @@
             <div class="ab-founder__info">
               <p class="ab-founder__name">Sudharsan S</p>
               <p class="ab-founder__role">AI Engineering</p>
-              <p class="ab-founder__bio">AI engineer focused on building intelligent, production-ready experiences that connect users with powerful automation. Designed and developed Arble's AI capabilities, integrations, connectors, desktop experience, and web platform to make complex workflows feel seamless.</p>
+              <p class="ab-founder__bio">AI engineer focused on building intelligent, production-ready experiences that connect users with powerful automation. Designed and built Arble's AI systems, integrations and connector ecosystem, along with the desktop experience and web platform &#8212; turning complex automation into everyday workflows.</p>
             </div>
           </article>
         </div>
@@ -323,7 +325,7 @@
               <span class="ab-faq__m" aria-hidden="true"></span>
             </button>
             <div class="ab-faq__wrap" id="faq-p0" role="region" aria-labelledby="faq-q0">
-              <p class="ab-faq__a">To unify fragmented tools into an operating system layer that acts on your intent locally without surrendering data privacy.</p>
+              <p class="ab-faq__a">Because context does not travel. Work is scattered across apps that cannot see each other, and the assistant that could join them up does not run where the data lives.</p>
             </div>
           </div>
 
@@ -366,6 +368,47 @@
               <p class="ab-faq__a">Yes. You can build typed tools via our Tool SDK, connect custom MCP servers, or automate execution using the CLI and API.</p>
             </div>
           </div>
+
+          <div class="ab-faq__item">
+            <button class="ab-faq__q" type="button" aria-expanded="false" aria-controls="faq-p5" id="faq-q5">
+              <span class="ab-faq__t">Which models can I use?</span>
+              <span class="ab-faq__m" aria-hidden="true"></span>
+            </button>
+            <div class="ab-faq__wrap" id="faq-p5" role="region" aria-labelledby="faq-q5">
+              <p class="ab-faq__a">Claude, OpenAI, DeepSeek, Kimi, Perplexity and NVIDIA NIM, alongside Ollama for models running on your own hardware. You choose the provider in Settings, and fallback chains mean one provider going down does not take the assistant with it.</p>
+            </div>
+          </div>
+
+          <div class="ab-faq__item">
+            <button class="ab-faq__q" type="button" aria-expanded="false" aria-controls="faq-p6" id="faq-q6">
+              <span class="ab-faq__t">Can I use my own API keys?</span>
+              <span class="ab-faq__m" aria-hidden="true"></span>
+            </button>
+            <div class="ab-faq__wrap" id="faq-p6" role="region" aria-labelledby="faq-q6">
+              <p class="ab-faq__a">Yes. Arble is bring-your-own-key throughout. Secrets resolve from your OS keychain or a secret manager and are referenced by name, so they are never written into a config file you might commit.</p>
+            </div>
+          </div>
+
+          <div class="ab-faq__item">
+            <button class="ab-faq__q" type="button" aria-expanded="false" aria-controls="faq-p7" id="faq-q7">
+              <span class="ab-faq__t">Does my data leave my device?</span>
+              <span class="ab-faq__m" aria-hidden="true"></span>
+            </button>
+            <div class="ab-faq__wrap" id="faq-p7" role="region" aria-labelledby="faq-q7">
+              <p class="ab-faq__a">The agent loop, your memory, your files and the permission gate all run on your device. Model inference runs wherever the model does: choose Ollama and nothing leaves your machine; choose a hosted provider and only that turn&#8217;s prompt goes to it. You decide which, per session.</p>
+            </div>
+          </div>
+
+          <div class="ab-faq__item">
+            <button class="ab-faq__q" type="button" aria-expanded="false" aria-controls="faq-p8" id="faq-q8">
+              <span class="ab-faq__t">Which platforms are supported?</span>
+              <span class="ab-faq__m" aria-hidden="true"></span>
+            </button>
+            <div class="ab-faq__wrap" id="faq-p8" role="region" aria-labelledby="faq-q8">
+              <p class="ab-faq__a">Linux 5.15+ and macOS 14+ for the desktop runtime, with Ubuntu 22.04 and 24.04, Debian 12 and RHEL 9 tested directly. Windows runs through WSL2 for development rather than production. The mobile app ships for iOS and Android.</p>
+            </div>
+          </div>
+
 
         </div>
       </div>
