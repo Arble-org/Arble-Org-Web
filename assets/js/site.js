@@ -112,7 +112,13 @@
   var MCARDS = [
     { t: "On-device runtime", i: '<path d="M12 3l7.5 3.8v5c0 4.4-3.1 8.2-7.5 9.4-4.4-1.2-7.5-5-7.5-9.4v-5z" stroke-linejoin="round"/><path d="M9.2 12.2l2 2 3.6-4" stroke-linecap="round" stroke-linejoin="round"/>' },
     { t: "Permission gate", i: '<path d="M4 12.5l5 5L20 6.5" stroke-linecap="round" stroke-linejoin="round"/>' },
-    { t: "Persistent memory", i: '<path d="M12 3v18M3 8h4M3 16h4M17 8h4M17 16h4" stroke-linecap="round"/><circle cx="12" cy="12" r="3"/>' },
+    /* A chip, not the old slider glyph — that read as a mixer control, not as
+       memory. Deliberately hardware rather than a database cylinder: the
+       cylinder is the universal mark for stored data but it reads server-side,
+       which argues against the local-first claim the card sits inside. A layer
+       stack was the other candidate and was rejected outright — the Arble mark
+       is itself a stack of layers. */
+    { t: "Persistent memory", i: '<rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M15 2v2M9 2v2M15 20v2M9 20v2M2 15h2M2 9h2M20 15h2M20 9h2" stroke-linecap="round"/>' },
     { t: "Runs offline", i: '<path d="M13 3l-8 10h6l-1 8 8-10h-6z" stroke-linejoin="round"/>' }
   ];
 
